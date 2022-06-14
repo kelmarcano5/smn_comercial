@@ -1,0 +1,28 @@
+select
+		smn_comercial.smn_afiliados.smn_documento_id,
+	smn_comercial.smn_afiliados.afi_num_control,
+	smn_comercial.smn_afiliados.smn_contratante_id,
+	smn_comercial.smn_afiliados.smn_auxiliar_unidades_negocios_rf,
+	smn_comercial.smn_afiliados.smn_auxiliar_sucursales_rf,
+	smn_comercial.smn_afiliados.smn_auxiliar_areas_servicios_rf,
+	smn_comercial.smn_afiliados.smn_auxiliar_unidades_servicios_rf,
+	smn_comercial.smn_afiliados.afi_clase_auxiliar_rf,
+	smn_comercial.smn_afiliados.afi_auxiliar_rf,
+	smn_comercial.smn_afiliados.afi_fecha_de_registro,
+	smn_comercial.smn_afiliados.afi_fecha_de_inicio,
+	smn_comercial.smn_afiliados.afi_estatus,
+	smn_comercial.smn_afiliados.afi_fecha_desafiliado,
+	smn_comercial.smn_afiliados.afi_fecha_registro,
+	smn_comercial.smn_afiliados.afi_nombres,
+	smn_comercial.smn_afiliados.afi_apellidos,
+	smn_comercial.smn_afiliados.afi_num_control,
+	smn_comercial.smn_afiliados.afi_apellidos,
+	smn_comercial.smn_afiliados.afi_nombres,
+	smn_comercial.smn_afiliados.afi_sexo,
+	smn_comercial.smn_afiliados.afi_tipo_doc_oficial,
+	smn_comercial.smn_afiliados.afi_nro_doc_oficial,
+	smn_comercial.smn_afiliados.afi_fecha_registro
+from
+	smn_comercial.smn_afiliados 
+where
+	smn_comercial.smn_afiliados.smn_afiliados_id = ${fld:id}

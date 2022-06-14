@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_clase_auxiliar_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_auxiliar_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_direccion_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='rad_tipo_direccion' type='varchar' required='true' maxlen='1'/>
+	<parameter id='rad_status' type='varchar' required='true' maxlen='1'/>
+	<parameter id='rad_fecha_vigencia' type='date' required='true' maxlen='13'/>
+	<parameter id='smn_zona_rf' type='integer' required='true' maxlen='10'/>
+
+
+
+</validator>

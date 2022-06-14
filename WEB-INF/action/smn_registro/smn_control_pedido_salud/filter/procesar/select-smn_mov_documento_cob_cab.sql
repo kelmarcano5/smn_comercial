@@ -1,0 +1,19 @@
+SELECT
+	smn_cobranzas.smn_tipo_documento.tdo_tipo_movimiento,
+	smn_cobranzas.smn_mov_documento_cob_cab.mdc_estatus_financiero,
+	smn_cobranzas.smn_mov_documento_cob_cab.mdc_dias_vencidos,
+	smn_cobranzas.smn_mov_documento_cob_cab.mdc_saldo_doc_ml AS mdd_saldo_ml,
+	smn_cobranzas.smn_mov_documento_cob_cab.mdc_saldo_doc_ma AS mdd_saldo_ma,
+	smn_cobranzas.smn_mov_documento_cob_cab.smn_cliente_rf
+FROM
+	smn_cobranzas.smn_mov_documento_cob_detalle
+INNER JOIN
+	smn_cobranzas.smn_mov_documento_cob_cab ON smn_cobranzas.smn_mov_documento_cob_cab.smn_mov_documento_cob_cab_id=smn_cobranzas.smn_mov_documento_cob_detalle.smn_mov_documento_cob_cab_id
+INNER JOIN
+	smn_comercial.smn_documento ON smn_comercial.smn_documento.smn_documento_id=smn_cobranzas.smn_mov_documento_cob_cab.smn_documento_rf
+INNER JOIN 
+	smn_cobranzas.smn_documento ON smn_cobranzas.smn_documento.smn_documento_general_rf=smn_comercial.smn_documento.smn_documentos_generales_rf
+INNER JOIN
+	smn_cobranzas.smn_tipo_documento ON smn_cobranzas.smn_tipo_documento.smn_tipo_documento_id=smn_cobranzas.smn_documento.smn_tipo_documento_id
+WHERE
+	smn_cobranzas.smn_mov_documento_cob_cab.smn_mov_documento_cob_cab_id=${fld:smn_mov_documento_cob_cab_id}

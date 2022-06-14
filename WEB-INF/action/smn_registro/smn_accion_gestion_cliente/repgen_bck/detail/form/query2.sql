@@ -1,0 +1,14 @@
+select
+		smn_comercial.smn_accion_gestion_cliente.smn_rel_oferta_cliente_id,
+	smn_comercial.smn_accion_gestion_cliente.smn_accion_id,
+	smn_comercial.smn_accion_gestion_cliente.ago_estatus_proceso,
+	smn_comercial.smn_accion_gestion_cliente.ago_fecha_seguimiento,
+	smn_comercial.smn_accion_gestion_cliente.ago_fecha_aprobacion,
+	smn_comercial.smn_accion_gestion_cliente.ago_fecha_vigencia_desde,
+	smn_comercial.smn_accion_gestion_cliente.ago_fecha_vigencia_hasta,
+	smn_comercial.smn_accion_gestion_cliente.ago_fecha_cierre,
+	smn_comercial.smn_accion_gestion_cliente.ago_fecha_registro
+from
+	smn_comercial.smn_accion_gestion_cliente 
+where
+	smn_comercial.smn_accion_gestion_cliente.smn_accion_gestion_cliente_id = ${fld:id}

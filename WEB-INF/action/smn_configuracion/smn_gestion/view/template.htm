@@ -1,0 +1,52 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="9" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("ges_codigo","query-smngestion.sql")'>${lbl:b_code}</th>
+		<th class='sortable' onclick='sortBy("ges_descripcion","query-smngestion.sql")'>${lbl:b_description}</th>
+		<th class='sortable' onclick='sortBy("smn_accion_id_combo","query-smngestion.sql")'>${lbl:b_action}</th>
+		<th class='sortable' onclick='sortBy("ges_estatus","query-smngestion.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("ges_vigencia","query-smngestion.sql")'>${lbl:b_vigency}</th>
+		<th class='sortable' onclick='sortBy("ges_fecha_registro","query-smngestion.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_gestion_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_gestion_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_gestion_id}')" title="${lbl:b_edit_button}"></td>
+		<td align='left'>${fld:ges_codigo}</td>
+		<td align='left'>${fld:ges_descripcion}</td>
+		<td>${fld:smn_accion_id}</td>
+		<td align='left'>${fld:ges_estatus}</td>
+		<td>${fld:ges_vigencia@dd-MM-yyyy}</td>
+		<td>${fld:ges_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

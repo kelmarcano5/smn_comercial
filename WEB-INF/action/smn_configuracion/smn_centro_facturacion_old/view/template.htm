@@ -1,0 +1,68 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='3%'/>
+	<!-- <col width='3%'/> -->
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="14" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th>A/D</th>
+		<th class='sortable' onclick='sortBy("cfc_codigo","query-smncentrofacturacion.sql")'>${lbl:b_code}</th>
+		<th class='sortable' onclick='sortBy("cfc_nombre","query-smncentrofacturacion.sql")'>${lbl:b_name}</th>
+		<th class='sortable' onclick='sortBy("smn_entidades_rf","query-smncentrofacturacion.sql")'>${lbl:b_entities}</th>
+		<th class='sortable' onclick='sortBy("smn_sucursales_rf","query-smncentrofacturacion.sql")'>${lbl:b_subsidiary}</th>
+		<th class='sortable' onclick='sortBy("smn_areas_servicios_rf","query-smncentrofacturacion.sql")'>${lbl:b_service_areas}</th>
+		<th class='sortable' onclick='sortBy("smn_unidades_servicios_rf","query-smncentrofacturacion.sql")'>${lbl:b_service_units}</th>
+		<th class='sortable' onclick='sortBy("cfc_estatus","query-smncentrofacturacion.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("cfc_fecha_registro","query-smncentrofacturacion.sql")'>${lbl:b_store_date}</th>
+		<th>SCF</th>
+		<!-- <th>RCD</th> -->
+		<th>RC</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_centro_facturacion_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_centro_facturacion_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_centro_facturacion_id}')" title="${lbl:b_edit_button}"></td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="actdes('${fld:smn_centro_facturacion_id}','${fld:cfc_estatus}')" title="Activar/Desactivar"></td>
+		<td align='left'>${fld:cfc_codigo}</td>
+		<td align='left'>${fld:cfc_nombre}</td>
+		<td>${fld:smn_entidades_rf}</td>
+		<td>${fld:smn_sucursales_rf}</td>
+		<td>${fld:smn_areas_servicios_rf}</td>
+		<td>${fld:smn_unidades_servicios_rf}</td>
+		<td>${fld:cfc_estatus}</td>
+		<td>${fld:cfc_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="sub('${fld:smn_centro_facturacion_id}','${fld:cfc_codigo}','${fld:cfc_nombre}')" title="${lbl:b_sub_centro_facturacion}"></td>
+		<!-- <td><img src="${def:context}/images/view-list-details.png" onclick="relacion_doc('${fld:smn_centro_facturacion_id}','${fld:cfc_nombre}')" title="${lbl:b_rel_centro_fac_document}"></td> -->
+		<td><img src="${def:context}/images/view-list-details.png" onclick="relacion('${fld:smn_centro_facturacion_id}','${fld:cfc_nombre}')" title="${lbl:b_rel_centro_facturacion_usuario}"></td>
+
+	</tr>
+	</rows>
+
+</table>

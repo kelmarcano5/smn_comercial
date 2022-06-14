@@ -1,0 +1,36 @@
+INSERT INTO smn_comercial.smn_llamadas
+(
+	smn_llamadas_id,
+	smn_cliente_id,
+	smn_prospecto_id,
+	smn_solicitud_afiliacion_id,
+	smn_tipo_documento_id,
+	smn_documento_id,
+	lla_descripcion,
+	smn_cita_id,
+	smn_orden_pedido_id,
+	smn_oferta_id,
+	smn_solicitud_servicio_entrega_rf,
+	smn_gestion_id,
+	lla_observacion,
+	lla_estatus,
+	lla_fecha_registro
+)
+VALUES
+(
+	${seq:nextval@smn_comercial.seq_smn_llamadas},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	{d '${def:date}'}
+)

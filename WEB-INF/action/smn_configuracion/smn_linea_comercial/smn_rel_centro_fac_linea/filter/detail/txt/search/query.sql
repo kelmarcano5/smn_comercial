@@ -1,0 +1,17 @@
+select
+	smn_comercial.smn_centro_facturacion.smn_centro_facturacion_id,
+	smn_comercial.smn_centro_facturacion.cfc_codigo as cfc_codigo_pl0,
+	smn_comercial.smn_linea_comercial.smn_linea_comercial_id,
+	smn_comercial.smn_linea_comercial.lco_codigo as lco_codigo_pl1,
+select
+select
+	smn_comercial.smn_rel_centro_fac_linea.*
+from
+	smn_comercial.smn_centro_facturacion,
+	smn_comercial.smn_linea_comercial,
+	smn_comercial.smn_rel_centro_fac_linea
+where
+	smn_comercial.smn_centro_facturacion.smn_centro_facturacion_id=smn_comercial.smn_rel_centro_fac_linea.smn_centro_facturacion_id and
+	smn_comercial.smn_linea_comercial.smn_linea_comercial_id=smn_comercial.smn_rel_centro_fac_linea.smn_linea_comercial_id
+	and
+	smn_rel_centro_fac_linea_id = ${fld:id}

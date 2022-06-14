@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnfacturacabecera.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_header_bill}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_header_bill}.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smnfacturacabecera.sql' width='100' spacingBefore='40'>
+			<col name='smn_documento_id' title='${lbl:b_document}' width='3' align='left' format='######' />
+			<col name='fca_numero_documento_id' title='${lbl:b_document_number}' width='3' align='left' format='######' />
+			<col name='smn_entidad_rf' title='${lbl:b_entities}' width='3' align='left' format='######' />
+			<col name='smn_sucursal_rf' title='${lbl:b_subsidiaries}' width='3' align='left' format='######' />
+			<col name='smn_pedido_cabecera_id' title='${lbl:b_header_order}' width='3' align='left' format='######' />
+			<col name='smn_oferta_id' title='${lbl:b_offer}' width='3' align='left' format='######' />
+			<col name='smn_caja_rf' title='${lbl:b_box}' width='3' align='left' format='######' />
+			<col name='smn_cliente_id' title='${lbl:b_customer}' width='3' align='left' format='######' />
+			<col name='smn_control_serie_fiscal_id' title='${lbl:b_control_serie_fiscal}' width='3' align='left' format='######' />
+			<col name='fca_numero_control_fiscal' title='${lbl:b_document_number}' width='3' align='left' format='######' />
+			<col name='fca_rif' title='${lbl:b_rif}' width='3' align='left' />
+			<col name='fca_direccion_fiscal' title='${lbl:b_adress_fiscal}' width='3' align='left' />
+			<col name='fca_monto_factura_ml' title='${lbl:b_amount_bill_ml}' width='3' align='left' format='#,###,##0.00' />
+			<col name='fca_monto_impuesto_ml' title='${lbl:b_amount_tax}' width='3' align='left' format='#,###,##0.00' />
+			<col name='fca_monto_descuento_ml' title='${lbl:b_amount_discount}' width='3' align='left' format='#,###,##0.00' />
+			<col name='fca_monto_bonificacion_ml' title='${lbl:b_amount_bonification}' width='3' align='left' format='#,###,##0.00' />
+			<col name='fca_monto_neto_ml' title='${lbl:b_amount_net}' width='3' align='left' format='#,###,##0.00' />
+			<col name='smn_moneda_rf' title='${lbl:b_coins}' width='3' align='left' format='######' />
+			<col name='smn_tasa_rf' title='${lbl:b_exchange_rate}' width='3' align='left' format='######' />
+			<col name='fca_monto_factura_ma' title='${lbl:b_amount_bill_ma}' width='3' align='left' format='#,###,##0.00' />
+			<col name='fca_monto_impuesto_ma' title='${lbl:b_amount_tax_ma}' width='3' align='left' format='#,###,##0.00' />
+			<col name='fca_monto_descuento_ma' title='${lbl:b_amount_discount_ma}' width='3' align='left' format='#,###,##0.00' />
+			<col name='fca_monto_bonificacion_ma' title='${lbl:b_amount_bonification_ma}' width='3' align='left' format='#,###,##0.00' />
+			<col name='fca_monto_neto_ma' title='${lbl:b_amount_net_ma}' width='3' align='left' format='#,###,##0.00' />
+			<col name='fca_estatus_financiero' title='${lbl:b_financial_status}' width='3' align='left' />
+			<col name='fca_estatus_proceso' title='${lbl:b_process_status}' width='3' align='left' />
+			<col name='fca_idioma' title='${lbl:s_profile_lang}' width='3' align='left' />
+			<col name='fca_usuario' title='${lbl:b_users}' width='3' align='left' />
+			<col name='fca_fecha_registro' title='${lbl:b_store_date}' width='3' align='left' format='dd-MM-yyyy' />
+			<col name='fca_hora' title='${lbl:s_loginhist_col2}' width='3' align='left' />
+
+		</record>
+
+	</pdf-report>
+</config>

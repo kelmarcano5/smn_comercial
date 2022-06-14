@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnfacturaimpuestos.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_tax_bill}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_tax_bill}.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smnfacturaimpuestos.sql' width='100' spacingBefore='40'>
+			<col name='smn_factura_detalle_id' title='${lbl:b_detail_bill}' width='11' align='left' format='######' />
+			<col name='smn_codigos_impuestos_rf_combo' title='${lbl:b_code_tax}' width='11' align='left' format='######' />
+			<col name='fai_monto_base_ml' title='${lbl:b_amount_base_ml}' width='11' align='left' format='#,###,##0.00' />
+			<col name='fai_porcentaje_impuesto' title='${lbl:b_percentaje_tax}' width='11' align='left' format='#,###,##0.00' />
+			<col name='fai_monto_impuesto_ml' title='${lbl:b_amount_tax}' width='11' align='left' format='#,###,##0.00' />
+			<col name='smn_moneda_rf_combo' title='${lbl:b_coins}' width='11' align='left' format='######' />
+			<col name='smn_tasa_rf_combo' title='${lbl:b_exchange_rate}' width='11' align='left' format='######' />
+			<col name='fai_monto_impuesto_ma' title='${lbl:b_amount_discount_ma}' width='11' align='left' format='#,###,##0.00' />
+			<col name='fai_fecha_registro' title='${lbl:b_store_date}' width='11' align='left' format='dd-MM-yyyy' />
+
+		</record>
+
+	</pdf-report>
+</config>

@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Insertar registro 
+	</summary>
+
+	<log>false</log>
+
+	<!--soporte de auditoria-->
+	<audit>
+		<!--de donde saca los datos, por defecto es "_request"-->
+		<recordset></recordset>
+		<!--que campos extrae para el registro descriptivo-->
+		<cols>
+			<colname>smn_naturaleza_auxiliar_rf</colname>
+			<colname>smn_clase_auxiliar_rf</colname>
+			<colname>aux_tipo_persona</colname>
+			<colname>aux_codigo</colname>
+			<colname>aux_descripcion</colname>
+			<colname>aux_apellidos</colname>
+			<colname>aux_nombres</colname>
+			<colname>aux_tipo_doc_oficial_rf</colname>
+			<colname>aux_num_doc_oficial</colname>
+			<colname>aux_rif</colname>
+			<colname>aux_sexo</colname>
+			<colname>aux_estado_civil</colname>
+			<colname>aux_fecha_nac</colname>
+			<colname>aux_lugar_nac</colname>
+			<colname>aux_direccion_rf</colname>
+			<colname>aux_nacionalidad_rf</colname>
+			<colname>aux_nacionalizado</colname>
+			<colname>aux_fecha_gaceta_nac</colname>
+			<colname>aux_num_gaceta</colname>
+			<colname>aux_afiliacion</colname>
+			<colname>aux_condicion_financiera_rf</colname>
+			<colname>aux_cuenta_bancaria_rf</colname>
+			<colname>aux_persona_contacto</colname>
+			<colname>aux_titular_rf</colname>
+			<colname>aux_observacion</colname>
+			<colname>aux_peso</colname>
+			<colname>aux_unidad_med_peso_rf</colname>
+			<colname>aux_estatura</colname>
+			<colname>aux_unidad_med_estatura_rf</colname>
+			<colname>aux_lateralidad</colname>
+			<colname>aux_talla_camisa</colname>
+			<colname>aux_unidad_med_camisa_rf</colname>
+			<colname>aux_talla_pantalon</colname>
+			<colname>aux_unidad_med_pantalon_rf</colname>
+			<colname>aux_talla_zapato</colname>
+			<colname>aux_unidad_med_zapato_rf</colname>
+			<colname>aux_talla_braga</colname>
+			<colname>aux_unidad_med_braga_rf</colname>
+			<colname>aux_talla_casco</colname>
+			<colname>aux_unidad_med_casco_rf</colname>
+			<colname>aux_numero_historia</colname>
+
+			<!--<colname>smn_tipo_contactos_rf</colname>
+			<colname>auc_descripcion</colname>
+
+			<colname>smn_tipo_contactos_rf1</colname>
+			<colname>auc_descripcion1</colname>
+
+			<colname>apc_apellidos</colname>
+			<colname>apc_nombres</colname>
+			<colname>apc_telefono_contacto</colname>
+			<colname>apc_email</colname>
+			<colname>apc_direccion</colname>-->
+		
+		</cols>
+		<table>smn_base.smn_auxiliar</table>
+		<oper>AÑADIR</oper>
+		<area>Carga de datos</area>
+		<!--
+			query para obtener el ID generado o nombre de 
+			la columna que contiene el pkey, si es query, 
+			el alias del campo debe ser "id"
+		-->
+		<pkey>select ${seq:currval@smn_base.seq_smn_auxiliar} as id</pkey>
+	
+	</audit>
+
+	<transaction>
+		<classname>dinamica.audit.AuditableTransaction</classname>
+		<validator>true</validator>
+		<transaction>true</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="nextval.sql" source="sql" scope="transaction" />
+		<!--<recordset id="nextval1.sql" source="sql" scope="transaction" />-->
+		<recordset id="nextval2.sql" source="sql" scope="transaction" />
+		<recordset id="nextval4.sql" source="sql" scope="transaction" />
+		<recordset id="nextval3numhist.sql" source="sql" scope="transaction" />
+	</transaction>
+
+	<query>insert.sql</query>
+	<query>insert-contact.sql</query>
+	<!-- <query>insert-contact1.sql</query>
+	<query>insert-person_contact.sql</query> -->
+	<!--<query params="query-tipo_doc.sql">insert.sql</query>-->
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>script.js</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/javascript</content-type>
+		<expiration>0</expiration>
+		<print mode="form" recordset="_request" />
+		<print mode="form" recordset="nextval.sql" />
+		<!--<print mode="form" recordset="nextval1.sql" />-->
+		<print mode="form" recordset="nextval2.sql" />
+		<print mode="form" recordset="nextval2.sql" />
+		<print mode="form" recordset="nextval4.sql" />
+		<print mode="form" recordset="nextval3numhist.sql" />
+	</output>
+	
+	<!-- Envio de email declarativo -->
+	<mail enabled="false">
+		<subject>Subject</subject>
+		<mail-to>martin.cordova@gmail.com</mail-to>
+		<body>body.txt</body>
+	</mail>
+
+</config>

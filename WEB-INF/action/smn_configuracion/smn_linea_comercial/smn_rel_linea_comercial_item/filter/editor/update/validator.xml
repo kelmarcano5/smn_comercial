@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_linea_comercial_id_name' type='varchar' required='false' label='${lbl:b_linea_comercial}'/>
+	<parameter id='smn_linea_comercial_id' type='integer' required='false' label='${lbl:b_linea_comercial}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='true' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='rli_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='rli_vigencia' type='date' required='true' label='${lbl:b_validation_date}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_relacion_linea_comercial_item}' maxlen='10'/>
+
+
+</validator>

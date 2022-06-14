@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Página de bienvenida
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="user-info.sql" source="sql" scope="session" />
+		<recordset params="user-info.sql" id="last-logins.sql" source="sql" scope="transaction" max-rows="5" />
+		<recordset id="failed-logins.sql" source="sql" scope="transaction" max-rows="5" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>welcome.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<expiration>0</expiration>
+		<print mode="form" recordset="user-info.sql" />
+		<print mode="table" recordset="last-logins.sql" tag="rows" alternate-colors="true" />
+		<print mode="table" recordset="failed-logins.sql" tag="rows2" alternate-colors="true" />
+	</output>
+
+</config>

@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert" id="smn_detalle_id">
+	<parameter id="id" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id="entidades" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id="centro_facturacion" type="integer" required="false" label="ID" maxlen="10" />
+</validator>

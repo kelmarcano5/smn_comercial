@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnreservas.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_booking}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_booking}.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smnreservas.sql' width='100' spacingBefore='40'>
+			<col name='smn_evento_id' title='${lbl:b_event}' width='16' align='left' format='######' />
+			<col name='smn_afiliado_id' title='${lbl:b_afiliate}' width='16' align='left' format='######' />
+			<col name='smn_relacionado_id' title='${lbl:b_related}' width='16' align='left' format='######' />
+			<col name='res_cantidad' title='${lbl:b_quantity}' width='16' align='left' format='######' />
+			<col name='res_estatus' title='${lbl:b_estatus}' width='16' align='left' />
+			<col name='res_fecha_registro' title='${lbl:b_store_date}' width='16' align='left' format='dd-MM-yyyy' />
+
+		</record>
+
+	</pdf-report>
+</config>

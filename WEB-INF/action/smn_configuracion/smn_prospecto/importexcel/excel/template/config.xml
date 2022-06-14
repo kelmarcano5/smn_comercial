@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnprospecto.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_leaflet}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_leaflet}">
+				<col id='pro_codigo' label='${lbl:b_code}' />
+		<col id='pro_descripcion' label='${lbl:b_description}' />
+		<col id='pro_email' label='${lbl:b_email}' />
+		<col id='pro_movil' label='${lbl:b_mobile}' />
+		<col id='pro_fijo' label='${lbl:b_fije}' />
+		<col id='pro_referido' label='${lbl:b_referid}' />
+		<col id='pro_estatus_combo' label='${lbl:b_status}' />
+		<col id='pro_vigencia' label='${lbl:b_vigency}' />
+		<col id='pro_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='smn_proveedor_rf' type='integer' required='false' label='${lbl:b_proveedor}' maxlen='5'/>
+	<parameter id='cfd_numero_documento_fiscal_inicial' type='integer' required='false' label='${lbl:b_doc_num_fis_ini}' maxlen='10'/>
+	<parameter id='cfd_numero_documento_fiscal_final' type='integer' required='false' label='${lbl:b_doc_num_fis_fin}' maxlen='10'/>
+	<parameter id='cfd_ultimo_numero_fiscal_usado' type='integer' required='false' label='${lbl:b_num_ult_fis_usa}' maxlen='10'/>
+	<parameter id='cfd_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date} mayor o igual que] no puede ser mayor que [${lbl:b_store_date} menor o igual que].' date1='cfd_fecha_registro_ini' date2='cfd_fecha_registro_fin' id='cfd_fecha_registro_ini' />
+	<parameter id='cfd_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

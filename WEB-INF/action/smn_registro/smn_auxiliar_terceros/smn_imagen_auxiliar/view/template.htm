@@ -1,0 +1,50 @@
+<!--data grid-->
+<table class="datagrid" style="width:90%;">
+
+	<col width="3%"/>
+	<col width="3%"/>
+	<col width="3%"/>
+	<col width="3%"/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="10">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th colspan="4"></th>
+		<th class='sortable' onclick="sortBy('smn_auxiliar_rf','query-smnimagenauxiliar.sql')" >${lbl:b_auxiliary}</th>
+		<th class='sortable' onclick="sortBy('cca_descripcion','query-smnimagenauxiliar.sql')" >${lbl:b_description}</th>
+		<th class='sortable' onclick="sortBy('cca_imagen_size','query-smnimagenauxiliar.sql')" >${lbl:b_image_size}</th>
+		<th class='sortable' onclick="sortBy('filename','query-smnimagenauxiliar.sql')" >${lbl:b_name}</th>
+		<th class='sortable' onclick="sortBy('content_type','query-smnimagenauxiliar.sql')" >${lbl:b_type_content}</th>
+		<th class='sortable' onclick="sortBy('cca_fecha_registro','query-smnimagenauxiliar.sql')" >${lbl:b_store_date}</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/download.png" onclick="downloadBlob('${fld:smn_imagen_auxiliar_id}')" title="Descargar" ></td>
+		<td><img src="${def:context}/images/search.png" onclick="getImage('${fld:smn_imagen_auxiliar_id}', '${fld:content_type}')" title="Ver documento" ></td>
+		<td><img src="${def:context}/images/delete.png" onclick="deleteRecord('${fld:smn_imagen_auxiliar_id}')" title="Eliminar"></td>
+		<td><img src="${def:context}/images/edit.png" onclick="edit('${fld:smn_imagen_auxiliar_id}')" title="Editar"></td>
+		<td>${fld:smn_auxiliar_rf}</td>
+		<td align="left">${fld:cca_descripcion}</td>
+		<td align="center">${fld:cca_imagen_size}</td>
+		<td align="left">${fld:filename}</td>
+		<td align="left">${fld:content_type}</td>
+		<td align="center">${fld:cca_fecha_registro@dd-MM-yyyy}</td>
+	</tr>
+	</rows>
+
+</table>

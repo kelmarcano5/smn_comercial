@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnpresupuesto.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="3" cellStep="0" name="${lbl:b_presupuesto}"/>
+	
+	<excel 
+		recordset='query-smnpresupuesto.sql' 
+		sheetname='${lbl:b_presupuesto}' 
+		filename='${lbl:b_presupuesto}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_entidades_rf_combo' label='${lbl:b_pre_entidades}' />
+		<col id='smn_auxiliar_rf_combo' label='${lbl:b_paciente}' />
+		<col id='smn_documento_id_combo' label='${lbl:b_pre_documento}' />
+		<col id='igs_num_ingreso' label='Ingreso Numero'/>
+		<col id='pre_numero_control' label='${lbl:b_pre_num_control}' />
+		<col id='pre_monto_ml' label='${lbl:b_pre_monto_loc}' />
+		<col id='pre_monto_ma' label='${lbl:b_pre_monto_alt}' />
+		<col id='status_combo' label='${lbl:b_status}' />
+		<col id='pre_fecha_registro' label='${lbl:b_store_date}' />
+	</excel>
+
+</config>

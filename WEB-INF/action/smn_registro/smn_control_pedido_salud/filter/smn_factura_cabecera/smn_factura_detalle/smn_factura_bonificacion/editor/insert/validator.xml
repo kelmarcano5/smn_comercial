@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_factura_detalle_id' type='integer' required='false' label='${lbl:b_detail_bill}' maxlen='10'/>
+	<parameter id='smn_item_bonificar_rf' type='integer' required='true' label='${lbl:b_item_meliorate}' maxlen='10'/>
+	<parameter id='fbo_cantidad_origen' type='integer' required='true' label='${lbl:b_quantity_origin}' maxlen='10'/>
+	<parameter id='fbo_cantidad_bonificar' type='integer' required='true' label='${lbl:b_quantity_meliorate}' maxlen='10'/>
+	<parameter id='fbo_precio_original' type='double' required='true' label='${lbl:b_price_original}' maxlen='10'/>
+	<parameter id='fbo_monto' type='double' required='true' label='${lbl:b_amount}' maxlen='10'/>
+
+
+</validator>

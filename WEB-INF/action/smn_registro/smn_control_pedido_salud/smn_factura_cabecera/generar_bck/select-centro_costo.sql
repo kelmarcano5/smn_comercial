@@ -1,0 +1,10 @@
+SELECT
+	smn_comercial.smn_centro_facturacion.smn_centro_costo_rf
+FROM
+	smn_comercial.smn_centro_facturacion
+INNER JOIN
+	smn_comercial.smn_factura_cabecera
+ON	
+	smn_comercial.smn_centro_facturacion.smn_centro_facturacion_id = smn_comercial.smn_factura_cabecera.smn_centro_facturacion_id
+WHERE
+	smn_comercial.smn_factura_cabecera.smn_factura_cabecera_id = ${fld:smn_factura_id}

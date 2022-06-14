@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnimagenitemcomercio.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+	
+	<excel recordset='query-smnimagenitemcomercio.sql' sheetname='${lbl:b_image_item_commerce}' filename='smn_imagen_item_comercio.xls'>
+		<col id='smn_catalogo_item_comercio_id_combo' label='${lbl:b_catalog_item_commerce}' />
+		<col id='iic_descripcion' label='${lbl:b_description}' />
+		<col id='iic_imagen_size' label='${lbl:b_image_size}' />
+		<col id='filename' label='${lbl:b_name}' />
+		<col id='content_type' label='${lbl:b_type_content}' />
+		<col id='iic_idioma' label='${lbl:s_profile_lang}' />
+		<col id='iic_usuario' label='${lbl:b_users}' />
+		<col id='iic_fecha_registro' label='${lbl:b_store_date}' />
+		<col id='iic_hora' label='${lbl:s_loginhist_col2}' />
+	</excel>
+
+</config>

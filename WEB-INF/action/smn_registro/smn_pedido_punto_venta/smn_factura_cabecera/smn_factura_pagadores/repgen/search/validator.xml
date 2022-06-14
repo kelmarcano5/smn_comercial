@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_factura_cabecera_id_name' type='varchar' required='false' label='${lbl:b_header_bill}'/>
+	<parameter id='smn_factura_cabecera_id' type='integer' required='false' label='${lbl:b_header_bill}' maxlen='10'/>
+	<parameter id='smn_cliente_id_name' type='varchar' required='false' label='${lbl:b_customer}'/>
+	<parameter id='smn_cliente_id' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_monto_rf' type='double' required='false' label='${lbl:b_amount}' maxlen='10'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='smn_factura_cabecera_id_name'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='smn_cliente_id_name'
+		rule='contains' />
+
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

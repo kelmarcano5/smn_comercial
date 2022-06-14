@@ -1,0 +1,386 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />	
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+	<!--codigo especifico de este modulo--> 
+	<script type="text/javascript">
+		//inicializacion de la pagina cuando carga
+		onload = function() { 
+			search();
+		} 
+	
+		//ejecutar consulta
+		function search() {
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/search", 
+							divResponse="response", 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);
+		}
+	
+		//recuperar una pagina X del grid
+		function viewPage() {
+			var url = "${def:actionroot}/view";
+			gotoPage(url);
+		}
+		
+		//exportar a PDF
+		function openPDF() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+	
+		//exportar a excel
+		function openExcel() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a xml
+		function openXml() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/xml/search?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a texto
+		function openTxt() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/txt/search?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		
+		//mostrar el detalle de un registro
+		function getDetail(id)
+		{
+//			//alert('Colocar su código aquí.')
+			
+			var uri = "${def:context}${def:actionroot}/detail/form?id=" + id;
+			openDialog("dialog", uri, 650, 600);			
+		}
+		
+		//muestra un DIV+IFRAME con el formulario de CRUD
+		function showEditor(id, status)
+		{
+			//alert('Colocar su código aquí.'+status)
+						
+			//editor a nivel de panel iconográfico
+			if (id == 'editor')
+			{					
+				var uri = "${def:context}${def:actionroot}/editor/form";					
+				openDialog("editor1", uri, 650, 600);					
+			}
+			else if (id == 'filter')
+			{
+				var uri = "${def:context}${def:actionroot}/filter/form";					
+				openDialog("editor2", uri, 1300, 700);		
+			} 
+			else if (id == 'importexcel')
+			{
+				var uri = "${def:context}${def:actionroot}/importexcel/form";					
+				openDialog("editor3", uri, 950, 600);		
+			} 
+			else if (id == 'repgen')
+			{
+				var uri = "${def:context}${def:actionroot}/repgen/form";		
+				openDialog("editor4", uri, 950, 600);		
+			}
+			//editor a nivel de registros
+			else {		
+			//if (true) {}	
+				if (status != 'Aprobado' && status != 'Generado' ) {
+					var uri = "";
+					if (id==null)
+						uri = "${def:context}${def:actionroot}/editor/form";
+					else
+						uri = "${def:context}${def:actionroot}/editor/form?id=" + id;
+						
+					openDialog("editor5", uri, 650, 600);
+				
+				}else{
+					alertBox('Este presupuesto esta geberado o aprobado y no puede ser editado', 'Aceptar', null, null);	
+				}
+			}	
+		}
+
+		function deleteRecord(id, status) {
+//			//alert('Colocar su código aquí.')
+			if (status != 'Aprobado' && status != 'Generado' ) {
+				alertBox('${lbl:b_delete_record_button}', '${lbl:b_delete_button}', '${lbl:b_cancel_button}', 'deleteRecordOK(' + id + ')')
+			}else{
+				alertBox('Este presupuesto esta generado o aprobado y no puede ser eliminado', 'Aceptar', null, null);	
+			}
+					
+		}
+		
+		//eliminar un registro
+		function deleteRecordOK(id) {
+				ajaxCall(httpMethod="GET", 
+								uri="${def:actionroot}/delete?id=" + id,
+								divResponse=null, 
+								divProgress="status", 
+								formName=null, 
+								afterResponseFn=null, 
+								onErrorFn=null);	
+		}
+		
+		function presupuesto_detalle(id_pre, numero_control_pre, baremos_pre, estatus) 
+		{
+			uri = "${def:context}${def:actionroot}/smn_presupuesto_detalle/form?id_pre="+ id_pre + "&numero_control_pre=" + numero_control_pre +"&smn_baremos_id="+baremos_pre+"&estatus="+estatus;		
+			openDialog("dialog", uri, 1350, 700);
+		}
+
+
+		function generar(id, status) {
+			alert('status: '+status)
+//			//alert('Colocar su código aquí.')
+			if(status != '2'){
+				alertBox('Desea generar este registro', '${lbl:b_yes}', '${lbl:b_not}', 'generarOk(' + id + ')')
+			}else{
+				alertBox('Este presupuesto ya fue generado', 'Aceptar', null, null);	
+			}
+		}
+		
+		//eliminar un registro
+		function generarOk(id) {
+				ajaxCall(httpMethod="GET", 
+								uri="${def:actionroot}/generar_updchangst?id=" + id,
+								divResponse=null, 
+								divProgress="status", 
+								formName=null, 
+								afterResponseFn=null, 
+								onErrorFn=null);	
+		}
+
+		function rechazar(id, status) {
+			//alert('status: '+status)
+//			//alert('Colocar su código aquí.')
+			if(status != '5'){
+				alertBox('Desea rechazar este presupuesto', '${lbl:b_yes}', '${lbl:b_not}', 'rechazarOk(' + id + ')')
+			}else{
+				alertBox('Este presupuesto ya fue rechazado', 'Aceptar', null, null);	
+			}
+		}
+		
+		//eliminar un registro
+		function rechazarOk(id) {
+				ajaxCall(httpMethod="GET", 
+								uri="${def:actionroot}/rechazar_ingpres?id=" + id,
+								divResponse=null, 
+								divProgress="status", 
+								formName=null, 
+								afterResponseFn=null, 
+								onErrorFn=null);	
+		}
+
+
+
+		function enviar(id, status) {
+			//alert('status: '+status)
+//			//alert('Colocar su código aquí.')
+			if(status != '3'){
+				alertBox('Desea enviar por correo este presupuesto', '${lbl:b_yes}', '${lbl:b_not}', 'enviarOk(' + id + ')')
+			}else{
+				alertBox('Este presupuesto ya fue enviado', 'Aceptar', null, null);	
+			}
+		}
+		
+		//eliminar un registro
+		function enviarOk(id) {
+				ajaxCall(httpMethod="GET", 
+								uri="${def:actionroot}/enviar_presupuesto?id=" + id,
+								divResponse=null, 
+								divProgress="status", 
+								formName=null, 
+								afterResponseFn=null, 
+								onErrorFn=null);	
+		}
+
+
+		// function enviar(id_pre) {
+		// 	var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+		// 	var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+		// 	var w = window.open(url, null, features);
+		// }
+
+		function aprobar(id, status, ingreso, montoml, montoma) {
+			var montonetoml = parseFloat(montoml);
+			var montonetoma = parseFloat(montoma);
+			//alert("MONTO ML: "+montonetoml+" MONTO MA"+montonetoma);
+			if(status != 4){
+				procesar_requisicion(id);
+				alertBox('Desea aprobar este registro', '${lbl:b_yes}', '${lbl:b_not}', 'aprobarOk(' + id + ','+ingreso+','+montonetoml+','+montonetoma+')');
+			}else{
+				alertBox('Este presupuesto ya fue aprobado', 'Aceptar', null, null);	
+			 }
+		}
+		
+		//eliminar un registro
+		function aprobarOk(id, ingreso, montoml, montoma) {
+			aprobarpresupuesto(id, ingreso, montoml, montoma);
+			actualizarrutapaciente(ingreso);
+			
+			procesar_ingreso(id);
+		}
+
+			//eliminar un registro
+		function actualizarrutapaciente(id) {
+
+			var uri="${def:actionroot}/updaterutapaciente?id_ingreso=" + id;
+			//alert(uri);
+				ajaxCall(httpMethod="GET", 
+								uri,
+								divResponse=null, 
+								divProgress="status", 
+								formName=null, 
+								afterResponseFn=null, 
+								onErrorFn=null);	
+		}
+
+				//eliminar un registro
+		function aprobarpresupuesto(id, ingreso, montoml, montoma) {
+
+
+			var uri="${def:actionroot}/aprobar_presupuesto?smn_presupuesto_id=" + id +"&ingreso="+ingreso+"&montoml="+montoml+"&montoma="+montoma;
+			//alert(uri);
+				ajaxCall(httpMethod="GET", 
+								uri,
+								divResponse=null, 
+								divProgress="status", 
+								formName=null, 
+								afterResponseFn=null, 
+								onErrorFn=null);	
+		}
+
+		
+
+		function procesar_requisicion(id) {
+			var uri= "${def:context}${def:actionroot}/procesar_req?smn_presupuesto_id="+id;
+			//alert("entro en el procesar: "+uri);
+			openDialog("dialog2", uri, 650, 600);
+		}
+
+		function procesar_ingreso(id) {
+			var uri= "${def:context}${def:actionroot}/procesar_ing?smn_presupuesto_id="+id;
+			//alert("entro en el procesar: "+uri);
+			openDialog("dialog3", uri, 650, 600);
+		}
+
+		function reversarRecord(id, status) {
+//			//alert('Colocar su código aquí.')
+			
+			alertBox('Desea Reversar este presupuesto?', '${lbl:b_delete_button}', '${lbl:b_cancel_button}', 'reversarRecordOK(' + id + ', '+ status +')')
+					
+		}
+		
+		//eliminar un registro
+		function reversarRecordOK(id, status) {
+			var uri="${def:actionroot}/reversar_presupuesto?id=" + id + "&status=" + status;
+			//alert(uri);
+				ajaxCall(httpMethod="GET", 
+								uri,
+								divResponse=null, 
+								divProgress="status", 
+								formName=null, 
+								afterResponseFn=null, 
+								onErrorFn=null);	
+		}
+
+		function descuento(id, status) {
+			if (status != 4) {
+				uri = "${def:context}${def:actionroot}/editor_aplicar_descuento/form?id=" + id;
+				openDialog("editor15", uri, 650, 200);
+			}else{
+				alertBox('No se puede agregar descuentos a un presupuesto con estatus aprobado', 'Aceptar', null, null);	
+			}
+		}	
+
+		function openPDF_factura(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf_factura?id="+id;
+			//alert(url);
+			var w = window.open(url, null, features);
+		}	
+
+		function presupuesto_impuesto(id_pre, numero_control_pre, baremos_pre) 
+		{
+			uri = "${def:context}${def:actionroot}/smn_presupuesto_impuesto/form?id_pre="+ id_pre + "&numero_control_pre=" + numero_control_pre +"&smn_baremos_id="+baremos_pre;		
+			openDialog("dialog", uri, 1250, 700);
+		}
+
+		function incrementos(id, status) {
+			if (status != 4) {
+				uri = "${def:context}${def:actionroot}/editor_aplicar_incremento/form?id=" + id;
+			//	alert(uri);
+				openDialog("editor15", uri, 650, 200);
+			}else{
+				alertBox('No se puede agregar incrementos a un presupuesto con estatus aprobado', 'Aceptar', null, null);	
+			}
+		}	
+
+
+		//envio de emails
+		function openEmails(id) {
+			var uri = "${def:context}${def:actionroot}/email/form?id="+id;	
+			//alert(uri);				
+			openDialog("editor0", uri, 950, 600);	
+		}
+
+
+		function generarPedido(id, status) {
+			//alert('status: '+status)
+
+			if(status != '2'){
+				alertBox('Desea generar este registro', '${lbl:b_yes}', '${lbl:b_not}', 'generarPedidoOk(' + id + ')')
+			}else{
+				alertBox('Este presupuesto ya fue generado', 'Aceptar', null, null);	
+			}
+		}
+
+
+		function generarPedidoOk(id) {
+			var uri= "${def:context}${def:actionroot}/procesar_pedido?smn_presupuesto_id="+id;
+			//alert("entro en el procesar: "+uri);
+			openDialog("dialog2", uri, 650, 600);
+		}
+
+	</script>
+
+</head>
+
+<body>
+
+	<!--banner-->
+	<div class="welcome" style="padding-right:50px; margin-top: 20px;"><br>
+        <b>${lbl:b_welcome}</b> ${fld:fname} ${fld:lname} ${req:progress}
+        <div class="" style="width: 100%; border-bottom: solid 6px #1d61a0; border-radius: 30px; margin-top: 4px;">
+        </div>
+    </div>
+    <br>
+    <div class="titulo-negocios">
+        <div style="padding-top: 15px;">${lbl:b_presupuesto}</div>
+    </div>
+		
+	<!--incluir el menu iconografico de SIMONE-->
+	${inc:${def:actionroot}/panel/view}
+	
+	<br>
+	<br>
+	
+	<!--panel de respuesta AJAX #1-->
+	<div id="response" style="display: none; width: 100%"></div>
+
+</body>
+
+</html>

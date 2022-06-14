@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='cic_origen' type='varchar' required='true' maxlen='2'/>
+	<parameter id='smn_cliente_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_clasificacion_abc_rf_a' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_clasificacion_abc_rf_b' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_clasificacion_abc_rf_c' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_baremos_rf' type='integer' required='true' maxlen='10'/>
+
+
+
+</validator>

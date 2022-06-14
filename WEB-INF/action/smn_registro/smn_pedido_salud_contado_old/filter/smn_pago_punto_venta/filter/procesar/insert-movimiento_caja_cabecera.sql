@@ -1,0 +1,48 @@
+INSERT INTO smn_caja.smn_mov_caja_cabecera
+(
+	smn_mov_caja_cabecera_id,
+	smn_caja_id,
+	smn_modulo_rf,
+	smn_documento_id,
+	mcc_documento_numero,
+	smn_clase_auxiliar_rf,
+	smn_auxiliar_rf,
+	smn_clase_auxiliar_pagador_rf,
+	smn_auxiliar_pagador_rf,
+	mcc_monto_ml_documento,
+	mcc_saldo_ml_documento,
+	mcc_monto_ma_documento,
+	mcc_saldo_ma_documento,
+	smn_moneda_rf,
+	smn_tasa_rf,
+	smn_estatus_cobro,
+	mcc_estatus_registro,
+	mcc_idioma,
+	mcc_usuario,
+	mcc_fecha_registro,
+	mcc_hora
+)
+VALUES
+(
+	${seq:currval@smn_caja.seq_smn_mov_caja_cabecera},
+	${fld:caja},
+	27,
+	${fld:smn_documento_id},
+	${seq:nextval@smn_caja.seq_documento_numero},
+	${fld:clase_cliente},
+	${fld:cliente},
+	${fld:clase_comprador},
+	${fld:comprador},
+	${fld:monto_ml},
+	${fld:saldo_ml},
+	${fld:monto_ma},
+	${fld:saldo_ma},
+	${fld:moneda},
+	${fld:tasa},
+	'PA',
+	'GE',
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+);

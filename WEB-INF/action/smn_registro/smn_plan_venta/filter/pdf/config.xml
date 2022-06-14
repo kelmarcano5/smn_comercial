@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnplanventa.sql" source="session" scope="transaction" />
+		<recordset id="filter.params" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_plan_venta}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' align="left" />
+	<pdf-file-name>${lbl:b_plan_venta}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='filter.params' title='${lbl:b_filter_find}' noFilterMsg='-- ${lbl:b_all_message} --' width='55' spacingBefore='15'>
+			<col name='smn_entidades_rf' title='${lbl:b_item}'   align='left' />
+			<col name='smn_almacen_rf' title='${lbl:b_store_code}'   align='left' />
+			<col name='smn_documento_id' title='${lbl:b_document}'   align='left' />
+			<col name='plv_semestre_rf' title='${lbl:b_semestre}'  align='left' />
+			<col name='plv_trimestre_rf' title='${lbl:b_trimestre}'  align='left' />
+			<col name='plv_mes_rf' title='${lbl:b_mes}'  align='left' />
+			<col name='plv_semana_rf' title='${lbl:b_semana}'  align='left' />
+			<col name='plv_fecha_registro_ini' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='left' />
+			<col name='plv_fecha_registro_fin' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='left' />
+
+		</record>
+		<record recordset='query-smnplanventa.sql' width='100' spacingBefore='10'>
+			<col name='smn_entidades_rf' title='${lbl:b_item}' width='10' align='left'  />
+			<col name='smn_almacen_rf' title='${lbl:b_store_code}' width='10' align='left'  />
+			<col name='smn_documento_id' title='${lbl:b_document}' width='10' align='left'  />
+			<col name='plv_fecha' title='${lbl:b_fecha}' width='10' align='left' format='dd-MM-yyyy' />
+			<col name='plv_cantidad_rf' title='${lbl:b_quantity}' width='10' align='left' format='#,###,##0.00' />
+			<col name='plv_precio_rf' title='${lbl:b_price}' width='10' align='left' format='#,###,##0.00' />
+			<col name='plv_monto_rf' title='${lbl:b_amount}' width='10' align='left' format='#,###,##0.00' />
+			<col name='plv_precio_ma_rf' title='${lbl:b_coins}' width='10' align='left' format='#,###,##0.00' />
+			<col name='plv_monto_ma_rf' title='${lbl:b_amount_ma}' width='10' align='left' format='#,###,##0.00' />
+			<col name='plv_fecha_registro' title='${lbl:b_store_date}' width='10' align='left' format='dd-MM-yyyy' />
+
+		</record>
+
+	</pdf-report>
+</config>

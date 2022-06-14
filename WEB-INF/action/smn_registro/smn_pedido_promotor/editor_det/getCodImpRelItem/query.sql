@@ -1,0 +1,4 @@
+select smn_base.smn_codigos_impuestos.smn_codigos_impuestos_id as id, smn_base.smn_codigos_impuestos.imp_descripcion as item from smn_base.smn_item 
+inner join smn_base.smn_rel_item_cod_impuesto on smn_base.smn_rel_item_cod_impuesto.smn_item_id = smn_base.smn_item.smn_item_id
+inner join smn_base.smn_codigos_impuestos on smn_base.smn_codigos_impuestos.smn_codigos_impuestos_id = smn_base.smn_rel_item_cod_impuesto.smn_codigos_impuestos_id
+where smn_base.smn_rel_item_cod_impuesto.smn_item_id=${fld:id}

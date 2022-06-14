@@ -1,0 +1,1 @@
+select ${seq:nextval@${schema}seq_user} as user_id

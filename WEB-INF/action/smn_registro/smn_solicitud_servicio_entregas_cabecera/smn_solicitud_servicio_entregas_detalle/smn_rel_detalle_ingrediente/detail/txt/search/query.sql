@@ -1,0 +1,17 @@
+select
+	smn_comercial.smn_solicitud_servicio_entregas_detalle.smn_solicitud_servicio_entregas_detalle_id,
+	smn_comercial.smn_solicitud_servicio_entregas_detalle.sed_tiempo_sug_preparacion as sed_tiempo_sug_preparacion_pl0,
+	smn_comercial.smn_ingredientes.smn_ingredientes_id,
+	smn_comercial.smn_ingredientes.igs_idioma as igs_idioma_pl1,
+select
+select
+	smn_comercial.smn_rel_detalle_ingrediente.*
+from
+	smn_comercial.smn_solicitud_servicio_entregas_detalle,
+	smn_comercial.smn_ingredientes,
+	smn_comercial.smn_rel_detalle_ingrediente
+where
+	smn_comercial.smn_solicitud_servicio_entregas_detalle.smn_solicitud_servicio_entregas_detalle_id=smn_comercial.smn_rel_detalle_ingrediente.smn_solicitud_servicio_entregas_detalle_id and
+	smn_comercial.smn_ingredientes.smn_ingredientes_id=smn_comercial.smn_rel_detalle_ingrediente.smn_ingredientes_id
+	and
+	smn_rel_detalle_ingrediente_id = ${fld:id}

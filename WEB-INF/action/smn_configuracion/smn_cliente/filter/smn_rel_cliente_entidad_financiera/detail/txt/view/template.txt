@@ -1,0 +1,3 @@
+<rows>
+cef_fecha_registro="${fld:cef_fecha_registro}"    cef_vigencia="${fld:cef_vigencia}"    cef_estatus="${fld:cef_estatus}"    cef_numero_cuenta="${fld:cef_numero_cuenta}"    smn_tipo_cuenta_banco_rf="${fld:smn_tipo_cuenta_banco_rf}"    smn_entidad_financiera_rf="${fld:smn_entidad_financiera_rf}"    smn_cliente_id="${fld:smn_cliente_id}"    
+</rows>

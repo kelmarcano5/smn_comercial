@@ -1,0 +1,1 @@
+select replace(lpad(${seq:currval@smn_comercial.seq_smn_prospecto} || '',18,repeat('0',length(${seq:currval@smn_comercial.seq_smn_prospecto} || ''))),' ', '') as correlative

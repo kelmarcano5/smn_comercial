@@ -1,0 +1,1 @@
+select smn_comercial.smn_grupo_promotores_vendedores.smn_grupo_promotores_vendedores_id as id, smn_comercial.smn_grupo_promotores_vendedores.gpv_descripcion as item from smn_comercial.smn_grupo_promotores_vendedores

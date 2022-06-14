@@ -1,0 +1,1 @@
+select smn_base.smn_auxiliar_corporaciones.smn_auxiliar_corporaciones_id as id, smn_base.smn_auxiliar_corporaciones.tcp_codigo|| ' - ' ||smn_base.smn_auxiliar_corporaciones.tcp_nombre as item from smn_base.smn_auxiliar_corporaciones

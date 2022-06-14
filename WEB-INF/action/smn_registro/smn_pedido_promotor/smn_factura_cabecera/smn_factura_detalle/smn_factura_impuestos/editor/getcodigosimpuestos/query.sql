@@ -1,0 +1,3 @@
+select smn_base.smn_codigos_impuestos.smn_codigos_impuestos_id as id, smn_base.smn_codigos_impuestos.imp_porcentaje_calculo as porcentaje_calculo,
+smn_base.smn_codigos_impuestos.imp_ui_sustraendo as sustraendo FROM smn_base.smn_codigos_impuestos
+WHERE smn_base.smn_codigos_impuestos.smn_codigos_impuestos_id=${fld:id}

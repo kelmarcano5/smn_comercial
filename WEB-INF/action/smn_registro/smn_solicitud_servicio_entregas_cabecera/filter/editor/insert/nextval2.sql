@@ -1,0 +1,1 @@
+select ${seq:nextval@smn_comercial.seq_sec_documento_numero} as id2

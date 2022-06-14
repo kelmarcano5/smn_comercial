@@ -1,0 +1,54 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+<!-- 	<col width='3%'/> -->
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='5%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+<!-- 	<col width='3%'/> -->
+	<!--toolbar-->
+	<tr>
+		<th colspan="11" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<!-- <th></th> -->
+		<th class='sortable' onclick='sortBy("catalogo","query-smnsolicitudservicioentregasdetalle.sql")'>Producto</th>
+		<th class='sortable' onclick='sortBy("descripcioningrediente","query-smnsolicitudservicioentregasdetalle.sql")'>Descripcion</th>
+		<th class='sortable' onclick='sortBy("requerimientos","query-smnsolicitudservicioentregasdetalle.sql")'>${lbl:b_requeriment}</th>
+		<th class='sortable' onclick='sortBy("cantidad","query-smnsolicitudservicioentregasdetalle.sql")'>${lbl:b_quantity}</th>
+		<th class='sortable' onclick='sortBy("sed_precio_ml","query-smnsolicitudservicioentregasdetalle.sql")'>${lbl:b_price_ml}</th>
+		<th class='sortable' onclick='sortBy("sed_monto_moneda_local","query-smnsolicitudservicioentregasdetalle.sql")'>${lbl:b_amount_ml}</th>
+		<th class='sortable' onclick='sortBy("sed_fecha_registro","query-smnsolicitudservicioentregasdetalle.sql")'>${lbl:b_store_date}</th>
+		<!-- <th>RDI</th> -->
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_solicitud_servicio_entregas_detalle_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_solicitud_servicio_entregas_detalle_id}')" title="${lbl:b_delete_button}"></td>
+		<!-- <td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_solicitud_servicio_entregas_detalle_id}')" title="${lbl:b_edit_button}"></td> -->
+		<td>${fld:catalogo}</td>
+		<td>${fld:descripcion}</td>
+		<td align='left'>${fld:requerimientos}</td>
+		<td align='center'>${fld:cantidad}</td>
+		<td align='right'>${fld:sed_precio_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:sed_monto_moneda_local@#,###,##0.00}</td>
+		<td>${fld:sed_fecha_registro}</td>
+		<!-- <td><img src="${def:context}/images/view-list-details.png"  onclick="relacion('${fld:smn_solicitud_servicio_entregas_detalle_id}','${fld:ingrediente_id}')" title="Agregar Ingrediente"></td> -->
+	</tr>
+	</rows>
+
+</table>

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_factura_cabecera_id' type='integer' required='true' label='${lbl:b_header_bill}' maxlen='10'/>
+	<parameter id='fde_naturaleza' type='integer' required='true' label='${lbl:b_nature}' maxlen='10'/>
+	<parameter id='smn_servicios_rf' type='varchar' required='false' label='${lbl:b_services}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='varchar' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='smn_activo_fijo_rf' type='varchar' required='false' label='${lbl:b_actfijo}' maxlen='10'/>
+	<parameter id='fde_cantidad' type='integer' required='true' label='${lbl:b_quantity}' maxlen='10'/>
+	<parameter id='fde_precio_ml' type='integer' required='true' label='${lbl:b_price}' maxlen='10'/>
+	<parameter id='fde_monto_ml' type='integer' required='true' label='${lbl:b_amount}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='fde_precio_ma' type='double' required='false' label='${lbl:b_price_coins_alter}' maxlen='10'/>
+	<parameter id='fde_monto_ma' type='double' required='false' label='${lbl:b_amount_coins_alter}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_detail_bill}' maxlen='10'/>
+
+		<parameter id='fde_impuesto_ml' type='double' required='false' label='${lbl:b_price_coins_alter}' maxlen='10'/>
+			<parameter id='fde_impuesto_ma' type='double' required='false' label='${lbl:b_price_coins_alter}' maxlen='10'/>
+				<parameter id='fde_descuento_ml' type='double' required='false' label='${lbl:b_price_coins_alter}' maxlen='10'/>
+					<parameter id='fde_descuento_ma' type='double' required='false' label='${lbl:b_price_coins_alter}' maxlen='10'/>
+						<parameter id='fde_bonificacion' type='double' required='false' label='${lbl:b_price_coins_alter}' maxlen='10'/>
+
+</validator>

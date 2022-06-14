@@ -1,0 +1,1 @@
+select smn_entrega.smn_solicitud_servicio_entregas_cabecera.smn_solicitud_servicio_entregas_cabecera_id as id, smn_entrega.smn_solicitud_servicio_entregas_cabecera.sec_descripcion as item from smn_entrega.smn_solicitud_servicio_entregas_cabecera

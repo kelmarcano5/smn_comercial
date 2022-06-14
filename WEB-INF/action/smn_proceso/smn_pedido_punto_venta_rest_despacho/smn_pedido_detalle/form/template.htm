@@ -1,0 +1,287 @@
+<!doctype html>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />	
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+	<!--codigo especifico de este modulo--> 
+	<script type="text/javascript">
+		var id_cab = '${fld:id2}';
+		var cliente = '${fld:cliente}';
+		var comprador = '${fld:comprador}'
+
+
+		//inicializacion de la pagina cuando carga
+		onload = function() { 
+
+			//parent.closeDialog();
+
+			if(cliente == ''){
+			cliente = '';
+
+			}else{
+				cliente = '${fld:cliente}'
+			}
+
+			if(comprador == ''){
+				comprador = '';
+
+			}else{
+				comprador = '${fld:comprador}'
+			}
+			//obtenerdatoscabecera
+			updateMontoPedido(id_cab);
+			
+			search();
+			//setTimeout(recalcular_monto(), 2000);
+			//obtener(id_cab);
+		} 
+
+		function updateMontoPedido(id) {
+			//setTimeout(updateMontoPedido(id_cab), 5000);
+			uri="${def:actionroot}/montoapagar?id2="+id;
+			ajaxCall(httpMethod="GET", 
+						uri, 
+						divResponse="response", 
+						divProgress="status", 
+						formName=null, 
+						afterResponseFn=null, 
+						onErrorFn=null);
+		}
+
+	
+		//ejecutar consulta
+		function search() {
+			uri="${def:actionroot}/search?id2=${fld:id2}";
+			ajaxCall(httpMethod="GET", 
+							uri,
+							divResponse="response", 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);
+		}
+
+		//ejecutar consulta
+		function obtener(id) {
+
+				uri="${def:actionroot}/obtenerdatoscabecera?id2="+id;	 
+				//alert("OBTENER : "+uri);
+				 ajaxCall(httpMethod="GET", 
+								uri,
+								divResponse="response", 
+								divProgress="status", 
+								formName=null, 
+								afterResponseFn=null, 
+								onErrorFn=null);
+		}	
+
+		//recuperar una pagina X del grid
+		function viewPage() {
+			var url = "${def:actionroot}/view";
+			gotoPage(url);
+		}
+		
+		//exportar a PDF
+		function openPDF() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+	
+		//exportar a excel
+		function openExcel() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a xml
+		function openXml() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/xml/search?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a texto
+		function openTxt() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/txt/search?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//envio de emails
+		function openEmails() {
+			var uri = "${def:context}${def:actionroot}/email/form";					
+			openDialog("editor0", uri, 950, 600);	
+		}
+		
+		//mostrar el detalle de un registro
+		function getDetail(id)
+		{
+//			//alert('Colocar su código aquí.')
+			
+			var uri = "${def:context}${def:actionroot}/detail/form?id=" + id;
+			openDialog("dialog", uri, 650, 600);			
+		}
+		
+		//muestra un DIV+IFRAME con el formulario de CRUD
+		function showEditor(id)
+		{
+//			//alert('Colocar su código aquí.')
+						
+			//editor a nivel de panel iconográfico
+			if (id == 'editor')
+			{					
+				var uri = "${def:context}${def:actionroot}/editor/form?id2=${fld:id2}";	
+				//alert(uri);				
+				openDialog("editor1", uri, 950, 600);					
+			}
+			else if (id == 'filter')
+			{
+				var uri = "${def:context}${def:actionroot}/filter/form?id2=${fld:id2}";					
+				openDialog("editor2", uri, 950, 600);		
+			} 
+			else if (id == 'importexcel')
+			{
+				var uri = "${def:context}${def:actionroot}/importexcel/form";					
+				openDialog("editor3", uri, 950, 600);		
+			} 
+			else if (id == 'repgen')
+			{
+				var uri = "${def:context}${def:actionroot}/repgen/form";		
+				openDialog("editor4", uri, 950, 600);		
+			}
+			//editor a nivel de registros
+			else {				
+				var uri = "";
+				if (id==null)
+					uri = "${def:context}${def:actionroot}/editor/form";
+				else
+					uri = "${def:context}${def:actionroot}/editor/form?id=" + id;
+					
+				openDialog("editor5", uri, 650, 600);
+			}
+			
+		}
+
+		function deleteRecord(id) {
+//			//alert('Colocar su código aquí.')
+			
+			alertBox('${lbl:b_delete_record_button}', '${lbl:b_delete_button}', '${lbl:b_cancel_button}', 'deleteRecordOK(' + id + ')')
+					
+		}
+		
+		//eliminar un registro
+		function deleteRecordOK(id) {
+				ajaxCall(httpMethod="GET", 
+								uri="${def:actionroot}/delete?id=" + id,
+								divResponse=null, 
+								divProgress="status", 
+								formName=null, 
+								afterResponseFn=null, 
+								onErrorFn=null);	
+		}
+
+		function impuestos(id2){
+			uri = "${def:context}${def:actionroot}/smn_pedido_imp_deducc_detalle/form?id2="+ id2;	
+			openDialog("dialog", uri, 1200, 700);
+		}
+
+		function componentes(id2, id3){
+			uri = "${def:context}${def:actionroot}/smn_pedido_componentes/form?id2="+ id2 + "&id3=" + id3;
+			//alert(uri);
+			openDialog("dialog", uri, 1200, 700);
+		}
+		
+		function pagospunto(id){
+			recalcular_monto();
+			//obtener(id_cab);
+			//obtener(id_cab);
+			if(id == 'pagar'){
+
+				uri = "${def:context}${def:actionroot}/smn_pago_punto_venta/form?id2=${fld:id2}&codigo=${fld:codigo}&descripcion=${fld:descripcion}&documento=${fld:documento}&cliente=${fld:cliente}&status=${fld:status}&comprador=${fld:comprador}";
+					//alert("PAGOSPUNTO: "+uri);
+				openDialog("dialog", uri, 1150, 700);	
+				
+			}else{
+				alert("Este registro no puede ser pagado");
+			}
+			
+			//alert("EN DESARROLLO");
+			
+			//alert(uri);
+		}
+
+		function recalcular_monto() {
+		
+			 ajaxCall(httpMethod="GET", 
+							uri=uri="${def:actionroot}/recalcular_saldos?id2=" + '${fld:id2}',
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+
+			
+		}
+	</script>
+
+</head>
+
+<body>
+
+	<!--banner-->
+	<div class="welcome" style="padding-right:50px; margin-top: 20px;"><br>
+        <b>${lbl:b_welcome}</b> ${fld:fname} ${fld:lname} ${req:progress} <img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+        <div class="" style="width: 100%; border-bottom: solid 6px #1d61a0; border-radius: 30px; margin-top: 4px;">
+        </div>
+    </div>
+    <br>
+    <div class="titulo-negocios">
+        <div style="padding-top: 15px;">${lbl:b_header_order_detail}</div>
+    </div>
+	<table class="record" style="width:200px;">
+		<tr>
+ 			<td style="background-color: white" align="center" id="montopagar">Monto Pedido: ${fld:monto@#,###,##0.00}</td>
+		</tr>
+		</table>	
+	<!--incluir el menu iconografico de SIMONE-->
+	${inc:${def:actionroot}/panel/view}
+	
+		<table class="record" style="width:500px;">
+		<tr>
+			<td width="40%">${lbl:b_header_order}</td>
+ 			<td style="background-color: white">${fld:id2}</td>
+		</tr>
+		
+		<tr>
+			<td width="40%">${lbl:b_customer}</td>
+ 			<td style="background-color: white">${fld:cliente}</td>
+		</tr>
+		<tr>
+			<td width="40%">Comprador</td>
+ 			<td style="background-color: white">${fld:comprador}</td>
+		</tr>
+		</table>
+ 		<br>
+	<br>
+	
+	<!--panel de respuesta AJAX #1-->
+	<div id="response" style="display: none; width: 100%"></div>
+	<input type="hidden" name="codigo" id="codigo">
+	<input type="hidden" name="descripcion" id="descripcion">
+	<input type="hidden" name="documento" id="documento">
+	<input type="hidden" name="cliente" id="cliente">
+	<input type="hidden" name="status" id="status">
+	<input type="hidden" name="comprador" id="comprador">
+	<input type="hidden" name="monto" id="monto">
+
+
+</body>
+
+</html>

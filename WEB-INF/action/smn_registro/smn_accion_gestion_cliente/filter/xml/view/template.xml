@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_accion_gestion_cliente>
+	<detail>
+		<rows>		
+		<record ago_fecha_registro="${fld:ago_fecha_registro}"    ago_fecha_cierre="${fld:ago_fecha_cierre}"    ago_fecha_vigencia_hasta="${fld:ago_fecha_vigencia_hasta}"    ago_fecha_vigencia_desde="${fld:ago_fecha_vigencia_desde}"    ago_fecha_aprobacion="${fld:ago_fecha_aprobacion}"    ago_fecha_seguimiento="${fld:ago_fecha_seguimiento}"    ago_estatus_proceso="${fld:ago_estatus_proceso}"    smn_accion_id="${fld:smn_accion_id}"    smn_rel_oferta_cliente_id="${fld:smn_rel_oferta_cliente_id}"    />
+		</rows>
+	</detail>
+</smn_accion_gestion_cliente>

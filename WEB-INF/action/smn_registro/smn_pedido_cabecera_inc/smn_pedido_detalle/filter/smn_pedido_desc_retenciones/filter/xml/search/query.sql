@@ -1,0 +1,20 @@
+select
+		smn_comercial.smn_pedido_desc_retenciones.smn_pedido_desc_retenciones_id,
+select
+		smn_comercial.smn_pedido_desc_retenciones.smn_pedido_desc_retenciones_id,
+select
+		smn_comercial.smn_pedido_desc_retenciones.smn_pedido_desc_retenciones_id,
+select
+		smn_comercial.smn_pedido_desc_retenciones.smn_pedido_desc_retenciones_id,
+	smn_comercial.smn_pedido_desc_retenciones.smn_pedido_detalle_id,
+	smn_comercial.smn_pedido_desc_retenciones.smn_descuentos_retenciones_rf,
+	smn_comercial.smn_pedido_desc_retenciones.pim_monto_base_ml,
+	smn_comercial.smn_pedido_desc_retenciones.pim_porcentaje_retencion,
+	smn_comercial.smn_pedido_desc_retenciones.pim_monto_descuento_retencion,
+	smn_comercial.smn_pedido_desc_retenciones.smn_moneda_rf,
+	smn_comercial.smn_pedido_desc_retenciones.smn_tasa_rf,
+	smn_comercial.smn_pedido_desc_retenciones.pim_monto_descuento_ma,
+	smn_comercial.smn_pedido_desc_retenciones.pim_fecha_registro
+	
+from
+	smn_comercial.smn_pedido_desc_retenciones

@@ -1,0 +1,4 @@
+select smn_comercial.smn_documento_grp_titulo_imp.smn_documento_grp_titulo_imp_id as id, 
+smn_base.smn_grupo_titulo_impresion.gti_descripcion as item from  
+smn_comercial.smn_documento_grp_titulo_imp
+inner join smn_base.smn_grupo_titulo_impresion on smn_base.smn_grupo_titulo_impresion.smn_grupo_titulo_impresion_id = smn_comercial.smn_documento_grp_titulo_imp.smn_grupo_titulo_impresion_rf

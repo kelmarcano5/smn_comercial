@@ -1,0 +1,1 @@
+delete from smn_comercial.smn_rel_orden_servicio WHERE smn_orden_servicio_id= ${fld:smn_orden_servicio_id}

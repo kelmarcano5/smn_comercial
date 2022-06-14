@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_afiliado_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_pedido_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='crn_fecha_renovacion' type='date' required='true' maxlen='10'/>
+	<parameter id='crn_fecha_vigencia_hasta' type='date' required='true' maxlen='10'/>
+	<parameter id='crn_estatus' type='varchar' required='true' maxlen='2'/>
+
+
+
+</validator>

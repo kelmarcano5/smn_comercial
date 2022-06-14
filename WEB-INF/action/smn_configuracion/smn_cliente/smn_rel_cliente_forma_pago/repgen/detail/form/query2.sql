@@ -1,0 +1,10 @@
+select
+		smn_comercial.smn_rel_cliente_forma_pago.smn_cliente_id,
+	smn_comercial.smn_rel_cliente_forma_pago.smn_forma_pago_rf,
+	smn_comercial.smn_rel_cliente_forma_pago.rcf_estatus,
+	smn_comercial.smn_rel_cliente_forma_pago.rcf_vigencia,
+	smn_comercial.smn_rel_cliente_forma_pago.rcf_fecha_registro
+from
+	smn_comercial.smn_rel_cliente_forma_pago 
+where
+	smn_comercial.smn_rel_cliente_forma_pago.smn_rel_cliente_forma_pago_id = ${fld:id}

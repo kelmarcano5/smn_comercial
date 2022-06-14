@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnpresupuestodetalle.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_presupuesto_det}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_presupuesto_det}.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smnpresupuestodetalle.sql' width='100' spacingBefore='40'>
+			<col name='smn_presupuesto_id_combo' title='${lbl:b_presupuesto}' width='12' align='left' format='######' />
+			<col name='smn_servicios_rf' title='${lbl:b_service}' width='12' align='left' format='######' />
+			<col name='prd_cantidad' title='${lbl:b_amount_presupuesto}' width='12' align='left' format='#,###,##0.00' />
+			<col name='prd_precio' title='${lbl:b_prd_precio}' width='12' align='left' format='#,###,##0.00' />
+			<col name='prd_precio_ma' title='${lbl:b_prd_precio_ma}' width='12' align='left' format='#,###,##0.00' />
+			<col name='prd_monto_moneda_local' title='${lbl:b_prd_mon_loc}' width='12' align='left' format='#,###,##0.00' />
+			<col name='prd_fecha_registro' title='${lbl:b_store_date}' width='12' align='left' format='dd-MM-yyyy' />
+
+		</record>
+
+	</pdf-report>
+</config>

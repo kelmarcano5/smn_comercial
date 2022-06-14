@@ -1,0 +1,151 @@
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+	<script type="text/javascript">
+		//invoca la generacion de un PDF en un popup
+		function openPDF()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a excel
+		function openExcel() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a xml
+		function openXml(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/xml/search?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a texto
+		function openTxt(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/txt/search?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//envio de emails
+		function openEmails() {
+			var uri = "${def:context}${def:actionroot}/email/form";					
+			openDialog("editor0", uri, 980, 600);	
+		}
+	</script>
+
+</head>
+
+<body>
+
+	<!--banner-->
+	<!-- <div class="bannerDialog" id="encabezado_tabla">
+		${lbl:b_presupuesto}
+		<img src="${def:context}/images/pdf.png" onclick="openPDF()" title="${lbl:b_export_pdf}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/excel.png" onclick="openExcel()" title="${lbl:b_export_excel}" style="cursor:pointer; margin-left:3px;"/>
+			<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog()" title="${lbl:b_close_button}" style="float:right; cursor:pointer;"/>
+	</div> -->
+
+	<table class="record" style="width:500px;">
+		<tr>
+			<td width="40%">${lbl:b_pre_documento}</td>
+			<td style="background-color: white">${fld:smn_documento_id_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_pre_num_control}</td>
+			<td style="background-color: white">${fld:pre_numero_control}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_pre_entidades}</td>
+			<td style="background-color: white">${fld:smn_entidades_rf_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_pre_sucursal}</td>
+			<td style="background-color: white">${fld:smn_sucursales_rf_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_paciente_clase}</td>
+			<td style="background-color: white">${fld:smn_clase_auxiliar_rf_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_paciente}</td>
+			<td style="background-color: white">${fld:smn_auxiliar_rf_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_contratante_clase}</td>
+			<td style="background-color: white">${fld:smn_clase_ord_rf_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_contratante}</td>
+			<td style="background-color: white">${fld:smn_auxiliar_ord_rf_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_baremo}</td>
+			<td style="background-color: white">${fld:smn_baremo_rf_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_pre_unidad_neg}</td>
+			<td style="background-color: white">${fld:smn_auxiliar_unidades_negocios_rf_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_pre_sucursales}</td>
+			<td style="background-color: white">${fld:smn_auxiliar_sucursales_rf_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_area_serv}</td>
+			<td style="background-color: white">${fld:smn_auxiliar_areas_servicios_rf_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_aux_unidades_serv}</td>
+			<td style="background-color: white">${fld:smn_auxiliar_unidades_servicios_rf_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_budget_date}</td>
+			<td style="background-color: white">${fld:pre_vigencia_hasta@dd-MM-yyyy}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_ord_med}</td>
+			<td style="background-color: white">${fld:smn_ordenes_medicas_id_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_fech_entrega}</td>
+			<td style="background-color: white">${fld:pre_fecha_entrega@dd-MM-yyyy}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_pre_monto_loc}</td>
+			<td style="background-color: white">${fld:pre_monto_ml@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_pre_moneda}</td>
+			<td style="background-color: white">${fld:smn_moneda_rf_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_pre_monto_alt}</td>
+			<td style="background-color: white">${fld:pre_monto_ma@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_budget_status}</td>
+			<td style="background-color: white">${fld:smn_estado_presupuesto_id_combo}</td>
+		</tr>
+
+	</table>
+
+	<br>
+	<!-- <div  align="center">
+		<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog()" class="button">
+	</div>
+ -->
+</body>
+
+</html>

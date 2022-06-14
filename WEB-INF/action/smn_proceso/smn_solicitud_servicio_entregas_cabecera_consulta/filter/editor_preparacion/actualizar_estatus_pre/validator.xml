@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert" id='smn_detalle_id'>
+	<parameter id="id" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id='numero_documento' type='varchar' required='false' label='Numero de Pedido' maxlen='10'/>
+	<parameter id='comprador' type='varchar' required='false' label='Cliente' maxlen='100'/>
+	<parameter id='sec_descripcion' type='varchar' required='false' label='Descripcion del Producto' maxlen='200'/>
+	<parameter id='ingrediente' type='varchar' required='false' label='Ingrediente' maxlen='200'/>
+	<parameter id='requisitos' type='varchar' required='false' label='Requisitos' maxlen='200'/>
+	<parameter id='cantidad' type='integer' required='false' label='Cantidad' maxlen='10'/>
+	<parameter id='estatus_proceso' type='varchar' required='false' label='Requisitos' maxlen='200'/>
+</validator>

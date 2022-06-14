@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_sub_centro_facturacion>
+	<detail>
+		<rows>		
+		<record scf_fecha_registro="${fld:scf_fecha_registro}"    scf_vigencia="${fld:scf_vigencia}"    scf_estatus="${fld:scf_estatus}"    scf_nombre="${fld:scf_nombre}"    scf_codigo="${fld:scf_codigo}"    smn_centro_facturacion_id="${fld:smn_centro_facturacion_id}"    />
+		</rows>
+	</detail>
+</smn_sub_centro_facturacion>

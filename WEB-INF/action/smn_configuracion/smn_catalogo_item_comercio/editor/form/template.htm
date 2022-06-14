@@ -1,0 +1,331 @@
+<!doctype html>
+<html>
+
+<head>
+
+		<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+		<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	${lbl:b_catalog_item_commerce}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+		<tr style="display: none">
+			<td>${lbl:b_origen}*</td>
+			<td>
+				<select name="cic_origen" id="cic_origen">
+					<option value="RE">${lbl:b_registrado}</option>
+					<option value="ES">${lbl:b_escaneado}</option>
+					<option value="IM">${lbl:b_importado}</option>
+				</select>
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_entity}*</td>
+		<td>
+			<select name="smn_cliente_rf" id="smn_cliente_rf" onchange="chgCombo(smn_cliente_rf.options[smn_cliente_rf.selectedIndex].text,'smn_cliente_rf_name');" onkeypress="">
+				<option value="">[Cualquiera]</option>
+				<smn_cliente_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_cliente_rf_rows>
+			</select>
+			<input id="smn_cliente_rf_name" name="smn_cliente_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_item}*</td>
+		<td>
+			<select name="smn_item_rf" id="smn_item_rf" onchange="chgCombo(smn_item_rf.options[smn_item_rf.selectedIndex].text,'smn_item_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_item_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_item_rf_rows>
+			</select>
+			<input id="smn_item_rf_name" name="smn_item_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+			<td>Maneja Ingredientes</td>
+			<td>
+				<select name="cic_maneja_ingredientes" id="cic_maneja_ingredientes">
+					<option value="SI">${lbl:b_yes}</option>
+					<option value="NO">${lbl:b_not}</option>
+				</select>
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_measurement_unit}*</td>
+		<td>
+			<select name="smn_unidad_medida_rf" id="smn_unidad_medida_rf" onchange="chgCombo(smn_unidad_medida_rf.options[smn_unidad_medida_rf.selectedIndex].text,'smn_unidad_medida_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_rf_rows>
+			</select>
+			<input id="smn_unidad_medida_rf_name" name="smn_unidad_medida_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr >
+	<td>${lbl:b_time_suggerest_prepared}*</td>
+			<td>
+				<input id="cic_tiempo_sug_preparacion" name="cic_tiempo_sug_preparacion" type="text" maxlength="8" >
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_menu_category}</td>
+		<td>
+			<select name="smn_categoria_menu_id" id="smn_categoria_menu_id" onchange="chgCombo(smn_categoria_menu_id.options[smn_categoria_menu_id.selectedIndex].text,'smn_categoria_menu_id_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_categoria_menu_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_categoria_menu_id_rows>
+			</select>
+			<input id="smn_categoria_menu_id_name" name="smn_categoria_menu_id_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_item_category}</td>
+		<td>
+			<select name="smn_categoria_item_id_a" id="smn_categoria_item_id_a" onchange="chgCombo(smn_categoria_item_id_a.options[smn_categoria_item_id_a.selectedIndex].text,'smn_categoria_item_id_a_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_categoria_item_id_a_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_categoria_item_id_a_rows>
+			</select>
+			<input id="smn_categoria_item_id_a_name" name="smn_categoria_item_id_a_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_item_category}</td>
+		<td>
+			<select name="smn_categoria_item_id_b" id="smn_categoria_item_id_b" onchange="chgCombo(smn_categoria_item_id_b.options[smn_categoria_item_id_b.selectedIndex].text,'smn_categoria_item_id_b_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_categoria_item_id_b_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_categoria_item_id_b_rows>
+			</select>
+			<input id="smn_categoria_item_id_b_name" name="smn_categoria_item_id_b_name" type="hidden">
+		</td>
+	</tr>
+	<!-- <tr>
+		<td>${lbl:b_clasification_abc_a}</td>
+		<td>
+			<select name="smn_clasificacion_abc_rf_a" id="smn_clasificacion_abc_rf_a" onchange="chgCombo(smn_clasificacion_abc_rf_a.options[smn_clasificacion_abc_rf_a.selectedIndex].text,'smn_clasificacion_abc_rf_a_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_clasificacion_abc_rf_a_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_clasificacion_abc_rf_a_rows>
+			</select>
+			<input id="smn_clasificacion_abc_rf_a_name" name="smn_clasificacion_abc_rf_a_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_clasification_abc_b}</td>
+		<td>
+			<select name="smn_clasificacion_abc_rf_b" id="smn_clasificacion_abc_rf_b" onchange="chgCombo(smn_clasificacion_abc_rf_b.options[smn_clasificacion_abc_rf_b.selectedIndex].text,'smn_clasificacion_abc_rf_b_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_clasificacion_abc_rf_b_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_clasificacion_abc_rf_b_rows>
+			</select>
+			<input id="smn_clasificacion_abc_rf_b_name" name="smn_clasificacion_abc_rf_b_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_clasification_abc_c}</td>
+		<td>
+			<select name="smn_clasificacion_abc_rf_c" id="smn_clasificacion_abc_rf_c" onchange="chgCombo(smn_clasificacion_abc_rf_c.options[smn_clasificacion_abc_rf_c.selectedIndex].text,'smn_clasificacion_abc_rf_c_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_clasificacion_abc_rf_c_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_clasificacion_abc_rf_c_rows>
+			</select>
+			<input id="smn_clasificacion_abc_rf_c_name" name="smn_clasificacion_abc_rf_c_name" type="hidden">
+		</td>
+	</tr> -->
+	<tr>
+		<td>${lbl:b_baremo}*</td>
+		<td>
+			<select name="smn_baremos_rf" id="smn_baremos_rf" onchange="chgCombo(smn_baremos_rf.options[smn_baremos_rf.selectedIndex].text,'smn_baremos_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_baremos_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_baremos_rf_rows>
+			</select>
+			<input id="smn_baremos_rf_name" name="smn_baremos_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_description}*</td>
+		<td>
+			<textarea id="cic_descripcion" name="cic_descripcion" type="text" maxlength="200"></textarea>
+		</td>
+	</tr>
+	<tr>
+	<td>
+		<input id="id2" name="id2" type="hidden">
+	</td>
+	</tr>
+
+
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">
+
+	<!-- PK-->
+<input type="hidden" name="id" value="">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{
+		addNew();
+
+		if (id!="")
+			edit(id);
+	}
+
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack()
+	{
+		_goBackFn()
+	}
+
+	//mostrar la actualizacion de un registro
+	function insert()
+	{
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+
+			// var pro = document.getElementById('smn_item_rf').value;
+			// //alert("Dentro del scripts js: "+aux);
+		
+			// //if (pro != "") {
+			// 	//alert(aux);
+			// 	processproductservice(pro);
+			// //}
+
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST",
+							uri="${def:actionroot}/insert",
+							divResponse=null,
+							divProgress="status",
+							formName="form1",
+							afterResponseFn=null,
+							onErrorFn=retryAddnewOrEdit);
+	}
+
+
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");
+	}
+
+	var id = "${fld:id}"
+
+	//grabar el formulario
+	function save()
+	{
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET",
+							uri="${def:actionroot}/edit?id=" + id ,
+							divResponse=null,
+							divProgress="status",
+							formName=null,
+							afterResponseFn=null,
+							onErrorFn=null);
+	}
+
+	//actualizar registro en BD
+	function update()
+	{
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST",
+							uri="${def:actionroot}/update",
+							divResponse=null,
+							divProgress="status",
+							formName="form1",
+							afterResponseFn=null,
+							onErrorFn=retryAddnewOrEdit);
+	}
+
+
+	
+
+
+</script>
+</body>
+</html>

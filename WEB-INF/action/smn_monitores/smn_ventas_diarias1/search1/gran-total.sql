@@ -1,0 +1,14 @@
+SELECT
+sum(smn_comercial.smn_pedido_detalle.pde_monto) as gran_total 
+FROM smn_comercial.smn_pedido_cabecera
+LEFT OUTER JOIN smn_comercial.smn_pedido_detalle ON smn_comercial.smn_pedido_detalle.smn_pedido_cabecera_id = smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id
+LEFT OUTER JOIN smn_comercial.smn_pago_punto_venta ON smn_comercial.smn_pago_punto_venta.smn_pedido_cabecera_id = smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id
+LEFT OUTER JOIN smn_base.smn_auxiliar AS comprador ON comprador.smn_auxiliar_id = smn_comercial.smn_pedido_cabecera.smn_auxiliar_rf
+LEFT OUTER JOIN smn_comercial.smn_cliente ON smn_comercial.smn_cliente.smn_cliente_id = smn_comercial.smn_pedido_cabecera.smn_cliente_id
+LEFT OUTER JOIN smn_base.smn_v_auxiliar AS cliente ON cliente.smn_v_auxiliar_id = smn_comercial.smn_cliente.smn_auxiliar_rf
+LEFT OUTER JOIN smn_comercial.smn_centro_facturacion ON smn_comercial.smn_centro_facturacion.smn_centro_facturacion_id = smn_comercial.smn_pedido_cabecera.smn_centro_facturacion_id
+LEFT OUTER JOIN smn_comercial.smn_catalogo_item_comercio ON smn_comercial.smn_catalogo_item_comercio.smn_catalogo_item_comercio_id = smn_comercial.smn_pedido_detalle.smn_catalogo_item_comercio_id
+LEFT OUTER JOIN smn_base.smn_item ON smn_base.smn_item.smn_item_id = smn_comercial.smn_catalogo_item_comercio.smn_item_rf
+WHERE smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id is not null
+	AND smn_comercial.smn_pedido_detalle.smn_catalogo_item_comercio_id is not null 	
+ 	 ${filter}

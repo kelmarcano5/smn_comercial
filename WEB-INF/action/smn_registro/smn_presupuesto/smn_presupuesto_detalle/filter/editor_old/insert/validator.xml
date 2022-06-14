@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_presupuesto_id' type='integer' required='true' label='${lbl:b_presupuesto}' maxlen='10'/>
+	<parameter id='smn_servicios_rf' type='integer' required='true' label='${lbl:b_service}' maxlen='10'/>
+	<parameter id='prd_cantidad' type='double' required='true' label='${lbl:b_amount_presupuesto}' maxlen='56'/>
+	<parameter id='prd_precio' type='double' required='true' label='${lbl:b_prd_precio}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_prd_moneda}' maxlen='10'/>
+	<parameter id='prd_precio_ma' type='double' required='false' label='${lbl:b_prd_precio_ma}' maxlen='10'/>
+	<parameter id='prd_monto_moneda_local' type='double' required='true' label='${lbl:b_prd_mon_loc}' maxlen='10'/>
+	<parameter id='prd_moneda_alterna' type='double' required='false' label='${lbl:b_prd_mon_alt}' maxlen='10'/>
+
+
+</validator>

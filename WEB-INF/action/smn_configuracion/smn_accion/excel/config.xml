@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnaccion.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="4" cellStep="0" name="${lbl:b_action}"/>
+	
+	<excel 
+		recordset='query-smnaccion.sql' 
+		sheetname='${lbl:b_action}' 
+		filename='${lbl:b_action}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='acc_codigo' label='${lbl:b_code}' />
+		<col id='acc_descripcion' label='${lbl:b_description}' />
+		<col id='acc_require_seguimiento_combo' label='${lbl:b_required_day}' />
+		<col id='acc_dias_seguimiento' label='${lbl:b_followup_days}' />
+		<col id='pas_descripcion_combo' label='${lbl:b_pass}' />
+		<col id='acc_estatus_combo' label='${lbl:b_status}' />
+		<col id='acc_vigencia' label='${lbl:b_vigency}' />
+		<col id='acc_fecha_registro' label='${lbl:b_store_date}' />
+
+	</excel>
+
+</config>

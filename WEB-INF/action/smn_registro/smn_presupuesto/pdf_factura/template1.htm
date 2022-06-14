@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reporte de Presupuesto</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />	
+	<script type="text/javascript" src="${def:context}/action/script"></script>
+	<script type="text/javascript" src="${def:context}/action/jquery"></script>
+   	<script type="text/javascript" src="${def:context}/action/jqueryi"></script>
+</head>
+<body>
+	<form id="facturas" style="width:1000px;">
+		<br>
+		<div align="center"><img src="${def:context}/images/Logo EGR Final-01.png" border="0" alt="" vspace="0" hspace="0" width="200" height="200"></div></img>
+		<br>
+		<div align="center">
+			PRESUPUESTO 
+			FECHA: ${fld:pre_fecha_registro@dd-MM-yyyy}   
+		</div>
+		<!-- <br> -->
+		<table id="encabezado">
+			<thead>
+				<tr>
+					<td>EMPRESA:</td>
+					<td>${fld:smn_entidades_rf_combo}</td>
+				<!-- </tr>
+				<tr>
+ -->
+ 					<td>CLIENTE:</td>
+					<td>${fld:smn_auxiliar_rf_combo}</td>
+				</tr>
+				<tr>
+					<td>DOCUMENTO:</td>
+					<td>${fld:smn_documento_id_combo}</td>
+				<!-- </tr>
+				<tr> -->
+
+					<td>NUM. INGRESO:</td>
+					<td align='left'>${fld:igs_num_ingreso}</td>
+				</tr>
+				<tr>
+					<td>NUM. CONTROL:</td>
+						<td align='left'>${fld:pre_numero_control}</td>	
+				<!-- </tr>
+				<tr> -->
+					<td>ESTATUS:</td>
+					<td align='left'>${fld:status_combo}</td>
+				</tr>
+				<br>
+			</thead>
+			<tbody>
+				<tr>	
+				</tr>
+			</tbody>
+		</table>
+
+	<br>
+	<br>
+
+		<table class="record2" style="width:95%;" >
+			<thead>
+				<tr class="bo">
+					<td align="left"></td>
+					<td align="center">Descripcion Servicio</td>
+					<td>Componente</td>
+					<td>Cantidad</td>
+					<td align="right">Precio MA</td>
+					<td align="right">Monto MA</td>
+					<td align="center">%</td>
+					<td align="right">Monto Descuento MA</td>
+					<td align="right">Monto Neto MA</td>
+				</tr>
+			</thead>
+			<tbody>
+				<rows>
+					<tr>
+						<td align="center">${fld:smn_grupo_titulo_impresion_rf}</td>
+						<td>${fld:smn_servicios_rf}</td>
+						<td>${fld:smn_componentes_rf}</td>
+						<td align="center">${fld:prd_cantidad@#,###,##0.00}</td>
+						<td align="right">${fld:prd_precio_ma@#,###,##0.00}$</td>
+						<td align="right">${fld:prd_moneda_alterna@#,###,##0.00}$</td>
+						<td align="center">${fld:dyr_porcentaje_descuento@#,###,##0.00}%</td>
+						<td align="right">${fld:prd_monto_descuento_ma@#,###,##0.00}$</td>
+						<td align="right">${fld:prd_monto_neto_ma@#,###,##0.00}$</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>SUBTOTAL</td>
+						<td></td>
+						<!-- <td align="right">${fld:precioma@#,###,##0.00}$</td> -->
+						<td align="right">{fld:submontoma@#,###,##0.00}$</td>
+						<td align="right"></td>
+						<td align="right">${fld:subdescuentoma@#,###,##0.00}$</td>
+						<td align="right">${fld:subnetoma@#,###,##0.00}$</td>
+					</tr>
+				</rows>
+					
+			</tbody>
+		
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>TOTALES</td>
+				<td></td>
+				<!-- <td align="right">${fld:precioma@#,###,##0.00}$</td> -->
+				<td align="right">${fld:montoma@#,###,##0.00}$</td>
+				<td align="right"></td>
+				<td align="right">${fld:descuentoma@#,###,##0.00}$</td>
+				<td align="right">${fld:netoma@#,###,##0.00}$</td>
+			</tr>
+		</table>
+	<br>
+	<br>
+		<!-- <div align="center">
+			<button id="imprimir" onclick="imprimir();">Imprimir</button>
+		</div> -->
+	</form>
+</body>
+</html>
+
+<script type="text/javascript" >
+  	onload = function() {
+  		//document.getElementById('imprimir').style.display='none';
+  		$('#facturas').printThis();
+  	}
+</script>
+
+

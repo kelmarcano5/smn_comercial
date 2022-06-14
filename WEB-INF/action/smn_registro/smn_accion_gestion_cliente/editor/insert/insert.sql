@@ -1,0 +1,32 @@
+INSERT INTO smn_comercial.smn_accion_gestion_cliente
+(
+	smn_accion_gestion_cliente_id,
+	smn_rel_oferta_cliente_id,
+	smn_accion_id,
+	ago_estatus_proceso,
+	ago_fecha_seguimiento,
+	ago_fecha_aprobacion,
+	ago_fecha_vigencia_desde,
+	ago_fecha_vigencia_hasta,
+	ago_fecha_cierre,
+	ago_idioma,
+	ago_usuario,
+	ago_fecha_registro,
+	ago_hora
+)
+VALUES
+(
+	${seq:currval@smn_comercial.seq_smn_accion_gestion_cliente},
+	${fld:smn_rel_oferta_cliente_id},
+	${fld:smn_accion_id},
+	${fld:ago_estatus_proceso},
+	${fld:ago_fecha_seguimiento},
+	${fld:ago_fecha_aprobacion},
+	${fld:ago_fecha_vigencia_desde},
+	${fld:ago_fecha_vigencia_hasta},
+	${fld:ago_fecha_cierre},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

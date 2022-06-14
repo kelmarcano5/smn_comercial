@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='eve_codigo' type='varchar' required='true' label='${lbl:b_code}' maxlen='6'/>
+	<parameter id='eve_descripcion_corta' type='varchar' required='true' label='${lbl:b_description_short}' maxlen='32'/>
+	<parameter id='eve_descripcion_larga' type='varchar' required='true' label='${lbl:b_description_large}' maxlen='64'/>
+	<parameter id='smn_servicios_rf' type='integer' required='true' label='${lbl:b_services}' maxlen='10'/>
+	<parameter id='eve_fecha_inicial' type='date' required='true' label='${lbl:b_date_init}' maxlen='10'/>
+	<parameter id='eve_fecha_final' type='date' required='true' label='${lbl:b_date_end}' maxlen='10'/>
+	<parameter id='eve_hora_inicial' type='varchar' required='true' label='${lbl:b_hour_init}' maxlen='8'/>
+	<parameter id='eve_hora_final' type='varchar' required='true' label='${lbl:b_hour_end}' maxlen='8'/>
+	<parameter id='smn_prestador_servicio_rf' type='integer' required='true' label='${fld:b_service_provider}' maxlen='10'/>
+	<parameter id='smn_clasificacion_abc_rf' type='integer' required='true' label='${lbl:b_abc_clasification}' maxlen='10'/>
+	<parameter id='eve_cupo' type='integer' required='true' label='${lbl:b_quota}' maxlen='10'/>
+	<parameter id='eve_reservas_por_afiliado' type='integer' required='true' label='${lbl:b_reservation_by_affiliation}' maxlen='10'/>
+	<parameter id='eve_estatus' type='varchar' required='true' label='${lbl:b_estatus}' maxlen='10'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='eve_codigo'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='eve_descripcion_corta'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='eve_descripcion_larga'/>
+
+
+</validator>

@@ -1,0 +1,21 @@
+SELECT
+	smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id,
+	smn_comercial.smn_pedido_cabecera.smn_documento_id,
+	smn_comercial.smn_pedido_cabecera.pca_numero_pedido,
+	smn_comercial.smn_pedido_cabecera.pca_monto_neto_ml,
+	smn_comercial.smn_pedido_cabecera.pca_monto_neto_ma,
+	smn_comercial.smn_pedido_cabecera.smn_entidad_rf,
+	smn_comercial.smn_pedido_cabecera.smn_area_servicio_rf,
+	smn_comercial.smn_pedido_cabecera.smn_unidad_servicio_rf,
+	smn_comercial.smn_pedido_cabecera.smn_sucursal_rf,
+	smn_comercial.smn_pedido_cabecera.smn_cliente_id,
+	smn_comercial.smn_pedido_cabecera.smn_auxiliar_rf,
+	smn_comercial.smn_pedido_cabecera.pca_descripcion, 
+	smn_comercial.smn_pedido_cabecera.smn_moneda_rf,
+	smn_comercial.smn_pedido_cabecera.smn_tasa_rf,
+	smn_comercial.smn_pedido_cabecera.pca_fecha_registro
+FROM
+	smn_comercial.smn_pedido_cabecera 
+	inner join smn_comercial.smn_cliente on smn_comercial.smn_cliente.smn_cliente_id = smn_comercial.smn_pedido_cabecera.smn_cliente_id
+WHERE
+	smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id = ${fld:smn_pedido_cabecera_id}

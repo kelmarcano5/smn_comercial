@@ -1,0 +1,1 @@
+select smn_caja.smn_punto_venta.smn_punto_venta_id as id, smn_caja.smn_punto_venta.pvt_codigo|| ' - ' || smn_caja.smn_punto_venta.pvt_descripcion as item from smn_caja.smn_punto_venta

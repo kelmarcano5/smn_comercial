@@ -1,0 +1,84 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+		<col width='3%'/>
+				<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="21" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th>VR</th>
+		<th></th>
+		<th></th>
+		<th>AD</th>
+		<th>AI</th>
+		<th>GE</th>
+		<th>EN</th>
+		<th>AP</th>
+		<th>RE</th>
+		<th>RV</th>
+		<th class='sortable' onclick='sortBy("smn_entidades_rf_combo","query-smnpresupuesto.sql")'>${lbl:b_pre_entidades}</th>
+		<th class='sortable' onclick='sortBy("smn_auxiliar_rf_combo","query-smnpresupuesto.sql")'>${lbl:b_paciente}</th>
+		<th class='sortable' onclick='sortBy("smn_documento_id_combo","query-smnpresupuesto.sql")'>${lbl:b_pre_documento}</th>
+		<th class='sortable' onclick='sortBy("igs_num_ingreso","query-smnpresupuesto.sql")'>Numero Ingreso</th>
+		<th class='sortable' onclick='sortBy("pre_numero_control","query-smnpresupuesto.sql")'>${lbl:b_pre_num_control}</th>
+		<th class='sortable' onclick='sortBy("pre_monto_ml","query-smnpresupuesto.sql")'>${lbl:b_pre_monto_loc}</th>
+		<th class='sortable' onclick='sortBy("pre_monto_ma","query-smnpresupuesto.sql")'>${lbl:b_pre_monto_alt}</th>
+		<th class='sortable' onclick='sortBy("status_combo","query-smnpresupuesto.sql")'>${lbl:b_status}</th>	
+		<th class='sortable' onclick='sortBy("pre_fecha_registro","query-smnpresupuesto.sql")'>${lbl:b_store_date}</th>
+		<th>PD</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_presupuesto_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/search.png"  onclick="openPDF_factura('${fld:smn_presupuesto_id}')" title="Ver Reporte"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_presupuesto_id}','${fld:status_combo}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_presupuesto_id}','${fld:status_combo}')" title="${lbl:b_edit_button}"></td>
+		<td><img src="${def:context}/images/icongrid/Generar.png" onclick="descuento('${fld:smn_presupuesto_id}','${fld:status}')" title="Aplicar Descuento"></td>
+		<td><img src="${def:context}/images/icongrid/Generar.png" onclick="incrementos('${fld:smn_presupuesto_id}','${fld:status}')" title="Aplicar Incrementos"></td>
+		<td><img src="${def:context}/images/icongrid/Generar.png" onclick="generar('${fld:smn_presupuesto_id}','${fld:status}')" title="Generar"></td>
+		<td><img src="${def:context}/images/email.png" onclick="enviar('${fld:smn_presupuesto_id}','${fld:status}')" title="Enviar"></td>
+		<td><img src="${def:context}/images/accept.png" onclick="aprobar('${fld:smn_presupuesto_id}','${fld:status}', '${fld:smn_ingresos_id}','${fld:pre_monto_neto_moneda_local}','${fld:pre_monto_neto_moneda_alterna}')" title="Aprobar"></td>
+		<td><img src="${def:context}/images/reject.png" onclick="rechazar('${fld:smn_presupuesto_id}','${fld:status}')" title="Rechazar"></td>
+		<td><img src="${def:context}/images/icongrid/Reversar.png" onclick="reversarRecord('${fld:smn_presupuesto_id}','${fld:status}','${fld:smn_ingresos_id}')" title="Reversar Presupuesto"></td>
+		<td>${fld:smn_entidades_rf_combo}</td>
+		<td>${fld:smn_auxiliar_rf_combo}</td>
+		<td>${fld:smn_documento_id_combo}</td>
+		<td align='center'>${fld:igs_num_ingreso}</td>	
+		<td align='center'>${fld:pre_numero_control}</td>	
+		<td align='right'>${fld:pre_monto_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:pre_monto_neto_moneda_alterna@#,###,##0.00}</td>
+		<td align='center'>${fld:status_combo}</td>
+		<td>${fld:pre_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="presupuesto_detalle('${fld:smn_presupuesto_id}','${fld:pre_numero_control}','${fld:smn_baremo_rf}','${fld:status_combo}')" title="${lbl:b_presupuesto_det}"></td>
+	</tr>
+	</rows>
+
+</table>

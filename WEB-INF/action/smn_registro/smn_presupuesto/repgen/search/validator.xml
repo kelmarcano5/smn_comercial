@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='pre_numero_control' type='varchar' required='false' label='${lbl:b_pre_num_control}' maxlen='16'/>
+	<parameter id='smn_entidades_rf' type='integer' required='false' label='${lbl:b_entity}' maxlen='10'/>
+	<parameter id='smn_sucursales_rf' type='integer' required='false' label='${lbl:b_subsidiary}' maxlen='10'/>
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='false' label='${lbl:b_paciente_clase}' maxlen='10'/>
+	<parameter id='smn_auxiliar_rf' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_clase_ord_rf' type='integer' required='false' label='${lbl:b_contratante_clase}' maxlen='10'/>
+	<parameter id='smn_auxiliar_ord_rf' type='integer' required='false' label='${lbl:b_contratante}' maxlen='10'/>
+	<parameter id='smn_baremo_rf' type='integer' required='false' label='${lbl:b_baremo}' maxlen='10'/>
+	<parameter id='smn_auxiliar_unidades_negocios_rf' type='integer' required='false' label='${lbl:b_pre_unidad_neg}' maxlen='10'/>
+	<parameter id='smn_auxiliar_sucursales_rf' type='integer' required='false' label='${lbl:b_pre_sucursales}' maxlen='10'/>
+	<parameter id='smn_auxiliar_areas_servicios_rf' type='integer' required='false' label='${lbl:b_area_serv}' maxlen='10'/>
+	<parameter id='smn_auxiliar_unidades_servicios_rf' type='integer' required='false' label='${lbl:b_aux_unidades_serv}' maxlen='10'/>
+	<parameter id='pre_vigencia_hasta' type='date' required='false' label='${lbl:b_validation_date_to}' maxlen='10'/>
+	<parameter id='smn_ordenes_medicas_id' type='integer' required='false' label='${lbl:b_ord_med}' maxlen='10'/>
+	<parameter id='pre_fecha_entrega' type='date' required='false' label='${lbl:b_fech_entrega}' maxlen='10'/>
+	<parameter id='pre_monto_ml' type='double' required='false' label='${lbl:b_pre_monto_loc}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_pre_moneda}' maxlen='10'/>
+	<parameter id='pre_monto_ma' type='double' required='false' label='${lbl:b_pre_monto_alt}' maxlen='10'/>
+	<parameter id='smn_estado_presupuesto_id' type='integer' required='false' label='${lbl:b_budget_status}' maxlen='4'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='pre_numero_control'
+		rule='contains' />
+		
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generaci�n del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

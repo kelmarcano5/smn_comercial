@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_oferta_cabecera>
+	<detail>
+		<rows>		
+		<record ofe_fecha_registro="${fld:ofe_fecha_registro}"    ofe_estatus="${fld:ofe_estatus}"    ofe_observaciones="${fld:ofe_observaciones}"    ofe_fecha_hasta="${fld:ofe_fecha_hasta}"    ofe_fecha_desde="${fld:ofe_fecha_desde}"    smn_sucursal_rf="${fld:smn_sucursal_rf}"    smn_entidad_rf="${fld:smn_entidad_rf}"    ofe_numero_documento="${fld:ofe_numero_documento}"    smn_documento_id="${fld:smn_documento_id}"    />
+		</rows>
+	</detail>
+</smn_oferta_cabecera>

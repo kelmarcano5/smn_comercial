@@ -1,0 +1,2 @@
+select  smn_base.smn_codigos_impuestos.imp_porcentaje_calculo as porccal,  smn_base.smn_codigos_impuestos.imp_monto_sustraendo as sustrae from smn_base.smn_codigos_impuestos
+where  smn_base.smn_codigos_impuestos.smn_codigos_impuestos_id = ${fld:id}

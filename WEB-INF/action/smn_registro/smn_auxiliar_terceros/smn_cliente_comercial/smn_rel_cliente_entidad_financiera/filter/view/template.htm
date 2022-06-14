@@ -1,0 +1,55 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="10" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_cliente_id','query-smnrelclienteentidadfinanciera.sql')" >${lbl:b_customer}</th>
+		<th class='sortable' onclick="sortBy('smn_entidad_financiera_rf','query-smnrelclienteentidadfinanciera.sql')" >${lbl:b_financial_entities}</th>
+		<th class='sortable' onclick="sortBy('smn_tipo_cuenta_banco_rf','query-smnrelclienteentidadfinanciera.sql')" >${lbl:b_types_of_bank_accounts}</th>
+		<th class='sortable' onclick="sortBy('cef_numero_cuenta','query-smnrelclienteentidadfinanciera.sql')" >${lbl:b_bank_account_number}</th>
+		<th class='sortable' onclick="sortBy('cef_estatus','query-smnrelclienteentidadfinanciera.sql')" >${lbl:b_status}</th>
+		<th class='sortable' onclick="sortBy('cef_vigencia','query-smnrelclienteentidadfinanciera.sql')" >${lbl:b_validation_date}</th>
+		<th class='sortable' onclick="sortBy('cef_fecha_registro','query-smnrelclienteentidadfinanciera.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_rel_cliente_entidad_financiera_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_rel_cliente_entidad_financiera_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_rel_cliente_entidad_financiera_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_cliente_id}</td>
+		<td align="center">${fld:smn_entidad_financiera_rf}</td>
+		<td align="center">${fld:smn_tipo_cuenta_banco_rf}</td>
+		<td align="left">${fld:cef_numero_cuenta}</td>
+		<td align="left">${fld:cef_estatus}</td>
+		<td align="center">${fld:cef_vigencia@dd-MM-yyyy}</td>
+		<td align="center">${fld:cef_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

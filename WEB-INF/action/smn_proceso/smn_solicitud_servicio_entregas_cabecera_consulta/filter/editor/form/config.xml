@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		${lbl:b_header_services_delivery_request}
+	</summary>
+
+	<log>false</log>
+	
+	<set-request-attribute id="progress" value="file:/WEB-INF/action/progress/progress.htm"/>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id='query-smn_documento_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_cliente_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_tipo_servicio_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_moneda_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_forma_pago_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_clase_auxiliar_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_auxiliar_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-sec_direccion_busqueda.sql' source='sql' scope='transaction'/>
+		<recordset id='query-sec_direccion_entrega.sql' source='sql' scope='transaction'/>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<print mode='table' recordset='query-smn_documento_id.sql' tag='smn_documento_id_rows'/>
+		<print mode='table' recordset='query-smn_cliente_rf.sql' tag='smn_cliente_rf_rows'/>
+		<print mode='table' recordset='query-smn_tipo_servicio_rf.sql' tag='smn_tipo_servicio_rf_rows'/>
+		<print mode='table' recordset='query-smn_moneda_rf.sql' tag='smn_moneda_rf_rows'/>
+		<print mode='table' recordset='query-smn_forma_pago_rf.sql' tag='smn_forma_pago_rf_rows'/>
+		<print mode='table' recordset='query-smn_clase_auxiliar_rf.sql' tag='smn_clase_auxiliar_rf_rows'/>
+		<print mode='table' recordset='query-smn_auxiliar_rf.sql' tag='smn_auxiliar_rf_rows'/>
+			<print mode='table' recordset='query-sec_direccion_busqueda.sql' tag='sec_direccion_busqueda_rows'/>
+				<print mode='table' recordset='query-sec_direccion_entrega.sql' tag='sec_direccion_entrega_rows'/>
+
+		<print mode="form" recordset="_request" /> 
+	</output>
+
+</config>

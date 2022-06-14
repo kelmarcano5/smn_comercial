@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='eve_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='6'/>
+	<parameter id='eve_descripcion_corta' type='varchar' required='false' label='${lbl:b_description}' maxlen='32'/>
+	<parameter id='eve_descripcion_larga' type='varchar' required='false' label='${lbl:b_description_large}' maxlen='64'/>
+	<parameter id='smn_servicios_rf' type='integer' required='false' label='${lbl:b_service}' maxlen='10'/>
+	<parameter id='eve_fecha_inicial' type='date' required='false' label='${lbl:b_initial_date}' maxlen='10'/>
+	<parameter id='eve_fecha_final' type='date' required='false' label='${lbl:b_final_date}' maxlen='10'/>
+	<parameter id='eve_hora_inicial' type='varchar' required='false' label='${lbl:b_initial_hour}' maxlen='8'/>
+	<parameter id='eve_hora_final' type='varchar' required='false' label='${lbl:b_final_hour}' maxlen='8'/>
+	<parameter id='smn_prestador_servicio_rf' type='integer' required='false' label='${lbl:b_service_provider}' maxlen='10'/>
+	<parameter id='smn_clasificacion_abc_rf' type='integer' required='false' label='${lbl:b_abc_clasification}' maxlen='10'/>
+	<parameter id='eve_cupo' type='integer' required='false' label='${lbl:b_quota}' maxlen='10'/>
+	<parameter id='eve_reservas_por_afiliado' type='integer' required='false' label='${lbl:b_reservation_by_affiliation}' maxlen='10'/>
+	<parameter id='eve_estatus' type='varchar' required='false' label='${lbl:b_estatus}' maxlen='10'/>
+	<parameter id='eve_fecha_registro' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='eve_codigo'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='eve_descripcion_corta'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='eve_descripcion_larga'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='eve_hora_inicial'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='eve_hora_final'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='eve_estatus'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='eve_codigo'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='eve_descripcion_corta'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='eve_descripcion_larga'/>
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generaci�n del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

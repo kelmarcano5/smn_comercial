@@ -1,0 +1,4 @@
+UPDATE smn_comercial.smn_orden_servicio_detalle SET
+	osd_estatus='DV'
+WHERE
+	smn_orden_cab_det_servicio_id=(select smn_orden_cab_det_servicio_id from smn_comercial.smn_orden_cab_det_servicio where smn_comercial.smn_orden_cab_det_servicio.smn_orden_servicio_id=${fld:id2})

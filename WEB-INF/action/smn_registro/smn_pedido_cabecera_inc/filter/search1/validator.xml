@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='pca_numero_pedido' type='integer' required='false' label='${lbl:b_order_number}' maxlen='10'/>
+	<parameter id='smn_oferta_id' type='integer' required='false' label='${lbl:b_offer}' maxlen='10'/>
+	<parameter id='smn_cliente_id' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_usuario_rf' type='integer' required='false' label='${lbl:b_user}' maxlen='10'/>
+	<parameter id='pca_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date}@{${def:date}} mayor o igual que] no puede ser mayor que [${lbl:b_store_date}@{${def:date}} menor o igual que].' date1='pca_fecha_registro_ini' date2='pca_fecha_registro_fin' id='pca_fecha_registro_ini' />
+	<parameter id='pca_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<parameter id="entidades" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id="centro_facturacion" type="integer" required="false" label="ID" maxlen="10" />
+</validator>

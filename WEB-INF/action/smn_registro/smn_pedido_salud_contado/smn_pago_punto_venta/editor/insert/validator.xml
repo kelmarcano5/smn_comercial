@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_pedido_cabecera_id' type='integer' required='true' label='${lbl:b_header_order}' maxlen='10'/>
+	<parameter id='smn_mov_caja_cabecera_id' type='integer' required='false' label='${lbl:b_movement_caj}' maxlen='10'/>
+	<parameter id='smn_pagador_clase_rf' type='integer' required='false' label='${lbl:b_class_auxiliary}' maxlen='10'/>
+	<parameter id='smn_rel_punto_venta_pago_rf' type='integer' required='false' label='${lbl:b_rel_point_of_sale_order}' maxlen='10'/>
+	<parameter id='smn_forma_pago_rf' type='integer' required='false' label='${lbl:b_way_to_pay}' maxlen='10'/>
+	<parameter id='ppv_numero_documento_forma_pago' type='integer' required='false' label='${lbl:b_number_doc_form_pay}' maxlen='10'/>
+	<parameter id='ppv_numero_autorizacion' type='integer' required='false' label='${lbl:b_number_autorization}' maxlen='10'/>
+	<parameter id='ppv_documento_identidad_pagador' type='varchar' required='false' label='${lbl:b_document_identity}' maxlen='100'/>
+	<parameter id='ppv_nombre_pagador' type='varchar' required='false' label='${lbl:b_paying_name}' maxlen='100'/>
+	<parameter id='ppv_monto_pagar_ml' type='double' required='false' label='${lbl:b_amount_payment_ml}' maxlen='30'/>
+	<parameter id='ppv_monto_pago_ml' type='double' required='true' label='${lbl:b_amount_pay_ml}' maxlen='30'/>
+	<parameter id='ppv_monto_devuelto_ml' type='double' required='false' label='${lbl:b_amount_revers_ml}' maxlen='30'/>
+	<parameter id='ppv_monto_pagar_ma' type='double' required='false' label='${lbl:b_amount_payment_ma}' maxlen='30'/>
+	<parameter id='ppv_monto_pago_ma' type='double' required='false' label='${lbl:b_amount_payment_ma}' maxlen='30'/>
+	<parameter id='ppv_monto_devuelto_ma' type='double' required='false' label='${lbl:b_amount_revers_ma}' maxlen='30'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='ppv_observacion' type='varchar' required='false' label='${lbl:b_observation}' maxlen='400'/>
+	<parameter id='ppv_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+
+	<!-- <custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarNombre.sql'
+			id='ppv_nombre_pagador'/> -->
+
+	<parameter id='ppv_banco_origen' type='integer' required='false' label='${lbl:b_amount_pay_ml}' maxlen='10'/>
+	<parameter id='ppv_banco_destino' type='integer' required='false' label='${lbl:b_amount_pay_ml}' maxlen='10'/>
+	<parameter id='ppv_cuenta_bancaria' type='integer' required='false' label='${lbl:b_amount_pay_ml}' maxlen='10'/>
+
+	<parameter id='smn_codigo_impuesto_rf' type='integer' required='false' label='${lbl:b_amount_pay_ml}' maxlen='10'/>
+	<parameter id='ppv_porcentaje' type='double' required='false' label='${lbl:b_amount_pay_ml}' maxlen='30'/>
+	<parameter id='ppv_monto_impuesto_ml' type='double' required='false' label='${lbl:b_amount_pay_ml}' maxlen='30'/>
+	<parameter id='ppv_monto_impuesto_ma' type='double' required='false' label='${lbl:b_amount_pay_ml}' maxlen='30'/>
+    <parameter id='ppv_monto_servicio_ml' type='double' required='false' label='${lbl:b_amount_pay_ml}' maxlen='30'/>
+	<parameter id='ppv_monto_servicio_ma' type='double' required='false' label='${lbl:b_amount_pay_ml}' maxlen='30'/>
+</validator>

@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_presupuesto_detalle_id' type='integer' required='false' label='${lbl:b_presupuesto_detalle}' maxlen='10'/>
+	<parameter id='smn_presupuesto_id' type='integer' required='false' label='${lbl:b_presupuesto}' maxlen='10'/>
+	<parameter id='smn_servicios_rf' type='integer' required='false' label='${lbl:b_services}' maxlen='10'/>
+	<parameter id='smn_tipos_componentes_rf' type='varchar' required='false' label='${lbl:b_type_component}' maxlen='2'/>
+	<parameter id='smn_componentes_rf' type='integer' required='false' label='${lbl:b_component}' maxlen='10'/>
+	<parameter id='smn_grupo_prestador_rf' type='integer' required='false' label='${lbl:b_group_of_provider}' maxlen='10'/>
+	<parameter id='smn_prestadores_servicios_rf' type='integer' required='false' label='${fld:b_service_provider}' maxlen='10'/>
+	<parameter id='prc_porcentaje_prestador' type='integer' required='false' label='${lbl:b_percentage}' maxlen='10'/>
+	<parameter id='prc_forma_calculo_rf' type='varchar' required='false' label='${lbl:b_forma_calculo}' maxlen='2'/>
+	<parameter id='prc_visible_rf' type='varchar' required='false' label='${lbl:b_visible}' maxlen='1'/>
+	<parameter id='prc_cantidad' type='integer' required='false' label='${lbl:b_quantity}' maxlen='10'/>
+	<parameter id='prc_precio_ml' type='double' required='false' label='${lbl:b_price}' maxlen='10'/>
+	<parameter id='prc_precio_ma' type='double' required='false' label='${lbl:b_price_ma}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='prc_monto_ml' type='double' required='false' label='${lbl:b_amount}' maxlen='10'/>
+	<parameter id='prc_monto_ma' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='prc_monto_impuesto_ml' type='double' required='false' label='${lbl:b_amount_tax}' maxlen='10'/>
+	<parameter id='prc_monto_impuesto_ma' type='double' required='false' label='${lbl:b_amount_tax_ma}' maxlen='10'/>
+	<parameter id='prc_monto_descuento_ml' type='double' required='false' label='${lbl:b_amount_discount}' maxlen='10'/>
+	<parameter id='prc_monto_descuento_ma' type='double' required='false' label='${lbl:b_amount_discount_ma}' maxlen='10'/>
+	<parameter id='smn_incrementos_porcentaje_rf' type='integer' required='false' label='${lbl:b_incremento_rf}' maxlen='10'/>
+	<parameter id='prc_monto_incremento_ml' type='double' required='false' label='${lbl:b_amount__increment}' maxlen='10'/>
+	<parameter id='prc_monto_incremento_ma' type='double' required='false' label='${lbl:b_amount_increment_ma}' maxlen='10'/>
+	<parameter id='prc_monto_neto_ml' type='double' required='false' label='${lbl:b_amount_net}' maxlen='10'/>
+	<parameter id='prc_monto_neto_ma' type='double' required='false' label='${lbl:b_amount_net_ma}' maxlen='10'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='smn_tipos_componentes_rf'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='prc_forma_calculo_rf'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='prc_visible_rf'
+		rule='contains' />
+
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

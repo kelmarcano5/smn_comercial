@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smncontrolfiscaldocumento.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_control_fiscal_document}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_control_fiscal_document}.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smncontrolfiscaldocumento.sql' width='100' spacingBefore='40'>
+			<col name='smn_documento_id' title='${lbl:b_document}' width='10' align='left' format='######' />
+			<col name='cfd_numero_documento_fiscal_inicial' title='${lbl:b_doc_num_fis_ini}' width='10' align='left' format='######' />
+			<col name='cfd_numero_documento_fiscal_final' title='${lbl:b_doc_num_fis_fin}' width='10' align='left' format='######' />
+			<col name='cfd_ultimo_numero_fiscal_usado' title='${lbl:b_num_ult_fis_usa}' width='10' align='left' format='######' />
+			<col name='smn_proveedor_rf' title='${lbl:b_proveedor}' width='10' align='left' format='######' />
+			<col name='cfd_fecha_solicitud' title='${lbl:b_application_date}' width='10' align='left' format='dd-MM-yyyy' />
+			<col name='cfd_fecha_recepcion' title='${lbl:b_reception_date}' width='10' align='left' format='dd-MM-yyyy' />
+			<col name='cfd_serie' title='${lbl:b_serie}' width='10' align='left' />
+			<col name='cfd_estatus' title='${lbl:b_estatus}' width='10' align='left' />
+			<col name='cfd_fecha_registro' title='${lbl:b_store_date}' width='10' align='left' format='dd-MM-yyyy' />
+
+		</record>
+
+	</pdf-report>
+</config>

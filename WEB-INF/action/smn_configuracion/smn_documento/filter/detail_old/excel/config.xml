@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="11" cellStep="0" name="${lbl:b_document}"/>
+	
+	<excel 
+		recordset='query.sql' 
+		sheetname='${lbl:b_document}' 
+		filename='${lbl:b_document}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_tipo_documentos_fact_id' label='${lbl:b_tipo_documento_factura}' />
+		<col id='smn_documentos_generales_rf' label='${lbl:b_general_documents}' />
+		<col id='dcf_codigo' label='${lbl:b_code}' />
+		<col id='dcf_descripcion' label='${lbl:b_description} ' />
+		<col id='dcf_tipo_movimiento' label='${lbl:b_accounting_movement_type}' />
+		<col id='dcf_req_vigencia' label='${lbl:b_requiere_vigencia}' />
+		<col id='dcf_req_fecha_vencimiento' label='${lbl:b_requiere_fecha_vencimiento}' />
+		<col id='dcf_gen_orden_despacho' label='${lbl:b_genera_orden_despacho}' />
+		<col id='dcf_req_servicios' label='${lbl:b_requiere_servicios}' />
+		<col id='dcf_req_vendedor' label='${lbl:b_requiere_vendedor}' />
+		<col id='dcf_req_tiempo_entrega' label='${lbl:b_requiere_tiempo_entrega}' />
+		<col id='dcf_usa_bonificaciones' label='${lbl:b_usa_bonificaciones}' />
+		<col id='dcf_usa_descuentos' label='${lbl:b_usa_descuentos}' />
+		<col id='dcf_moneda_alterna' label='${lbl:b_alternative_currency}' />
+		<col id='dcf_selecciona_precio' label='${lbl:b_puede_seleccionar_precio}' />
+		<col id='dcf_usa_anexo' label='${lbl:b_usa_anexo}' />
+		<col id='dcf_genera_factura_pv' label='${lbl:b_genera_factura_pv}' />
+		<col id='dcf_vigencia' label='${lbl:b_validation_date}' />
+		<col id='dcf_estatus' label='${lbl:b_status}' />
+		<col id='dcf_idioma' label='${lbl:s_profile_lang}' />
+		<col id='dcf_usuario' label='${lbl:b_users}' />
+		<col id='dcf_fecha_registro' label='${lbl:b_store_date}' />
+		<col id='dcf_hora' label='${lbl:s_loginhist_col2}' />
+
+	</excel>
+
+</config>

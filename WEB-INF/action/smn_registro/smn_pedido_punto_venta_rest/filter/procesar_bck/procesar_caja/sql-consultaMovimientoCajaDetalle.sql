@@ -1,0 +1,14 @@
+select
+smn_comercial.smn_catalogo_item_comercio.smn_item_rf as smn_id_rf,
+smn_comercial.smn_pedido_detalle.pde_monto as saldo,
+smn_comercial.smn_pedido_detalle.pde_precio as monto,
+smn_comercial.smn_pedido_detalle.pde_precio_moneda_alterna as monto_ma,
+smn_comercial.smn_pedido_detalle.pde_monto_moneda_alterna as precio_ma,
+smn_comercial.smn_pedido_detalle.smn_moneda_rf as moneda,
+smn_comercial.smn_pedido_detalle.smn_tasa_rf as tasa
+
+from smn_comercial.smn_pedido_detalle
+left outer join smn_comercial.smn_pedido_cabecera on smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id = smn_comercial.smn_pedido_detalle.smn_pedido_detalle_id
+left outer join smn_comercial.smn_catalogo_item_comercio on smn_comercial.smn_catalogo_item_comercio.smn_catalogo_item_comercio_id = smn_comercial.smn_pedido_detalle.smn_catalogo_item_comercio_id
+left outer join smn_base.smn_item on smn_base.smn_item.smn_item_id = smn_comercial.smn_catalogo_item_comercio.smn_item_rf
+where smn_comercial.smn_pedido_detalle.smn_pedido_cabecera_id=${fld:smn_pedido_cabecera_id}

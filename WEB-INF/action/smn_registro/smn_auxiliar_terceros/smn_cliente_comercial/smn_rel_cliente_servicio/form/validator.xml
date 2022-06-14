@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert" id='smn_relacion'>
+	<parameter id="id" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id="id2" type="integer" required="false" label="ID2" maxlen="50" />
+	<parameter id="codigo_aux" type="varchar" required="false" label="descripcion" maxlen="64" />
+	<parameter id="descripcion_aux" type="varchar" required="false" label="descripcion" maxlen="64" />
+	<!--<parameter id="reference" type="varchar" required="false" label="Reference" maxlen="5" />
+	<parameter id="source" type="varchar" required="false" label="Source" maxlen="60" />
+	<parameter id="tipo" type="varchar" required="false" label="Source" maxlen="60" />
+	<parameter id="servicio" type="varchar" required="false" label="Source" maxlen="100" />
+		<parameter id="servicioid" type="varchar" required="false" label="Source" maxlen="100" /> -->
+</validator>

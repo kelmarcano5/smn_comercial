@@ -1,0 +1,7 @@
+select
+		smn_comercial.smn_rel_grp_promotor_vendedor_rol.smn_grupo_promotores_vendedores_id,
+	smn_comercial.smn_rel_grp_promotor_vendedor_rol.smn_rol_id
+from
+	smn_comercial.smn_rel_grp_promotor_vendedor_rol 
+where
+	smn_comercial.smn_rel_grp_promotor_vendedor_rol.smn_rel_grp_promotor_vendedor_rol_id = ${fld:id}

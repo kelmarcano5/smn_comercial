@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+	<parameter id="centro_fact" type="varchar" required="true" label="ID ${lbl:b_entities}" />
+	<parameter id="sub_centro_fact" type="varchar" required="false" label="ID ${lbl:b_entities}" />
+	<parameter id="cliente" type="varchar" required="false" label="ID ${lbl:b_entities}" />
+	<parameter id="comprador2" type="varchar" required="false" label="ID ${lbl:b_entities}" />
+
+	<parameter id='cfc_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='16'/>
+	<parameter id='cfc_nombre' type='varchar' required='false' label='${lbl:b_name}' maxlen='48'/>
+	<parameter id='smn_entidades_rf' type='integer' required='false' label='${lbl:b_entities}' maxlen='2'/>
+	<parameter id='smn_sucursales_rf' type='integer' required='false' label='${lbl:b_subsidiary}' maxlen='10'/>
+	<parameter id='smn_areas_servicios_rf' type='integer' required='false' label='${lbl:b_service_areas}' maxlen='10'/>
+	<parameter id='smn_unidades_servicios_rf' type='integer' required='false' label='${lbl:b_service_units}' maxlen='10'/>
+	<parameter id='cfc_numero_identificacion' type='varchar' required='false' label='${lbl:b_codigo_identificacion}' maxlen='16'/>
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='${lbl:b_store_code}' maxlen='10'/>
+	<parameter id='smn_centro_costo_rf' type='integer' required='false' label='${lbl:b_center_costs}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='smn_caja_rf' type='integer' required='false' label='${lbl:b_box}' maxlen='10'/>
+	<parameter id='cfc_control_fiscal_1' type='integer' required='false' label='${lbl:b_control_fiscal_1}' maxlen='10'/>
+	<parameter id='cfc_control_fiscal_2' type='integer' required='false' label='${lbl:b_control_fiscal_2}' maxlen='10'/>
+	<parameter id='cfc_vigencia' type='date' required='false' label='${lbl:b_validation_date}' maxlen='10'/>
+	<parameter id='cfc_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='smn_linea_comercial_id' type='integer' required='false' label='${lbl:b_cost_centers}' maxlen='10'/>
+	<parameter id='tlc_naturaleza' type='varchar' required='false' label='Naturaleza' maxlen='2'/>
+	<!-- <parameter id='smn_auxiliar_rf' type='integer' required='false' label='${lbl:b_user}' maxlen='10'/> -->
+
+</validator>

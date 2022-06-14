@@ -1,0 +1,38 @@
+INSERT INTO smn_comercial.smn_catalogo_item_comercio
+(
+	smn_catalogo_item_comercio_id,
+	cic_origen,
+	smn_cliente_rf,
+	cic_maneja_ingredientes,
+	smn_item_rf,
+	smn_unidad_medida_rf,
+	cic_tiempo_sug_preparacion,
+	smn_categoria_menu_id,
+	smn_categoria_item_id_a,
+	smn_categoria_item_id_b,
+	smn_baremos_rf,
+	cic_idioma,
+	cic_usuario,
+	cic_fecha_registro,
+	cic_hora,
+	cic_descripcion
+)
+VALUES
+(
+	${seq:currval@smn_comercial.seq_smn_catalogo_item_comercio},
+	${fld:cic_origen},
+	${fld:smn_cliente_rf},
+	${fld:cic_maneja_ingredientes},
+	${fld:smn_item_rf},
+	${fld:smn_unidad_medida_rf},
+	${fld:cic_tiempo_sug_preparacion},
+	${fld:smn_categoria_menu_id},
+	${fld:smn_categoria_item_id_a},
+	${fld:smn_categoria_item_id_b},
+	${fld:smn_baremos_rf},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}',
+	${fld:cic_descripcion}
+)

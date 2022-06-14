@@ -1,0 +1,3 @@
+<rows>
+scf_fecha_registro="${fld:scf_fecha_registro}"    scf_vigencia="${fld:scf_vigencia}"    scf_estatus="${fld:scf_estatus}"    scf_nombre="${fld:scf_nombre}"    scf_codigo="${fld:scf_codigo}"    smn_centro_facturacion_id="${fld:smn_centro_facturacion_id}"    
+</rows>

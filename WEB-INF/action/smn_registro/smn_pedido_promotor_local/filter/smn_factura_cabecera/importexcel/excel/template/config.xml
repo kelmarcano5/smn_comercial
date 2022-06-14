@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnfacturacabecera.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_header_bill}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_header_bill}">
+				<col id='smn_documento_id' label='${lbl:b_document}' />
+		<col id='fca_numero_documento_id' label='${lbl:b_document_number}' />
+		<col id='smn_entidad_rf' label='${lbl:b_entities}' />
+		<col id='smn_sucursal_rf' label='${lbl:b_subsidiaries}' />
+		<col id='smn_pedido_cabecera_id' label='${lbl:b_header_order}' />
+		<col id='smn_oferta_id' label='${lbl:b_offer}' />
+		<col id='smn_caja_rf' label='${lbl:b_box}' />
+		<col id='smn_cliente_id' label='${lbl:b_customer}' />
+		<col id='smn_control_serie_fiscal_id' label='${lbl:b_control_serie_fiscal}' />
+		<col id='fca_numero_control_fiscal' label='${lbl:b_document_number}' />
+		<col id='fca_rif' label='${lbl:b_rif}' />
+		<col id='fca_direccion_fiscal' label='${lbl:b_adress_fiscal}' />
+		<col id='fca_monto_factura_ml' label='${lbl:b_amount_bill_ml}' />
+		<col id='fca_monto_impuesto_ml' label='${lbl:b_amount_tax}' />
+		<col id='fca_monto_descuento_ml' label='${lbl:b_amount_discount}' />
+		<col id='fca_monto_bonificacion_ml' label='${lbl:b_amount_bonification}' />
+		<col id='fca_monto_neto_ml' label='${lbl:b_amount_net}' />
+		<col id='smn_moneda_rf' label='${lbl:b_coins}' />
+		<col id='smn_tasa_rf' label='${lbl:b_exchange_rate}' />
+		<col id='fca_monto_factura_ma' label='${lbl:b_amount_bill_ma}' />
+		<col id='fca_monto_impuesto_ma' label='${lbl:b_amount_tax_ma}' />
+		<col id='fca_monto_descuento_ma' label='${lbl:b_amount_discount_ma}' />
+		<col id='fca_monto_bonificacion_ma' label='${lbl:b_amount_bonification_ma}' />
+		<col id='fca_monto_neto_ma' label='${lbl:b_amount_net_ma}' />
+		<col id='fca_estatus_financiero' label='${lbl:b_financial_status}' />
+		<col id='fca_estatus_proceso' label='${lbl:b_process_status}' />
+		<col id='fca_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

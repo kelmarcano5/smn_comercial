@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='smn_entidades_rf' type='integer' required='true' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_relacion_documento_entidad}' maxlen='10'/>
+
+
+</validator>

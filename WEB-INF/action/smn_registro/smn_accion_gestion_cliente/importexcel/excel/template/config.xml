@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnacciongestioncliente.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_customer_management_action}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_customer_management_action}">
+				<col id='smn_rel_oferta_cliente_id' label='${lbl:b_rel_customer_offer}' />
+		<col id='smn_accion_id' label='${lbl:b_action}' />
+		<col id='ago_estatus_proceso' label='${lbl:b_process_status}' />
+		<col id='ago_fecha_seguimiento' label='${lbl:b_tracking_date}' />
+		<col id='ago_fecha_aprobacion' label='${lbl:b_aprobation_date}' />
+		<col id='ago_fecha_vigencia_desde' label='${lbl:b_from_vigency_date}' />
+		<col id='ago_fecha_vigencia_hasta' label='${lbl:b_to_vigency_date}' />
+		<col id='ago_fecha_cierre' label='${lbl:b_to_vigency_date}' />
+		<col id='ago_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

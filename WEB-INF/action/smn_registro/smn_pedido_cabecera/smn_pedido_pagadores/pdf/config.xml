@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnpedidopagadores.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_order_paying}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_order_paying}.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smnpedidopagadores.sql' width='100' spacingBefore='40'>
+			<col name='smn_pedido_cabecera_id' title='${lbl:b_control_header_order}' width='25' align='left' format='######' />
+			<col name='smn_cliente_id' title='${lbl:b_customer}' width='25' align='left' format='######' />
+			<col name='ppa_monto' title='${lbl:b_amount}' width='25' align='left' format='#,###,##0.00' />
+			<col name='ppa_fecha_registro' title='${lbl:b_store_date}' width='25' align='left' format='######' />
+
+		</record>
+
+	</pdf-report>
+</config>

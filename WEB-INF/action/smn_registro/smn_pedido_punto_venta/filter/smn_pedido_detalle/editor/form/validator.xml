@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id="id" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id="id2" type="integer" required="false" label="ID2" maxlen="10" />
+		<parameter id="codigo" type="varchar" required="false" label="CODIGO" maxlen="10" />
+		<parameter id='tlc_naturaleza' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+		<parameter id='smn_linea_comercial_id' type='integer' required='false' label='${lbl:b_cost_centers}' maxlen='10'/>
+		<parameter id="naturaleza" type="varchar" required="false" label="ID" maxlen="10" />
+
+</validator>

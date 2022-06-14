@@ -1,0 +1,20 @@
+select
+	smn_comercial.smn_pedido_detalle.smn_pedido_detalle_id,
+	smn_comercial.smn_pedido_detalle.pde_naturaleza as pde_naturaleza_pl0,
+	smn_comercial.smn_pedido_imp_deducc_detalle.smn_codigos_impuestos_rf,
+	smn_comercial.smn_pedido_imp_deducc_detalle.pid_porcentaje_impuesto,
+	smn_comercial.smn_pedido_imp_deducc_detalle.pid_monto_sustraendo,
+	smn_comercial.smn_pedido_imp_deducc_detalle.pid_monto_impuesto,
+	smn_comercial.smn_pedido_imp_deducc_detalle.smn_descuentos_retenciones_rf,
+	smn_comercial.smn_pedido_imp_deducc_detalle.pid_fecha_registro,
+		smn_comercial.smn_pedido_imp_deducc_detalle.smn_pedido_imp_deducc_detalle_id
+	
+from
+	smn_comercial.smn_pedido_detalle,
+	smn_comercial.smn_pedido_imp_deducc_detalle
+where
+	smn_pedido_imp_deducc_detalle_id is not null
+	and 	smn_comercial.smn_pedido_detalle.smn_pedido_detalle_id=smn_comercial.smn_pedido_imp_deducc_detalle.smn_pedido_detalle_id
+	${filter}
+order by
+		smn_pedido_imp_deducc_detalle_id

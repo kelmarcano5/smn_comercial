@@ -1,0 +1,64 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="13" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_presupuesto_detalle_id","query-smnpresupuestoimpuesto.sql")'>${lbl:b_presupuesto_det}</th>
+		<th class='sortable' onclick='sortBy("smn_servicios_rf","query-smnpresupuestoimpuesto.sql")'>${lbl:b_service}</th>
+		<th class='sortable' onclick='sortBy("smn_item_rf","query-smnpresupuestoimpuesto.sql")'>${lbl:b_item}</th>
+		<th class='sortable' onclick='sortBy("smn_codigo_impuesto_id","query-smnpresupuestoimpuesto.sql")'>${lbl:b_codigo_impuesto}</th>
+		<th class='sortable' onclick='sortBy("pim_base_imponible_ml","query-smnpresupuestoimpuesto.sql")'>${lbl:b_base_imponible_ml}</th>
+		<th class='sortable' onclick='sortBy("pim_base_excenta_ml","query-smnpresupuestoimpuesto.sql")'>${lbl:b_base_excenta_ml}</th>
+		<th class='sortable' onclick='sortBy("pim_monto_impuesto_ml","query-smnpresupuestoimpuesto.sql")'>${lbl:b_monto_impuesto_ml}</th>
+		<th class='sortable' onclick='sortBy("pim_monto_sustraendo_ml","query-smnpresupuestoimpuesto.sql")'>${lbl:b_monto_sustraendo_ma}</th>
+		<th class='sortable' onclick='sortBy("pim_monto_neto_impuesto_ml","query-smnpresupuestoimpuesto.sql")'>${lbl:b_monto_neto_impuesto_ml}</th>
+		<th class='sortable' onclick='sortBy("pim_fecha_registro","query-smnpresupuestoimpuesto.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_presupuesto_impuesto_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_presupuesto_impuesto_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_presupuesto_impuesto_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_presupuesto_detalle_id}</td>
+		<td>${fld:smn_servicios_rf}</td>
+		<td>${fld:smn_item_rf}</td>
+		<td>${fld:smn_codigo_impuesto_id}</td>
+		<td align='right'>${fld:pim_base_imponible_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:pim_base_excenta_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:pim_monto_impuesto_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:pim_monto_sustraendo_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:pim_monto_neto_impuesto_ml@#,###,##0.00}</td>
+		<td>${fld:pim_fecha_registro}</td>
+
+	</tr>
+	</rows>
+
+</table>

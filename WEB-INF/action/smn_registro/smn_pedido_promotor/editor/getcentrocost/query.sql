@@ -1,0 +1,3 @@
+SELECT smn_base.smn_centro_costo.smn_centro_costo_id AS id, smn_base.smn_centro_costo.cco_descripcion_corta AS item FROM smn_comercial.smn_centro_facturacion
+INNER JOIN smn_base.smn_centro_costo ON smn_base.smn_centro_costo.smn_centro_costo_id = smn_comercial.smn_centro_facturacion.smn_centro_costo_rf
+WHERE smn_comercial.smn_centro_facturacion.smn_entidades_rf=${fld:id}

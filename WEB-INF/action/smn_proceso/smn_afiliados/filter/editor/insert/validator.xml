@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='afi_auxiliar_rf' type='integer' required='true' label='${lbl:b_auxiliary}' maxlen='10'/>
+	<parameter id='afi_fecha_inicio' type='date' required='true' label='${lbl:b_date_init}' maxlen='10'/>
+	<parameter id='afi_fecha_final' type='date' required='true' label='${lbl:b_date_end}' maxlen='10'/>
+	<parameter id='afi_fecha_desafiliacion' type='date' required='false' label='${lbl:b_date_desafiliate}' maxlen='10'/>
+	<parameter id='smn_rol_id' type='integer' required='false' label='${lbl:b_rol}' maxlen='10'/>
+	<parameter id='smn_servicio_id' type='integer' required='true' label='${lbl:b_services}' maxlen='10'/>
+	<parameter id='afi_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+
+
+</validator>

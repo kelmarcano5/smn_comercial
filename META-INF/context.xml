@@ -1,0 +1,9 @@
+<Context processTlds="false">
+
+	<Resource name="jdbc/dinamica" auth="Container" type="javax.sql.DataSource"
+		initialSize="5" maxActive="50" maxIdle="10" maxWait="5000"
+		username="postgres" password="postgres" 
+		driverClassName="org.postgresql.Driver"
+		url="jdbc:postgresql://localhost/simonedb_qa"/>
+
+</Context>

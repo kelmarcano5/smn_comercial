@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="WEB-INF/source"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/webapps/smn_comercial/WEB-INF/lib/captcha.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/webapps/smn_comercial/WEB-INF/lib/framework.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/webapps/smn_comercial/WEB-INF/lib/iText-2.1.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/webapps/smn_comercial/WEB-INF/lib/jcommon-1.0.21.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/webapps/smn_comercial/WEB-INF/lib/jfreechart-1.0.17.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/webapps/smn_comercial/WEB-INF/lib/jxl.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/webapps/smn_comercial/WEB-INF/lib/operations-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/lib/jaxb-xjc.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/lib/jaxws-rt.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/lib/jaxws-tools.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/lib/poi-3.9-20121203.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/lib/postgresql-9.4-1201.jdbc41.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/lib/saaj-impl.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/lib/servlet-api.jar" sourcepath="E:/tomcat7/dinamica/source.zip"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/lib/gson-2.8.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/lib/javax.mail.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/lib/javax.ws.rs-api-2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/lib/jaxb-core.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/lib/jaxb-impl.jar"/>
+	<classpathentry exported="true" kind="lib" path="E:/tomcat7/lib/jaxb-jxc.jar"/>
+	<classpathentry kind="output" path="WEB-INF/classes/"/>
+</classpath>

@@ -1,0 +1,71 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="16">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_clasificacion_cliente_id_combo","query-smncliente.sql")'>${lbl:b_clasificacion_cliente}</th>
+		<th class='sortable' onclick='sortBy("smn_clase_auxiliar_rf_combo","query-smncliente.sql")'>${lbl:b_auxiliary_classes}</th>
+		<th class='sortable' onclick='sortBy("smn_auxiliar_rf_combo","query-smncliente.sql")'>${lbl:b_auxiliary}</th>
+		<th class='sortable' onclick='sortBy("smn_clasificacion_abc_rf_combo","query-smncliente.sql")'>${lbl:b_abc_clasification}</th>
+		<th class='sortable' onclick='sortBy("smn_sector_economico_rf_combo","query-smncliente.sql")'>${lbl:b_economic_sectors}</th>
+		<th class='sortable' onclick='sortBy("cli_fecha_registro","query-smncliente.sql")'>${lbl:b_store_date}</th>
+		<th>RCF</th>
+		<th>RCSU</th>
+		<th>RCA</th>
+		<th>RCC</th>
+		<th>RCM</th>
+		<th>RCSE</th>
+		<th>RCU</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_cliente_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_cliente_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_cliente_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_clasificacion_cliente_id_combo}</td>
+		<td>${fld:smn_clase_auxiliar_rf_combo}</td>
+		<td>${fld:smn_auxiliar_rf_combo}</td>
+		<td>${fld:smn_clasificacion_abc_rf_combo}</td>
+		<td>${fld:smn_sector_economico_rf_combo}</td>
+		<td>${fld:cli_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="usuario('${fld:smn_cliente_id}')" title="${lbl:b_rel_user_customer}"></td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="relacion('${fld:smn_cliente_id}')" title="${lbl:b_rel_client_condition_financiery}"></td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="auxsucursal('${fld:smn_cliente_id}')" title="${lbl:b_rel_subsidiary_customer}"></td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="agenda('${fld:smn_cliente_id}')" title="${lbl:b_rel_timetable_customer}"></td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="contacto('${fld:smn_cliente_id}')" title="${lbl:b_rel_contact_customer}"></td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="mediopago('${fld:smn_cliente_id}')" title="${lbl:b_rel_medio_pago_customer}"></td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="servicio('${fld:smn_cliente_id}')" title="${lbl:b_rel_service_customer}"></td>
+		
+	</tr>
+	</rows>
+
+</table>

@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id='smn_pedido_cabecera_id' type='integer' required='true' label='${lbl:b_header_order}' maxlen='10'/>
+	<parameter id="usuario" type="varchar" required="false" label="ID" maxlen="10" />
+
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='fca_numero_documento_id' type='integer' required='false' label='${lbl:b_document_number}' maxlen='10'/>
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+	
+	
+	<parameter id='smn_caja_rf' type='integer' required='false' label='${lbl:b_box}' maxlen='10'/>
+	<parameter id='smn_cliente_id' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_control_serie_fiscal_id' type='integer' required='false' label='${lbl:b_control_serie_fiscal}' maxlen='10'/>
+	<parameter id='fca_numero_control_fiscal' type='integer' required='false' label='${lbl:b_document_number}' maxlen='10'/>
+	<parameter id='fca_rif' type='varchar' required='false' label='${lbl:b_rif}' maxlen='50'/>
+	<parameter id='fca_direccion_fiscal' type='varchar' required='false' label='${lbl:b_adress_fiscal}' maxlen='200'/>
+	<parameter id='fca_monto_factura_ml' type='double' required='false' label='${lbl:b_amount_bill_ml}' maxlen='10'/>
+	<parameter id='fca_monto_impuesto_ml' type='double' required='false' label='${lbl:b_amount_tax}' maxlen='10'/>
+	<parameter id='fca_monto_descuento_ml' type='double' required='false' label='${lbl:b_amount_discount}' maxlen='10'/>
+	<parameter id='fca_monto_bonificacion_ml' type='double' required='false' label='${lbl:b_amount_bonification}' maxlen='10'/>
+	<parameter id='fca_monto_neto_ml' type='double' required='false' label='${lbl:b_amount_net}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='fca_monto_factura_ma' type='double' required='false' label='${lbl:b_amount_bill_ma}' maxlen='10'/>
+	<parameter id='fca_monto_impuesto_ma' type='double' required='false' label='${lbl:b_amount_tax_ma}' maxlen='10'/>
+	<parameter id='fca_monto_descuento_ma' type='double' required='false' label='${lbl:b_amount_discount_ma}' maxlen='10'/>
+	<parameter id='fca_monto_bonificacion_ma' type='double' required='false' label='${lbl:b_amount_bonification_ma}' maxlen='10'/>
+	<parameter id='fca_monto_neto_ma' type='double' required='false' label='${lbl:b_amount_net_ma}' maxlen='10'/>
+	<parameter id='fca_estatus_financiero' type='varchar' required='false' label='${lbl:b_financial_status}' maxlen='2'/>
+	<parameter id='fca_estatus_proceso' type='varchar' required='false' label='${lbl:b_process_status}' maxlen='2'/>
+
+	<parameter id='entidad' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='sucursal' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+	<parameter id='documento' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+	<parameter id='pedidoid' type='integer' required='false' label='${lbl:b_header_order}' maxlen='10'/>
+	<parameter id='smn_oferta_id' type='integer' required='false' label='${lbl:b_offer}' maxlen='10'/>
+	<parameter id='caja' type='integer' required='false' label='${lbl:b_box}' maxlen='10'/>
+	<parameter id='cliente' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='auxiliar' type='integer' required='false' label='${lbl:b_auxiliary}' maxlen='10'/>
+	<parameter id='monto' type='double' required='false' label='${lbl:b_amount}' maxlen='10'/>
+	<parameter id='montoneto' type='double' required='false' label='${lbl:b_amount_net}' maxlen='10'/>
+
+	<parameter id='pca_monto_pedido_ml' type='double' required='false' label='${lbl:b_amount}' maxlen='10'/>
+	<parameter id='pca_monto_neto_ml' type='double' required='false' label='${lbl:b_amount_net}' maxlen='10'/>
+	<parameter id='pca_monto_pedido_ma' type='double' required='false' label='${lbl:b_amount}' maxlen='10'/>
+	<parameter id='pca_monto_neto_ma' type='double' required='false' label='${lbl:b_amount_net}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='id_despacho' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='id_despacho' maxlen='10'/>
+
+	<parameter id='id_despacho' type='integer' required='false' label='id_despacho' maxlen='10'/>
+	<parameter id='id_mov_cab' type='integer' required='false' label='id_mov_cab' maxlen='10'/>
+	<parameter id='response' type='varchar' required='false' label='response' maxlen='100'/>
+
+	<parameter id='montoma' type='double' required='false' label='${lbl:b_amount}' maxlen='10'/>
+	<parameter id='precioma' type='double' required='false' label='${lbl:b_amount_net}' maxlen='10'/>
+
+	<parameter id='smn_centro_facturacion_id' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_tipo_linea_comercial_id' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_linea_comercial_id' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_factura_detalle_id' type='integer' required='false' label='b_detail_bill' maxlen='10'/>
+	<parameter id='smn_pedido_detalle_id' type='integer' required='false' label='b_detail_order' maxlen='10'/>
+
+	<parameter id='smn_codigos_impuestos_rf' type='integer' required='false' label='b_tax' maxlen='10'/>
+	<parameter id='pim_porcentaje_impuesto' type='double' required='false' label='${lbl:b_tax_porcentaje}' maxlen='10'/>
+   <parameter id='pim_monto_sustraendo' type='double' required='false' label='${lbl:b_amount_less}' maxlen='10'/>
+   <parameter id='pim_monto_impuesto' type='double' required='false' label='${lbl:b_amount}' maxlen='10'/>
+   <parameter id='smn_descuentos_retenciones_rf' type='integer' required='false' label='b_retencion_discount' maxlen='10'/>
+   <parameter id='pim_monto_impuesto_ma' type='double' required='false' label='${lbl:b_amount}' maxlen='10'/>
+   <parameter id='pim_porcentaje_retencion' type='double' required='false' label='${lbl:b_amount}' maxlen='10'/>
+   <parameter id='pim_monto_descuento_retencion' type='double' required='false' label='${lbl:b_amount}' maxlen='10'/>
+   <parameter id='pim_monto_descuento_ma' type='double' required='false' label='${lbl:b_discount_coin_amount_altern}' maxlen='10'/>
+   
+	<parameter id='id_lote' type='integer' required='false' label='b_id_lote' maxlen='10'/>
+	<parameter id='id_item' type='integer' required='false' label='b_id_item' maxlen='10'/>
+	<parameter id='id_item_comp' type='integer' required='false' label='b_id_item_comp' maxlen='10'/>
+	<parameter id='cantidad' type='double' required='false' label='${lbl:b_amount}' maxlen='10'/>
+	<parameter id='fecha_venc' type='double' required='false' label='${lbl:b_fecha_venc}' maxlen='10'/>	
+	<parameter id='id_caracteristica' type='integer' required='false' label='b_id_caracteristica' maxlen='10'/>
+
+	<parameter id='pca_monto_neto_ma' type='double' required='false' label='monto neto ma' maxlen='20'/>
+	<parameter id='pca_monto_impuesto_ma' type='double' required='false' label='monto impuesto ma' maxlen='20'/>
+	<parameter id='pca_monto_descuento_ma' type='double' required='false' label='monto descuento ma' maxlen='20'/>
+	<parameter id='pca_monto_bonificacion_ma' type='double' required='false' label='monto bonificacion ma' maxlen='20'/>
+	<parameter id='pca_monto_neto_ma' type='double' required='false' label='monto neto ma' maxlen='20'/>
+
+
+	<parameter id='pca_monto_descuento_ml' type='double' required='false' label='monto descuento ml' maxlen='20'/>
+	<parameter id='pca_monto_bonificacion_ml' type='double' required='false' label='monto bonificacion ml' maxlen='20'/>
+	<parameter id='pca_monto_neto_ml' type='double' required='false' label='monto neto ml' maxlen='20'/>
+
+	<parameter id='smn_centro_facturacion_id' type='integer' required='false' label='centro facturacion' maxlen='10'/>
+	<parameter id='smn_tipo_linea_comercial_id' type='integer' required='false' label='tipo linea comercial' maxlen='10'/>
+	<parameter id='smn_linea_comercial_id' type='integer' required='false' label='linea comercial' maxlen='10'/>
+
+	<parameter id='fde_monto_ma' type='double' required='false' label='monto ma' maxlen='20'/>
+	<parameter id='fde_precio_ma' type='double' required='false' label='precio ma' maxlen='20'/>
+
+	<parameter id='smn_modulo_rf' type='integer' required='false' label='modulo' maxlen='10'/>
+
+	<!-- PROCESO DE CAJA PARAMETROS -->
+	<parameter id='cliente' type='integer' required='false' label='cliente' maxlen='10'/>
+	<parameter id='comprador' type='integer' required='false' label='comprador' maxlen='10'/>
+	<parameter id='clase_cliente' type='integer' required='false' label='clase cliente' maxlen='10'/>
+	<parameter id='clase_comprador' type='integer' required='false' label='clase comprador' maxlen='10'/>
+	<parameter id='caja' type='integer' required='false' label='caja' maxlen='10'/>
+	<parameter id='monto_ml' type='double' required='false' label='monto ml' maxlen='10'/>
+	<parameter id='saldo_ml' type='double' required='false' label='saldo ml' maxlen='10'/>
+	<parameter id='monto_ma' type='double' required='false' label='monto ma' maxlen='10'/>
+	<parameter id='saldo_ma' type='double' required='false' label='saldo ma' maxlen='10'/>
+	<parameter id='moneda' type='integer' required='false' label='moneda' maxlen='10'/>
+	<parameter id='tasa' type='integer' required='false' label='tasa' maxlen='10'/>
+	<parameter id='documento' type='integer' required='false' label='documento' maxlen='10'/>
+	<parameter id='smn_cliente_id' type='integer' required='false' label='cliente' maxlen='10'/>
+	
+	<parameter id='smn_id_rf' type='integer' required='false' label='item' maxlen='10'/>
+	<parameter id='saldo' type='double' required='false' label='saldo' maxlen='10'/>
+	<parameter id='monto' type='double' required='false' label='saldo' maxlen='10'/>
+	<parameter id='monto_ma' type='double' required='false' label='monto ma' maxlen='10'/>
+	<parameter id='precio_ma' type='double' required='false' label='precio ma' maxlen='10'/>
+
+	<parameter id='smn_rel_punto_venta_pago_rf' type='integer' required='false' label='${lbl:b_rel_point_of_sale_order}' maxlen='10'/>
+	<parameter id='smn_forma_pago_rf' type='integer' required='false' label='${lbl:b_way_to_pay}' maxlen='10'/>
+	<parameter id='ppv_numero_documento_forma_pago' type='integer' required='false' label='${lbl:b_number_doc_form_pay}' maxlen='10'/>
+	<parameter id='ppv_numero_autorizacion' type='integer' required='false' label='${lbl:b_number_autorization}' maxlen='10'/>
+	<parameter id='ppv_documento_identidad_pagador' type='varchar' required='false' label='${lbl:b_document_identity}' maxlen='100'/>
+	<parameter id='ppv_nombre_pagador' type='varchar' required='false' label='${lbl:b_paying_name}' maxlen='100'/>
+	<parameter id='ppv_monto_pagar_ml' type='double' required='false' label='${lbl:b_amount_payment_ml}' maxlen='10'/>
+	<parameter id='ppv_monto_pago_ml' type='double' required='false' label='${lbl:b_amount_pay_ml}' maxlen='10'/>
+	<parameter id='ppv_monto_devuelto_ml' type='double' required='false' label='${lbl:b_amount_revers_ml}' maxlen='10'/>
+	<parameter id='ppv_monto_pagar_ma' type='double' required='false' label='${lbl:b_amount_payment_ma}' maxlen='10'/>
+	<parameter id='ppv_monto_pago_ma' type='double' required='false' label='${lbl:b_amount_payment_ma}' maxlen='10'/>
+	<parameter id='ppv_monto_devuelto_ma' type='double' required='false' label='${lbl:b_amount_revers_ma}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='ppv_observacion' type='varchar' required='false' label='${lbl:b_observation}' maxlen='400'/>
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_auxiliar_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='numero_referencia' type='integer' required='false' label='${lbl:b_way_to_pay}' maxlen='10'/>
+
+	<!-- PROCESO DE COBRANZA PARAMETROS -->
+
+	<parameter id='smn_mov_documento_cob_cab_id' type='integer' required='false' label='${lbl:b_doc_mov_head_charg}' maxlen='10'/>
+	<parameter id='smn_tipo_documento_id' type='integer' required='false' label='${lbl:b_document_type}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document_type}' maxlen='10'/>
+	<parameter id='mdd_numero_documento' type='integer' required='false' label='${lbl:b_document_number}' maxlen='10'/>
+	<parameter id='smn_cliente_rf' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_centro_costo_rf' type='integer' required='false' label='${lbl:b_cost_centers}' maxlen='10'/>
+	<parameter id='mdd_monto_ml' type='double' required='false' label='${lbl:b_amount_ml}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coin}' maxlen='10'/>
+	<parameter id='mdd_monto_ma' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='mdd_fecha_pago' type='date' required='false' label='${lbl:b_payment_date}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_rate}' maxlen='10'/>
+	<parameter id='mdd_diferencia_cambiario' type='double' required='false' label='${lbl:b_exchange_rate_difference}' maxlen='10'/>
+			
+	<parameter id='smn_modulo_origen_rf' type='varchar' required='false' label='${lbl:b_origin_module}' maxlen='1'/>
+	<parameter id='smn_documento_rf' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='mdc_numero_doc_origen' type='integer' required='false' label='${lbl:b_origin_doc_num}' maxlen='10'/>
+	<parameter id='smn_cliente_rf' type='integer' required='false' label='${lbl:b_client}' maxlen='10'/>
+	<parameter id='mdc_fecha_documento' type='date' required='false' label='${lbl:b_document_date}' maxlen='10'/>
+	<parameter id='mdc_fecha_vencimiento' type='date' required='false' label='${lbl:b_thru_date}' maxlen='10'/>
+	<parameter id='mdc_monto_ml' type='double' required='false' label='${lbl:b_amount_ml}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_currency}' maxlen='10'/>
+	<parameter id='mdc_monto_ma' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='mdc_saldo_doc_ml' type='double' required='false' label='${lbl:b_balance_doc_ml}' maxlen='10'/>
+	<parameter id='mdc_saldo_doc_ma' type='double' required='false' label='${lbl:b_balance_doc_ma}' maxlen='10'/>
+	<parameter id='mdc_estatus_proceso' type='varchar' required='false' label='${lbl:b_process_status}' maxlen='2'/>
+	<parameter id='mdc_estatus_financiero' type='varchar' required='false' label='${lbl:b_finance_status}' maxlen='2'/>
+	<parameter id='rif' type='varchar' required='false' label='Rif' maxlen='2'/>
+
+</validator>

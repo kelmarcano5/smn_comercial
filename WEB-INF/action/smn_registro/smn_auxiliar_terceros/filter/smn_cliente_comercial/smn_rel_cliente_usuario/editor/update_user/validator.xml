@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_naturaleza_auxiliar_rf' type='integer' required='true' label='${lbl:b_nature_auxiliary}' maxlen='10'/>
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='true' label='${lbl:b_class_auxiliary}' maxlen='10'/>
+	<parameter id='smn_tipo_registro_rf' type='integer' required='true' label='${lbl:b_registers_type}' maxlen='10'/>
+	<parameter id='lname' type='varchar' required='false' label='${lbl:b_last_name}' maxlen='64'/>
+	<parameter id='fname' type='varchar' required='false' label='${lbl:b_first_name}' maxlen='64'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_auxiliary}' maxlen='10'/>
+	<parameter id='userlogin' type='varchar' required='false' label='${lbl:b_official_document_number}' maxlen='12' />
+	<parameter id='passwd' type='varchar' required='true' label='${lbl:s_fld_password}' maxlen='15' regexp='\w{6,}?' regexp-error-label='Use solo letras y números, sin espacios (al menos 6 caracteres).' />
+	<parameter id='confirm' type='varchar' required='true' label='${lbl:s_fld_confirm}' maxlen='15' />
+	<parameter id='email' type='varchar' required='true' label='${lbl:s_profile_email}' maxlen='96' regexp='^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$' regexp-error-label='Formato incorrecto xxxx@xxxxxx.xxx' />
+	
+	<custom-validator 	
+		classname='dinamica.validators.MatchEqualValidator' 
+		on-error-label='La contraseña no es igual a su confirmación.'
+		value1='passwd' 
+		value2='confirm' 
+		id='passwd'/>
+	
+	<custom-validator 	
+		classname='dinamica.security.PasswordEncryptor' 
+		on-error-label='Error generando el hash MD5.'/>		
+
+
+</validator>

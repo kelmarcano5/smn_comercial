@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_rel_centro_fac_documento>
+	<detail>
+		<rows>		
+		<record smn_documento_id="${fld:smn_documento_id}"    smn_centro_facturacion_id="${fld:smn_centro_facturacion_id}"    />
+		</rows>
+	</detail>
+</smn_rel_centro_fac_documento>

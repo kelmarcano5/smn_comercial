@@ -1,0 +1,48 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='25%'/>
+	<col width='25%'/>
+	<col width='25%'/>
+	<col width='25%'/>
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="8" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_documento_id","query-smndocumentogrptituloimp.sql")'>${lbl:b_document}</th>
+		<th class='sortable' onclick='sortBy("smn_grupo_titulo_impresion_rf","query-smndocumentogrptituloimp.sql")'>${lbl:b_group_tittle_print}</th>
+		<th class='sortable' onclick='sortBy("rdi_secuencia_impresion","query-smndocumentogrptituloimp.sql")'>${lbl:b_secuencia}</th>
+		<th class='sortable' onclick='sortBy("rdi_fecha_registro","query-smndocumentogrptituloimp.sql")'>${lbl:b_store_date}</th>
+		<th>DDI</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_documento_grp_titulo_imp_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_documento_grp_titulo_imp_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_documento_grp_titulo_imp_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_documento_id}</td>
+		<td>${fld:smn_grupo_titulo_impresion_rf}</td>
+		<td>${fld:rdi_secuencia_impresion}</td>
+		<td>${fld:rdi_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="doc_detgrp('${fld:smn_documento_grp_titulo_imp_id}')" title="${lbl:b_detalle_documento_grupo_titulo_impresion}"></td>
+
+
+	</tr>
+	</rows>
+
+</table>

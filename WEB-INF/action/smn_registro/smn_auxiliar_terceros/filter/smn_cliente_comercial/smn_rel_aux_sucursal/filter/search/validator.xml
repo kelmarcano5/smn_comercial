@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_auxiliar_id_name' type='varchar' required='false' label='${lbl:b_auxiliary}'/>
+	<parameter id='smn_auxiliar_id' type='integer' required='false' label='${lbl:b_auxiliary}' maxlen='10'/>
+	<parameter id='smn_auxiliar_sucursal_id' type='integer' required='false' label='${lbl:b_outsourced_subsidiary}' maxlen='10'/>
+</validator>

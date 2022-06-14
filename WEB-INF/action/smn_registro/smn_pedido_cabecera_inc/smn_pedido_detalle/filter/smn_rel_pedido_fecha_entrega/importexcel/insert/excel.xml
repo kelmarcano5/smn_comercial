@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_pedido_detalle_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_rel_auxiliar_direccion' type='integer' required='true' maxlen='10'/>
+	<parameter id='pfe_fecha_entrega' type='date' required='true' maxlen='10'/>
+	<parameter id='pfe_cantidad' type='integer' required='true' maxlen='10'/>
+
+
+
+</validator>

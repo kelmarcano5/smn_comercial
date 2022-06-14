@@ -1,0 +1,2 @@
+ and
+ 	smn_comercial.smn_rel_grp_promotor_vendedor_rol.smn_grupo_promotores_vendedores_id=${fld:smn_grupo_promotores_vendedores_id}

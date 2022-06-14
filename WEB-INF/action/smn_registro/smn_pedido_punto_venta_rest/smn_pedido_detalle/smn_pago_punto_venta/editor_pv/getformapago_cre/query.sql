@@ -1,0 +1,5 @@
+select 
+	smn_base.smn_formas_pago.smn_formas_pago_id as id, smn_base.smn_formas_pago.fop_codigo|| ' - ' || smn_base.smn_formas_pago.fop_descripcion as item
+from smn_base.smn_formas_pago
+where 
+	smn_base.smn_formas_pago.fop_codigo LIKE '%CR%'

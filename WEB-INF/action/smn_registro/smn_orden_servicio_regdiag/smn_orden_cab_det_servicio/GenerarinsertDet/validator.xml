@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">	
+	<parameter id='id_det' type='integer' required='false' label='ID INGRESO' maxlen='10'/>
+	<parameter id='id_cab' type='integer' required='false' label='ID INGRESO' maxlen='10'/>
+	<parameter id='comp_id' type='integer' required='false' label='ID INGRESO' maxlen='10'/>
+	<parameter id='item' type='integer' required='false' label='ID INGRESO' maxlen='10'/>
+	<parameter id='serv' type='integer' required='false' label='ID INGRESO' maxlen='10'/>
+	<parameter id='cant' type='integer' required='false' label='ID INGRESO' maxlen='10'/>
+	<parameter id='tipo' type='varchar' required='false' label='ID INGRESO' maxlen='10'/>
+	<parameter id='prest' type='integer' required='false' label='grupo prestador' maxlen='10'/>
+	<parameter id='pres' type='integer' required='false' label='prestador' maxlen='10'/>
+	<parameter id='nivel' type='integer' required='false' label='ID INGRESO' maxlen='10'/>
+	<parameter id='smn_orden_servicio_id' type='integer' required='false' label='Orden de Servicio' maxlen='10'/>
+	<parameter id='forma' type='varchar' required='false' label='ID INGRESO' maxlen='10'/>
+	<parameter id='vis' type='varchar' required='false' label='ID INGRESO' maxlen='10'/>
+	<parameter id='por' type='double' required='false' label='ID INGRESO' maxlen='10'/>
+	<parameter id='smn_orden_servicio_id' type='integer' required='false' label='ID INGRESO' maxlen='10'/>
+	
+</validator>

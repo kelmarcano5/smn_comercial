@@ -1,0 +1,1 @@
+select smn_caja.smn_caja.smn_caja_id as id, smn_caja.smn_caja.cja_codigo ||' - '||  smn_caja.smn_caja.cja_descripcion as item from smn_caja.smn_caja

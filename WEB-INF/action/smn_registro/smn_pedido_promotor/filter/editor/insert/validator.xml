@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_documento_id' type='integer' required='true' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='pca_numero_pedido' type='integer' required='false' label='${lbl:b_order_number}' maxlen='10'/>
+	<parameter id='smn_mov_caja_cabecera_id' type='integer' required='false' label='${lbl:b_movement_caj}' maxlen='10'/>
+	<parameter id='smn_oferta_id' type='integer' required='false' label='${lbl:b_offer}' maxlen='10'/>
+	<parameter id='smn_cliente_id' type='integer' required='true' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_usuario_rf' type='integer' required='false' label='${lbl:b_user}' maxlen='10'/>
+	<parameter id='id_usuario' type='integer' required='false' label='id_usuario' maxlen='10'/>
+	<parameter id='pca_descripcion' type='varchar' required='true' label='${lbl:b_description}' maxlen='200'/>
+	<parameter id='pca_fecha_requerida' type='date' required='false' label='${lbl:b_required_date}' maxlen='10'/>
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+	<parameter id='smn_area_servicio_rf' type='integer' required='false' label='${lbl:b_area_service}' maxlen='10'/>
+	<parameter id='smn_unidad_servicio_rf' type='integer' required='false' label='${lbl:b_units_service}' maxlen='10'/>
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='${lbl:b_store_code}' maxlen='10'/>
+	<parameter id='smn_centro_costo_rf' type='integer' required='false' label='${lbl:b_cost_centers}' maxlen='10'/>
+	<parameter id='pca_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='pca_fecha_vencimiento' type='date' required='false' label='${lbl:b_expiration_date}' maxlen='10'/>
+	<!-- <custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='pca_descripcion'/> -->
+
+	<parameter id='smn_centro_facturacion_id' type='integer' required='false' label='${lbl:b_centro_facturacion}' maxlen='10'/>
+	<parameter id='smn_tipo_linea_comercial_id' type='integer' required='false' label='${lbl:b_centro_facturacion}' maxlen='10'/>
+	<parameter id='smn_linea_comercial_id' type='integer' required='false' label='${lbl:b_centro_facturacion}' maxlen='10'/>
+	<parameter id='pca_vendedor' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='pca_fecha_despacho' type='date' required='false' label='${lbl:b_required_date}' maxlen='10'/>
+	<parameter id='fecha_req' type='date' required='false' label='${lbl:b_required_date}' maxlen='20'/>
+	<parameter id='smn_condicion_financiera_rf' type='integer' required='false' label='${lbl:b_centro_facturacion}' maxlen='10'/>
+</validator>

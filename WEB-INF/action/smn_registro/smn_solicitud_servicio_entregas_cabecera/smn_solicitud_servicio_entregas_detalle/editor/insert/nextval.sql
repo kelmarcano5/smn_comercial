@@ -1,0 +1,1 @@
+select ${seq:nextval@smn_comercial.seq_smn_solicitud_servicio_entregas_detalle} as id

@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_presupuesto_detalle_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_servicios_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_codigo_impuesto_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='pim_base_imponible_ml' type='double' required='true' maxlen='10'/>
+	<parameter id='pim_base_excenta_ml' type='double' required='false' maxlen='10'/>
+	<parameter id='pim_monto_impuesto_ml' type='double' required='false' maxlen='10'/>
+	<parameter id='pim_monto_sustraendo_ml' type='double' required='false' maxlen='10'/>
+	<parameter id='pim_monto_neto_impuesto_ml' type='double' required='false' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='pim_base_imponible_ma' type='double' required='false' maxlen='10'/>
+	<parameter id='pim_base_excenta_ma' type='double' required='false' maxlen='10'/>
+	<parameter id='pim_monto_impuesto_ma' type='double' required='false' maxlen='10'/>
+	<parameter id='pim_monto_sustraendo_ma' type='double' required='false' maxlen='10'/>
+	<parameter id='pim_monto_neto_impuesto_ma' type='double' required='false' maxlen='10'/>
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='smn_codigo_impuesto_id'/>
+
+
+</validator>

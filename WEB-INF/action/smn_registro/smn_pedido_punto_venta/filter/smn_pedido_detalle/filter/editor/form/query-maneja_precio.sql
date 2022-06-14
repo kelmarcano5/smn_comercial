@@ -1,0 +1,1 @@
+select smn_comercial.smn_documento.dcf_selecciona_precio as selprecio from smn_comercial.smn_documento where smn_comercial.smn_documento.dcf_codigo = 'PECO'

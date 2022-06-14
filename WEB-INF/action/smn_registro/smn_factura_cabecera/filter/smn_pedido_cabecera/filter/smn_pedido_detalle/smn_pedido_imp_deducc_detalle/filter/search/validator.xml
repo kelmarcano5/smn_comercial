@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_pedido_detalle_id_name' type='varchar' required='false' label='${lbl:b_control_header_order_health_detail}'/>
+	<parameter id='smn_pedido_detalle_id' type='integer' required='false' label='${lbl:b_control_header_order_health_detail}' maxlen='10'/>
+	<parameter id='pid_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date} mayor o igual que] no puede ser mayor que [${lbl:b_store_date} menor o igual que].' date1='pid_fecha_registro_ini' date2='pid_fecha_registro_fin' id='pid_fecha_registro_ini' />
+	<parameter id='pid_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

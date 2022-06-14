@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert" id='smn_presupuesto_id'>
+	<parameter id="id_pre_det" type="integer" required="true" label="ID Presupuesto" maxlen="10" />
+	<parameter id="servicio" type="integer" required="false" label="${lbl:b_services}" maxlen="10" />
+	<parameter id="item" type="integer" required="false" label="${lbl:b_item}" maxlen="10" />
+	<parameter id="montoml" type="double" required="false" label="${lbl:b_item}" maxlen="20" />
+	<parameter id="montoma" type="double" required="false" label="${lbl:b_item}" maxlen="20" />
+	<parameter id="montonetoml" type="double" required="false" label="${lbl:b_item}" maxlen="20" />
+	<parameter id="montonetoma" type="double" required="false" label="${lbl:b_item}" maxlen="20" />
+
+</validator>

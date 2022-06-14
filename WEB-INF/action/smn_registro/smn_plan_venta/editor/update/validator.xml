@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_entidades_rf' type='integer' required='true' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='true' label='${lbl:b_subsidiary}' maxlen='10'/>
+	<parameter id='smn_area_servicio_rf' type='integer' required='false' label='${lbl:b_service_areas}' maxlen='10'/>
+	<parameter id='smn_unidad_servicio_rf' type='integer' required='false' label='${lbl:b_service_units}' maxlen='10'/>
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='${lbl:b_store_code}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='true' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='smn_servicio_rf' type='integer' required='false' label='${lbl:b_services}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='plv_semestre_rf' type='varchar' required='false' label='${lbl:b_semestre}' maxlen='1'/>
+	<parameter id='plv_trimestre_rf' type='varchar' required='false' label='${lbl:b_trimestre}' maxlen='1'/>
+	<parameter id='plv_mes_rf' type='varchar' required='false' label='${lbl:b_mes}' maxlen='1'/>
+	<parameter id='plv_semana_rf' type='varchar' required='false' label='${lbl:b_semana}' maxlen='1'/>
+	<parameter id='plv_fecha' type='date' required='false' label='${lbl:b_fecha}' maxlen='10'/>
+	<parameter id='plv_cantidad_rf' type='double' required='true' label='${lbl:b_quantity}' maxlen='10'/>
+	<parameter id='plv_precio_rf' type='double' required='false' label='${lbl:b_price}' maxlen='10'/>
+	<parameter id='plv_monto_rf' type='double' required='false' label='${lbl:b_amount}' maxlen='10'/>
+	<parameter id='plv_precio_ma_rf' type='double' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='plv_monto_ma_rf' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_plan_venta}' maxlen='10'/>
+
+
+</validator>

@@ -1,0 +1,1 @@
+alertBox('No hay tasa del dia Configurada','Continuar', null, null);

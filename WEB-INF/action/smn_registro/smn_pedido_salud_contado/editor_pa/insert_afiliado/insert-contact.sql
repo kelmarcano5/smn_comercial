@@ -1,0 +1,35 @@
+INSERT INTO smn_base.smn_contactos(
+	smn_contactos_id,
+	cnt_nombres,
+	cnt_apellidos,
+	cnt_email,
+	cnt_idioma,
+	cnt_usuario,
+	cnt_fecha_registro,
+	cnt_hora,
+	smn_auxiliar_id,
+	smn_clase_auxiliar_rf,
+	smn_tipo_contactos_rf,
+	cnt_descripcion,
+	smn_tipo_contactos_rf1,
+	cnt_descripcion1,
+	cnt_telefono_contacto
+)
+VALUES
+(
+	${seq:nextval@smn_base.seq_smn_contactos},
+	${fld:aux_nombres},
+	${fld:aux_apellidos},
+	${fld:cnt_descripcion},
+	'${def:locale}',
+	'${def:user}',
+	'${def:date}',
+	'${def:time}',
+	(select last_value from smn_base.seq_smn_auxiliar),
+	${fld:smn_clase_auxiliar_rf},
+	${fld:smn_tipo_contactos_rf},
+	${fld:cnt_descripcion},
+	${fld:smn_tipo_contactos_rf1},
+	${fld:cnt_descripcion1},
+	${fld:cnt_telefono_contacto}
+);

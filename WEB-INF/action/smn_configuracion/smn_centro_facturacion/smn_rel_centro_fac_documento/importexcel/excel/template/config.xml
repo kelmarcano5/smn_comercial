@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnrelcentrofacdocumento.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_rel_centro_fac_document}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_rel_centro_fac_document}">
+				<col id='smn_centro_facturacion_id' label='${lbl:b_centro_facturacion}' />
+		<col id='smn_documento_id' label='${lbl:b_document}' />
+		<col id='smn_centro_facturacion_id' label='${lbl:b_centro_facturacion}' />
+		<col id='smn_documento_id' label='${lbl:b_document}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

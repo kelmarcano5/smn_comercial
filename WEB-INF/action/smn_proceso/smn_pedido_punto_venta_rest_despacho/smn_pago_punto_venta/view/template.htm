@@ -1,0 +1,67 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<!-- <col width='3%'/> -->
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="14" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<!-- <th></th> -->
+		<th class='sortable' onclick='sortBy("smn_pedido_cabecera_id","query-smnpagopuntoventa.sql")'>${lbl:b_header_order}</th>
+		<th class='sortable' onclick='sortBy("smn_mov_caja_cabecera_id","query-smnpagopuntoventa.sql")'>${lbl:b_movement_caj}</th>
+		<th class='sortable' onclick='sortBy("ppv_numero_documento_forma_pago","query-smnpagopuntoventa.sql")'>${lbl:b_number_doc_form_pay}</th>
+		<th class='sortable' onclick='sortBy("ppv_numero_autorizacion","query-smnpagopuntoventa.sql")'>${lbl:b_number_autorization}</th>
+		<th class='sortable' onclick='sortBy("ppv_documento_identidad_pagador","query-smnpagopuntoventa.sql")'>${lbl:b_document_identity}</th>
+		<th class='sortable' onclick='sortBy("ppv_nombre_pagador","query-smnpagopuntoventa.sql")'>${lbl:b_paying_name}</th>
+		<th class='sortable' onclick='sortBy("ppv_monto_pagar_ml","query-smnpagopuntoventa.sql")'>${lbl:b_amount_payment_ml}</th>
+		<th class='sortable' onclick='sortBy("ppv_monto_pago_ml","query-smnpagopuntoventa.sql")'>${lbl:b_amount_pay_ml}</th>
+		<th class='sortable' onclick='sortBy("ppv_monto_devuelto_ml","query-smnpagopuntoventa.sql")'>${lbl:b_amount_revers_ml}</th>
+		<th class='sortable' onclick='sortBy("ppv_estatus","query-smnpagopuntoventa.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("ppv_fecha_registro","query-smnpagopuntoventa.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_pago_punto_venta_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_pago_punto_venta_id}')" title="${lbl:b_delete_button}"></td>
+		<!-- <td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_pago_punto_venta_id}')" title="${lbl:b_edit_button}"></td> -->
+		<td>${fld:smn_pedido_cabecera_id}</td>
+		<td>${fld:smn_mov_caja_cabecera_id}</td>
+		<td>${fld:ppv_numero_documento_forma_pago}</td>
+		<td>${fld:ppv_numero_autorizacion}</td>
+		<td align='left'>${fld:ppv_documento_identidad_pagador}</td>
+		<td align='left'>${fld:ppv_nombre_pagador}</td>
+		<td align='right'>${fld:ppv_monto_pagar_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:ppv_monto_pago_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:ppv_monto_devuelto_ml@#,###,##0.00}</td>
+		<td align='left'>${fld:ppv_estatus}</td>
+		<td>${fld:ppv_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

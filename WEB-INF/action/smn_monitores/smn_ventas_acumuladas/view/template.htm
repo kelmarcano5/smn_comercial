@@ -1,0 +1,56 @@
+		
+	<!--<button onclick="openPDF()" class="exportPDF">
+		Exportar a PDF
+	</button>-->	
+	
+	<br>
+	
+		<table class="datagrid" width="600px" style="display:items.sql.display">
+		
+				<tr>
+					<th width="50%">Item</th>
+					<th width="50%">Monto</th>
+				</tr>
+		
+				<rows-query-smnpedidodetalle.sql>
+					<tr>
+						<td align="right">${fld:smn_item}</td>
+						<td align="right">${fld:pde_monto@#,###,##0.00}</td>
+					</tr>					
+				</rows-query-smnpedidodetalle.sql>
+	
+			<tr>
+				<th align="right">Total</th>
+				<td align="right">${fld:pca_monto_neto_ml@#,###,##0.00}</td>
+			</tr>
+
+
+	</table>
+
+	<table class="datagrid" width="600px">
+		<tr>	
+			<th width="60%">GRAN TOTAL</t>
+			<th style="background-color: white; text-align:right">
+				${fld:gran_total@#,###,##0.00}
+			</th>
+		</tr>
+	</table>
+	
+	<br>	
+	
+	<!-- botones para cambiar el tipo de grafico -->
+	<div style="border-radius: 7px 7px 0px 0px; margin:0 auto;width:300px;border:1px solid #c0c0c0; background-color:#dfe7f5; padding:4px; cursor:pointer; margin-bottom:0px; border-bottom:none;padding-left:10px;">
+		<img src="${def:context}/images/chart/chart_vbar.png" onclick="changeChart('dinamica.charts.VerticalBarChart3D','chart1')"/>
+		<img src="${def:context}/images/chart/chart_hbar.png" onclick="changeChart('dinamica.charts.HorizontalBarChart3D','chart1')"/>
+		<img src="${def:context}/images/chart/chart_area.png" onclick="changeChart('dinamica.charts.AreaChart','chart1')"/>
+		<img src="${def:context}/images/chart/chart_line.png" onclick="changeChart('dinamica.charts.LineChart','chart1')"/>
+		<img src="${def:context}/images/chart/chart_vbar2d.png" onclick="changeChart('dinamica.charts.VerticalBarChart','chart1')"/>
+		<img src="${def:context}/images/chart/chart_hbar2d.png" onclick="changeChart('dinamica.charts.HorizontalBarChart','chart1')"/>
+		
+		<img id="chart1_wait" src="${def:context}/images/progress.gif" style="float:right; margin-right:5px; margin-top:3px;">
+	</div>
+	
+	<!--chart-->
+	<div style="width:100%; text-align:center; margin-top:-10px; z-index:-1; position:relative;">
+		<img id="chart1" style="display:none" src="${def:context}${def:actionroot}/chart?dummy=${def:time}" border="0" onload="displayChart('chart1')">
+	</div>

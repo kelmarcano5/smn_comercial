@@ -1,0 +1,42 @@
+INSERT INTO smn_comercial.smn_llamadas
+(
+	smn_llamadas_id,
+	smn_cliente_id,
+	smn_prospecto_id,
+	smn_solicitud_afiliacion_id,
+	smn_tipo_documento_id,
+	smn_documento_id,
+	lla_descripcion,
+	smn_cita_id,
+	smn_orden_pedido_id,
+	smn_oferta_id,
+	smn_solicitud_servicio_entrega_rf,
+	smn_gestion_id,
+	lla_observacion,
+	lla_estatus,
+	lla_idioma,
+	lla_usuario,
+	lla_fecha_registro,
+	lla_hora
+)
+VALUES
+(
+	${seq:currval@smn_comercial.seq_smn_llamadas},
+	${fld:smn_cliente_id},
+	${fld:smn_prospecto_id},
+	${fld:smn_solicitud_afiliacion_id},
+	${fld:smn_tipo_documento_id},
+	${fld:smn_documento_id},
+	${fld:lla_descripcion},
+	${fld:smn_cita_id},
+	${fld:smn_orden_pedido_id},
+	${fld:smn_oferta_id},
+	${fld:smn_solicitud_servicio_entrega_rf},
+	${fld:smn_gestion_id},
+	${fld:lla_observacion},
+	${fld:lla_estatus},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar gráfica de tortas con Recordset almacenado en sesión por el Action "search"
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericChart</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<output>
+		<classname>dinamica.ChartOutput</classname>
+		<set-http-headers>true</set-http-headers>
+		<expiration>0</expiration>
+	</output>
+
+	<!--chart configuration-->
+	<chart>
+
+		<!--chart plugin - see reference guide for available plugins-->
+		<plugin>dinamica.charts.VerticalBarChart3D</plugin>
+
+		<!--titles-->
+		<title></title>
+		<title-x>Item</title-x>
+		<title-y>Total</title-y>
+
+		<!--
+			leave empty if there are no series otherwise set label names
+			separated by ";"
+		-->
+		<title-series></title-series>
+
+		<!--
+			name of the session attribute that contains the recordset that will
+			provide the data for the chart, this recordset must have been saved
+			in session by a previous Action
+		-->
+		<recordset>grafica.sql</recordset>
+
+		<!--
+			column that represents the "X" field or category
+		-->
+		<field-x>item</field-x>
+
+		<!--
+			column that represents the "Y" field or values if multiseries then
+			type multiple column names separated by ";"
+		-->
+		<field-y>subtotal</field-y>
+
+		<!--chart dimension in pixels-->
+		<width>1200</width>
+		<height>800</height>
+
+		<!--optional: define color for single serie charts only-->
+		<color>#aeaeff</color>
+
+		<!--set to true to persist chart image (byte[]) in session-->
+		<session>true</session>
+
+		<!--session attribute name - only used if session=true-->
+		<image-id>dinamica.image.chart</image-id>
+		
+		<rounded>true</rounded>
+
+	</chart>
+
+</config>

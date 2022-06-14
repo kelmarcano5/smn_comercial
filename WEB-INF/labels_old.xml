@@ -1,0 +1,333 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+
+<!--
+	This file stores the translations
+	for all the dynamic labels used by
+	the application in all its templates,
+	for each language supported
+-->
+
+<labels>
+
+	<!-- default labels -->
+	<label id="wait">
+		<value language="es">
+			Por favor espere...
+		</value>
+		<value language="en">
+			Please wait...
+		</value>
+	</label>
+	
+	<label id="system_error_title">
+		<value language="es">
+			Error en la aplicación
+		</value>
+		<value language="en">
+			System Error
+		</value>
+	</label>
+
+	<label id="system_error_msg">
+		<value language="es">
+			Lamentamos informarle que ocurrió un error en el sistema.
+		</value>
+		<value language="en">
+			Sorry, an unexpected error has occured in this application.
+		</value>
+	</label>
+
+	<label id="button_back">
+		<value language="es">
+		Regresar
+		</value>
+		<value language="en">
+		Continue
+		</value>
+	</label>
+
+	<label id="invalid_form_title">
+		<value language="es">
+			El formulario necesita las siguientes correcciones:
+		</value>
+		<value language="en">
+			Form data needs to be fixed:
+		</value>
+	</label>
+
+	<label id="parameter_required">
+		<value language="es">
+			Este valor DEBE ser ingresado.
+		</value>
+		<value language="en">
+			This value cannot be empty.
+		</value>
+	</label>
+	
+	<label id="invalid_integer">
+		<value language="es">
+			El dato ingresado no representa un número entero. Tipee un número sin decimales ni letras por favor.
+		</value>
+		<value language="en">
+			Invalid number format. Please type an Integer number.
+		</value>
+	</label>
+
+	<label id="invalid_double">
+		<value language="es">
+			El dato ingresado no representa un número. Tipee un número y use el punto (.) como separador de decimales.
+		</value>
+		<value language="en">
+			Invalid number format. Please type a number, may use decimals too.
+		</value>
+	</label>
+
+	<label id="invalid_date">
+		<value language="es">
+			El dato ingresado no representa una fecha.
+		</value>
+		<value language="en">
+			Invalid date format.
+		</value>
+	</label>
+
+	<label id="data_too_long">
+		<value language="es">
+			Demasiado texto. El dato ingresado excede el tamaño permitido:
+		</value>
+		<value language="en">
+			Text too long, please delete some text. Text size in characters can't be larger than:
+		</value>
+	</label>
+
+	<label id="min_value_violation">
+		<value language="es">
+			El valor ingresado está por debajo del mínimo permitido:
+		</value>
+		<value language="en">
+			Value can't be less than:
+		</value>
+	</label>
+
+	<label id="max_value_violation">
+		<value language="es">
+			El valor ingresado está por encima del máximo permitido:
+		</value>
+		<value language="en">
+			Value can't be greater than:
+		</value>
+	</label>
+
+
+	<!-- security related labels -->
+
+	<label id="s_session_terminated">
+		<value language="es">
+			Su sesión ha finalizado.
+		</value>
+		<value language="en">
+			Your session has terminated.
+		</value>
+	</label>
+
+	<label id="s_login_again">
+		<value language="es">
+			Ingresar nuevamente
+		</value>
+		<value language="en">
+			Login again
+		</value>
+	</label>
+
+	<label id="s_newpass_alert">
+		<value language="es"><![CDATA[Por motivos de seguridad se le solicita que cambie su contraseña en este momento.]]>
+		</value>
+		<value language="en"><![CDATA[Dear Sir/Madam:<br><br>For <span style="color:red"><b>security reasons</b></span> you will have to change your password. This is a security policy enforced by the application to protect your valuable information resources. If you have questions please consult with the system administrator.<br>]]>
+		</value>
+	</label>
+
+	<label id="s_form_title">
+		<value language="es">
+			Cambio de Contraseña
+		</value>
+		<value language="en">
+			Change your Password
+		</value>
+	</label>
+
+	<label id="s_fld_password">
+		<value language="es">
+			Contraseña
+		</value>
+		<value language="en">
+			Password
+		</value>
+	</label>
+
+	<label id="s_fld_newpassword">
+		<value language="es">
+			Nueva Contraseña
+		</value>
+		<value language="en">
+			New Password
+		</value>
+	</label>
+
+	<label id="s_fld_confirm">
+		<value language="es">
+			Repita contraseña
+		</value>
+		<value language="en">
+			Confirm password
+		</value>
+	</label>
+
+	<label id="s_required">
+		<value language="es">
+			Los campos con "*" deben ser llenados.
+		</value>
+		<value language="en">
+			Fields marked with "*" are mandatory
+		</value>
+	</label>
+
+	<label id="s_save">
+		<value language="es">
+			Grabar
+		</value>
+		<value language="en">
+			Save
+		</value>
+	</label>
+
+	<label id="s_password_changed">
+		<value language="es">
+			Su nueva contraseña ha sido registrada.
+		</value>
+		<value language="en">
+			Your password was sucessfully changed.
+		</value>
+	</label>
+
+	<label id="s_invalid_password">
+		<value language="es">
+			Utilice letras y números solamente, sin espacios (mínimo 6 caracteres).
+		</value>
+		<value language="en">
+			Use letters and numbers only, without spaces (at least 6 characters).
+		</value>
+	</label>
+
+	<label id="s_password_nomatch">
+		<value language="es">
+			La contraseña no coincide con la repetición de la misma.
+		</value>
+		<value language="en">
+			The password does not match its confirmation.
+		</value>
+	</label>
+
+	<label id="s_password_used">
+		<value language="es">
+			Esta contraseña ya fue utilizada por usted en el pasado, por razones de seguridad se requiere que ingrese una nueva contraseña.
+		</value>
+		<value language="en">
+			You already used this password in the past. For security reasons you MUST choose a new password.
+		</value>
+	</label>
+			
+	<label id="s_fld_login">
+		<value language="es">
+			Identificador
+		</value>
+		<value language="en">
+			Login
+		</value>
+	</label>
+
+	<label id="s_login_failed">
+		<value language="es">
+			Las credenciales indicadas no son válidas
+		</value>
+		<value language="en">
+			Login failed!
+		</value>
+	</label>
+
+	<label id="s_login_retry">
+		<value language="es">
+			Intente de nuevo
+		</value>
+		<value language="en">
+			Try again
+		</value>
+	</label>
+
+	<label id="s_loginhist_title">
+		<value language="es">Mis registros de ingreso</value>
+		<value language="en">My login records</value>
+	</label>
+
+	<label id="s_loginhist_col1">
+		<value language="es">Fecha</value>
+		<value language="en">Date</value>
+	</label>
+	<label id="s_loginhist_col2">
+		<value language="es">Hora</value>
+		<value language="en">Time</value>
+	</label>
+	<label id="s_loginhist_col3">
+		<value language="es">IP remota</value>
+		<value language="en">Remote IP</value>
+	</label>
+	<label id="s_loginhist_col4">
+		<value language="es">Aplicación</value>
+		<value language="en">Application</value>
+	</label>
+	<label id="s_loginlocked">
+		<value language="es"><![CDATA[<b>CUENTA BLOQUEADA</b>: Su cuenta ha sido desactivada.]]></value>
+		<value language="en">ACCOUNT LOCKED: Your account has been disabled.</value>
+	</label>
+	<label id="s_exit">
+		<value language="es">Salir</value>
+		<value language="en">Logout</value>
+	</label>
+	<label id="s_profile_formtitle">
+		<value language="es">Editar preferencias</value>
+		<value language="en">Edit profile</value>
+	</label>
+	<label id="s_profile_login">
+		<value language="es">Identificador</value>
+		<value language="en">Login</value>
+	</label>
+	<label id="s_profile_lname">
+		<value language="es">Apellidos</value>
+		<value language="en">Last Name</value>
+	</label>
+	<label id="s_profile_fname">
+		<value language="es">Nombres</value>
+		<value language="en">First Name</value>
+	</label>
+	<label id="s_profile_email">
+		<value language="es">Email</value>
+		<value language="en">Email</value>
+	</label>
+	<label id="s_profile_prefs">
+		<value language="es">Preferencias personales</value>
+		<value language="en">Personal preferences</value>
+	</label>
+	<label id="s_profile_lang">
+		<value language="es">Idioma</value>
+		<value language="en">Language</value>
+	</label>
+	<label id="s_profile_msg1">
+		<value language="es">
+		Los cambios a su perfil han sido registrados.
+		</value>
+		<value language="en">
+		Your profile has been successfully updated.
+		</value>
+	</label>
+
+				
+</labels>

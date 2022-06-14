@@ -1,0 +1,3 @@
+<rows>
+fpa_fecha_registro="${fld:fpa_fecha_registro}"    smn_monto_rf="${fld:smn_monto_rf}"    smn_cliente_id="${fld:smn_cliente_id}"    smn_factura_cabecera_id="${fld:smn_factura_cabecera_id}"    
+</rows>

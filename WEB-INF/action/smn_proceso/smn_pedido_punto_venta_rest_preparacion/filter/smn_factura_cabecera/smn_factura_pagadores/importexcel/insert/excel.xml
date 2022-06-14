@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_factura_cabecera_id' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_cliente_id' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_monto_rf' type='double' required='true' maxlen='10'/>
+
+
+
+</validator>

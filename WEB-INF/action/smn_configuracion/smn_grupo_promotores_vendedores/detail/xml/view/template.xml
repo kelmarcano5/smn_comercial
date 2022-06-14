@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_grupo_promotores_vendedores>
+	<detail>
+		<rows>		
+		<record gpv_fecha_registro="${fld:gpv_fecha_registro}"    gpv_vigencia="${fld:gpv_vigencia}"    gpv_estatus="${fld:gpv_estatus}"    gpv_descripcion="${fld:gpv_descripcion}"    gpv_codigo="${fld:gpv_codigo}"    />
+		</rows>
+	</detail>
+</smn_grupo_promotores_vendedores>

@@ -1,0 +1,1 @@
+select smn_base.smn_grupo_titulo_impresion.smn_grupo_titulo_impresion_id as id, smn_base.smn_grupo_titulo_impresion.gti_codigo|| ' - ' || smn_base.smn_grupo_titulo_impresion.gti_descripcion as item from smn_base.smn_grupo_titulo_impresion order by gti_descripcion

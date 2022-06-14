@@ -1,0 +1,61 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="13" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_documento_id","query-smnordenservicio.sql")'>${lbl:b_document}</th>
+		<th class='sortable' onclick='sortBy("ors_numero","query-smnordenservicio.sql")'>${lbl:b_number}</th>
+		<th class='sortable' onclick='sortBy("smn_cliente_id","query-smnordenservicio.sql")'>${lbl:b_customer}</th>
+		<th class='sortable' onclick='sortBy("ors_descripcion","query-smnordenservicio.sql")'>${lbl:b_description}</th>
+		<th class='sortable' onclick='sortBy("ors_fecha_inicial","query-smnordenservicio.sql")'>${lbl:b_date_init}</th>
+		<th class='sortable' onclick='sortBy("ors_fecha_final","query-smnordenservicio.sql")'>${lbl:b_date_end}</th>
+		<th class='sortable' onclick='sortBy("smn_prestador_servicio_rf","query-smnordenservicio.sql")'>${lbl:b_service_provider}</th>
+		<th class='sortable' onclick='sortBy("ors_estatus","query-smnordenservicio.sql")'>${lbl:b_estatus}</th>
+		<th class='sortable' onclick='sortBy("ors_fecha_registro","query-smnordenservicio.sql")'>${lbl:b_store_date}</th>
+		<th>DT</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png" onclick="getDetail('${fld:smn_orden_servicio_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png" onclick="deleteRecord('${fld:smn_orden_servicio_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png" onclick="showEditor('${fld:smn_orden_servicio_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_documento_id}</td>
+		<td>${fld:ors_numero}</td>
+		<td>${fld:smn_cliente_id}</td>
+		<td align='left'>${fld:ors_descripcion}</td>
+		<td>${fld:ors_fecha_inicial@dd-MM-yyyy}</td>
+		<td>${fld:ors_fecha_final@dd-MM-yyyy}</td>
+		<td>${fld:smn_prestador_servicio_rf}</td>
+		<td align='center'>${fld:ors_estatus}</td>
+		<td>${fld:ors_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="detalle('${fld:smn_orden_servicio_id}')" title="${lbl:b_header_order}"></td>
+	</tr>
+	</rows>
+
+</table>

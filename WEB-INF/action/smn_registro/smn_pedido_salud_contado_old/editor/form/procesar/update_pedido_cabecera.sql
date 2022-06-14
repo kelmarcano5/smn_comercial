@@ -1,0 +1,15 @@
+UPDATE smn_comercial.smn_pedido_cabecera SET
+	pca_estatus='GE',
+	pca_estatus_pago='PA',
+	pca_idioma='${def:locale}',
+	pca_usuario='${def:user}',
+	pca_fecha_registro={d '${def:date}'},
+	pca_hora='${def:time}'
+
+WHERE
+	smn_pedido_cabecera_id=${fld:id2}
+
+-- update smn_comercial.smn_pedido_cabecera
+-- set pca_estatus='GE'
+-- where
+-- smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id=${fld:smn_pedido_cabecera_id}

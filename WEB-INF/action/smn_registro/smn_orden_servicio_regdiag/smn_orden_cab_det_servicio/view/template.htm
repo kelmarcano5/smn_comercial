@@ -1,0 +1,37 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='25%'/>
+	<col width='25%'/>
+	<col width='25%'/>
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="7" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th class='sortable' onclick='sortBy("ors_descripcion_pl0","query-smnordencabdetservicio.sql")'>${lbl:b_service_order}</th>
+		<th class='sortable' onclick='sortBy("smn_servicios_rf","query-smnordencabdetservicio.sql")'>${lbl:b_services}</th>
+		<th class='sortable' onclick='sortBy("ocd_estatus","query-smnordencabdetservicio.sql")'>${lbl:b_estatus}</th>
+		<th>DT</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_orden_servicio_id}','${fld:smn_servicios_rf2}')" title="${lbl:b_delete_button}"></td>
+		<td>${fld:ors_descripcion_pl0}</td>
+		<td align='left'>${fld:smn_servicios_rf}</td>
+		<td align='left'>${fld:ocd_estatus}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="detalle('${fld:smn_orden_servicio_id}','${fld:smn_servicios_rf2}')" title="${lbl:b_service_order_det}"></td>
+	</tr>
+	</rows>
+
+</table>

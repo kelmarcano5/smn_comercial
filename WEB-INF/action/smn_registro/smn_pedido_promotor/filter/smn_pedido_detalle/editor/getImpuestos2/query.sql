@@ -1,0 +1,3 @@
+select smn_base.smn_codigos_impuestos.imp_porcentaje_calculo as porinc, smn_base.smn_codigos_impuestos.imp_porcentaje_base as porbase from smn_base.smn_codigos_impuestos
+where smn_base.smn_codigos_impuestos.smn_codigos_impuestos_id=${fld:id}
+order by smn_base.smn_codigos_impuestos.imp_descripcion asc

@@ -1,0 +1,40 @@
+INSERT INTO smn_comercial.smn_pedido_cabecera
+(
+	smn_pedido_cabecera_id,
+	smn_documento_id,
+	pca_numero_pedido,
+	smn_mov_caja_cabecera_id,
+	smn_oferta_id,
+	smn_cliente_id,
+	smn_usuario_rf,
+	pca_descripcion,
+	pca_fecha_requerida,
+	smn_entidad_rf,
+	smn_sucursal_rf,
+	smn_area_servicio_rf,
+	smn_unidad_servicio_rf,
+	smn_almacen_rf,
+	smn_centro_costo_rf,
+	pca_estatus,
+	pca_fecha_registro
+)
+VALUES
+(
+	${seq:nextval@smn_comercial.seq_smn_pedido_cabecera},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	{d '${def:date}'}
+)

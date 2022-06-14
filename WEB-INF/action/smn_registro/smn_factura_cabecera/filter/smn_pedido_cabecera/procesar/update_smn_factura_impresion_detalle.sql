@@ -1,0 +1,5 @@
+update smn_factura_impresion_detalle
+set fim_monto_ml=, fim_monto_ma
+from smn_base.smn_componentes
+where smn_factura_impresion_detalle.smn_componente_rf=smn_base.smn_componentes.smn_componentes_id
+and smn_base.smn_componentes.cmp_forma_calculo='D'

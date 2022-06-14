@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+
+<validator onerror="/action/error/validation/alert">
+	<parameter id='mensaje'        type='varchar' required='false' label='${fld:mensaje}'        maxlen='100' />
+	<parameter id='smn_factura_id' type='integer' required='true'  label='${fld:smn_factura_id}' maxlen='10' />
+	
+<!-- VALORES PROVENIENTES DE LA TABLA smn_comercial.smn_factura_cabecera -->
+
+	<parameter id='smn_entidad_rf'            type='integer' required='false' label='${fld:smn_entidad_rf}'            maxlen='10' />
+	<parameter id='smn_sucursal_rf'           type='integer' required='false' label='${fld:smn_sucursal_rf}'           maxlen='10' />
+	<parameter id='smn_documento_id'          type='integer' required='false' label='${fld:smn_documento_id}'          maxlen='10' />
+	<parameter id='smn_centro_facturacion_id' type='integer' required='false' label='${fld:smn_centro_facturacion_id}' maxlen='10' />
+	<parameter id='fca_fecha_registro'        type='date'    required='false' label='${fld:fca_fecha_registro}'        maxlen='10' />
+	<parameter id='fca_monto_factura_ml'      type='double'  required='false' label='${fld:fca_monto_factura_ml}'      maxlen='10' />
+	<parameter id='fca_monto_factura_ma'      type='double'  required='false' label='${fld:fca_monto_factura_ma}'      maxlen='10' />
+	<parameter id='smn_tasa_rf'               type='integer' required='false' label='${fld:smn_tasa_rf}'               maxlen='10' />
+	<parameter id='fca_numero_control_fiscal' type='integer' required='false' label='${fld:fca_numero_control_fiscal}' maxlen='10' />
+	
+<!-- OTROS VALORES -->
+
+	<parameter id='smn_modulo_rf'               type='integer' required='false' label='${fld:smn_modulo_rf}'               maxlen='10' />
+	<parameter id='smn_documentos_generales_rf' type='integer' required='false' label='${fld:smn_documentos_generales_rf}' maxlen='10' />
+	<parameter id='smn_tipo_documento_id'       type='integer' required='false' label='${fld:smn_tipo_documento_id}'       maxlen='10' />
+	<parameter id='smn_rel_modulo_documento_tipo_doc_id'       type='integer' required='false' label='${fld:smn_tipo_documento_id}'       maxlen='10' />
+	<parameter id='doc_numero_documento'        type='integer' required='false' label='${fld:doc_numero_documento}'        maxlen='11' />
+	<parameter id='smn_clase_auxiliar_rf'       type='integer' required='false' label='${fld:smn_clase_auxiliar_rf}'       maxlen='10' />
+	<parameter id='smn_auxiliar_rf'             type='integer' required='false' label='${fld:smn_auxiliar_rf}'             maxlen='10' />
+	<parameter id='smn_centro_costo_rf'         type='integer' required='false' label='${fld:smn_centro_costo_rf}'         maxlen='10' />
+	<parameter id='mcc_tipo_comp'               type='integer' required='false' label='${fld:mcc_tipo_comp}'               maxlen='10' />
+</validator>

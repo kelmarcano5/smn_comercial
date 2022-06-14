@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Actualiza valores de un formulario en una tabla
+	</summary>
+
+	<log>false</log>
+
+	<!--soporte de auditoria-->
+	<audit>
+		<!--de donde saca los datos, por defecto es "_request"-->
+		<recordset></recordset>
+		<!--que campos extrae para el registro descriptivo-->
+		<cols>
+			<colname>smn_documento_id</colname>
+			<colname>fca_numero_documento</colname>
+			<colname>smn_entidad_rf</colname>
+			<colname>smn_sucursal_rf</colname>
+			<colname>smn_pedido_cabecera_id</colname>
+			<colname>smn_oferta_id</colname>
+			<colname>smn_caja_rf</colname>
+			<colname>smn_cliente_id</colname>
+			<colname>smn_control_serie_fiscal_id</colname>
+			<colname>fca_numero_control_fiscal</colname>
+			<colname>fca_rif</colname>
+			<colname>fca_direccion_fiscal</colname>
+			<colname>fca_monto_factura_ml</colname>
+			<colname>fca_monto_impuesto_ml</colname>
+			<colname>fca_monto_descuento_ml</colname>
+			<colname>fca_monto_bonificacion_ml</colname>
+			<colname>fca_monto_neto_ml</colname>
+			<colname>smn_moneda_rf</colname>
+			<colname>smn_tasa_rf</colname>
+			<colname>fca_monto_factura_ma</colname>
+			<colname>fca_monto_impuesto_ma</colname>
+			<colname>fca_monto_descuento_ma</colname>
+			<colname>fca_monto_bonificacion_ma</colname>
+			<colname>fca_monto_neto_ma</colname>
+			<colname>fca_estatus_financiero</colname>
+			<colname>fca_estatus_proceso</colname>
+		
+		</cols>
+		<table>smn_comercial.smn_factura_cabecera</table>
+		<oper>ACTUALIZAR</oper>
+		<area>Carga de datos</area>
+		<!--
+			query para obtener el ID generado o nombre de 
+			la columna que contiene el pkey, si es query, 
+			el alias del campo debe ser "id"
+		-->
+		<pkey>id</pkey>
+	</audit>
+
+	<transaction>
+		<classname>dinamica.audit.AuditableTransaction</classname>
+		<validator>true</validator>
+		<transaction>true</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<query>update.sql</query>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>script.js</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/javascript; charset=iso-8859-1</content-type>
+		<expiration>0</expiration>
+	</output>
+
+</config>

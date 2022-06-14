@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnreldetalleingrediente.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${fld:b_relationship_ingredients_detail}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${fld:b_relationship_ingredients_detail}">
+				<col id='smn_solicitud_servicio_entregas_detalle_id' label='${lbl:b_detail_services_delivery_request}' />
+		<col id='smn_ingredientes_id' label='${lbl:b_ingredients}' />
+		<col id='smn_solicitud_servicio_entregas_detalle_id' label='${lbl:b_detail_services_delivery_request}' />
+		<col id='smn_ingredientes_id' label='${lbl:b_ingredients}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

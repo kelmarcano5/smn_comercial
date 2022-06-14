@@ -1,0 +1,1 @@
+select smn_comercial.smn_sub_centro_facturacion.smn_sub_centro_facturacion_id as id, smn_comercial.smn_sub_centro_facturacion.scf_codigo ||' - '|| smn_comercial.smn_sub_centro_facturacion.scf_nombre as item from smn_comercial.smn_sub_centro_facturacion 

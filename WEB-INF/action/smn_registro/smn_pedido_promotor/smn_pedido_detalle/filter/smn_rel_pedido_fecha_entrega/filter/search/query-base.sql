@@ -1,0 +1,17 @@
+select
+		smn_comercial.smn_rel_pedido_fecha_entrega.smn_rel_pedido_fecha_entrega_id,
+	smn_comercial.smn_rel_pedido_fecha_entrega.smn_pedido_detalle_id,
+	smn_base.smn_direccion.dir_descripcion as smn_rel_auxiliar_direccion,
+	smn_comercial.smn_rel_pedido_fecha_entrega.pfe_fecha_entrega,
+	smn_comercial.smn_rel_pedido_fecha_entrega.pfe_cantidad,
+	smn_comercial.smn_rel_pedido_fecha_entrega.pfe_fecha_registro
+	
+from
+	smn_comercial.smn_rel_pedido_fecha_entrega
+	inner join smn_base.smn_rel_auxiliar_direccion on smn_base.smn_rel_auxiliar_direccion.smn_direccion_id = smn_comercial.smn_rel_pedido_fecha_entrega.smn_rel_auxiliar_direccion
+	inner join smn_base.smn_direccion on smn_base.smn_direccion.smn_direccion_id = smn_comercial.smn_rel_pedido_fecha_entrega.smn_rel_auxiliar_direccion
+where
+	smn_rel_pedido_fecha_entrega_id is not null and smn_comercial.smn_rel_pedido_fecha_entrega.smn_pedido_detalle_id=${fld:id2}
+	${filter}
+order by
+		smn_rel_pedido_fecha_entrega_id

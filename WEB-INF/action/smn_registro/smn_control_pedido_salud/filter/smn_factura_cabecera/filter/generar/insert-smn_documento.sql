@@ -1,0 +1,98 @@
+INSERT INTO smn_cont_financiera.smn_documento
+(
+	smn_documento_id,
+	smn_modulo_rf,
+	smn_entidades_rf,
+	smn_sucursales_rf,
+	smn_documentos_generales_rf,
+	smn_tipo_documento_id,
+	doc_numero_documento,
+	smn_clase_auxiliar_rf,
+	smn_auxiliar_rf,
+	smn_clase_auxiliar_ord_rf,
+	smn_auxiliar_ord_rf,
+	doc_orden_compra_rf,
+	smn_centro_costo_rf,
+	smn_proyecto_rf,
+	doc_fecha_doc,
+	doc_fecha_rec,
+	doc_fecha_vcto,
+	doc_planilla_importacion,
+	doc_monto_ml,
+	doc_monto_me,
+	doc_tasa_cambio,
+	smn_documentos_generales_rf_afecta,
+	doc_numero_doc_afecta,
+	doc_numero_control_doc_afect,
+	doc_fecha_doc_afecta,
+	smn_codigos_impuestos_rf,
+	doc_numero_control_fiscal_inicial,
+	doc_numero_control_fiscal_ultimo,
+	doc_numero_control1_inicial,
+	doc_numero_control1_ultimo,
+	doc_numero_control2_inicial,
+	doc_numero_control2_ultimo,
+	doc_estatus,
+	doc_ano_comprobante,
+	doc_periodos_detalles_rf,
+	smn_tipo_comprobante_id,
+	doc_num_comprobante,
+	doc_fecha_comprobante,
+	doc_numero_control,
+	smn_elemento_rf,
+	doc_descripcion,
+	doc_idioma,
+	doc_usuario,
+	doc_fecha_registro,
+	doc_hora
+)
+VALUES
+(
+	nextval('smn_cont_financiera.seq_smn_documento'),--smn_documento_id
+	${fld:smn_modulo_rf},--smn_modulo_rf
+	${fld:smn_entidad_rf},--smn_entidades_rf
+	${fld:smn_sucursal_rf},--smn_sucursales_rf
+	${fld:smn_documentos_generales_rf},--smn_documentos_generales_rf
+	${fld:smn_tipo_documento_id},--smn_tipo_documento_id
+	${fld:doc_numero_documento},--doc_numero_documento
+	${fld:smn_clase_auxiliar_rf},--smn_clase_auxiliar_rf
+	${fld:smn_auxiliar_rf},--smn_auxiliar_rf
+	null,--smn_clase_auxiliar_ord_rf
+	null,--smn_auxiliar_ord_rf
+	null,--doc_orden_compra_rf
+	${fld:smn_centro_costo_rf},--smn_centro_costo_rf
+	null,--smn_proyecto_rf
+	${fld:fca_fecha_registro},--doc_fecha_doc
+	${fld:fca_fecha_registro},--doc_fecha_rec
+	${fld:fca_fecha_registro},--doc_fecha_vcto
+	null,--doc_planilla_importacion
+	${fld:fca_monto_factura_ml},--doc_monto_ml
+	${fld:fca_monto_factura_ma},--doc_monto_me
+	${fld:smn_tasa_rf},--doc_tasa_cambio
+	null,--smn_documentos_generales_rf_afecta
+	null,--doc_numero_doc_afecta
+	null,--doc_numero_control_doc_afect
+	null,--doc_fecha_doc_afecta
+	null,--smn_codigos_impuestos_rf
+	${fld:fca_numero_control_fiscal},--doc_numero_control_fiscal_inicial
+	${fld:fca_numero_control_fiscal},--doc_numero_control_fiscal_ultimo
+	null,--doc_numero_control1_inicial
+	null,--doc_numero_control1_ultimo
+	null,--doc_numero_control2_inicial
+	null,--doc_numero_control2_ultimo
+	'R',--doc_estatus
+	null,--doc_ano_comprobante
+	null,--doc_periodos_detalles_rf
+	${fld:mcc_tipo_comp},--smn_tipo_comprobante_id
+	null,--doc_num_comprobante
+	${fld:fca_fecha_registro},--doc_fecha_comprobante
+	${fld:fca_numero_control_fiscal},--doc_numero_control
+	null,--smn_elemento_rf
+	'Facturación Diaria',--doc_descripcion
+	'${def:locale}', --doc_idioma
+	'${def:user}', --doc_usuario
+	{d '${def:date}'}, --doc_fecha_registro
+	'${def:time}' --doc_hora
+)
+
+RETURNING smn_documento_id;

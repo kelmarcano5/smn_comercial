@@ -1,0 +1,20 @@
+select
+		smn_comercial.smn_rel_grp_promotor_vendedor_rol.smn_rel_grp_promotor_vendedor_rol_id,
+	smn_comercial.smn_grupo_promotores_vendedores.smn_grupo_promotores_vendedores_id,
+	smn_comercial.smn_grupo_promotores_vendedores.gpv_codigo as gpv_codigo_pl0,
+	smn_comercial.smn_rol.smn_rol_id,
+	smn_comercial.smn_rol.rol_tipo as rol_tipo_pl1,
+select
+		smn_comercial.smn_rel_grp_promotor_vendedor_rol.smn_rel_grp_promotor_vendedor_rol_id,
+select
+		smn_comercial.smn_rel_grp_promotor_vendedor_rol.smn_rel_grp_promotor_vendedor_rol_id,
+	smn_comercial.smn_rel_grp_promotor_vendedor_rol.smn_grupo_promotores_vendedores_id,
+	smn_comercial.smn_rel_grp_promotor_vendedor_rol.smn_rol_id
+	
+from
+	smn_comercial.smn_grupo_promotores_vendedores,
+	smn_comercial.smn_rol,
+	smn_comercial.smn_rel_grp_promotor_vendedor_rol
+where
+	smn_comercial.smn_grupo_promotores_vendedores.smn_grupo_promotores_vendedores_id=smn_comercial.smn_rel_grp_promotor_vendedor_rol.smn_grupo_promotores_vendedores_id and
+	smn_comercial.smn_rol.smn_rol_id=smn_comercial.smn_rel_grp_promotor_vendedor_rol.smn_rol_id

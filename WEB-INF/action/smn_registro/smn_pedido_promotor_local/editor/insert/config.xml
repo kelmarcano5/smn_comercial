@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Insertar registro 
+	</summary>
+
+	<log>false</log>
+
+	<!--soporte de auditoria-->
+	<audit>
+		<!--de donde saca los datos, por defecto es "_request"-->
+		<recordset></recordset>
+		<!--que campos extrae para el registro descriptivo-->
+		<cols>
+			<colname>smn_documento_id</colname>
+			<colname>pca_numero_pedido</colname>
+			<colname>smn_mov_caja_cabecera_id</colname>
+			<colname>smn_oferta_id</colname>
+			<colname>smn_cliente_id</colname>
+			<colname>smn_usuario_rf</colname>
+			<colname>pca_descripcion</colname>
+			<colname>pca_fecha_requerida</colname>
+			<colname>smn_entidad_rf</colname>
+			<colname>smn_sucursal_rf</colname>
+			<colname>smn_area_servicio_rf</colname>
+			<colname>smn_unidad_servicio_rf</colname>
+			<colname>smn_almacen_rf</colname>
+			<colname>smn_centro_costo_rf</colname>
+			<colname>pca_estatus</colname>
+			<colname>smn_condicion_financiera_rf</colname>
+		
+		</cols>
+		<table>smn_comercial.smn_pedido_cabecera</table>
+		<oper>AÑADIR</oper>
+		<area>Carga de datos</area>
+		<!--
+			query para obtener el ID generado o nombre de 
+			la columna que contiene el pkey, si es query, 
+			el alias del campo debe ser "id"
+		-->
+		<pkey>select ${seq:currval@smn_comercial.seq_smn_pedido_cabecera} as id</pkey>
+	</audit>
+
+	<transaction>
+		<classname>dinamica.audit.AuditableTransaction</classname>
+		<validator>true</validator>
+		<transaction>true</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="getusuarios.sql" source="sql" scope="request"/>
+		<recordset id="nextval.sql" source="sql" scope="transaction" />
+	</transaction>
+
+	<query params="getusuarios.sql">insert.sql</query>
+	
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>script.js</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/javascript</content-type>
+		<expiration>0</expiration>
+		<print mode="form" recordset="_request" />
+		<print mode="form" recordset="nextval.sql" />
+	</output>
+	
+	<!-- Envio de email declarativo -->
+	<mail enabled="false">
+		<subject>Subject</subject>
+		<mail-to>martin.cordova@gmail.com</mail-to>
+		<body>body.txt</body>
+	</mail>
+
+</config>

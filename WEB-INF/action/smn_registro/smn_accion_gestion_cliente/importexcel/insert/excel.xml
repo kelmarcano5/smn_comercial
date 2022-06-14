@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_rel_oferta_cliente_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_accion_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='ago_estatus_proceso' type='varchar' required='true' maxlen='2'/>
+	<parameter id='ago_fecha_seguimiento' type='date' required='false' maxlen='10'/>
+	<parameter id='ago_fecha_aprobacion' type='date' required='false' maxlen='10'/>
+	<parameter id='ago_fecha_vigencia_desde' type='date' required='true' maxlen='10'/>
+	<parameter id='ago_fecha_vigencia_hasta' type='date' required='true' maxlen='10'/>
+	<parameter id='ago_fecha_cierre' type='date' required='false' maxlen='10'/>
+
+
+
+</validator>

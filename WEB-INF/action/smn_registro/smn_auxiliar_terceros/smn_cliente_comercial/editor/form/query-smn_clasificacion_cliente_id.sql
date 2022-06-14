@@ -1,0 +1,1 @@
+select smn_comercial.smn_clasificacion_cliente.smn_clasificacion_cliente_id as id, smn_comercial.smn_clasificacion_cliente.ccl_codigo|| ' - ' || smn_comercial.smn_clasificacion_cliente.ccl_descripcion as item from smn_comercial.smn_clasificacion_cliente order by ccl_descripcion

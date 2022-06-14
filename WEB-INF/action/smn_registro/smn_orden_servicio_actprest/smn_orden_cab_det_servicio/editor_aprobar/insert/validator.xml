@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<!-- <parameter id='smn_orden_servicio_id_name' type='varchar' required='true' label='${lbl:b_service_order}'/> -->
+	<parameter id='smn_orden_servicio_id' type='integer' required='false' label='${lbl:b_service_order}' maxlen='10'/>
+	<parameter id='ocd_estatus' type='varchar' required='false' label='${lbl:b_estatus}' maxlen='2'/>
+	<parameter id='ocd_observacion' type='varchar' required='false' label='${lbl:b_observations}' maxlen='200'/>
+
+	<parameter id='smn_servicios_rf' type='varchar' required='false' label='Ítems'/>
+	<custom-validator classname='dinamica.validators.StringToRecordset' paramName='smn_servicios_rf' recordsetId='query-smn_servicios.sql' separatorChar=';' colName='smn_servicios_rf' colType='integer'/>
+
+	<parameter id='ocd_motivo_rechazo' type='varchar' required='false' label='${lbl:b_observations}' maxlen='200'/>
+	<parameter id='ocd_observacion' type='varchar' required='false' label='${lbl:b_observations}' maxlen='200'/>
+	<parameter id='ocd_fecha_inicio' type='date' required='false' label='${lbl:b_date_init}' maxlen='10'/>
+	<parameter id='ocd_fecha_culminacion' type='date' required='false' label='${lbl:b_date_end}' maxlen='10'/>
+	<parameter id='ocd_horas_laboradas' type='integer' required='false' label='${lbl:b_service_order}' maxlen='10'/>
+
+</validator>

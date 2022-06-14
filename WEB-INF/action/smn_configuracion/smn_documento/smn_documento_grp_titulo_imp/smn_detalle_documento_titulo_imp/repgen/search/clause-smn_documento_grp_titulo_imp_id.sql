@@ -1,0 +1,2 @@
+ and
+ 	smn_comercial.smn_detalle_documento_titulo_imp.smn_documento_grp_titulo_imp_id=${fld:smn_documento_grp_titulo_imp_id}

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_pedido_cabecera_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='pde_naturaleza' type='varchar' required='true' maxlen='2'/>
+	<parameter id='smn_servicios_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_activo_fijo_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='pde_cantidad_oferta' type='integer' required='false' maxlen='10'/>
+	<parameter id='pde_cantidad_pedido' type='integer' required='true' maxlen='10'/>
+	<parameter id='pde_cantidad_aprobada' type='integer' required='true' maxlen='10'/>
+	<parameter id='pde_precio' type='double' required='true' maxlen='10'/>
+	<parameter id='pde_monto' type='double' required='true' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='pde_precio_moneda_alterna' type='double' required='false' maxlen='10'/>
+	<parameter id='pde_monto_moneda_alterna' type='double' required='false' maxlen='10'/>
+	<parameter id='pde_especificaciones_pedido' type='varchar' required='false' maxlen='200'/>
+	<parameter id='pde_fecha_requerido' type='date' required='true' maxlen='10'/>
+	<parameter id='pde_observaciones' type='varchar' required='false' maxlen='200'/>
+
+
+
+</validator>

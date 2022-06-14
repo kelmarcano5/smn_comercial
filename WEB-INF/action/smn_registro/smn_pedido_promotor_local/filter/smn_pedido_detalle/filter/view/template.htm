@@ -1,0 +1,77 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='7%'/>
+	<col width='12%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='12%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<!-- <col width='3%'/> -->
+	<col width='3%'/>
+	<col width='3%'/>
+
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="17" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("pde_naturaleza","query-smnpedidodetalle.sql")'>${lbl:b_nature}</th>
+		<th class='sortable' onclick='sortBy("codigo_descripcion","query-smnpedidodetalle.sql")'>Codigo</th>
+		<th class='sortable' onclick='sortBy("descripcion_naturaleza","query-smnpedidodetalle.sql")'>${lbl:b_description}</th>
+		<th class='sortable' onclick='sortBy("pde_cantidad_pedido","query-smnpedidodetalle.sql")'>${lbl:b_quantity_order}</th>
+		<th class='sortable' onclick='sortBy("pde_cantidad_aprobada","query-smnpedidodetalle.sql")'>${lbl:b_quantity_aprob}</th>
+		<th class='sortable' onclick='sortBy("pde_monto","query-smnpedidodetalle.sql")'>${lbl:b_amount}</th>
+		<th class='sortable' onclick='sortBy("pde_monto_moneda_alterna","query-smnpedidodetalle.sql")'>Monto MA</th>
+		<th class='sortable' onclick='sortBy("tca_tasa_cambio","query-smnpedidodetalle.sql")'>Monto Tasa</th>
+		<th class='sortable' onclick='sortBy("pde_monto_impuesto_ml","query-smnpedidodetalle.sql")'>${lbl:b_amount} Impuesto ML</th>
+		<th class='sortable' onclick='sortBy("pde_monto_impuesto_ma","query-smnpedidodetalle.sql")'>${lbl:b_amount} Impuesto MA</th>
+		<th class='sortable' onclick='sortBy("pde_fecha_registro","query-smnpedidodetalle.sql")'>${lbl:b_store_date}</th>
+		<!-- <th>PI</th> -->
+		<th>PD</th>
+		<th>CO</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_pedido_detalle_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_pedido_detalle_id}','${fld:modulo}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_pedido_detalle_id}','${fld:modulo}')" title="${lbl:b_edit_button}"></td>
+		<td align='center'>${fld:pde_naturaleza}</td>
+		<td>${fld:codigo_descripcion}</td>
+		<td>${fld:descripcion_naturaleza}</td>
+		<td>${fld:pde_cantidad_pedido}</td>
+		<td>${fld:pde_cantidad_aprobada}</td>
+		<td align='right'>${fld:pde_monto@#,###,##0.00}</td>
+		<td align='right'>${fld:pde_monto_moneda_alterna@#,###,##0.00}${fld:mon_simbolo}</td>
+		<td align='right'>${fld:tca_tasa_cambio@#,###,##0.00}</td>
+		<td align='right'>${fld:pde_monto_impuesto_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:pde_monto_impuesto_ma@#,###,##0.00}</td>
+		<td>${fld:pde_fecha_registro@dd-MM-yyyy}</td>
+		<!-- <td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="impuestos('${fld:smn_pedido_detalle_id}','${fld:pca_descripcion}','${fld:pde_cantidad_pedido}','${fld:pde_monto}','${fld:pde_monto_moneda_alterna}','${fld:smn_item_rf}','${fld:smn_servicios_rf}')" title="Impuestos"></td> -->
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="descuentos('${fld:smn_pedido_detalle_id}')" title="${lbl:b_tax_deduction_bill}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="componentes('${fld:smn_pedido_detalle_id}','${fld:smn_mov_caja_cabecera_id}')" title="Componentes"></td>
+
+
+	</tr>
+	</rows>
+
+</table>

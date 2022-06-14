@@ -1,0 +1,34 @@
+INSERT INTO smn_comercial.smn_oferta_detalle
+(
+	smn_oferta_detalle_id,
+	smn_oferta_id,
+	ofd_naturaleza,
+	smn_servicios_rf,
+	smn_item_rf,
+	smn_activo_fijo_rf,
+	ofd_cantidad,
+	ofd_precio,
+	ofd_monto_ml,
+	ofd_moneda_rf,
+	smn_tasa_rf,
+	ofd_precio_moneda_alterna,
+	ofd_monto_moneda_alterna,
+	ofd_fecha_registro
+)
+VALUES
+(
+	${seq:nextval@smn_comercial.seq_smn_oferta_detalle},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	{d '${def:date}'}
+)

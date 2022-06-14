@@ -1,0 +1,42 @@
+INSERT INTO smn_comercial.smn_presupuesto_impuesto
+(
+	smn_presupuesto_impuesto_id,
+	smn_presupuesto_detalle_id,
+	smn_servicios_rf,
+	smn_item_rf,
+	smn_codigo_impuesto_id,
+	pim_base_imponible_ml,
+	pim_base_excenta_ml,
+	pim_monto_impuesto_ml,
+	pim_monto_sustraendo_ml,
+	pim_monto_neto_impuesto_ml,
+	smn_tasa_rf,
+	smn_moneda_rf,
+	pim_base_imponible_ma,
+	pim_base_excenta_ma,
+	pim_monto_impuesto_ma,
+	pim_monto_sustraendo_ma,
+	pim_monto_neto_impuesto_ma,
+	pim_fecha_registro
+)
+VALUES
+(
+	${seq:nextval@smn_comercial.seq_smn_presupuesto_impuesto},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	{d '${def:date}'}
+)

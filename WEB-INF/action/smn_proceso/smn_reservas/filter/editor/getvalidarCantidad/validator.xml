@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+	<parameter id="saldo_afiliacion" type="integer" required="false" label="Afiliado" />
+	<parameter id="saldo_evento" type="integer" required="false" label="Evento" />
+	<parameter id="id_afiliado" type="integer" required="false" label="Afiliado" />
+	<parameter id="id_evento" type="integer" required="false" label="Evento" />
+</validator>

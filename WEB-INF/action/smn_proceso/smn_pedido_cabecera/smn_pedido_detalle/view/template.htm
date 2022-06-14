@@ -1,0 +1,70 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<!-- <col width='3%'/>
+	<col width='3%'/> -->
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='12%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='12%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="14" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<!-- <th></th>
+		<th></th> -->
+		<th class='sortable' onclick='sortBy("smn_pedido_cabecera_id","query-smnpedidodetalle.sql")'>${lbl:b_control_header_order}</th>
+		<th class='sortable' onclick='sortBy("pde_naturaleza","query-smnpedidodetalle.sql")'>${lbl:b_nature}</th>
+		<th class='sortable' onclick='sortBy("descripcion_naturaleza","query-smnpedidodetalle.sql")'>${lbl:b_description}</th>
+		<th class='sortable' onclick='sortBy("smn_servicios_rf","query-smnpedidodetalle.sql")'>${lbl:b_services}</th>
+		<th class='sortable' onclick='sortBy("smn_item_rf","query-smnpedidodetalle.sql")'>${lbl:b_item}</th>
+		<th class='sortable' onclick='sortBy("pde_cantidad_pedido","query-smnpedidodetalle.sql")'>${lbl:b_quantity_order}</th>
+		<th class='sortable' onclick='sortBy("pde_cantidad_aprobada","query-smnpedidodetalle.sql")'>${lbl:b_quantity_aprob}</th>
+		<th class='sortable' onclick='sortBy("pde_precio","query-smnpedidodetalle.sql")'>${lbl:b_price}</th>
+		<th class='sortable' onclick='sortBy("pde_monto","query-smnpedidodetalle.sql")'>${lbl:b_amount}</th>
+		<th class='sortable' onclick='sortBy("pde_fecha_registro","query-smnpedidodetalle.sql")'>${lbl:b_store_date}</th>
+		<th>I&R</th>
+		<th>CO</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_pedido_detalle_id}')" title="${lbl:b_view_detail}"></td>
+		<!-- <td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_pedido_detalle_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_pedido_detalle_id}')" title="${lbl:b_edit_button}"></td> -->
+		<td>${fld:smn_pedido_cabecera_id}</td>
+		<td align='center'>${fld:pde_naturaleza}</td>
+		<td>${fld:descripcion_naturaleza}</td>
+		<td>${fld:smn_servicios_rf}</td>
+		<td>${fld:smn_item_rf}</td>
+		<td>${fld:pde_cantidad_pedido}</td>
+		<td>${fld:pde_cantidad_aprobada}</td>
+		<td align='right'>${fld:pde_precio@#,###,##0.00}</td>
+		<td align='right'>${fld:pde_monto@#,###,##0.00}</td>
+		<td>${fld:pde_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="impuestos('${fld:smn_pedido_detalle_id}')" title="Impuestos"></td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="componentes('${fld:smn_pedido_detalle_id}','${fld:smn_mov_caja_cabecera_id}')" title="Componentes"></td>
+
+	</tr>
+	</rows>
+
+</table>

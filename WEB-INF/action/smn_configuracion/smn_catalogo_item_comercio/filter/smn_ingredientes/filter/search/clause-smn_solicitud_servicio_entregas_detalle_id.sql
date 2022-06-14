@@ -1,0 +1,2 @@
+ and
+ 	smn_comercial.smn_ingredientes.smn_solicitud_servicio_entregas_detalle_id=${fld:smn_solicitud_servicio_entregas_detalle_id}

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Ejecutar consulta y enrutar dependiendo de que un recordset
+		tenga o no registros
+	</summary>
+
+	<log>false</log>
+
+
+	<transaction>
+		<classname>dinamica.GenericSearch</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+				
+		<recordset id="query-smnpedidocabecera.sql" source="session" scope="session">
+			<recordset id="query-smnpedidodetalle.sql" source="sql" scope="transaction" params="query-smnpedidocabecera.sql"  />
+		</recordset>		
+		<recordset id="gran-total.sql" source="session" scope="session"/>
+		
+		<recordset id="grafica.sql" source="session" scope="session" /> <!-- totalCols="subtotal" -->
+	</transaction>
+	
+	<searchCols id="query-smnpedidocabecera.sql">smn_entidad_rf;pca_fecha_requerida_h;pca_fecha_requerida;</searchCols>
+	<searchCols id="gran-total.sql">smn_entidad_rf;pca_fecha_requerida_h;pca_fecha_requerida;</searchCols>		
+	
+	<searchCols id="grafica.sql">smn_entidad_rf;pca_fecha_requerida_h;pca_fecha_requerida;</searchCols>	
+	
+	<on-exit return-code="0" forward-to="${def:actionroot}/view" />
+	<on-exit return-code="1" forward-to="${def:actionroot}/notfound" />
+
+</config>

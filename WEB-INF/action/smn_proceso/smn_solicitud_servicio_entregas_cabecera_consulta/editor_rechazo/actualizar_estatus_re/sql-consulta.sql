@@ -1,0 +1,19 @@
+select
+	smn_entrega.smn_solicitud_servicio_entregas_cabecera.smn_solicitud_servicio_entregas_cabecera_id as numero_documento,
+	case
+		when smn_entrega.smn_solicitud_servicio_entregas_cabecera.sec_estatus_proceso='RE' then 'rejected'
+	end as estatus_proceso
+from
+	smn_entrega.smn_solicitud_servicio_entregas_detalle	
+	left outer join smn_entrega.smn_solicitud_servicio_entregas_cabecera on smn_entrega.smn_solicitud_servicio_entregas_cabecera.smn_solicitud_servicio_entregas_cabecera_id = smn_entrega.smn_solicitud_servicio_entregas_detalle.smn_solicitud_servicio_entregas_cabecera_id
+	left outer join smn_base.smn_unidad_medida on smn_base.smn_unidad_medida.smn_unidad_medida_id = smn_entrega.smn_solicitud_servicio_entregas_detalle.smn_unidad_medida_rf
+	left outer join smn_base.smn_monedas on smn_base.smn_monedas.smn_monedas_id = smn_entrega.smn_solicitud_servicio_entregas_detalle.smn_moneda_rf
+	left outer join smn_entrega.smn_catalogo_item_comercio on smn_entrega.smn_catalogo_item_comercio.smn_catalogo_item_comercio_id = smn_entrega.smn_solicitud_servicio_entregas_detalle.smn_catalogo_item_comercio_id	
+	left outer join smn_base.smn_item on smn_base.smn_item.smn_item_id = smn_entrega.smn_catalogo_item_comercio.smn_item_rf
+	left outer join smn_entrega.smn_documento on smn_entrega.smn_documento.smn_documento_id = smn_entrega.smn_solicitud_servicio_entregas_cabecera.smn_documento_id
+	left outer join smn_comercial.smn_cliente on smn_comercial.smn_cliente.smn_cliente_id = smn_entrega.smn_solicitud_servicio_entregas_cabecera.smn_cliente_rf
+	left outer join smn_base.smn_auxiliar on smn_base.smn_auxiliar.smn_auxiliar_id = smn_comercial.smn_cliente.smn_auxiliar_rf
+	left outer join smn_base.smn_v_auxiliar on smn_base.smn_v_auxiliar.smn_v_auxiliar_id = smn_entrega.smn_solicitud_servicio_entregas_cabecera.smn_auxiliar_rf
+	left outer join smn_base.smn_formas_pago on smn_base.smn_formas_pago.smn_formas_pago_id = smn_entrega.smn_solicitud_servicio_entregas_cabecera.smn_forma_pago_rf
+where 
+	smn_entrega.smn_solicitud_servicio_entregas_cabecera.smn_solicitud_servicio_entregas_cabecera_id=${fld:id}

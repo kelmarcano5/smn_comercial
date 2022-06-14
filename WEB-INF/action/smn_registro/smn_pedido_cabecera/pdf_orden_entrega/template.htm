@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Orden de Entrega</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<!-- <link rel="stylesheet" type="text/css" href="${def:context}/main.css" />	 -->
+	<script type="text/javascript" src="${def:context}/action/script"></script>
+	<script type="text/javascript" src="${def:context}/action/jquery"></script>
+   	<script type="text/javascript" src="${def:context}/action/jqueryi"></script>
+</head>
+
+<body>
+	<form id="facturas"  class="form2" style="width:1000px; margin-top: 85px;">
+		<br>
+		<br>
+		<br>
+		<br>
+		<div style="display: flex; justify-content: space-between; margin-top: 145px; margin-left: 30px;">
+			<div align="left" style="">
+				<p style="font-size: 12px;">CLIENTE:${fld:cliente}</p>
+				<p style="font-size: 12px;">RIF: ${fld:rif}</p>
+				<p style="font-size: 12px;">Telf: ${fld:telefono}</p>
+				<p style="font-size: 12px; display: flex; justify-content: space-between; margin-right: 255px;">Direccion: ${fld:direccion}</p> 
+				<p style="font-size: 12px;">Vendedor: ${fld:promotor}</p>
+			</div>
+			<div align="right" style="display: flex; justify-content: space-between; margin-right: 100px;">
+				<strong><p style="font-size: 12px;">FECHA:</p></strong>
+				<p style="font-size: 12px;">${fld:pca_fecha_registro@dd-MM-yyyy}</p>
+				<strong><p style="font-size: 12px;">Orden de Entrega</p></strong>
+				<p style="font-size: 12px;">N&deg;. ${fld:numeropedido} </p>
+				
+			</div>
+	
+		</div>
+		<br>
+		<table class="record2" style="width:95%;" >
+			<col width='10%'/>
+			<col width='15%'/>
+			<col width='13%'/>
+			<col width='13%'/>
+			<col width='13%'/>
+
+			<thead>
+				<tr>
+					<td align="center" style="font-size: 12px; font-weight:bold">CODIGO</td>
+					<td align="center" style="font-size: 12px; font-weight:bold">DESCRIPCION</td>
+					<td align="center" style="font-size: 12px; font-weight:bold">CANTIDAD</td>
+					<td align="right" style="font-size: 12px; font-weight:bold">PRECIO</td>
+					<td align="right" style="font-size: 12px; font-weight:bold">TOTAL</td>
+				</tr>
+			</thead>
+			<tbody>
+				<rows>
+					<tr>
+						<td align="left" style="font-size: 11px;">${fld:codigo_producto}</td>
+						<td align="left" style="font-size: 11px;">${fld:descripcion_naturaleza}</td>
+						<td align="center" style="font-size: 11px;">${fld:pde_cantidad_pedido@#,###,##0.00}</td>
+						<td align="right" style="font-size: 11px;">${fld:mon_simbolo} ${fld:pde_precio@#,###,##0.00}</td>
+						<td align="right" style="font-size: 11px;">${fld:mon_simbolo} ${fld:pde_monto_moneda_alterna@#,###,##0.00}</td>
+					</tr>
+				</rows>
+			</tbody>
+
+				<td></td>
+				<td></td>
+				<td></td>
+				<td align="right" style="font-size: 12px; font-weight:bold">Total Neto</td>
+				<td align="right" style="font-size: 12px; font-weight:bold">${fld:monto_alterno@#,###,##0.00}</td>
+		</table>
+	<br>
+	<br>
+	<div align="left" style="margin-left: 20px; font-size:9px; ">
+		<p style="display:block; overflow:hidden; word-break:keep-all; text-overflow:ellipsis; line-height: 9px;">La factura es calculada en Bs a la tasa del BCV del dia de pago</p>
+		<p style="display:block; overflow:hidden; word-break:keep-all; text-overflow:ellipsis; line-height: 9px;">Para todos los efectos se elige como domicilio especial la ciudad de Caracas.</p>
+		<p style="display:block; overflow:hidden; word-break:keep-all; text-overflow:ellipsis; line-height: 9px;">La mercancia viaja por cuenta y riesgo del COMPRADOR. Revisar la mercancia.</p>
+		<p style="display:block; overflow:hidden; word-break:keep-all; text-overflow:ellipsis; line-height: 9px;">El costo del flete esta incluido en el precio de venta</p>
+		<p style="display:block; overflow:hidden; word-break:keep-all; text-overflow:ellipsis; line-height: 9px;">Reflejamos el precio Completo del Producto, al momento de efectuar el pago, concederemos el descuento,  de acuerdo a la forma de pago aplicada:</p>
+	</div>
+	</form>
+</body>
+</html>
+
+<script type="text/javascript" >
+  	onload = function() {
+  		$('#facturas').printThis({
+  			debug: false,               // show the iframe for debugging
+		    importCSS: true,            // import parent page css
+		    importStyle: false,         // import style tags
+		    printContainer: false,       // print outer container/$.selector
+		    loadCSS: "/smn_comercial/dinamica_bkp.css",                // path to additional css file - use an array [] for multiple
+		    pageTitle: "Orden de Entrega",              // add title to print page
+		    removeInline: false,        // remove inline styles from print elements
+		    removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
+		    printDelay: 333,            // variable print delay
+		    header: null,               // prefix to html
+		    footer: null,               // postfix to html
+		    base: false,                // preserve the BASE tag or accept a string for the URL
+		    formValues: false,           // preserve input/form values
+		    canvas: false,              // copy canvas content
+		    doctypeString: '',       // enter a different doctype for older markup
+		    removeScripts: false,       // remove script tags from print content
+		    copyTagClasses: false,      // copy classes from the html & body tag
+		    beforePrintEvent: null,     // function for printEvent in iframe
+		    beforePrint: null,          // function called before iframe is filled
+		    afterPrint: null            // function called before iframe is removed
+  		});
+  	}
+</script>
+
+

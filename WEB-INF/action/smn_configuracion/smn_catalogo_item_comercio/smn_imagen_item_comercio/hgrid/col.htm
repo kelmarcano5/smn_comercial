@@ -1,0 +1,14 @@
+<td onclick="getImage1('${def:context}${def:actionroot}/getblob?id=${fld:id}')" style="background-color: #ffffff;">
+
+		<div id="image_${fld:id}_wait" style="color:gray;width:100%;">
+			Cargando...
+		</div>
+
+		<img id="image_${fld:id}" style="display:none;"
+			src="${def:context}${def:actionroot}/getblob?id=${fld:id}&scale=0.2" 
+			onload="displayImage('image_${fld:id}')" 
+			title="Ver imagen">
+
+		<br>${fld:iic_descripcion}
+
+</td>

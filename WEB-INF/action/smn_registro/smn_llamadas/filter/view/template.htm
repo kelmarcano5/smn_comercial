@@ -1,0 +1,58 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="11" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_cliente_id_combo','query-smnllamadas.sql')" >${lbl:b_customer}</th>
+		<th class='sortable' onclick="sortBy('smn_prospecto_id_combo','query-smnllamadas.sql')" >${lbl:b_leaflet}</th>
+		<th class='sortable' onclick="sortBy('smn_tipo_documento_id_combo','query-smnllamadas.sql')" >${lbl:b_tipo_documento_factura}</th>
+		<th class='sortable' onclick="sortBy('smn_documento_id_combo','query-smnllamadas.sql')" >${lbl:b_document}</th>
+		<th class='sortable' onclick="sortBy('lla_descripcion','query-smnllamadas.sql')" >${lbl:b_description}</th>
+		<th class='sortable' onclick="sortBy('smn_gestion_id_combo','query-smnllamadas.sql')" >${lbl:b_management}</th>
+		<th class='sortable' onclick="sortBy('lla_estatus_combo','query-smnllamadas.sql')" >${lbl:b_status}</th>
+		<th class='sortable' onclick="sortBy('lla_fecha_registro','query-smnllamadas.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_llamadas_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_llamadas_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_llamadas_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_cliente_id_combo}</td>
+		<td align="center">${fld:smn_prospecto_id_combo}</td>
+		<td align="center">${fld:smn_tipo_documento_id_combo}</td>
+		<td align="center">${fld:smn_documento_id_combo}</td>
+		<td align="left">${fld:lla_descripcion}</td>
+		<td align="center">${fld:smn_gestion_id_combo}</td>
+		<td align="left">${fld:lla_estatus_combo}</td>
+		<td align="center">${fld:lla_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

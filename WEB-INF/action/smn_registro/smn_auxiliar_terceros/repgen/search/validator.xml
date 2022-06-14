@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_naturaleza_auxiliar_rf' type='integer' required='false' label='${lbl:b_nature_auxiliary}' maxlen='10'/>
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='false' label='${lbl:b_class_auxiliary}' maxlen='10'/>
+	<parameter id='aux_tipo_persona' type='varchar' required='false' label='${lbl:b_person_type}' maxlen='2'/>
+	<parameter id='aux_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='16'/>
+	<parameter id='aux_descripcion' type='varchar' required='false' label='${lbl:b_description}' maxlen='64'/>
+	<parameter id='aux_denom_comercial' type='varchar' required='false' label='${lbl:b_comercial_denomination}' maxlen='250'/>
+	<parameter id='aux_razon_social' type='varchar' required='false' label='${lbl:b_business_name}' maxlen='250'/>
+	<parameter id='aux_representante_legal' type='varchar' required='false' label='${lbl:b_legal_represent}' maxlen='250'/>
+	<parameter id='aux_tipo_doc_oficial_rf' type='integer' required='false' label='${lbl:b_document_type_oficial}' maxlen='10'/>
+	<parameter id='aux_num_doc_oficial' type='varchar' required='false' label='${lbl:b_document_number_oficial}' maxlen='12'/>
+	<parameter id='aux_rif' type='varchar' required='false' label='${lbl:b_rif}' maxlen='16'/>
+	<parameter id='aux_direccion_rf' type='integer' required='false' label='${lbl:b_address}' maxlen='10'/>
+	<parameter id='aux_comunidad_rf' type='integer' required='false' label='${lbl:b_community}' maxlen='10'/>
+	<parameter id='aux_auxiliar_corporacion_rf' type='integer' required='false' label='${lbl:b_outsourced_corporations}' maxlen='10'/>
+	<parameter id='aux_auxiliar_unidad_negocio_rf' type='integer' required='false' label='${lbl:b_outsourced_unit_business}' maxlen='10'/>
+	<parameter id='aux_benef_pago' type='varchar' required='false' label='${lbl:b_beneficiary_payments}' maxlen='112'/>
+	<parameter id='aux_cond_pago_rf' type='integer' required='false' label='${lbl:b_condition_payments}' maxlen='10'/>
+	<parameter id='aux_condicion_financiera_rf' type='integer' required='false' label='${lbl:b_conditional_financial}' maxlen='10'/>
+	<parameter id='aux_cuenta_bancaria_rf' type='integer' required='false' label='${lbl:b_bank_account_number}' maxlen='10'/>
+	<parameter id='aux_maneja_sucursal' type='varchar' required='false' label='${lbl:b_has_subsidiary}' maxlen='2'/>
+	<parameter id='aux_persona_contacto' type='varchar' required='false' label='${lbl:b_contact_person}' maxlen='48'/>
+	<parameter id='aux_observacion' type='varchar' required='false' label='${lbl:b_observations}' maxlen='96'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='aux_tipo_persona'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='aux_codigo'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+parameter='aux_descripcion'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='aux_denom_comercial'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='aux_razon_social'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='aux_representante_legal'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='aux_num_doc_oficial'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='aux_rif'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='aux_benef_pago'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='aux_maneja_sucursal'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='aux_persona_contacto'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='aux_observacion'
+		rule='contains' />
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='aux_codigo'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='aux_descripcion'/>
+
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

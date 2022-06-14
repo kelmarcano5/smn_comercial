@@ -1,0 +1,32 @@
+INSERT INTO smn_comercial.smn_pedido_desc_retenciones
+(
+	smn_pedido_desc_retenciones_id,
+	smn_pedido_detalle_id,
+	smn_descuentos_retenciones_rf,
+	pim_monto_base_ml,
+	pim_porcentaje_retencion,
+	pim_monto_descuento_retencion,
+	smn_moneda_rf,
+	smn_tasa_rf,
+	pim_monto_descuento_ma,
+	pim_idioma,
+	pim_usuario,
+	pim_fecha_registro,
+	pim_hora
+)
+VALUES
+(
+	${seq:currval@smn_comercial.seq_smn_pedido_desc_retenciones},
+	${fld:smn_pedido_detalle_id},
+	${fld:smn_descuentos_retenciones_rf},
+	${fld:pim_monto_base_ml},
+	${fld:pim_porcentaje_retencion},
+	${fld:pim_monto_descuento_retencion},
+	${fld:smn_moneda_rf},
+	${fld:smn_tasa_rf},
+	${fld:pim_monto_descuento_ma},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

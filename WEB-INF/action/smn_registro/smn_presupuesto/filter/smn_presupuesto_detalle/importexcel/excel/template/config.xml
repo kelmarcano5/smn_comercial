@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnpresupuestodetalle.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_presupuesto_det}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_presupuesto_det}">
+				<col id='smn_presupuesto_id_combo' label='${lbl:b_presupuesto}' />
+		<col id='smn_servicios_rf_combo' label='${lbl:b_service}' />
+		<col id='prd_cantidad' label='${lbl:b_amount_presupuesto}' />
+		<col id='prd_precio' label='${lbl:b_prd_precio}' />
+		<col id='smn_moneda_rf_combo' label='${lbl:b_prd_moneda}' />
+		<col id='prd_precio_ma' label='${lbl:b_prd_precio_ma}' />
+		<col id='prd_monto_moneda_local' label='${lbl:b_prd_mon_loc}' />
+		<col id='prd_moneda_alterna' label='${lbl:b_prd_mon_alt}' />
+		<col id='smn_presupuesto_id_combo' label='${lbl:b_presupuesto}' />
+		<col id='smn_servicios_rf_combo' label='${lbl:b_service}' />
+		<col id='prd_cantidad' label='${lbl:b_amount_presupuesto}' />
+		<col id='prd_precio' label='${lbl:b_prd_precio}' />
+		<col id='smn_moneda_rf_combo' label='${lbl:b_prd_moneda}' />
+		<col id='prd_precio_ma' label='${lbl:b_prd_precio_ma}' />
+		<col id='prd_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

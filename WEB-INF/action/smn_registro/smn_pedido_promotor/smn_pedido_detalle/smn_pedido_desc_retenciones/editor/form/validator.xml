@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id="id" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id="id2" type="integer" required="false" label="ID2" maxlen="50" />
+	<parameter id="cantidad" type="integer" required="false" label="ID2" maxlen="50" />
+	<parameter id="moneda" type="integer" required="false" label="ID2" maxlen="50" />
+	<parameter id="tasa" type="integer" required="false" label="ID2" maxlen="50" />
+	<parameter id="montoml" type="double" required="false" label="ID2" maxlen="50" />
+	<parameter id="montoma" type="double" required="false" label="ID2" maxlen="50" />
+</validator>

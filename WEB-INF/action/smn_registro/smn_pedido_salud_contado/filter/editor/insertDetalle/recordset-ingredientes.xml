@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<recordset>
+		<parameter id='smn_rel_detalle_ingrediente_id' type='integer'/>
+		<parameter id='smn_solicitud_servicio_entregas_detalle_id' type='integer'/>
+        <parameter id='smn_ingredientes_id' type='integer'/>
+</recordset>  

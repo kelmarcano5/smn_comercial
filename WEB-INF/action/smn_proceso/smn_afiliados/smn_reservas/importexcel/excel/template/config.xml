@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnreservas.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_booking}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_booking}">
+				<col id='smn_evento_id' label='${fld:b_event}' />
+		<col id='smn_afiliado_id' label='${lbl:b_afiliate}' />
+		<col id='smn_relacionado_id' label='${lbl:b_related}' />
+		<col id='res_cantidad' label='${lbl:b_quantity}' />
+		<col id='res_estatus' label='${lbl:b_estatus}' />
+		<col id='res_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

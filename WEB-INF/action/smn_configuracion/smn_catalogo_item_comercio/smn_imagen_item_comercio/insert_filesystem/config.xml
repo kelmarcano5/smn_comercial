@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Insertar valores de un formulario en una tabla
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.SaveBlobFS</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<query>insert.sql</query>
+	
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>script.js</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/javascript; charset=iso-8859-1</content-type>
+		<expiration>0</expiration>
+	</output>
+
+	<folder>C:\Program Files\Apache Software Foundation\Tomcat 7.0\webapps\smn_comercial\img</folder>
+
+</config>

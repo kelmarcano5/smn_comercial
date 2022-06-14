@@ -1,0 +1,278 @@
+<!doctype html>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />	
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+	<!--codigo especifico de este modulo--> 
+	<script type="text/javascript">
+		//inicializacion de la pagina cuando carga
+		onload = function() { 
+			search();
+		} 
+	
+		//ejecutar consulta
+		function search() {
+			var uri="${def:actionroot}/search?id_pre=${fld:id_pre}&estatus=${fld:estatus}";
+
+			//alert(uri);
+			ajaxCall(httpMethod="GET", 
+							uri,
+							divResponse="response", 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);
+		}
+	
+		//recuperar una pagina X del grid
+		function viewPage() {
+			var url = "${def:actionroot}/view";
+			gotoPage(url);
+		}
+		
+		//exportar a PDF
+		function openPDF() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+	
+		//exportar a excel
+		function openExcel() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a xml
+		function openXml() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/xml/search?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a texto
+		function openTxt() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/txt/search?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//envio de emails
+		function openEmails() {
+			var uri = "${def:context}${def:actionroot}/email/form";					
+			openDialog("editor0", uri, 950, 600);	
+		}
+		
+		//mostrar el detalle de un registro
+		function getDetail(id)
+		{
+//			//alert('Colocar su código aquí.')
+			
+			var uri = "${def:context}${def:actionroot}/detail/form?id=" + id;
+			openDialog("dialog", uri, 650, 480);			
+		}
+		
+		//muestra un DIV+IFRAME con el formulario de CRUD
+		function showEditor(id, tipo, estatus)
+		{
+			var st = '${fld:estatus}';
+//	
+			//alert(estatus);		
+					
+					//editor a nivel de panel iconográfico
+					if (id == 'editor')
+						{				
+							if (st != 'Aprobado' && st != 'Generado') {	
+								var uri = "${def:context}${def:actionroot}/editor/form?id_pre=${fld:id_pre}&numero_control_pre=${fld:numero_control_pre}&smn_baremos_id=${fld:smn_baremos_id}";
+								openDialog("editor1", uri, 650, 580);		
+							}else{
+								alertBox('Este registro tiene estatus generado no se puede añadir', 'Aceptar', null, null);
+							}			
+						}
+						else if (id == 'filter')
+						{
+							var uri = "${def:context}${def:actionroot}/filter/form?id_pre=${fld:id_pre}&numero_control_pre=${fld:numero_control_pre}&smn_baremos_id=${fld:smn_baremos_id}";					
+							openDialog("editor2", uri, 950, 600);		
+						} 
+						else if (id == 'importexcel')
+						{
+							var uri = "${def:context}${def:actionroot}/importexcel/form";					
+							openDialog("editor3", uri, 950, 600);		
+						} 
+						else if (id == 'repgen')
+						{
+							var uri = "${def:context}${def:actionroot}/repgen/form";		
+							openDialog("editor4", uri, 950, 600);		
+						}
+					//editor a nivel de registros
+					else {		
+					//alert(tipo);	
+						if (st != 'Aprobado' && st != 'Generado' && estatus!='Rechazado' && estatus!='Generado') {
+							var uri = "";
+							if (id==null)
+								uri = "${def:context}${def:actionroot}/editor/form?id_pre=${fld:id_pre}&numero_control_pre=${fld:numero_control_pre}&smn_baremos_id=${fld:smn_baremos_id}";
+							else
+								uri = "${def:context}${def:actionroot}/editor/form?id=" + id + "&id_pre=${fld:id_pre}&numero_control_pre=${fld:numero_control_pre}&smn_baremos_id=${fld:smn_baremos_id}&tipo=" + tipo;
+								
+							openDialog("editor5", uri, 650, 580);
+						}else{
+							alertBox('Este registro tiene estatus diferente a registrado no se puede editar', 'Aceptar', null, null);
+						}
+					}	
+
+			
+		}
+
+		function deleteRecord(id, estatus) {
+			var st2 = '${fld:estatus}';
+//			//alert('Colocar su código aquí.')
+			if (st2 != 'Aprobado' && st2 != 'Generado') {
+				alertBox('${lbl:b_delete_record_button}', '${lbl:b_delete_button}', '${lbl:b_cancel_button}', 'deleteRecordOK(' + id + ')')
+			}else{
+				alertBox('Este registro tiene estatus generado no se puede eliminar', 'Aceptar', null, null);
+			}
+					
+		}
+		
+		//eliminar un registro
+		function deleteRecordOK(id) {
+				ajaxCall(httpMethod="GET", 
+								uri="${def:actionroot}/delete?id=" + id,
+								divResponse=null, 
+								divProgress="status", 
+								formName=null, 
+								afterResponseFn=null, 
+								onErrorFn=null);	
+		}
+
+		function recalcular_monto(id) {
+			//alert('status: '+status)
+			var id_pre='${fld:id_pre}';
+//			alert('Colocar su código aquí.')
+			if(id == 'recalcular'){
+				alertBox('Desea recalcular montos', '${lbl:b_yes}', '${lbl:b_not}', 'recalcular(' + id_pre + ')')
+			}
+		}
+		
+		//eliminar un registro
+		function recalcular(id) {
+				ajaxCall(httpMethod="GET", 
+								uri="${def:actionroot}/recalcular_monto?id2=" + id,
+								divResponse=null, 
+								divProgress="status", 
+								formName=null, 
+								afterResponseFn=null, 
+								onErrorFn=null);	
+		}
+
+		function presupuesto_impuesto(id_pre_det, servicio, item, montoml, montoma) 
+		{
+			if(item != ''){
+				uri = "${def:context}${def:actionroot}/smn_presupuesto_impuesto/form?id_pre_det="+ id_pre_det + "&servicio=" + servicio + "&item="+item+"&montoml="+montoml+"&montoma="+montoma;
+			//	alert(uri);		
+				openDialog("dialog", uri, 1250, 700);
+			}else{
+				alertBox('Este presupuesto detalle no es de tipo item', 'Aceptar', null, null);
+			}
+		}
+
+		function reject(id) {
+			//alert('ingreso: '+ingreso)
+//			//alert('Colocar su código aquí.')
+			if(id != null){
+					//alert('status: '+status)
+				alertBox('Desea rechazar este registro', '${lbl:b_yes}', '${lbl:b_not}', 'rechazarOk(' + id + ')')
+			}else{
+				alertBox('Este registro ya fue rechazado', 'Aceptar', null, null);	
+			}
+		}
+		
+		//eliminar un registro
+		function rechazarOk(id) {
+			var uri = "${def:context}${def:actionroot}/editor_rechazar/form?id="+id + "&id_pre=${fld:id_pre}";
+			//alert(uri);
+				openDialog("editor1", uri, 650, 580);		
+			// ajaxCall(httpMethod="GET", 
+			// 					uri="${def:actionroot}/rechazar?id=" + id,
+			// 					divResponse=null, 
+			// 					divProgress="status", 
+			// 					formName=null, 
+			// 					afterResponseFn=null, 
+			// 					onErrorFn=null);	
+		}
+
+		function accept(id) {
+			//alert('ingreso: '+ingreso)
+//			//alert('Colocar su código aquí.')
+			if(id != null){
+					//alert('status: '+status)
+				alertBox('Desea reactivar este registro', '${lbl:b_yes}', '${lbl:b_not}', 'acceptOk(' + id + ')')
+			}else{
+				alertBox('Este registro ya fue rechazado', 'Aceptar', null, null);	
+			}
+		}
+		
+		//eliminar un registro
+		function acceptOk(id) {
+			//var uri = "${def:context}${def:actionroot}/reactivar/form?id="+id + "&id_pre=${fld:id_pre}";
+			ajaxCall(httpMethod="GET", 
+								uri="${def:actionroot}/reactivar?id="+id + "&id_pre=${fld:id_pre}",
+								divResponse=null, 
+								divProgress="status", 
+								formName=null, 
+								afterResponseFn=null, 
+								onErrorFn=null);	
+			//alert(uri);
+				//openDialog("editor1", uri, 650, 580);		
+			// ajaxCall(httpMethod="GET", 
+			// 					uri="${def:actionroot}/rechazar?id=" + id,
+			// 					divResponse=null, 
+			// 					divProgress="status", 
+			// 					formName=null, 
+			// 					afterResponseFn=null, 
+			// 					onErrorFn=null);	
+		}
+
+		
+	</script>
+
+</head>
+
+<body>
+
+	<!--banner-->
+	<div class="welcome" style="padding-right:50px; margin-top: 20px;"><br>
+        <b>${lbl:b_welcome}</b> ${fld:fname} ${fld:lname} ${req:progress} <img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+        <div class="" style="width: 100%; border-bottom: solid 6px #1d61a0; border-radius: 30px; margin-top: 4px;">
+        </div>
+    </div>
+    <br>
+    <div class="titulo-negocios">
+        <div style="padding-top: 15px;">${lbl:b_presupuesto_det}</div>
+    </div>
+    	
+	
+	<!--incluir el menu iconografico de SIMONE-->
+	${inc:${def:actionroot}/panel/view}
+	
+
+	<table class="record" style="width:500px;">
+		<tr>
+			<td width="40%">${lbl:b_presupuesto}</td>
+			<td style="background-color: white">${lbl:b_pre_num_control}</td>
+			<td style="background-color: white">${fld:numero_control_pre}</td>
+		</tr>
+	</table>	
+	
+	<!--panel de respuesta AJAX #1-->
+	<div id="response" style="display: none; width: 100%"></div>
+
+</body>
+
+</html>

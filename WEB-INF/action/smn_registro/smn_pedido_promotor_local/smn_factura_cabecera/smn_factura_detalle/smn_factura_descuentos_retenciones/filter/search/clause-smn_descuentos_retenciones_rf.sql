@@ -1,0 +1,2 @@
+ and
+ 	smn_comercial.smn_factura_descuentos_retenciones.smn_descuentos_retenciones_rf=${fld:smn_descuentos_retenciones_rf}

@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+	<parameter id="id" type="integer" required="true" label="ID ${lbl:b_auxiliary_class}" />
+	<parameter id='smn_tipo_componente' type='varchar' required='false' label='${lbl:b_service}' maxlen='2'/>
+	<parameter id='smn_forma_calculo_rf' type='varchar' required='false' label='${lbl:b_service}' maxlen='2'/>
+	<parameter id='smn_visible_rf' type='varchar' required='false' label='${lbl:b_service}' maxlen='2'/>
+	<parameter id='smn_grupo_prestador_rf' type='integer' required='false' label='${lbl:b_service}' maxlen='10'/>
+	<parameter id='porcentaje' type='double' required='false' label='${lbl:b_service}' maxlen='10'/>
+</validator>

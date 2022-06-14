@@ -1,0 +1,40 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='50%'/>
+	<col width='50%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="5" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_documento_id","query-smnreldocumentoentidad.sql")'>${lbl:b_document}</th>
+		<th class='sortable' onclick='sortBy("smn_entidades_rf","query-smnreldocumentoentidad.sql")'>${lbl:b_entities}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_rel_documento_entidad_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_rel_documento_entidad_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_rel_documento_entidad_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_documento_id}</td>
+		<td>${fld:smn_entidades_rf}</td>
+
+	</tr>
+	</rows>
+
+</table>

@@ -1,0 +1,10 @@
+select
+		smn_comercial.smn_rel_cliente_cond_financiera.smn_cliente_id,
+	smn_comercial.smn_rel_cliente_cond_financiera.smn_condicion_financiera_rf,
+	smn_comercial.smn_rel_cliente_cond_financiera.rcc_estatus,
+	smn_comercial.smn_rel_cliente_cond_financiera.rcc_vigencia,
+	smn_comercial.smn_rel_cliente_cond_financiera.rcc_fecha_registro
+from
+	smn_comercial.smn_rel_cliente_cond_financiera 
+where
+	smn_comercial.smn_rel_cliente_cond_financiera.smn_rel_cliente_cond_financiera_id = ${fld:id}

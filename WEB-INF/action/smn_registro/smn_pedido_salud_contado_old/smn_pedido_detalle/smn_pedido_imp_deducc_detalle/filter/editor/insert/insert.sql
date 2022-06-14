@@ -1,0 +1,40 @@
+INSERT INTO smn_comercial.smn_pedido_imp_deducc_detalle
+(
+	smn_pedido_imp_deducc_detalle_id,
+	smn_pedido_detalle_id,
+	smn_codigos_impuestos_rf,
+	pid_porcentaje_impuesto,
+	pid_monto_sustraendo,
+	pid_monto_impuesto,
+	smn_moneda_rf,
+	smn_tasa_rf,
+	pid_monto_imp_moneda_alterna,
+	smn_descuentos_retenciones_rf,
+	pid_porcentaje_descuento_retencion,
+	pid_monto_descuento_retencion,
+	pid_monto_desc_moneda_alterna,
+	pid_idioma,
+	pid_usuario,
+	pid_fecha_registro,
+	pid_hora
+)
+VALUES
+(
+	${seq:currval@smn_comercial.seq_smn_pedido_imp_deducc_detalle},
+	${fld:smn_pedido_detalle_id},
+	${fld:smn_codigos_impuestos_rf},
+	${fld:pid_porcentaje_impuesto},
+	${fld:pid_monto_sustraendo},
+	${fld:pid_monto_impuesto},
+	${fld:smn_moneda_rf},
+	${fld:smn_tasa_rf},
+	${fld:pid_monto_imp_moneda_alterna},
+	${fld:smn_descuentos_retenciones_rf},
+	${fld:pid_porcentaje_descuento_retencion},
+	${fld:pid_monto_descuento_retencion},
+	${fld:pid_monto_desc_moneda_alterna},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

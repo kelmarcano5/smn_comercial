@@ -1,0 +1,17 @@
+select
+		smn_comercial.smn_centro_facturacion.cfc_codigo,
+	smn_comercial.smn_centro_facturacion.cfc_nombre,
+	smn_comercial.smn_centro_facturacion.smn_entidades_rf,
+	smn_comercial.smn_centro_facturacion.smn_sucursales_rf,
+	smn_comercial.smn_centro_facturacion.smn_areas_servicios_rf,
+	smn_comercial.smn_centro_facturacion.smn_unidades_servicios_rf,
+	smn_comercial.smn_centro_facturacion.cfc_numero_identificación,
+	smn_comercial.smn_centro_facturacion.cfc_control_fiscal_1,
+	smn_comercial.smn_centro_facturacion.cfc_control_fiscal_2,
+	smn_comercial.smn_centro_facturacion.cfc_vigencia,
+	smn_comercial.smn_centro_facturacion.cfc_estatus,
+	smn_comercial.smn_centro_facturacion.cfc_fecha_registro
+from
+	smn_comercial.smn_centro_facturacion 
+where
+	smn_comercial.smn_centro_facturacion.smn_centro_facturacion_id = ${fld:id}

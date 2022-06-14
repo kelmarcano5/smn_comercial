@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='tpp_codigo' type='varchar' required='true' label='${lbl:b_code}' maxlen='64'/>
+	<parameter id='tpp_descripcion' type='varchar' required='true' label='${lbl:b_description}' maxlen='120'/>
+	<parameter id='tpp_estatus' type='varchar' required='true' label='${lbl:b_estatus}' maxlen='2'/>
+	<parameter id='tpp_fecha_vigencia' type='date' required='true' label='${lbl:b_effective_date}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_order_type}' maxlen='10'/>
+
+
+</validator>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_cliente_id_name' type='varchar' required='true' label='${lbl:b_customer}'/>
+	<parameter id='smn_cliente_id' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_entidad_financiera_rf' type='integer' required='true' label='${lbl:b_financial_entities}' maxlen='10'/>
+	<parameter id='smn_tipo_cuenta_banco_rf' type='integer' required='true' label='${lbl:b_types_of_bank_accounts}' maxlen='10'/>
+	<parameter id='cef_numero_cuenta' type='varchar' required='true' label='${lbl:b_bank_account_number}' maxlen='20'/>
+	<parameter id='cef_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='cef_vigencia' type='date' required='true' label='${lbl:b_validation_date}' maxlen='10'/>
+
+
+</validator>

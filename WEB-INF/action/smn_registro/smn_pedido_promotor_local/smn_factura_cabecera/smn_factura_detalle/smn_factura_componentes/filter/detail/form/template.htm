@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+	<script type="text/javascript">
+		//invoca la generacion de un PDF en un popup
+		function openPDF()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a excel
+		function openExcel() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a xml
+		function openXml(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/xml/search?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a texto
+		function openTxt(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/txt/search?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//envio de emails
+		function openEmails() {
+			var uri = "${def:context}${def:actionroot}/email/form";					
+			openDialog("editor0", uri, 980, 600);	
+		}
+	</script>
+
+</head>
+
+<body>
+
+	<!--banner-->
+	<div class="bannerDialog" id="encabezado_tabla">
+		${lbl:b_components_bill}
+		<img src="${def:context}/images/pdf.png" onclick="openPDF()" title="${lbl:b_export_pdf}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/excel.png" onclick="openExcel()" title="${lbl:b_export_excel}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog()" title="${lbl:b_close_button}" style="float:right; cursor:pointer;"/>
+	</div>
+
+	<table class="record" style="width:500px;">
+		<tr>
+			<td width="40%">${lbl:b_detail_bill}</td>
+			<td style="background-color: white">${fld:fde_naturaleza_pl0}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_component_group}</td>
+			<td style="background-color: white">${fld:smn_grupo_componente_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_component}</td>
+			<td style="background-color: white">${fld:smn_componente_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_is_services_prestator}</td>
+			<td style="background-color: white">${fld:fco_es_prestador_servicio}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_class_auxiliary}</td>
+			<td style="background-color: white">${fld:smn_clase_auxiliar_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_auxiliar}</td>
+			<td style="background-color: white">${fld:smn_auxiliar_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_item}</td>
+			<td style="background-color: white">${fld:smn_item_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_services}</td>
+			<td style="background-color: white">${fld:smn_servicio_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_calculus}</td>
+			<td style="background-color: white">${fld:fco_forma_calculo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_quantity}</td>
+			<td style="background-color: white">${fld:fco_cantidad}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_price}</td>
+			<td style="background-color: white">${fld:smn_precio_ml_rf@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_amount}</td>
+			<td style="background-color: white">${fld:fco_monto_ml@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_coins}</td>
+			<td style="background-color: white">${fld:smn_moneda_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_exchange_rate}</td>
+			<td style="background-color: white">${fld:smn_tasa_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_price_ma}</td>
+			<td style="background-color: white">${fld:smn_precio_ma@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_amount_ma}</td>
+			<td style="background-color: white">${fld:smn_monto_ma@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_print}</td>
+			<td style="background-color: white">${fld:fco_imprime}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_group_title_print}</td>
+			<td style="background-color: white">${fld:smn_grupo_titulo_impresion_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_type}</td>
+			<td style="background-color: white">${fld:smn_tipo_gasto_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_sub_type}</td>
+			<td style="background-color: white">${fld:smn_sub_tipo_gasto_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_status}</td>
+			<td style="background-color: white">${fld:fco_estatus}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_store_date}</td>
+			<td style="background-color: white">${fld:fco_fecha_registro@dd-MM-yyyy}</td>
+		</tr>
+
+	</table>
+<!-- <table class="datagrid" width="600px">
+
+	
+	<tr>
+		<th colspan="14" style="font-weight:bold;font-size:10pt;">
+			${lbl:b_detail_bill_print}
+		</th>
+	</tr>
+
+
+	<tr>
+		<th width="7%">${lbl:b_detail_bill_print}</th>
+		<th width="7%">${lbl:b_header_bill}</th>
+		<th width="7%">${lbl:b_detail_bill}</th>
+		<th width="7%">${lbl:b_groups_tittle_print}</th>
+		<th width="7%">${lbl:b_code}</th>
+		<th width="7%">${lbl:b_description}</th>
+		<th width="7%">${lbl:b_quantity}</th>
+		<th width="7%">${lbl:b_price_ml}</th>
+		<th width="7%">${lbl:b_amount_ml}</th>
+		<th width="7%">${lbl:b_coins}</th>
+		<th width="7%">${lbl:b_exchange_rate}</th>
+		<th width="7%">${lbl:b_price}</th>
+		<th width="7%">${lbl:b_amount}</th>
+		<th width="7%">${lbl:b_store_date}</th>
+	</tr>
+
+	<rows-smnfacturaimpresiondetalle>
+	<tr>
+		<td align="center">${fld:smn_factura_impresion_detalle_id}</td>
+		<td align="center">${fld:fca_rif_pl0}</td>
+		<td align="center">${fld:fde_naturaleza_pl1}</td>
+		<td>${fld:smn_grupo_titulo_impresion_rf}</td>
+		<td align="left">${fld:fim_codigo}</td>
+		<td align="left">${fld:fim_descripcion}</td>
+		<td align="center">${fld:fim_cantidad}</td>
+		<td align="right">${fld:smn_precio_ml@#,###,##0.00}</td>
+		<td align="right">${fld:fim_monto_ml@#,###,##0.00}</td>
+		<td>${fld:smn_moneda_rf}</td>
+		<td>${fld:smn_tasa_rf}</td>
+		<td align="right">${fld:smn_precio_ma_rf@#,###,##0.00}</td>
+		<td align="right">${fld:fim_monto_ma_rf@#,###,##0.00}</td>
+		<td align="center">${fld:fim_fecha_registro@dd-MM-yyyy}</td>
+	</tr>
+	</rows-smnfacturaimpresiondetalle>
+
+</table> -->
+
+	<br>
+	<div  align="center">
+		<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog()" class="button">
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	<title>Sistema de Seguridad</title>
+
+
+	<script type="text/javascript">
+
+	//inicializacion de la pagina cuando carga
+	onload = function()
+	{ 
+		<rows>
+			showTable('${fld:rolename}');
+		</rows>
+	
+		noDisplayTables();
+	} 
+	
+	var isRegister= false;
+	var isControlAccess = false; 
+	var isRegistration = false;
+	
+	function showTable (rolename) {
+		/*if (rolename == 'smn_admision') 
+		{
+			isRegistration = true;
+			isRegister = false;
+			isControlAccess = false;
+		} 
+		else if (rolename == 'smn_comercial') 
+		{
+			isRegistration = false;
+			isRegister = false;
+			isControlAccess = true;
+		} */
+		if (rolename == 'smn_registros') 
+		{
+			isRegistration = false;
+			isRegister = true;
+			isControlAccess = false;
+		} 
+		else if (rolename == 'smn_admin' or rolename == 'smn_aprobador') 
+		{
+			isRegistration = true;
+			isRegister = true;
+			isControlAccess = true;
+		}
+	}
+	
+	function noDisplayTables()
+	{
+		//alert('values' + isRegister + '  values pro: ' +isRegistration)
+		if (!isRegister) 
+		{
+			document.getElementById('table1').style.display="none";
+			document.getElementById('panel1').style.display="none";
+		} 
+		if (!isRegistration) 
+		{
+			//alert('no display procesos')
+			document.getElementById('table2').style.display="none";
+			document.getElementById('panel2').style.display="none";
+		} 
+		if (!isControlAccess) 
+		{
+			//alert('no display monitores')
+			document.getElementById('table3').style.display="none";
+			document.getElementById('panel3').style.display="none";
+		} 
+	}
+	
+</script>
+</head>
+
+<body>
+
+<div class="welcome" style="padding-right:50px; margin-top: 20px;"><br>
+	<b>${lbl:b_welcome}</b> ${fld:fname} ${fld:lname}
+	<div class="" style="width: 100%; border-bottom: solid 6px #1d61a0; border-radius: 30px; margin-top: 4px;">
+	</div>
+	</div>
+<br>
+ <div class="modulo">
+		<div class="tituloModulo">
+				<div class="tittlModContenedor">
+						<div class="ttlModTop">
+								<h2>Modulo Comercial</h2>
+								<div class="ttlModTopImg"><img src="${def:context}/images/mainFolder/talentoHumanoImg.jpg"></div>
+						</div>
+						<div class="ttlModBottom"><h3>Modulo Comercial</h3></div>
+						<div class="rightImg"><img src="${def:context}/images/mainFolder/modContAsis.png"></div>
+				</div>
+		</div>
+</div> 
+
+<br>
+
+<table id='table1' class="datagrid" width="50%">
+	<tr>
+		<th colspan="5" style="font-weight:bold; font-size:15pt;">${lbl:b_regist}</th>
+	</tr>
+</table>
+
+<!--include al menu iconografico-->
+${inc:${def:actionroot}/panel/registro/view}
+
+<table id='table2' class="datagrid" width="50%">
+	<tr>
+		<th colspan="5" style="font-weight:bold; font-size:15pt;">${lbl:b_process}</th>
+	</tr>
+</table>
+<!--include al menu iconografico-->
+${inc:${def:actionroot}/panel/procesos/view}
+
+<table id='table3' class="datagrid" width="50%">
+	<tr>
+		<th colspan="5" style="font-weight:bold; font-size:15pt;">${lbl:b_monitor}</th>
+	</tr>
+</table>
+
+<!--include al menu iconografico-->
+${inc:${def:actionroot}/panel/monitores/view}
+
+<table id='table3' class="datagrid" width="50%">
+	<tr>
+		<th colspan="5" style="font-weight:bold; font-size:15pt;">${lbl:b_configuration}</th>
+	</tr>
+</table>
+
+<!--include al menu iconografico-->
+${inc:${def:actionroot}/panel/configuracion/view}
+
+
+<!--tabla de ultimos logins-->
+<!-- <table class="datagrid" width="50%">
+
+	<tr>
+		<th colspan="4" style="font-weight:bold; font-size:10pt;">Sus últimos accesos al servidor</th>
+	</tr>
+
+	<tr>
+		<th width="25%">Fecha</th>
+		<th width="25%">Hora</th>
+		<th width="25%">Dirección IP</th>
+		<th width="25%">Aplicación</th>
+	</tr>
+
+	<rows>
+	<tr ${fld:_rowStyle}>
+		<td align="center">${fld:login_date}</td>
+		<td align="center">${fld:login_time}</td>
+		<td align="center">${fld:remote_addr}</td>
+		<td align="center">${fld:context}</td>
+	</tr>
+	</rows>
+
+</table>
+
+<br/>
+
+<table class="datagrid" width="50%">
+
+	<tr>
+		<th colspan="4" style="color:red; font-weight:bold; font-size:10pt;">Ingresos fallidos usando su Identificador</th>
+	</tr>
+
+	<tr>
+		<th width="25%">Fecha</th>
+		<th width="25%">Hora</th>
+		<th width="25%">Dirección IP</th>
+		<th width="25%">Aplicación</th>
+	</tr>
+
+	<rows2>
+	<tr ${fld:_rowStyle}>
+		<td align="center">${fld:login_date}</td>
+		<td align="center">${fld:login_time}</td>
+		<td align="center">${fld:remote_addr}</td>
+		<td align="center">${fld:context}</td>
+	</tr>
+	</rows2>
+
+</table>
+ -->
+</body>
+
+</html>

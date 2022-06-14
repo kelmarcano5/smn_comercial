@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Factura</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="${def:context}/pdf.css">
+	<script type="text/javascript" src="${def:context}/action/script"></script>
+	<script type="text/javascript" src="${def:context}/action/jquery"></script>
+   	<script type="text/javascript" src="${def:context}/action/jqueryi"></script>
+   	
+	</head>
+<body>
+	<form id="facturas" style="width:510px; background: #fff;  box-shadow: 0px 0px 0px #fff; margin-top: 80px; margin-bottom: 80px;">
+		<div class="banner">
+			<div>
+				<p>Paciente: ${fld:paciente}</p>
+				<p>Paciente Rif: ${fld:rif_paciente}</p>
+				<p>Pagador: ${fld:pagador}</p>
+				<p>Pagador Rif: ${fld:rif_pagador}</p>
+				<p style="width: 390px; display:block; overflow:hidden; word-break:keep-all; text-overflow:ellipsis; line-height: 15px;">Pagador Direccion: ${fld:direccion_pagador} </p>
+				<p>M&eacute;dico: ${fld:medico}</p>
+			</div>
+			<div>
+				<p>N&deg; Control Fiscal: ${fld:control_fiscal}</p>
+				<p>N&deg; Documento: ${fld:nro_doc}</p>
+				<p>Fecha Documento: ${fld:fecha_documento}</p>
+				<p>Fecha Vencimiento: ${fld:fecha_vencimiento}</p>
+				<p>Fecha Ingreso: ${fld:fecha_ingreso}</p>
+				<p>N&deg; Autorizacion: ${fld:nro_autorizacion}</p>
+				<p>Monto Autorizado: ${fld:monto_autorizado@#,###,##0.00}</p>
+				<p style="width: 390px; display:block; overflow:hidden; word-break:keep-all; text-overflow:ellipsis; line-height: 15px;">Nombre del Titular: ${fld:titular}</p>
+				<p>Cedula del Titular: ${fld:cedula_titular}</p>
+			</div>
+
+		</div>
+		<br>
+		<br>
+		<div>
+			<div id="tbody">
+				
+			</div>
+		</div>		
+		<br>
+		<br>
+	</form>
+</body>
+</html>
+
+<script type="text/javascript" >
+  	onload = function() {
+
+  		//document.getElementById('imprimir').style.display='none';
+  		$('#facturas').printThis({
+  			debug: false,               // show the iframe for debugging
+		    importCSS: true,            // import parent page css
+		    importStyle: false,         // import style tags
+		    printContainer: false,       // print outer container/$.selector
+		    loadCSS: "/pdf.css",                // path to additional css file - use an array [] for multiple
+		    pageTitle: "Factura",              // add title to print page
+		    removeInline: false,        // remove inline styles from print elements
+		    removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
+		    printDelay: 333,            // variable print delay
+		    header: null,               // prefix to html
+		    footer: null,               // postfix to html
+		    base: false,                // preserve the BASE tag or accept a string for the URL
+		    formValues: false,           // preserve input/form values
+		    canvas: false,              // copy canvas content
+		    doctypeString: '...',       // enter a different doctype for older markup
+		    removeScripts: false,       // remove script tags from print content
+		    copyTagClasses: false,      // copy classes from the html & body tag
+		    beforePrintEvent: null,     // function for printEvent in iframe
+		    beforePrint: null,          // function called before iframe is filled
+		    afterPrint: null            // function called before iframe is removed
+  		});
+
+  		let myTable="";
+  		let cont=0;
+  		let subtotal_monto_neto_ml=0;
+  		let total_monto_neto_ml=0;
+			//console.log(subtotal_monto_neto_ml);
+		myTable+="<table style='width:100%'>";
+  		<grupotitulo>
+			myTable+="<tr>";
+			myTable+="<td style='font-weight: bold; font-size: 14px; font-family:Arial;' colspan='2'>${fld:grupo_titulo}</td>";
+			myTable+="</tr>";
+			<detalle>
+	  			if("${fld:titulo_id}"=="${fld:smn_grupo_titulo_impresion_id}")
+				{
+					subtotal_monto_neto_ml+=parseFloat("${fld:fim_monto_ml}");
+						subtotal_monto_neto_ml=subtotal_monto_neto_ml+0
+					myTable+="<tr style='font-family:Arial;'>";
+					myTable+="<td align='left' style='font-size: 12px; font-family:Arial;'>${fld:fim_codigo}</td>";
+					myTable+="<td align='left' style='font-size: 12px; font-family:Arial;'>${fld:fim_descripcion}</td>";
+					myTable+="<td align='right' style='font-size: 12px; font-family:Arial;'>${fld:fim_monto_ml@#,###,##0.00}</td>";
+					myTable+="</tr>";
+				}
+	  		</detalle>
+	  		myTable+="<tr>";
+	  		myTable+="<td align='left'></td>";
+	  		myTable+="<td align='right' style='font-weight: bold; font-size: 12px; font-family:Arial;'>SUB-TOTAL</td>";
+	  		myTable+="<td align='right' style='font-weight: bold; font-size: 12px; font-family:Arial;'>"+subtotal_monto_neto_ml.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1.").toString()+"</td>";
+	  		myTable+="</tr>";
+			total_monto_neto_ml+=subtotal_monto_neto_ml;
+			
+			subtotal_monto_neto_ml=0;
+			cont++;
+		</grupotitulo>
+		myTable+="<tr>";
+		myTable+="<td align='left'></td>";
+		myTable+="<td align='right' style='font-weight: bold; font-size: 12px; font-family:Arial;'>TOTAL</td>";
+		myTable+="<td align='right' style='font-weight: bold; font-size: 12px; font-family:Arial;'>"+total_monto_neto_ml.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1.").toString()+"</td>";
+		myTable+="</tr>";
+		myTable+="</table>";
+		document.getElementById('tbody').innerHTML = myTable;
+
+		//console.log(myTable);
+  	}
+</script>
+
+

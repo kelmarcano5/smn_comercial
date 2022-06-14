@@ -1,0 +1,68 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+		<col width='3%'/>
+	<col width='3%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="15" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th>AP</th>
+		<th>RZ</th>
+		<th class='sortable' onclick='sortBy("eve_codigo","query-smnevento.sql")'>${lbl:b_code}</th>
+		<th class='sortable' onclick='sortBy("eve_descripcion_corta","query-smnevento.sql")'>${lbl:b_description_short}</th>
+		<th class='sortable' onclick='sortBy("smn_servicios_rf","query-smnevento.sql")'>${lbl:b_services}</th>
+		<th class='sortable' onclick='sortBy("eve_fecha_inicial","query-smnevento.sql")'>${lbl:b_date_init}</th>
+		<th class='sortable' onclick='sortBy("eve_fecha_final","query-smnevento.sql")'>${lbl:b_date_end}</th>
+		<th class='sortable' onclick='sortBy("smn_prestador_servicio_rf","query-smnevento.sql")'>${lbl:b_service_provider}</th>
+		<th class='sortable' onclick='sortBy("saldo","query-smnevento.sql")'>Cupo Disponible</th>
+		<th class='sortable' onclick='sortBy("eve_estatus","query-smnevento.sql")'>${lbl:b_estatus}</th>
+		<th class='sortable' onclick='sortBy("eve_fecha_registro","query-smnevento.sql")'>${lbl:b_store_date}</th>
+		<th>RS</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_evento_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_evento_id}','${fld:eve_estatus}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_evento_id}','${fld:eve_estatus}')" title="${lbl:b_edit_button}"></td>
+		<td><img src="${def:context}/images/accept.png" onclick="aprobacion('${fld:smn_evento_id}')" title="Aprobacion"></td>
+		<td><img src="${def:context}/images/reject.png" onclick="rechazo('${fld:smn_evento_id}')" title="Rechazo"></td>
+		<td align='left'>${fld:eve_codigo}</td>
+		<td align='left'>${fld:eve_descripcion_corta}</td>
+		<td>${fld:smn_servicios_rf}</td>
+		<td>${fld:eve_fecha_inicial@dd-MM-yyyy}</td>
+		<td>${fld:eve_fecha_final@dd-MM-yyyy}</td>
+		<td>${fld:smn_prestador_servicio_rf}</td>
+		<td>${fld:saldo}</td>
+		<td align='left'>${fld:eve_estatus}</td>
+		<td>${fld:eve_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="reservas('${fld:smn_evento_id}')" title="${lbl:b_booking}"></td>
+
+	</tr>
+	</rows>
+
+</table>

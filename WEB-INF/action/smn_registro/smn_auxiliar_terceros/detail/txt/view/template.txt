@@ -1,0 +1,4 @@
+<rows>
+aux_fecha_registro="${fld:aux_fecha_registro}"   dir_descripcion="${fld:dir_descripcion}"   
+  aux_rif="${fld:aux_rif}"  aux_descripcion="${fld:aux_descripcion}"    aux_codigo="${fld:aux_codigo}"    aux_tipo_persona="${fld:aux_tipo_persona}"    smn_clase_auxiliar_rf="${fld:smn_clase_auxiliar_rf}"     
+</rows>

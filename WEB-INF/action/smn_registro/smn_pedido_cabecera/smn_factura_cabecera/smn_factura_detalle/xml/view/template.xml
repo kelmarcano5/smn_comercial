@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_factura_detalle>
+	<detail>
+		<rows>		
+		<record fde_fecha_registro="${fld:fde_fecha_registro}"    fde_monto_ma="${fld:fde_monto_ma}"    fde_precio_ma="${fld:fde_precio_ma}"    smn_tasa_rf="${fld:smn_tasa_rf}"    smn_moneda_rf="${fld:smn_moneda_rf}"    fde_monto_ml="${fld:fde_monto_ml}"    fde_precio_ml="${fld:fde_precio_ml}"    fde_cantidad="${fld:fde_cantidad}"    smn_activo_fijo_rf="${fld:smn_activo_fijo_rf}"    smn_item_rf="${fld:smn_item_rf}"    smn_servicios_rf="${fld:smn_servicios_rf}"    fde_naturaleza="${fld:fde_naturaleza}"    smn_factura_cabecera_id="${fld:smn_factura_cabecera_id}"    />
+		</rows>
+	</detail>
+</smn_factura_detalle>

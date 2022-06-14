@@ -1,0 +1,12 @@
+select
+		smn_comercial.smn_rel_pedido_fecha_entrega.smn_rel_pedido_fecha_entrega_id,
+select
+		smn_comercial.smn_rel_pedido_fecha_entrega.smn_rel_pedido_fecha_entrega_id,
+	smn_comercial.smn_rel_pedido_fecha_entrega.smn_pedido_detalle_id,
+	smn_comercial.smn_rel_pedido_fecha_entrega.smn_rel_auxiliar_direccion,
+	smn_comercial.smn_rel_pedido_fecha_entrega.pfe_fecha_entrega,
+	smn_comercial.smn_rel_pedido_fecha_entrega.pfe_cantidad,
+	smn_comercial.smn_rel_pedido_fecha_entrega.pfe_fecha_registro
+	
+from
+	smn_comercial.smn_rel_pedido_fecha_entrega

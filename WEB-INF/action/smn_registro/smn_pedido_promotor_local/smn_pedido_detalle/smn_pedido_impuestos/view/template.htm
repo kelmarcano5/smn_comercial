@@ -1,0 +1,64 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="13" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_pedido_detalle_id","query-smnpedidoimpuestos.sql")'>${lbl:b_header_order_detail}</th>
+		<th class='sortable' onclick='sortBy("smn_codigos_impuestos_rf","query-smnpedidoimpuestos.sql")'>${lbl:b_code_tax}</th>
+		<th class='sortable' onclick='sortBy("pim_monto_base_ml","query-smnpedidoimpuestos.sql")'>${lbl:b_amount_base}</th>
+		<th class='sortable' onclick='sortBy("pim_porcentaje_impuesto","query-smnpedidoimpuestos.sql")'>${lbl:b_percentaje_tax}</th>
+		<th class='sortable' onclick='sortBy("pim_monto_sustraendo","query-smnpedidoimpuestos.sql")'>${lbl:b_amount_sustrain}</th>
+		<th class='sortable' onclick='sortBy("pim_monto_impuesto","query-smnpedidoimpuestos.sql")'>${lbl:b_amount_tax}</th>
+		<th class='sortable' onclick='sortBy("smn_moneda_rf","query-smnpedidoimpuestos.sql")'>${lbl:b_coins}</th>
+		<th class='sortable' onclick='sortBy("smn_tasa_rf","query-smnpedidoimpuestos.sql")'>${lbl:b_exchange_rate}</th>
+		<th class='sortable' onclick='sortBy("pim_monto_impuesto_ma","query-smnpedidoimpuestos.sql")'>${lbl:b_amount_tax_ma}</th>
+		<th class='sortable' onclick='sortBy("pim_fecha_registro","query-smnpedidoimpuestos.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_pedido_impuestos_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_pedido_impuestos_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_pedido_impuestos_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_pedido_detalle_id}</td>
+		<td>${fld:smn_codigos_impuestos_rf}</td>
+		<td>${fld:pim_monto_base_ml}</td>
+		<td>${fld:pim_porcentaje_impuesto}</td>
+		<td>${fld:pim_monto_sustraendo}</td>
+		<td>${fld:pim_monto_impuesto}</td>
+		<td>${fld:smn_moneda_rf}</td>
+		<td>${fld:smn_tasa_rf}</td>
+		<td>${fld:pim_monto_impuesto_ma}</td>
+		<td>${fld:pim_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

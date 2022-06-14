@@ -1,0 +1,2 @@
+ and
+ 	smn_comercial.smn_rel_cliente_entidad_financiera.smn_tipo_cuenta_banco_rf=${fld:smn_tipo_cuenta_banco_rf}

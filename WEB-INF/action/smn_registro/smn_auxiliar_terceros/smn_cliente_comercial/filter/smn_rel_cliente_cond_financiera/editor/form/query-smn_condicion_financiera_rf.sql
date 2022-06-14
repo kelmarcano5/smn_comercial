@@ -1,0 +1,1 @@
+select smn_base.smn_condicion_financiera.smn_condicion_financiera_id as id, smn_base.smn_condicion_financiera.cfi_codigo ||' - '|| smn_base.smn_condicion_financiera.cfi_description as item from smn_base.smn_condicion_financiera

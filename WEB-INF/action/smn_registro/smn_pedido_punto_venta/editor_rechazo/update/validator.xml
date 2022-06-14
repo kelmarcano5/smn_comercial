@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='numero_documento' type='integer' required='false' label='${lbl:b_customer}' maxlen='100'/>
+	<parameter id='id' type='integer' required='false' label='${lbl:b_header_services_delivery_request}' maxlen='100'/>
+	<parameter id='pde_observaciones' type='varchar' required='false' label='${lbl:b_observation}' maxlen='200'/>
+
+</validator>

@@ -1,0 +1,32 @@
+select
+		smn_comercial.smn_factura_cabecera.smn_documento_id,
+	smn_comercial.smn_factura_cabecera.fca_numero_documento_id,
+	smn_comercial.smn_factura_cabecera.smn_entidad_rf,
+	smn_comercial.smn_factura_cabecera.smn_sucursal_rf,
+	smn_comercial.smn_factura_cabecera.smn_pedido_cabecera_id,
+	smn_comercial.smn_factura_cabecera.smn_oferta_id,
+	smn_comercial.smn_factura_cabecera.smn_caja_rf,
+	smn_comercial.smn_factura_cabecera.smn_cliente_id,
+	smn_comercial.smn_factura_cabecera.smn_control_serie_fiscal_id,
+	smn_comercial.smn_factura_cabecera.fca_numero_control_fiscal,
+	smn_comercial.smn_factura_cabecera.fca_rif,
+	smn_comercial.smn_factura_cabecera.fca_direccion_fiscal,
+	smn_comercial.smn_factura_cabecera.fca_monto_factura_ml,
+	smn_comercial.smn_factura_cabecera.fca_monto_impuesto_ml,
+	smn_comercial.smn_factura_cabecera.fca_monto_descuento_ml,
+	smn_comercial.smn_factura_cabecera.fca_monto_bonificacion_ml,
+	smn_comercial.smn_factura_cabecera.fca_monto_neto_ml,
+	smn_comercial.smn_factura_cabecera.smn_moneda_rf,
+	smn_comercial.smn_factura_cabecera.smn_tasa_rf,
+	smn_comercial.smn_factura_cabecera.fca_monto_factura_ma,
+	smn_comercial.smn_factura_cabecera.fca_monto_impuesto_ma,
+	smn_comercial.smn_factura_cabecera.fca_monto_descuento_ma,
+	smn_comercial.smn_factura_cabecera.fca_monto_bonificacion_ma,
+	smn_comercial.smn_factura_cabecera.fca_monto_neto_ma,
+	smn_comercial.smn_factura_cabecera.fca_estatus_financiero,
+	smn_comercial.smn_factura_cabecera.fca_estatus_proceso,
+	smn_comercial.smn_factura_cabecera.fca_fecha_registro
+from
+	smn_comercial.smn_factura_cabecera 
+where
+	smn_comercial.smn_factura_cabecera.smn_factura_cabecera_id = ${fld:id}

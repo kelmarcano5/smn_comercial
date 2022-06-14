@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />	
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+	<script type="text/javascript">
+		//invoca la generacion de un PDF en un popup
+		function openPDF()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a excel
+		function openExcel() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a xml
+		function openXml(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/xml/search?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a texto
+		function openTxt(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/txt/search?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//envio de emails
+		function openEmails() {
+			var uri = "${def:context}${def:actionroot}/email/form";					
+			openDialog("editor0", uri, 980, 600);	
+		}
+	</script>
+
+</head>
+
+<body>
+
+	<!--banner-->
+	<div class="bannerDialog" id="encabezado_tabla">
+		${lbl:b_document}
+		<img src="${def:context}/images/pdf.png" onclick="openPDF()" title="${lbl:b_export_pdf}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/excel.png" onclick="openExcel()" title="${lbl:b_export_excel}" style="cursor:pointer; margin-left:3px;"/>
+		<!-- <img src="${def:context}/images/file-xml4.png" onclick="openXml('${fld:smn_documento_id}')" title="${lbl:b_export_xml}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/file-text.png" onclick="openTxt('${fld:smn_documento_id}')" title="${lbl:b_export_txt}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/emails.png" onclick="openEmails()" title="${lbl:s_profile_email}" style="cursor:pointer; margin-left:3px;"/> -->
+		<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog()" title="${lbl:b_close_button}" style="float:right; cursor:pointer;"/>
+	</div>
+
+	<table class="record" style="width:500px;">
+		<tr>
+			<td width="40%">${lbl:b_tipo_documento_factura}</td>
+			<td style="background-color: white">${fld:smn_tipo_documentos_fact_id}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_general_documents}</td>
+			<td style="background-color: white">${fld:smn_documentos_generales_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_code}</td>
+			<td style="background-color: white">${fld:dcf_codigo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_description} </td>
+			<td style="background-color: white">${fld:dcf_descripcion}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_accounting_movement_type}</td>
+			<td style="background-color: white">${fld:dcf_tipo_movimiento}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_requiere_vigencia}</td>
+			<td style="background-color: white">${fld:dcf_req_vigencia}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_requiere_fecha_vencimiento}</td>
+			<td style="background-color: white">${fld:dcf_req_fecha_vencimiento}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_genera_orden_despacho}</td>
+			<td style="background-color: white">${fld:dcf_gen_orden_despacho}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_requiere_servicios}</td>
+			<td style="background-color: white">${fld:dcf_req_servicios}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_requiere_vendedor}</td>
+			<td style="background-color: white">${fld:dcf_req_vendedor}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_requiere_tiempo_entrega}</td>
+			<td style="background-color: white">${fld:dcf_req_tiempo_entrega}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_usa_bonificaciones}</td>
+			<td style="background-color: white">${fld:dcf_usa_bonificaciones}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_usa_descuentos}</td>
+			<td style="background-color: white">${fld:dcf_usa_descuentos}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_alternative_currency}</td>
+			<td style="background-color: white">${fld:dcf_moneda_alterna}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_puede_seleccionar_precio}</td>
+			<td style="background-color: white">${fld:dcf_selecciona_precio}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_usa_anexo}</td>
+			<td style="background-color: white">${fld:dcf_usa_anexo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_genera_factura_pv}</td>
+			<td style="background-color: white">${fld:dcf_genera_factura_pv}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_validation_date}</td>
+			<td style="background-color: white">${fld:dcf_vigencia@dd-MM-yyyy}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_status}</td>
+			<td style="background-color: white">${fld:dcf_estatus}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_store_date}</td>
+			<td style="background-color: white">${fld:dcf_fecha_registro@dd-MM-yyyy}</td>
+		</tr>
+
+	</table>
+
+	<br>
+	<div  align="center">
+		<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog()" class="button">
+	</div>
+
+</body>
+
+</html>

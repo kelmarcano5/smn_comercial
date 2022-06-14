@@ -1,0 +1,25 @@
+select
+		smn_comercial.smn_pago_punto_venta.smn_pedido_cabecera_id,
+	smn_comercial.smn_pago_punto_venta.smn_mov_caja_cabecera_id,
+	smn_comercial.smn_pago_punto_venta.smn_pagador_clase_rf,
+	smn_comercial.smn_pago_punto_venta.smn_rel_punto_venta_pago_rf,
+	smn_comercial.smn_pago_punto_venta.smn_forma_pago_rf,
+	smn_comercial.smn_pago_punto_venta.ppv_numero_documento_forma_pago,
+	smn_comercial.smn_pago_punto_venta.ppv_numero_autorizacion,
+	smn_comercial.smn_pago_punto_venta.ppv_documento_identidad_pagador,
+	smn_comercial.smn_pago_punto_venta.ppv_nombre_pagador,
+	smn_comercial.smn_pago_punto_venta.ppv_monto_pagar_ml,
+	smn_comercial.smn_pago_punto_venta.ppv_monto_pago_ml,
+	smn_comercial.smn_pago_punto_venta.ppv_monto_devuelto_ml,
+	smn_comercial.smn_pago_punto_venta.ppv_monto_pagar_ma,
+	smn_comercial.smn_pago_punto_venta.ppv_monto_pago_ma,
+	smn_comercial.smn_pago_punto_venta.ppv_monto_devuelto_ma,
+	smn_comercial.smn_pago_punto_venta.smn_moneda_rf,
+	smn_comercial.smn_pago_punto_venta.smn_tasa_rf,
+	smn_comercial.smn_pago_punto_venta.ppv_observacion,
+	smn_comercial.smn_pago_punto_venta.ppv_estatus,
+	smn_comercial.smn_pago_punto_venta.ppv_fecha_registro
+from
+	smn_comercial.smn_pago_punto_venta 
+where
+	smn_comercial.smn_pago_punto_venta.smn_pago_punto_venta_id = ${fld:id}

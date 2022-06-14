@@ -1,0 +1,1 @@
+select smn_entrega.smn_solicitud_afiliacion.smn_solicitud_afiliacion_id as id, smn_entrega.smn_solicitud_afiliacion.saf_observacion as item from smn_entrega.smn_solicitud_afiliacion

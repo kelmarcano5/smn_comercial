@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/crud'>
+	<parameter id='iic_descripcion' type='varchar' required='false' label='${lbl:b_description}' maxlen='200'/>
+	<parameter id='iic_imagen_size' type='integer' required='false' label='${lbl:b_image_size}' maxlen='10'/>
+	<parameter id='filename' type='varchar' required='false' label='${lbl:b_name}' maxlen='100'/>
+	<parameter id='content_type' type='varchar' required='false' label='${lbl:b_type_content}' maxlen='100'/>
+	<custom-validator classname="dinamica.validators.SQLPatternTransformer" parameter="iic_descripcion" rule="like" />
+	<custom-validator classname="dinamica.validators.SQLPatternTransformer" parameter="filename" rule="like" />
+	<custom-validator classname="dinamica.validators.SQLPatternTransformer" parameter="content_type" rule="like" />
+	<parameter id="id2" type="integer" required="false" label="ID2" maxlen="50" />
+</validator>

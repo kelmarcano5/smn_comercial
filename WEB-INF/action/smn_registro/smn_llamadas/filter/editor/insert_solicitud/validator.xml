@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_prospecto_rf' type='integer' required='false' label='${lbl:b_leaflet}' maxlen='10'/>
+	<parameter id='saf_observacion' type='varchar' required='false' label='${lbl:b_observation}' maxlen='200'/>
+	<parameter id='smn_usuario_rf' type='integer' required='false' label='${lbl:b_user}' maxlen='10'/>
+	<parameter id='saf_fecha_visita' type='date' required='false' label='${lbl:b_visit_date}' maxlen='10'/>
+	<parameter id='saf_status' type='varchar' required='false' label='${lbl:b_estatus}' maxlen='2'/>
+	<parameter id='smn_prospecto_id' type='integer' required='false' label='${lbl:b_leaflet}' maxlen='10'/>
+	<parameter id='lla_observacion' type='varchar' required='false' label='${lbl:b_observation}' maxlen='200'/>
+</validator>

@@ -1,0 +1,32 @@
+INSERT INTO smn_comercial.smn_cliente
+(
+	smn_cliente_id,
+	smn_clasificacion_cliente_id,
+	smn_clase_auxiliar_rf,
+	smn_auxiliar_rf,
+	smn_clasificacion_abc_rf,
+	smn_sector_economico_rf,
+	cli_nacional_ext,
+	cli_vigencia,
+	cli_estatus,
+	cli_idioma,
+	cli_usuario,
+	cli_fecha_registro,
+	cli_hora
+)
+VALUES
+(
+	${seq:currval@smn_comercial.seq_smn_cliente},
+	${fld:smn_clasificacion_cliente_id},
+	${fld:smn_clase_auxiliar_rf},
+	${fld:smn_auxiliar_rf},
+	${fld:smn_clasificacion_abc_rf},
+	${fld:smn_sector_economico_rf},
+	${fld:cli_nacional_ext},
+	${fld:cli_vigencia},
+	${fld:cli_estatus},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

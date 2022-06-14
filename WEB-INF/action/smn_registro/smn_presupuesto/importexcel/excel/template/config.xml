@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnpresupuesto.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_presupuesto}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_presupuesto}">
+				<col id='smn_documento_id_combo' label='${lbl:b_pre_documento}' />
+		<col id='pre_numero_control' label='${lbl:b_pre_num_control}' />
+		<col id='smn_entidades_rf_combo' label='${lbl:b_pre_entidades}' />
+		<col id='smn_sucursales_rf_combo' label='${lbl:b_pre_sucursal}' />
+		<col id='smn_clase_auxiliar_rf_combo' label='${lbl:b_paciente_clase}' />
+		<col id='smn_auxiliar_rf_combo' label='${lbl:b_paciente}' />
+		<col id='smn_clase_ord_rf_combo' label='${lbl:b_contratante_clase}' />
+		<col id='smn_auxiliar_ord_rf_combo' label='${lbl:b_contratante}' />
+		<col id='smn_baremo_rf_combo' label='${lbl:b_baremo}' />
+		<col id='smn_auxiliar_unidades_negocios_rf_combo' label='${lbl:b_pre_unidad_neg}' />
+		<col id='smn_auxiliar_sucursales_rf_combo' label='${lbl:b_pre_sucursales}' />
+		<col id='smn_auxiliar_areas_servicios_rf_combo' label='${lbl:b_area_serv}' />
+		<col id='smn_auxiliar_unidades_servicios_rf_combo' label='${lbl:b_aux_unidades_serv}' />
+		<col id='pre_vigencia_hasta' label='${lbl:b_budget_date}' />
+		<col id='smn_ordenes_medicas_id_combo' label='${lbl:b_ord_med}' />
+		<col id='pre_fecha_entrega' label='${lbl:b_fech_entrega}' />
+		<col id='pre_monto_ml' label='${lbl:b_pre_monto_loc}' />
+		<col id='smn_moneda_rf_combo' label='${lbl:b_pre_moneda}' />
+		<col id='pre_monto_ma' label='${lbl:b_pre_monto_alt}' />
+		<col id='smn_estado_presupuesto_id_combo' label='${lbl:b_budget_status}' />
+		<col id='smn_documento_id_combo' label='${lbl:b_pre_documento}' />
+		<col id='pre_numero_control' label='${lbl:b_pre_num_control}' />
+		<col id='smn_entidades_rf_combo' label='${lbl:b_pre_entidades}' />
+		<col id='smn_sucursales_rf_combo' label='${lbl:b_pre_sucursal}' />
+		<col id='smn_clase_auxiliar_rf_combo' label='${lbl:b_paciente_clase}' />
+		<col id='smn_auxiliar_rf_combo' label='${lbl:b_paciente}' />
+		<col id='pre_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

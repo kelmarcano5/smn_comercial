@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id="id" type="integer" required="true" label="ID" maxlen="10" />
+			<parameter id="item" type="integer" required="false" label="ID" maxlen="10" />
+			<parameter id="precio" type="integer" required="false" label="ID" maxlen="10" />
+			<parameter id="naturaleza" type="varchar" required="false" label="ID" maxlen="10" />
+</validator>

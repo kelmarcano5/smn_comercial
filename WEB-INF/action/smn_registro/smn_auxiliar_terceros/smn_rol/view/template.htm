@@ -1,0 +1,67 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="14" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_usuario_rf","query-smnrol.sql")'>${lbl:b_user}</th>
+		<th class='sortable' onclick='sortBy("smn_clase_auxiliar_rf","query-smnrol.sql")'>${lbl:b_auxiliary_class}</th>
+		<th class='sortable' onclick='sortBy("smn_auxiliar_rf","query-smnrol.sql")'>${lbl:b_auxiliary}</th>
+		<th class='sortable' onclick='sortBy("rol_tipo","query-smnrol.sql")'>${lbl:b_type_rol}</th>
+		<th class='sortable' onclick='sortBy("smn_corporacion_rf","query-smnrol.sql")'>${lbl:b_corporation}</th>
+		<th class='sortable' onclick='sortBy("smn_entidad_rf","query-smnrol.sql")'>${lbl:b_entity}</th>
+		<th class='sortable' onclick='sortBy("smn_sucursal_rf","query-smnrol.sql")'>${lbl:b_subsidiary}</th>
+		<th class='sortable' onclick='sortBy("smn_posicion_estructura_rf","query-smnrol.sql")'>${lbl:b_structure_configuration}</th>
+		<th class='sortable' onclick='sortBy("rol_estatus","query-smnrol.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("rol_vigencia","query-smnrol.sql")'>${lbl:b_vigency}</th>
+		<th class='sortable' onclick='sortBy("rol_fecha_registro","query-smnrol.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_rol_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_rol_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_rol_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_usuario_rf}</td>
+		<td>${fld:smn_clase_auxiliar_rf}</td>
+		<td>${fld:smn_auxiliar_rf}</td>
+		<td align='left'>${fld:rol_tipo}</td>
+		<td>${fld:smn_corporacion_rf}</td>
+		<td>${fld:smn_entidad_rf}</td>
+		<td>${fld:smn_sucursal_rf}</td>
+		<td>${fld:smn_posicion_estructura_rf}</td>
+		<td align='left'>${fld:rol_estatus}</td>
+		<td>${fld:rol_vigencia@dd-MM-yyyy}</td>
+		<td>${fld:rol_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

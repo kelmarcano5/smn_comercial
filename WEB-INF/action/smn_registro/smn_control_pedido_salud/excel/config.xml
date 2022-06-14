@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnpedidocabecera.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="4" cellStep="0" name="${lbl:b_control_header_order}"/>
+	
+	<excel 
+		recordset='query-smnpedidocabecera.sql' 
+		sheetname='${lbl:b_control_header_order}' 
+		filename='${lbl:b_control_header_order}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_centro_facturacion_id' label='${lbl:b_centro_facturacion}' />
+		<col id='numeropedido' label='${lbl:b_document}' />
+		<col id='num_ingreso' label='Num Ingreso' />
+		<col id='paciente' label='Paciente' />
+		<col id='cliente' label='Cliente' />
+		<col id='monto_pedido' label='${lbl:b_amount}' />
+		<col id='montoma' label='${lbl:b_amount}' />
+		<col id='pca_estatus' label='Estatus' />
+		<col id='pca_estatus_pago' label='Estatus Pagado' />
+		<col id='pca_fecha_requerida' label='${lbl:b_required_date}' />
+
+
+	</excel>
+
+</config>

@@ -1,0 +1,1 @@
+select smn_comercial.smn_rol.smn_rol_id as id, smn_comercial.smn_rol.smn_usuarios_rf as item from smn_comercial.smn_rol

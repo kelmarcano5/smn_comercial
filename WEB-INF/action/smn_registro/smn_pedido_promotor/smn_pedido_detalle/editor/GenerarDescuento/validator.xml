@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+	<parameter id='smn_pedido_detalle_id' type='integer' required='false' label='${lbl:b_header_order_detail}' maxlen='10'/>
+	<parameter id='smn_descuentos_retenciones_rf' type='integer' required='false' label='${lbl:b_discount_retention}' maxlen='10'/>
+	<parameter id='pim_monto_base_ml' type='double' required='false' label='${lbl:b_amount_base_ml}' maxlen='30'/>
+	<parameter id='pim_monto_base_ma' type='double' required='false' label='${lbl:b_amount_base_ml}' maxlen='30'/>
+	<parameter id='pim_porcentaje_retencion' type='double' required='false' label='${lbl:b_percentage_discount}' maxlen='30'/>
+	<parameter id='pim_monto_descuento_retencion' type='double' required='false' label='${lbl:b_amount_discount}' maxlen='30'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='pim_monto_descuento_ma' type='double' required='false' label='${lbl:b_amount_discount_ma}' maxlen='30'/>
+	<parameter id='pim_cantidad' type='integer' required='false' label='${lbl:b_quantity}' maxlen='10'/>
+
+	<parameter id='cod_des' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='baremos' type='integer' required='false' label='${lbl:b_amount_tax_ma}' maxlen='10'/>
+		<parameter id='id' type='integer' required='false' label='${lbl:b_amount_tax_ma}' maxlen='10'/>
+
+		<parameter id='montobaseml' type='double' required='false' label='${lbl:b_amount_base}' maxlen='30'/>
+		<parameter id='montobasema' type='double' required='false' label='${lbl:b_amount_base}' maxlen='30'/>
+		<parameter id='montodescuentoml' type='double' required='false' label='${lbl:b_amount_base}' maxlen='30'/>
+		<parameter id='montodescuentoma' type='double' required='false' label='${lbl:b_amount_base}' maxlen='30'/>
+
+</validator>

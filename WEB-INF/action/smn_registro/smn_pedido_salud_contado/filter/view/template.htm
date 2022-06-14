@@ -1,0 +1,71 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+	<col width='2%'/>
+	<col width='2%'/>
+	<col width='2%'/>
+	<col width='2%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="16" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th>VR</th>
+	 	<th>GE</th>
+		<th>RE</th>
+		<th class='sortable' onclick='sortBy("smn_centro_facturacion_id", "numero_documento","query-smnpedidocabecera.sql")'>${lbl:b_centro_facturacion}</th>
+		<th class='sortable' onclick='sortBy("documento", "numero_documento","query-smnpedidocabecera.sql")'>Numero/${lbl:b_document}</th>
+		<th class='sortable' onclick='sortBy("num_ingreso","query-smnpedidocabecera.sql")'>N&deg; Ingreso</th>
+		<th class='sortable' onclick='sortBy("paciente","query-smnpedidocabecera.sql")'>Paciente</th>
+		<th class='sortable' onclick='sortBy("cliente","query-smnpedidocabecera.sql")'>Cliente</th>
+		<th class='sortable' onclick='sortBy("monto_pedido","query-smnpedidocabecera.sql")'>${lbl:b_amount}</th>
+		<th class='sortable' onclick='sortBy("montoma","query-smnpedidocabecera.sql")'>${lbl:b_amount} MA</th>
+		<th class='sortable' onclick='sortBy("estatus_proceso","query-smnpedidocabecera.sql")'>Estatus</th>
+		<th class='sortable' onclick='sortBy("pca_estatus_pago","query-smnpedidocabecera.sql")'>Estatus Pagado</th>
+		<th class='sortable' onclick='sortBy("pca_fecha_requerida","query-smnpedidocabecera.sql")'>${lbl:b_required_date}</th>
+		<th>DT</th>
+		<th>PV</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_pedido_cabecera_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/search.png"  onclick="openPDF_factura('${fld:smn_pedido_cabecera_id}')" title="Ver Reporte"></td>
+		<td><img src="${def:context}/images/icongrid/Generar.png" onclick="procesar_ingreso('${fld:smn_pedido_cabecera_id}','${fld:pca_estatus}','${fld:pca_estatus_pago}')" title="Procesar de Pedido a Ingreso"></td>
+ 		<td><img src="${def:context}/images/reject.png" onclick="rechazar('${fld:smn_pedido_cabecera_id}')" title="Rechazar" id="rechazar"></td>
+ 		<td>${fld:smn_centro_facturacion_id}</td>
+		<td align='left'>${fld:numeropedido} - ${fld:documento}</td>
+		<td>${fld:num_ingreso}</td>
+		<td>${fld:paciente}</td>
+		<td>${fld:cliente}</td>
+		<td align="right">${fld:monto_pedido@#,###,##0.00}</td>
+		<td align="right">${fld:montoma@#,###,##0.00}</td>
+		<td align='center'>${fld:pca_estatus}</td>
+		<td align='center'>${fld:pca_estatus_pago}</td>
+		<td>${fld:pca_fecha_requerida@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="detalle('${fld:smn_pedido_cabecera_id}','${fld:numeropedido}','${fld:pca_descripcion}','${fld:documento_id}','${fld:cliente}','${fld:pca_estatus_val}','${fld:comprador}','${fld:monto}','${fld:entidad}','${fld:smn_baremos_rf}','${fld:caja}','${fld:modulo}','${fld:linea}','${fld:montoma}','${fld:smn_moneda_rf}','${fld:smn_tasa_rf}','${fld:pca_estatus_pago}','${fld:centro_facturacion}')" title="${lbl:b_header_order}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="pagospunto('${fld:smn_pedido_cabecera_id}','${fld:numeropedido}','${fld:pca_descripcion}','${fld:documento_id}','${fld:cliente}','${fld:pca_estatus_val}','${fld:comprador}','${fld:monto@######0.00}','${fld:montoma@######0.00}','${fld:smn_moneda_rf}','${fld:smn_tasa_rf}','${fld:smn_cliente_id}','${fld:caja}','${fld:comprador_id}','${fld:pca_estatus_pago}','${fld:centro_facturacion}')" title="Pago Punto de Venta"></td>
+
+	</tr>
+	</rows>
+
+</table>

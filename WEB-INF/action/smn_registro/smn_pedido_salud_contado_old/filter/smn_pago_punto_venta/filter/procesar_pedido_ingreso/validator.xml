@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id='smn_pedido_cabecera_id' type='integer' required='false' label='${lbl:b_header_order}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+	<parameter id='smn_area_servicio_rf' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+	<parameter id='smn_unidad_servicio_rf' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+	<parameter id='smn_cliente_id' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_ingresos_id' type='integer' required='false' label='${lbl:b_header_order}' maxlen='10'/>
+	<parameter id='smn_servicios_rf' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='pca_numero_pedido' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='pca_descripcion' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='igs_ticket' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='smn_auxiliar_rf' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='pca_monto_neto_ml' type='double' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='pca_monto_neto_ma' type='double' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='pde_precio_moneda_alterna' type='double' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='pde_monto_moneda_alterna' type='double' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='pde_precio' type='double' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='pde_monto' type='double' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='pde_cantidad_pedido' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='smn_componente_rf' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+
+	<parameter id='smn_pedido_detalle_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='smn_servicios_rf' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='smn_mov_caja_cabecera_id' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+
+	<parameter id='smn_deposito_id' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='smn_dist_pago_detalle_id' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+</validator>
+
+

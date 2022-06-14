@@ -1,0 +1,1 @@
+select smn_comercial.smn_tipo_linea_comercial.smn_tipo_linea_comercial_id as id, smn_comercial.smn_tipo_linea_comercial.tlc_codigo|| ' - ' || smn_comercial.smn_tipo_linea_comercial.tlc_nombre as item from smn_comercial.smn_tipo_linea_comercial order by tlc_nombre

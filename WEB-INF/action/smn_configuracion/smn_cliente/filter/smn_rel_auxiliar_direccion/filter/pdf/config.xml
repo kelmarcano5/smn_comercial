@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnrelauxiliardireccion.sql" source="session" scope="transaction" />
+		<recordset id="filter.params" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_rel_auxiliar_direccion}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' align="left" />
+	<pdf-file-name>${lbl:b_rel_auxiliar_direccion}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='filter.params' title='${lbl:b_filter_find}' noFilterMsg='-- ${lbl:b_all_message} --' width='55' spacingBefore='15'>
+			<col name='smn_auxiliar_id' title='${lbl:b_auxiliary}'  format='######' align='left' />
+			<col name='smn_direccion_id' title='${lbl:b_address}'  format='######' align='left' />
+			<col name='smn_zona_rf' title='${lbl:b_zone}'  format='######' align='left' />
+			<col name='rad_fecha_registro_desde' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='left' />
+			<col name='rad_fecha_registro_hasta' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='left' />
+
+		</record>
+		<record recordset='query-smnrelauxiliardireccion.sql' width='100' spacingBefore='10'>
+			<col name='smn_clase_auxiliar_id_combo' title='${lbl:b_auxiliary_class}' width='9' align='left' format='######' />
+			<col name='smn_auxiliar_id_combo' title='${lbl:b_auxiliary}' width='9' align='left' format='######' />
+			<col name='smn_direccion_id_combo' title='${lbl:b_address}' width='9' align='left' format='######' />
+			<col name='rad_tipo_direccion' title='${lbl:b_direction_type}' width='9' align='left' />
+			<col name='rad_status' title='${lbl:b_status}' width='9' align='left' />
+			<col name='rad_fecha_vigencia' title='${lbl:b_fecha_vigencia}' width='9' align='left' format='dd-MM-yyyy' />
+			<col name='rad_idioma' title='${lbl:s_profile_lang}' width='9' align='left' />
+			<col name='rad_usuario' title='${lbl:b_users}' width='9' align='left' />
+			<col name='rad_fecha_registro' title='${lbl:b_store_date}' width='9' align='left' format='dd-MM-yyyy' />
+			<col name='rad_hora' title='${lbl:s_loginhist_col2}' width='9' align='left' />
+			<col name='smn_zona_rf' title='${lbl:b_zone}' width='9' align='left' format='######' />
+
+		</record>
+
+	</pdf-report>
+</config>

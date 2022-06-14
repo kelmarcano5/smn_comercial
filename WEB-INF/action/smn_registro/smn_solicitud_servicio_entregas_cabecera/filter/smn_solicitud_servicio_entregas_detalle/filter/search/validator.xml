@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_solicitud_servicio_entregas_cabecera_id_name' type='varchar' required='false' label='${lbl:b_header_services_delivery_request}'/>
+	<parameter id='smn_solicitud_servicio_entregas_cabecera_id' type='integer' required='false' label='${lbl:b_header_services_delivery_request}' maxlen='10'/>
+	<parameter id='smn_catalogo_item_comercio_id' type='integer' required='false' label='${lbl:b_catalog_item_commerce}' maxlen='10'/>
+	<parameter id='sed_fecha_registro_ini' type='integer' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.IntegerRangeValidator' on-error-label='[${lbl:b_store_date} mayor o igual que] no puede ser mayor que [${lbl:b_store_date} menor o igual que].' value1='sed_fecha_registro_ini' value2='sed_fecha_registro_fin' id='sed_fecha_registro_ini' />
+	<parameter id='sed_fecha_registro_fin' type='integer' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnrol.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_rol}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_rol}">
+				<col id='smn_usuario_rf' label='${lbl:b_user}' />
+		<col id='smn_clase_auxiliar_rf' label='${lbl:b_auxiliary_class}' />
+		<col id='smn_auxiliar_rf' label='${lbl:b_auxiliary}' />
+		<col id='rol_tipo' label='${lbl:b_type_rol}' />
+		<col id='smn_corporacion_rf' label='${lbl:b_corporation}' />
+		<col id='smn_entidad_rf' label='${lbl:b_entity}' />
+		<col id='smn_sucursal_rf' label='${lbl:b_subsidiary}' />
+		<col id='smn_posicion_estructura_rf' label='${lbl:b_structure_configuration}' />
+		<col id='rol_estatus' label='${lbl:b_status}' />
+		<col id='rol_vigencia' label='${lbl:b_vigency}' />
+		<col id='rol_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

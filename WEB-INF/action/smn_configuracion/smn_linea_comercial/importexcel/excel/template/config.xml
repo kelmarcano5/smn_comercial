@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnlineacomercial.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_linea_comercial}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_linea_comercial}">
+				<col id='smn_tipo_linea_comercial_id_combo' label='${lbl:b_tipo_linea_comercial}' />
+		<col id='lco_codigo' label='${lbl:b_code}' />
+		<col id='lco_nombre' label='${lbl:b_name}' />
+		<col id='lco_vigencia' label='${lbl:b_validation_date}' />
+		<col id='lco_estatus_combo' label='${lbl:b_status}' />
+		<col id='lco_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

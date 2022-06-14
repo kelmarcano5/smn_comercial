@@ -1,0 +1,49 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="8" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_documento_grp_titulo_imp_id","query-smndetalledocumentotituloimp.sql")'>${lbl:b_relacion_documento_titulo_impresion}</th>
+		<th class='sortable' onclick='sortBy("smn_item_servicio_rf","query-smndetalledocumentotituloimp.sql")'>${lbl:b_nature}</th>
+		<th class='sortable' onclick='sortBy("smn_id_rf","query-smndetalledocumentotituloimp.sql")'>${lbl:b_servicio_item}</th>
+		<th class='sortable' onclick='sortBy("smn_componentes_rf","query-smndetalledocumentotituloimp.sql")'>${lbl:b_components}</th>
+		<th class='sortable' onclick='sortBy("dgi_fecha_registro","query-smndetalledocumentotituloimp.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_detalle_documento_titulo_imp_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_detalle_documento_titulo_imp_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_detalle_documento_titulo_imp_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_documento_grp_titulo_imp_id}</td>
+		<td>${fld:smn_item_servicio_rf}</td>
+		<td>${fld:smn_id_rf}</td>
+		<td>${fld:smn_componentes_rf}</td>
+		<td>${fld:dgi_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

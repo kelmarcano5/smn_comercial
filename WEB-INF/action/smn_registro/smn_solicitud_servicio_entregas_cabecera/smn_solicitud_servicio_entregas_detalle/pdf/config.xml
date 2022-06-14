@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnsolicitudservicioentregasdetalle.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_detail_services_delivery_request}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_detail_services_delivery_request}.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smnsolicitudservicioentregasdetalle.sql' width='100' spacingBefore='40'>
+			<col name='sec_origen_pl0' title='${lbl:b_header_services_delivery_request}' width='14' align='left' />
+			<col name='smn_catalogo_item_comercio_id' title='${lbl:b_catalog_item_commerce}' width='14' align='left' format='######' />
+			<col name='smn_unidad_medida_rf' title='${lbl:b_measurement_unit}' width='14' align='left' format='######' />
+			<col name='sed_cantidad' title='${lbl:b_quantity}' width='14' align='left' format='######' />
+			<col name='sed_requirimientos' title='${lbl:b_requeriment}' width='14' align='left' />
+			<col name='sed_precio_ml' title='${lbl:b_price_ml}' width='14' align='left' format='#,###,##0.00' />
+			<col name='sed_fecha_registro' title='${lbl:b_store_date}' width='14' align='left' format='######' />
+
+		</record>
+
+	</pdf-report>
+</config>

@@ -1,0 +1,64 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="15" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_documento_id","query-smnfacturacabecera.sql")'>${lbl:b_document}</th>
+		<th class='sortable' onclick='sortBy("fca_numero_documento_id","query-smnfacturacabecera.sql")'>${lbl:b_document_number}</th>
+		<th class='sortable' onclick='sortBy("smn_caja_rf","query-smnfacturacabecera.sql")'>${lbl:b_box}</th>
+		<th class='sortable' onclick='sortBy("smn_cliente_id","query-smnfacturacabecera.sql")'>${lbl:b_customer}</th>
+		<th class='sortable' onclick='sortBy("fca_rif","query-smnfacturacabecera.sql")'>${lbl:b_rif}</th>
+		<th class='sortable' onclick='sortBy("fca_estatus_financiero","query-smnfacturacabecera.sql")'>${lbl:b_financial_status}</th>
+		<th class='sortable' onclick='sortBy("fca_estatus_proceso","query-smnfacturacabecera.sql")'>${lbl:b_process_status}</th>
+		<th class='sortable' onclick='sortBy("fca_fecha_registro","query-smnfacturacabecera.sql")'>${lbl:b_store_date}</th>
+		<th>FD</th>
+		<th>FP</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_factura_cabecera_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_factura_cabecera_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_factura_cabecera_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_documento_id}</td>
+		<td>${fld:fca_numero_documento_id}</td>
+		<td>${fld:smn_caja_rf}</td>
+		<td>${fld:smn_cliente_id}</td>
+		<td>${fld:fca_rif}</td>
+		<td align='left'>${fld:fca_estatus_financiero}</td>
+		<td align='left'>${fld:fca_estatus_proceso}</td>
+		<td>${fld:fca_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="detalle('${fld:smn_factura_cabecera_id}','${fld:fca_numero_documento_id}','${fld:smn_pedido_cabecera_id}')" title="${lbl:b_detail_bill}"></td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="pagadores('${fld:smn_factura_cabecera_id}','${fld:fca_numero_documento_id}','${fld:smn_pedido_cabecera_id}')" title="${lbl:b_paying_bill}"></td>
+
+	</tr>
+	</rows>
+
+</table>

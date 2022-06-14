@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="false">
+
+	<summary>
+		${lbl:b_detail_services_delivery_request}
+	</summary>
+
+	<log>false</log>
+	
+	<set-request-attribute id="progress" value="file:/WEB-INF/action/progress/progress.htm"/>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id='query-smn_solicitud_servicio_entregas_cabecera_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_catalogo_item_comercio_id.sql' source='sql' scope='transaction'/>
+			<recordset id="smn_detalle_id" source="session" scope="transaction" />
+
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<print mode='table' recordset='query-smn_solicitud_servicio_entregas_cabecera_id.sql' tag='smn_solicitud_servicio_entregas_cabecera_id_rows'/>
+		<print mode='table' recordset='query-smn_catalogo_item_comercio_id.sql' tag='smn_catalogo_item_comercio_id_rows'/>
+			<print mode="form" recordset="smn_detalle_id"/>
+	</output>
+
+</config>

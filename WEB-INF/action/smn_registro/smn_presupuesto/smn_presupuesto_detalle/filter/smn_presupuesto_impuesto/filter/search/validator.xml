@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_presupuesto_detalle_id' type='integer' required='false' label='${lbl:b_presupuesto_det}' maxlen='10'/>
+	<parameter id='smn_servicios_rf' type='integer' required='false' label='${lbl:b_service}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='smn_codigo_impuesto_id' type='integer' required='false' label='${lbl:b_codigo_impuesto}' maxlen='10'/>
+	<parameter id='pim_fecha_registro_ini' type='integer' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.IntegerRangeValidator' on-error-label='[${lbl:b_store_date} mayor o igual que] no puede ser mayor que [${lbl:b_store_date} menor o igual que].' value1='pim_fecha_registro_ini' value2='pim_fecha_registro_fin' id='pim_fecha_registro_ini' />
+	<parameter id='pim_fecha_registro_fin' type='integer' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

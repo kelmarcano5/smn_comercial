@@ -1,0 +1,47 @@
+<!--data grid-->
+<table class="datagrid display" style="width:95%;">
+	<!-- <col width='3%'/> -->
+	<col width='3%'/>
+	<col width='35%'/>
+	<col width='35%'/>
+	<col width='35%'/>
+	<col width='3%'/>
+	
+	<!-- <col width='10%'/> -->
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="5" id="encabezado_tabla">
+			<!-- <img src="${def:context}/images/icongrid/Procesarg.png"  onclick="generar('${fld:smn_cliente_id}')" title="Procesar"> -->
+			${req:controls} 
+		</th>
+
+		
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<!-- <th></th> -->
+		<th>VR</th>
+		<th class='sortable' onclick='sortBy("cliente","query-smningreso.sql")'>${lbl:b_customer}</th>
+		<th class='sortable' onclick='sortBy("monto_ml","query-smningreso.sql")'>Monto Local</th>
+		<th class='sortable' onclick='sortBy("monto_ma","query-smningreso.sql")'>Monto MA</th>
+		<th>DT</th>
+		<!-- <th class='sortable' onclick='sortBy("pca_fecha_registro","query-smningreso.sql")'>Fecha Registro</th> -->
+	</tr>
+
+	<!--data-->
+	<rows>
+		<tr>
+			<!-- <td><img src="${def:context}/images/icongrid/Generar.png"  onclick="generar('${fld:smn_cliente_id}')" title="Procesar"></td> -->
+			<td><img src="${def:context}/images/search.png"  onclick="openPDF_factura()" title="Ver Reporte"></td>
+			<td>${fld:cliente}</td>
+			<td align="right">${fld:monto_ml@#,###,##0.00}</td>
+			<td align="right">${fld:monto_ma@#,###,##0.00}</td>
+			<!-- <td>${fld:pca_fecha_registro@dd-MM-yyyy}</td> -->
+			<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="detalle()" title="Detalle"></td> 
+		</tr>
+	</rows>
+
+</table>
+

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_tipo_documentos_fact>
+	<detail>
+		<rows>		
+		<record tdf_fecha_registro="${fld:tdf_fecha_registro}"    tdf_estatus="${fld:tdf_estatus}"    tdf_vigencia="${fld:tdf_vigencia}"    tdf_naturaleza="${fld:tdf_naturaleza}"    tdf_nombre="${fld:tdf_nombre}"    tdf_codigo="${fld:tdf_codigo}"    />
+		</rows>
+	</detail>
+</smn_tipo_documentos_fact>

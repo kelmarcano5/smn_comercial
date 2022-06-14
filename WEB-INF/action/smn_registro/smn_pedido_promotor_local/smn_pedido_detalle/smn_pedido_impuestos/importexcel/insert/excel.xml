@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_pedido_detalle_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_codigos_impuestos_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='pim_monto_base_ml' type='integer' required='false' maxlen='10'/>
+	<parameter id='pim_porcentaje_impuesto' type='integer' required='false' maxlen='10'/>
+	<parameter id='pim_monto_sustraendo' type='integer' required='false' maxlen='10'/>
+	<parameter id='pim_monto_impuesto' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='pim_monto_impuesto_ma' type='integer' required='false' maxlen='10'/>
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='smn_codigos_impuestos_rf'/>
+
+
+</validator>

@@ -1,0 +1,1 @@
+select ${seq:nextval@smn_entrega.seq_smn_solicitud_afiliacion} as id

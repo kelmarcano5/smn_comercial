@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/crud'>
+	<parameter id='svc_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='16'/>
+	<parameter id='svc_descripcion' type='varchar' required='false' label='${lbl:b_description}' maxlen='56'/>
+	<parameter id='svc_tipo_servicio' type='integer' required='false' label='${lbl:b_service_type}' maxlen='10'/>
+	<parameter id='svc_inactivo' type='varchar' required='false' label='${lbl:b_inactive}' maxlen='1'/>
+	<custom-validator classname="dinamica.validators.SQLPatternTransformer" parameter="svc_codigo" rule="like" />
+	<custom-validator classname="dinamica.validators.SQLPatternTransformer" parameter="svc_descripcion" rule="contains" />
+	<custom-validator classname="dinamica.validators.SQLPatternTransformer" parameter="svc_inactivo" rule="contains" />
+</validator>

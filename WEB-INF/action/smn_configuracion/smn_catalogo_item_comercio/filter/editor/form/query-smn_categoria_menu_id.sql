@@ -1,0 +1,1 @@
+select smn_comercial.smn_categoria_menu.smn_categoria_menu_id as id, smn_comercial.smn_categoria_menu.cam_descripcion as item from smn_comercial.smn_categoria_menu

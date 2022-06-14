@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_grupo_promotores_vendedores_id' type='integer' required='false' label='${lbl:b_group_promoting_sales}' maxlen='10'/>
+	<parameter id='smn_rol_id' type='integer' required='false' label='${lbl:b_rol}' maxlen='10'/>
+</validator>

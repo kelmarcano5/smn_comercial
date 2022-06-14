@@ -1,0 +1,333 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <title>${lbl:b_base_module} 1.0</title>
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <link rel="stylesheet" type="text/css" href="dinamica.css" />
+    
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="action/script">
+	</script>
+
+	<script type="text/javascript">
+	
+		if (top.frames.length!=0) {
+		    if (window.location.href.replace)
+		        top.location.replace(self.location.href);
+		    else
+		        top.location.href=self.document.href;
+		}
+		
+		onload = function() { 
+			displayLogin();
+		} 
+		
+		//ejecutar login
+		function login() {
+			clearErrorMessages();
+			document.getElementById("loginbutton").disabled=true;
+			return ajaxCall(	httpMethod="POST", 
+								uri="/action/security/login", 
+								divResponse="form_error", 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=null, 
+								onErrorFn=enableLoginButton);
+		}
+		
+		//rehabilitar boton de login en caso de error
+		function enableLoginButton() {
+			document.getElementById("loginbutton").disabled=false;
+		}
+		
+		//mostrar form de login
+		function displayLogin() {
+			document.getElementById("form1").style.display="";
+			document.getElementById("form2").style.display="none";
+			setFocusOnForm("form1");
+		}
+		
+		//mostrar form de forgot password
+		function displayForgotPass() {
+			document.getElementById("grabar").disabled=false;
+			document.getElementById("form1").style.display="none";
+			document.getElementById("form2").style.display="";
+			clearForm("form2");
+			setFocusOnForm("form2");
+		}
+		
+		//regenerar password
+		function getNewPassword() {		
+
+			document.getElementById("grabar").disabled=true;
+			clearErrorMessages();
+				
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+								uri="/action/security/forgotpass/generate", 
+								divResponse=null, 
+								divProgress="status2", 
+								formName="form2", 
+								afterResponseFn=null, 
+								onErrorFn=newPasswordFail);	
+		}
+		
+		//esconder formulario de nuevo login
+		function newPasswordOK() {
+			document.getElementById("form2").style.display="none";
+		}
+
+		//rehabilitar boton de regenerar password en caso de error
+		function newPasswordFail() {
+			document.getElementById("grabar").disabled=false;
+		}
+		
+		//mostrar imagen y esconder su indicador de progreso de carga
+		function displayCaptcha(captchaID) {
+			document.getElementById("status2").style.display='none';
+			document.getElementById(captchaID).style.display='';
+		}	
+
+		//regenerar captcha
+		function reloadCaptcha(captchaID) {
+			document.getElementById("status2").style.display='';
+			document.getElementById(captchaID).src = "action/security/getcaptcha?dummy=" + Math.random();
+		}
+		
+		function openPopUp(doc)
+		{
+			var features = "height=400,width=700,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var w = window.open(doc, null, features);
+		}
+	</script>
+
+	<style type="text/css">
+		.main {
+			box-shadow: 0px 0px 15px 3px #61606c;
+			border-radius: 5px;
+			behavior: url(/sisrec/pie.htc); /* IE8 */
+		}
+	</style>
+
+</head>
+
+<!--
+<body style="background-color:#f2f2f2; overflow:hidden">
+ -->
+<body>	
+	<!-- recuadro principal -->
+	<!-- 
+	<div class="main" style="margin:0 auto; background-color:#ffffff; width:970px; height:400px; margin-top:20px;">
+	-->
+	
+		<div style="float:left">
+	
+		<div style="height:50px;float:left">
+			<img src="logo-simone.png" style="width:200px;height:150px">		
+		</div>
+		
+		<br>
+		<!--titulo-->
+		<h1 style="margin-top:0px;margin-left:400px">${lbl:b_base_module} 1.0</h1>
+		
+		<div style="height:50px;float:right" align="right">
+			<img src="reclutamiento.jpg" style="width:350px;height:200px">		
+		</div>
+			
+		<p style="width:450px;margin-left:10px;font-size:10pt" align="left">
+			<br><br>
+			<br><br>
+			<br><br>
+			<br><br>
+			<br><br>
+			<br><br>
+			<br><br>
+			<br><br>
+			<br><br>
+			<br><br>
+			<br><br>
+			<br><br>
+			<br><br>
+			[<a href="javascript:openPopUp('terminos.htm')">${lbl:b_terms_use_privacy}</a>]
+			
+			</p>
+	
+	</div>
+	
+		<!-- nombre del sistema -->
+		<!--
+		<div style="float:left;width:30%;margin-left:5px;margin-top:5px;">		    
+		
+		    <img src="reclutamiento.jpg" width=280 height=150>	
+		    
+		    <br><br><br><br>
+			<br><br><br><br>
+			<br><br><br>
+			
+			[<a href="javascript:openPopUp('terminos.htm')" style="font-size:10pt;">Términos de uso y privacidad</a>]
+			
+		</div>
+	
+		<!-- nombre del sistema -->
+		<!--
+		<div style="float:left;width:30%;margin-left:5px;margin-top:5px;width:250px;">		    
+		
+			<h1 style="font-size:14pt;margin-top:0px;">Sistema de Reclutamiento Versión 1.0</h1>
+
+			<p style="font-size:20pt;">
+			Ocala Group<br/>
+			</p>			
+			
+		</div>
+		-->
+	
+		<!-- formularios -->
+		<div style="float:right;width:35%;margin-right:20px;margin-top:15px;">
+
+				<!--login form-->
+				<form  id="form1"  name="form1" onsubmit="return login()" style="float:right;width:300px;">
+	
+					<img id="status" style="float:right;margin-right:20px;margin-top:15px;display:none" src="images/progress.gif">
+					<h1>${lbl:s_login_system}</h1>
+			 		
+					<table>
+						<col style="width:30%">
+					
+						<!--form fields-->
+						<tr>
+							<td>
+								${lbl:s_profile_login}
+							</td>
+							<td>
+								<input name="userlogin" id="userlogin" type="text" maxlength="100" autocomplete="off">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								${lbl:s_fld_password}
+							</td>
+							<td>
+								<input name="passwd" id="passwd" type="password" maxlength="40" autocomplete="off">
+							</td>
+						</tr>
+						<tr>
+							<td align="center" colspan="2">
+								<div id="form_error" class="errormsg"></div>
+							</td>
+						</tr>
+					</table>
+					
+					<input id="loginbutton" type="submit" value="${lbl:s_enter}">
+					<input type="button" onclick="displayForgotPass()" value="${lbl:s_fld_forgot_my_password}" style="width:170px">
+
+					<!--URI to navigate after sucessful login-->
+					<input type="hidden" name="uri" value="/action/security/home">
+
+				</form>
+				<!-- end login form -->
+		
+				<!--password form-->	
+				<form id="form2" name="form2" onsubmit="return getNewPassword()" style="width:350px;display:none">
+				
+					<img id="status2" style="float:right;margin-right:10px;margin-top:7px;display:none" src="images/progress.gif">
+					<h1>${lbl:s_fld_regenerate_password}</h1>
+			 		
+					<table>
+						<col style="width:30%">
+					
+						<!--campos-->
+						<tr>
+							<td>
+								${lbl:s_profile_login}
+							</td>
+							<td>
+								<input id="userlogin2" name="userlogin2" type="text" maxlength="100" autocomplete="off">
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								${lbl:s_profile_email}
+							</td>
+							<td>
+								<input id="email" name="email" type="text" maxlength="100" autocomplete="off">
+							</td>
+						</tr>
+					
+						<tr>
+							<td>
+							</td>
+							<td align="left" style="vertical-align:top;">
+								<img id="captchaimg" src="action/security/getcaptcha" border="1" onload="displayCaptcha('captchaimg')" 
+								onclick="reloadCaptcha('captchaimg')" style="display:block;" title="${lbl:s_click_regenerate_image}">
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								${lbl:s_anti_spam}
+							</td>
+							<td>
+								<input id="captcha" name="captcha" type="text" maxlength="6" style="display:block;">
+								<div style="font-size:9pt;width:90%">${lbl:s_type_characters_to_regenerate_image}.</div>
+							</td>
+						</tr>
+						
+					</table>
+					
+					<input id="grabar" type="submit" value="${lbl:b_save_button}">
+					<input id="cancelar" type="button" value="${lbl:b_cancel_button}" onclick="displayLogin()">	
+				
+				</form>
+				<!-- end password form -->		
+				
+				<br><br> <br>
+				<br><br> <br>
+				<br><br> <br>
+				<br><br> 
+				<p style="width:480px;margin-right:0px;font-size:10pt" align="right">
+					<a href="http://localhost/smn_base/action/register/form" style="font-size:15pt;">${lbl:b_open_account}</a>
+				</p>
+
+				
+				<p style="width:480px;margin-right:0px;font-size:10pt" align="right">
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				<br><br>
+				C.SIMONE 12015,C.A.<br/>
+				<!-- RIF: J-29868659-6<br/> 
+				<a href="http://omzyasociados.com/servicios.htm" target="dinamica">http://omzyasociados.com</a><br>	
+				-->
+				</p>
+				
+				<!-- nombre del sistema -->
+				<!--
+				<div style="float:left;width:30%;margin-left:5px;margin-top:5px;width:480px;">		    
+					
+						<p style="font-size:10pt;">
+						<br>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ojeda Mendez Zambrano y Asociados, C.A<br/>
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RIF: J-29868659-6<br/> 
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="http://omzyasociados.com/servicios.htm" target="dinamica">http://omzyasociados.com</a><br>
+						</p>				
+				</div>
+				-->
+		
+		</div>
+		
+	</div>
+
+	<!--marca especial para que el codigo Ajax pueda reconocer un redirect a login-->
+	<span style="display:none">_ajax_VE8374yz_</span>
+	
+</body>
+
+</html>

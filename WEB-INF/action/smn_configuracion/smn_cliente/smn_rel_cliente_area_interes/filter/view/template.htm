@@ -1,0 +1,49 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='18%'/>
+	<col width='18%'/>
+	<col width='18%'/>
+	<col width='18%'/>
+	<col width='18%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="8" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_cliente_id','query-smnrelclienteareainteres.sql')" >${lbl:b_customer}</th>
+		<th class='sortable' onclick="sortBy('smn_area_interes_id','query-smnrelclienteareainteres.sql')" >${lbl:b_areas_interes}</th>
+		<th class='sortable' onclick="sortBy('rca_estatus','query-smnrelclienteareainteres.sql')" >${lbl:b_status}</th>
+		<th class='sortable' onclick="sortBy('rca_vigencia','query-smnrelclienteareainteres.sql')" >${lbl:b_validation_date}</th>
+		<th class='sortable' onclick="sortBy('rca_fecha_registro','query-smnrelclienteareainteres.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_rel_cliente_area_interes_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_rel_cliente_area_interes_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_rel_cliente_area_interes_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_cliente_id}</td>
+		<td align="center">${fld:smn_area_interes_id}</td>
+		<td align="left">${fld:rca_estatus}</td>
+		<td align="center">${fld:rca_vigencia@dd-MM-yyyy}</td>
+		<td align="center">${fld:rca_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

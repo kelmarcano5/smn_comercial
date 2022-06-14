@@ -1,0 +1,75 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='2%'/>
+	<col width='2%'/>
+	<col width='2%'/>
+	<col width='2%'/>
+	<col width='2%'/>
+	<col width='15%'/>
+	<col width='15%'/>
+	<col width='15%'/>
+	<col width='8%'/>
+	<col width='8%'/>
+	<col width='10%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='18%'/>
+	<col width='22%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="17" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th>VR</th>
+	 	<th>GE</th>
+		<th>RE</th>
+		<th class='sortable' onclick='sortBy("smn_centro_facturacion_id", "numero_documento","query-smnpedidocabecera.sql")'>${lbl:b_centro_facturacion}</th>
+		<th class='sortable' onclick='sortBy("documento", "numero_documento","query-smnpedidocabecera.sql")'>Numero/${lbl:b_document}</th>
+		<th class='sortable' onclick='sortBy("comprador","query-smnpedidocabecera.sql")'>Comprador</th>
+		<th class='sortable' onclick='sortBy("cliente","query-smnpedidocabecera.sql")'>Cliente</th>
+		<th class='sortable' onclick='sortBy("cantidad","query-smnpedidocabecera.sql")'>${lbl:b_quantity}</th>
+		<th class='sortable' onclick='sortBy("monto_pedido","query-smnpedidocabecera.sql")'>${lbl:b_amount}</th>
+		<th class='sortable' onclick='sortBy("montoma","query-smnpedidocabecera.sql")'>${lbl:b_amount} MA</th>
+		<th class='sortable' onclick='sortBy("estatus_proceso","query-smnpedidocabecera.sql")'>Estatus</th>
+		<th class='sortable' onclick='sortBy("pca_estatus_pago","query-smnpedidocabecera.sql")'>Estatus Pagado</th>
+		<th class='sortable' onclick='sortBy("pca_fecha_requerida","query-smnpedidocabecera.sql")'>${lbl:b_required_date}</th>
+		<th>DT</th>
+		<th>PV</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_pedido_cabecera_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_pedido_cabecera_id}', '${fld:pca_estatus}','${fld:pca_estatus_pago}','${fld:modulo}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/search.png"  onclick="openPDF_factura('${fld:smn_pedido_cabecera_id}')" title="Ver Reporte"></td>
+		<td><img src="${def:context}/images/icongrid/Generar.png" onclick="generar('${fld:smn_pedido_cabecera_id}','${fld:numeropedido}','${fld:oferta}','${fld:smn_sucursal_rf}','${fld:smn_entidad_rf}','${fld:smn_cliente_id}','${fld:caja}','${fld:documento}','${fld:auxiliar}','${fld:monto}','${fld:montoneto}','${fld:pca_estatus}','${fld:pca_estatus_pago}','${fld:tiempo_inicio}');" title="Aprobaci&oacute;n Pedido/Factura"></td>
+ 		<td><img src="${def:context}/images/reject.png" onclick="rechazar('${fld:smn_pedido_cabecera_id}')" title="Rechazar" id="rechazar"></td>
+ 		<td>${fld:smn_centro_facturacion_id}</td>
+		<td align='left'>${fld:numeropedido} - ${fld:documento}</td>
+		<td>${fld:comprador}</td>
+		<td>${fld:cliente}</td>
+		<td>${fld:cantidad}</td>
+		<td align="right">${fld:monto_pedido@#,###,##0.00}</td>
+		<td align="right">${fld:montoma@#,###,##0.00}</td>
+		<td align='center'>${fld:pca_estatus}</td>
+		<td align='center'>${fld:pca_estatus_pago}</td>
+		<td>${fld:pca_fecha_requerida@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="detalle('${fld:smn_pedido_cabecera_id}','${fld:numeropedido}','${fld:pca_descripcion}','${fld:documento_id}','${fld:cliente}','${fld:pca_estatus_val}','${fld:comprador}','${fld:monto}','${fld:entidad}','${fld:smn_baremos_rf}','${fld:caja}','${fld:modulo}','${fld:linea}')" title="${lbl:b_header_order}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="pagospunto('${fld:smn_pedido_cabecera_id}','${fld:numeropedido}','${fld:pca_descripcion}','${fld:documento_id}','${fld:cliente}','${fld:pca_estatus_val}','${fld:comprador}','${fld:monto@######0.00}','${fld:smn_cliente_id}','${fld:caja}','${fld:comprador_id}')" title="${lbl:b_order_paying}"></td>
+
+	</tr>
+	</rows>
+
+</table>

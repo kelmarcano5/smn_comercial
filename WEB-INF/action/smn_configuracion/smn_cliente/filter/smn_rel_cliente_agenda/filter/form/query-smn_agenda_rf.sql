@@ -1,0 +1,1 @@
+select smn_base.smn_agenda.smn_agenda_id as id, smn_base.smn_agenda.age_codigo ||' - '|| smn_base.smn_agenda.age_descripcion as item from smn_base.smn_agenda

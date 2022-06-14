@@ -1,0 +1,7 @@
+select
+		smn_comercial.smn_rel_detalle_ingrediente.smn_solicitud_servicio_entregas_detalle_id,
+	smn_comercial.smn_rel_detalle_ingrediente.smn_ingredientes_id
+from
+	smn_comercial.smn_rel_detalle_ingrediente 
+where
+	smn_comercial.smn_rel_detalle_ingrediente.smn_rel_detalle_ingrediente_id = ${fld:id}

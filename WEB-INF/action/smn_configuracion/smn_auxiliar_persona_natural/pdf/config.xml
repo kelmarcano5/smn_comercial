@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnauxiliar.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_auxiliary_nature_person}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_auxiliary_nature_person}.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smnauxiliar.sql' width='100' spacingBefore='40'>
+			<col name='smn_clase_auxiliar_rf' title='${lbl:b_class_auxiliary}' width='14' align='left'  />
+			<col name='aux_tipo_persona' title='${lbl:b_person_type}' width='14' align='left' />
+			<col name='aux_apellidos' title='${lbl:b_last_name}' width='14' align='left' />
+			<col name='aux_nombres' title='${lbl:b_first_name}' width='14' align='left' />
+			<col name='tdo_descripcion' title='${lbl:b_document_type_oficial}' width='14' align='left'  />
+			<col name='aux_rif' title='${lbl:b_rif}' width='14' align='left' />
+			<col name='aux_fecha_registro' title='${lbl:b_store_date}' width='14' align='left' format='dd-MM-yyyy' />
+
+		</record>
+
+	</pdf-report>
+</config>

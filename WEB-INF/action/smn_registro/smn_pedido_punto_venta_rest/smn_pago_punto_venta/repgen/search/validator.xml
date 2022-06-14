@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_pedido_cabecera_id' type='integer' required='false' label='${lbl:b_header_order}' maxlen='10'/>
+	<parameter id='smn_mov_caja_cabecera_id' type='integer' required='false' label='${lbl:b_movement_caj}' maxlen='10'/>
+	<parameter id='smn_pagador_clase_rf' type='integer' required='false' label='${lbl:b_class_auxiliary}' maxlen='10'/>
+	<parameter id='smn_rel_punto_venta_pago_rf' type='integer' required='false' label='${lbl:b_rel_point_of_sale_order}' maxlen='10'/>
+	<parameter id='smn_forma_pago_rf' type='integer' required='false' label='${lbl:b_way_to_pay}' maxlen='10'/>
+	<parameter id='ppv_numero_documento_forma_pago' type='integer' required='false' label='${lbl:b_number_doc_form_pay}' maxlen='10'/>
+	<parameter id='ppv_numero_autorizacion' type='integer' required='false' label='${lbl:b_number_autorization}' maxlen='10'/>
+	<parameter id='ppv_documento_identidad_pagador' type='varchar' required='false' label='${lbl:b_document_identity}' maxlen='100'/>
+	<parameter id='ppv_nombre_pagador' type='varchar' required='false' label='${lbl:b_paying_name}' maxlen='100'/>
+	<parameter id='ppv_monto_pagar_ml' type='double' required='false' label='${lbl:b_amount_payment_ml}' maxlen='10'/>
+	<parameter id='ppv_monto_pago_ml' type='double' required='false' label='${lbl:b_amount_pay_ml}' maxlen='10'/>
+	<parameter id='ppv_monto_devuelto_ml' type='double' required='false' label='${lbl:b_amount_revers_ml}' maxlen='10'/>
+	<parameter id='ppv_monto_pagar_ma' type='double' required='false' label='${lbl:b_amount_payment_ma}' maxlen='10'/>
+	<parameter id='ppv_monto_pago_ma' type='double' required='false' label='${lbl:b_amount_payment_ma}' maxlen='10'/>
+	<parameter id='ppv_monto_devuelto_ma' type='double' required='false' label='${lbl:b_amount_revers_ma}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='ppv_observacion' type='varchar' required='false' label='${lbl:b_observation}' maxlen='400'/>
+	<parameter id='ppv_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='ppv_documento_identidad_pagador'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='ppv_nombre_pagador'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='ppv_observacion'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='ppv_estatus'
+		rule='contains' />
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarNombre.sql'
+			id='ppv_nombre_pagador'/>
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

@@ -1,0 +1,2 @@
+select ${fld:smn_deposito_id} as smn_deposito_id, ${fld:smn_dist_pago_detalle_id} as smn_dist_pago_detalle_id from smn_caja.smn_dist_pago_detalle
+where smn_caja.smn_dist_pago_detalle.smn_mov_caja_cabecera_id=(select smn_comercial.smn_pedido_cabecera.smn_mov_caja_cabecera_id from smn_comercial.smn_pedido_cabecera where smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id=${fld:smn_pedido_cabecera_id}) --and smn_base.smn_formas_pago.fop_codigo in ('TR1','PM1','TR2','PM2')

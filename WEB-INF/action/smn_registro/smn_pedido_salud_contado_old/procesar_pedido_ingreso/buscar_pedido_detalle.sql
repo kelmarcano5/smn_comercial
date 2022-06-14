@@ -1,0 +1,1 @@
+select smn_comercial.smn_pedido_detalle.smn_pedido_detalle_id, smn_comercial.smn_pedido_detalle.smn_servicios_rf from smn_comercial.smn_pedido_detalle where smn_comercial.smn_pedido_detalle.smn_pedido_cabecera_id=${fld:smn_pedido_cabecera_id} ORDER BY smn_comercial.smn_pedido_detalle.smn_pedido_detalle_id asc

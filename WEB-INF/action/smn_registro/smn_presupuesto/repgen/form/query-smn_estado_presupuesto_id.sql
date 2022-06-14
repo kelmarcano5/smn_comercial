@@ -1,0 +1,2 @@
+select smn_comercial.smn_estado_presupuesto.smn_estado_presupuesto_id as id, smn_comercial.smn_estado_presupuesto.epr_descripcion as item from smn_comercial.smn_estado_presupuesto 
+order by smn_comercial.smn_estado_presupuesto.smn_estado_presupuesto_id

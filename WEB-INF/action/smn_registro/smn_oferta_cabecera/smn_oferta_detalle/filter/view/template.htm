@@ -1,0 +1,58 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="11" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_oferta_id','query-smnofertadetalle.sql')" >${lbl:b_offer}</th>
+		<th class='sortable' onclick="sortBy('ofd_naturaleza','query-smnofertadetalle.sql')" >${lbl:b_nature}</th>
+		<th class='sortable' onclick="sortBy('ofd_cantidad','query-smnofertadetalle.sql')" >${lbl:b_quantity}</th>
+		<th class='sortable' onclick="sortBy('ofd_precio','query-smnofertadetalle.sql')" >${lbl:b_price}</th>
+		<th class='sortable' onclick="sortBy('ofd_monto_ml','query-smnofertadetalle.sql')" >${lbl:b_amount}</th>
+		<th class='sortable' onclick="sortBy('ofd_precio_moneda_alterna','query-smnofertadetalle.sql')" >${lbl:b_price_coins_alter}</th>
+		<th class='sortable' onclick="sortBy('ofd_monto_moneda_alterna','query-smnofertadetalle.sql')" >${lbl:b_amount_coins_alter}</th>
+		<th class='sortable' onclick="sortBy('ofd_fecha_registro','query-smnofertadetalle.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_oferta_detalle_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_oferta_detalle_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_oferta_detalle_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_oferta_id}</td>
+		<td align="left">${fld:ofd_naturaleza}</td>
+		<td align="center">${fld:ofd_cantidad}</td>
+		<td align="right">${fld:ofd_precio@#,###,##0.00}</td>
+		<td align="right">${fld:ofd_monto_ml@#,###,##0.00}</td>
+		<td align="right">${fld:ofd_precio_moneda_alterna@#,###,##0.00}</td>
+		<td align="right">${fld:ofd_monto_moneda_alterna@#,###,##0.00}</td>
+		<td align="center">${fld:ofd_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_rel_documento_entidad>
+	<detail>
+		<rows>		
+		<record smn_sucursal_rf="${fld:smn_sucursal_rf}"    smn_entidad_rf="${fld:smn_entidad_rf}"    smn_documento_id="${fld:smn_documento_id}"    smn_sucursal_rf="${fld:smn_sucursal_rf}"    smn_entidad_rf="${fld:smn_entidad_rf}"    smn_documento_id="${fld:smn_documento_id}"    />
+		</rows>
+	</detail>
+</smn_rel_documento_entidad>

@@ -1,0 +1,49 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="9" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("gpv_codigo","query-smngrupopromotoresvendedores.sql")'>${lbl:b_code}</th>
+		<th class='sortable' onclick='sortBy("gpv_descripcion","query-smngrupopromotoresvendedores.sql")'>${lbl:b_description}</th>
+		<th class='sortable' onclick='sortBy("gpv_estatus_combo","query-smngrupopromotoresvendedores.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("gpv_vigencia","query-smngrupopromotoresvendedores.sql")'>${lbl:b_vigency}</th>
+		<th class='sortable' onclick='sortBy("gpv_fecha_registro","query-smngrupopromotoresvendedores.sql")'>${lbl:b_store_date}</th>
+		<th>RGPR</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_grupo_promotores_vendedores_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_grupo_promotores_vendedores_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_grupo_promotores_vendedores_id}')" title="${lbl:b_edit_button}"></td>
+		<td align='left'>${fld:gpv_codigo}</td>
+		<td align='left'>${fld:gpv_descripcion}</td>
+		<td align='left'>${fld:gpv_estatus_combo}</td>
+		<td>${fld:gpv_vigencia@dd-MM-yyyy}</td>
+		<td>${fld:gpv_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="relrol('${fld:smn_grupo_promotores_vendedores_id}','${fld:gpv_descripcion}')" title="${lbl:b_rel_group_promoting_sales_rol}"></td>
+	</tr>
+	</rows>
+
+</table>

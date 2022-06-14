@@ -1,0 +1,34 @@
+INSERT INTO smn_comercial.smn_oferta_cabecera
+(
+	smn_oferta_cabecera_id,
+	smn_documento_id,
+	ofe_numero_documento,
+	ofe_descripcion,
+	smn_entidad_rf,
+	smn_sucursal_rf,
+	ofe_fecha_desde,
+	ofe_fecha_hasta,
+	ofe_observaciones,
+	ofe_estatus,
+	ofe_idioma,
+	ofe_usuario,
+	ofe_fecha_registro,
+	ofe_hora
+)
+VALUES
+(
+	${seq:currval@smn_comercial.seq_smn_oferta_cabecera},
+	${fld:smn_documento_id},
+	${fld:ofe_numero_documento},
+	${fld:ofe_descripcion},
+	${fld:smn_entidad_rf},
+	${fld:smn_sucursal_rf},
+	${fld:ofe_fecha_desde},
+	${fld:ofe_fecha_hasta},
+	${fld:ofe_observaciones},
+	${fld:ofe_estatus},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

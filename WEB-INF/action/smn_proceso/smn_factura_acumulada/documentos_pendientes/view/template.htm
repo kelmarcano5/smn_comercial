@@ -1,0 +1,50 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+	<col width='3%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="9" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<td>RZ</td>
+		<th class='sortable' onclick='sortBy("paciente","query-smnmovdocumentocobcab.sql")'>Paciente</th>
+		<th class='sortable' onclick='sortBy("servicio","query-smnmovdocumentocobcab.sql")'>Servicio</th>
+		<th class='sortable' onclick='sortBy("pca_numero_pedido","query-smnmovdocumentocobcab.sql")'>N. Pedido</th>
+		<th class='sortable' onclick='sortBy("igs_num_ingreso","query-smnmovdocumentocobcab.sql")'>N. Ingreso</th>
+		<th class='sortable' onclick='sortBy("tca_descripcion","query-smnmovdocumentocobcab.sql")'>Tasa</th>
+		<th class='sortable' onclick='sortBy("pde_monto","query-smnmovdocumentocobcab.sql")'>Monto ML</th>
+		<th class='sortable' onclick='sortBy("pde_precio_moneda_alterna","query-smnmovdocumentocobcab.sql")'>Monto MA</th>
+		<th class='sortable' onclick='sortBy("pde_fecha_requerida","query-smnmovdocumentocobcab.sql")'>Fecha</th>
+		
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/reject.png" onclick="rechazar('${fld:smn_pedido_detalle_id}')" title="Detalle"></td> 
+		<td align="left">${fld:paciente}</td>
+		<td align="left">${fld:servicio}</td>
+		<td align="center">${fld:pca_numero_pedido}</td>
+		<td align="center">${fld:igs_num_ingreso}</td>
+		<td align="center">${fld:tca_descripcion}</td>
+		<td align='right'>${fld:pde_monto@#,###,##0.00}</td>
+		<td align='right'>${fld:pde_precio_moneda_alterna@#,###,##0.00}</td>
+		<td align="center">${fld:pde_fecha_requerida@dd-MM-yyyy}</td>
+		
+	</tr>
+	</rows>
+
+</table>

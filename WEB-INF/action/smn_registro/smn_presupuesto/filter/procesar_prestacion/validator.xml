@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id="id_ingreso" type="integer" required="true" label="ID" maxlen="10" />
+	<parameter id="id_detalle" type="integer" required="true" label="ID" maxlen="10" />
+	<parameter id="id_area" type="integer" required="true" label="ID" maxlen="10" />
+	<!-- <parameter id="precio" type="double" required="true" label="ID" maxlen="10" />
+	<parameter id="precio2" type="double" required="true" label="ID" maxlen="10" />
+	<parameter id="precio3" type="integer" required="true" label="ID" maxlen="10" /> -->
+	<parameter id="usuario" type="varchar" required="true" label="ID" maxlen="10" />
+</validator>

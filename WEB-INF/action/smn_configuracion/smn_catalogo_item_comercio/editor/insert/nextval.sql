@@ -1,0 +1,1 @@
+select ${seq:nextval@smn_comercial.seq_smn_catalogo_item_comercio} as id

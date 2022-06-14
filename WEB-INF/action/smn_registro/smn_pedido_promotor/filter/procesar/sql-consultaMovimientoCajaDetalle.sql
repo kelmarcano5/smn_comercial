@@ -1,0 +1,18 @@
+select
+case
+	when smn_comercial.smn_pedido_detalle.pde_naturaleza='IT' then smn_comercial.smn_pedido_detalle.smn_item_rf
+	when smn_comercial.smn_pedido_detalle.pde_naturaleza='SE' then smn_comercial.smn_pedido_detalle.smn_servicios_rf
+end as smn_id_rf,
+smn_comercial.smn_pedido_detalle.pde_cantidad_pedido,
+smn_comercial.smn_pedido_detalle.pde_monto_neto_ml as monto,
+smn_comercial.smn_pedido_detalle.pde_monto_neto_ml as saldo,
+smn_comercial.smn_pedido_detalle.pde_monto_neto_ma as monto_ma,
+smn_comercial.smn_pedido_detalle.pde_monto_neto_ma as saldoma,
+smn_comercial.smn_pedido_detalle.smn_moneda_rf as moneda,
+smn_comercial.smn_pedido_detalle.smn_tasa_rf as tasa
+
+from smn_comercial.smn_pedido_detalle
+left outer join smn_comercial.smn_pedido_cabecera on smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id = smn_comercial.smn_pedido_detalle.smn_pedido_detalle_id
+left outer join smn_comercial.smn_catalogo_item_comercio on smn_comercial.smn_catalogo_item_comercio.smn_catalogo_item_comercio_id = smn_comercial.smn_pedido_detalle.smn_catalogo_item_comercio_id
+left outer join smn_base.smn_item on smn_base.smn_item.smn_item_id = smn_comercial.smn_catalogo_item_comercio.smn_item_rf
+where smn_comercial.smn_pedido_detalle.smn_pedido_cabecera_id=${fld:smn_pedido_cabecera_id}

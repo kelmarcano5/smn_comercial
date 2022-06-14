@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_oferta_id' type='integer' required='true' label='${lbl:b_offer}' maxlen='10'/>
+	<parameter id='eof_fecha_envio' type='date' required='false' label='${lbl:b_delivery_date}' maxlen='10'/>
+	<parameter id='eof_fecha_cierre' type='date' required='false' label='${lbl:b_close_date}' maxlen='10'/>
+	<parameter id='smn_clasificacion_cliente_id' type='integer' required='false' label='${lbl:b_customer_clasification}' maxlen='10'/>
+	<parameter id='smn_clientes_area_interes_id' type='integer' required='false' label='${lbl:b_customer_interesting_area}' maxlen='10'/>
+	<parameter id='smn_tipo_contactos_rf' type='integer' required='true' label='${lbl:b_type_contacts}' maxlen='10'/>
+	<parameter id='eof_descripcion' type='varchar' required='true' label='${lbl:b_description}' maxlen='200'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='eof_descripcion'/>
+
+
+</validator>

@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnauxiliar.sql" source="session" scope="transaction" />
+		<recordset id='query-smnauxiliarcorporaciones.sql' source='sql' scope='transaction' />
+	<recordset id='query-smnauxiliarunidadesnegocios.sql' source='sql' scope='transaction' />
+	<recordset id='query-smncomunidades.sql' source='sql' scope='transaction' />
+	<recordset id='query-smnauxiliarcondfinanciera.sql' source='sql' scope='transaction' />
+	<recordset id='query-smncondicionpago.sql' source='sql' scope='transaction' />
+	<recordset id='query-smncuentasbancarias.sql' source='sql' scope='transaction' />
+	<recordset id='query-smndireccion.sql' source='sql' scope='transaction' />
+	
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_auxiliary_third}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_auxiliary_third}">
+				<col id='smn_naturaleza_auxiliar_rf' label='${lbl:b_nature_auxiliary}' />
+		<col id='smn_clase_auxiliar_rf' label='${lbl:b_class_auxiliary}' />
+		<col id='aux_tipo_persona' label='${lbl:b_person_type}' />
+		<col id='aux_codigo' label='${lbl:b_code}' />
+		<col id='aux_descripcion' label='${lbl:b_description}' />
+		<col id='aux_rif' label='${lbl:b_rif}' />
+		<col id='aux_direccion_rf' label='${lbl:b_address}' />
+		<col id='aux_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+		<sheet recordset='query-smnauxiliarcorporaciones.sql' sheetname=''>
+		<col id='tcp_nombre' label='${lbl:b_name}' />
+	</sheet>
+
+	<sheet recordset='query-smnauxiliarunidadesnegocios.sql' sheetname=''>
+		<col id='tun_nombre' label='${lbl:b_name}' />
+	</sheet>
+
+	<sheet recordset='query-smncomunidades.sql' sheetname=''>
+		<col id='cmn_nombre' label='${lbl:b_name}' />
+	</sheet>
+
+	<sheet recordset='query-smnauxiliarcondfinanciera.sql' sheetname=''>
+		<col id='cfn_descripcion' label='${lbl:b_description}' />
+	</sheet>
+
+	<sheet recordset='query-smncondicionpago.sql' sheetname=''>
+		<col id='cop_descripcion' label='${lbl:b_description}' />
+	</sheet>
+
+	<sheet recordset='query-smncuentasbancarias.sql' sheetname=''>
+		<col id='cba_nombre' label='${lbl:b_name}' />
+	</sheet>
+
+	<sheet recordset='query-smndireccion.sql' sheetname=''>
+		<col id='dir_descripcion' label='${lbl:b_description}' />
+	</sheet>
+
+
+	</excel>
+
+</config>

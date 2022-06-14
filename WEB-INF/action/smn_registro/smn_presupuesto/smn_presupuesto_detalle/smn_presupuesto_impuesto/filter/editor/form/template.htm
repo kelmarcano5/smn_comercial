@@ -1,0 +1,320 @@
+<!doctype html>
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	${lbl:b_presupuesto_impuesto}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+	<tr>
+			<td>${lbl:b_presupuesto_det}*</td>
+			<td>
+				<input id="smn_presupuesto_detalle_id" name="smn_presupuesto_detalle_id" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_service}</td>
+		<td>
+			<select name="smn_servicios_rf" id="smn_servicios_rf" onchange="chgCombo(smn_servicios_rf.options[smn_servicios_rf.selectedIndex].text,'smn_servicios_rf_name');">
+				<option value="0">[Cualquiera]</option>
+				<smn_servicios_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_servicios_rf_rows>
+			</select> 
+			<input id="smn_servicios_rf_name" name="smn_servicios_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_item}</td>
+		<td>
+			<select name="smn_item_rf" id="smn_item_rf" onchange="chgCombo(smn_item_rf.options[smn_item_rf.selectedIndex].text,'smn_item_rf_name');">
+				<option value="0">[Cualquiera]</option>
+				<smn_item_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_item_rf_rows>
+			</select> 
+			<input id="smn_item_rf_name" name="smn_item_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_codigo_impuesto}*</td>
+		<td>
+			<select name="smn_codigo_impuesto_id" id="smn_codigo_impuesto_id" onchange="chgCombo(smn_codigo_impuesto_id.options[smn_codigo_impuesto_id.selectedIndex].text,'smn_codigo_impuesto_id_name');">
+				<option value="0">[Cualquiera]</option>
+				<smn_codigo_impuesto_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_codigo_impuesto_id_rows>
+			</select> 
+			<input id="smn_codigo_impuesto_id_name" name="smn_codigo_impuesto_id_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_base_imponible_ml}*</td>
+			<td>
+				<input id="pim_base_imponible_ml" name="pim_base_imponible_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_base_excenta_ml}</td>
+			<td>
+				<input id="pim_base_excenta_ml" name="pim_base_excenta_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_monto_impuesto_ml}</td>
+			<td>
+				<input id="pim_monto_impuesto_ml" name="pim_monto_impuesto_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_monto_sustraendo_ml}</td>
+			<td>
+				<input id="pim_monto_sustraendo_ml" name="pim_monto_sustraendo_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_monto_neto_impuesto_ml}</td>
+			<td>
+				<input id="pim_monto_neto_impuesto_ml" name="pim_monto_neto_impuesto_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_coins}</td>
+			<td>
+				<select name="smn_moneda_rf" id="smn_moneda_rf" onchange="chgCombo(smn_moneda_rf.options[smn_moneda_rf.selectedIndex].text,'smn_moneda_rf_name');cambiarmoneda();">
+					<option value="0">[Cualquiera]</option>
+					<smn_moneda_rf_rows>
+					<option value="${fld:id}">${fld:item}</option>
+
+					</smn_moneda_rf_rows>
+				</select> 
+				<input id="smn_moneda_rf_name" name="smn_moneda_rf_name" type="hidden">
+			</td>
+		</tr>
+		<tr style="display: none" id="tasa">
+			<td>${lbl:b_exchange_rate}</td>
+			<td>
+				<select name="smn_tasa_rf" id="smn_tasa_rf" onchange="chgCombo(smn_tasa_rf.options[smn_tasa_rf.selectedIndex].text,'smn_tasa_rf_name');">
+					<option value="0">[Cualquiera]</option>
+					<smn_tasa_rf_rows>
+					<option value="${fld:id}">${fld:item}</option>
+
+					</smn_tasa_rf_rows>
+				</select> 
+				<input id="smn_tasa_rf_name" name="smn_tasa_rf_name" type="hidden">
+			</td>
+		</tr>
+		<tr style="display: none" id="basei">
+			<td>${lbl:b_base_imponible_ma}</td>
+			<td>
+				<input id="pim_base_imponible_ma" name="pim_base_imponible_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none" id="basee">
+			<td>${lbl:b_base_excenta_ma}</td>
+			<td>
+				<input id="pim_base_excenta_ma" name="pim_base_excenta_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none" id="montoi">
+			<td>${lbl:b_monto_impuesto_ma}</td>
+			<td>
+				<input id="pim_monto_impuesto_ma" name="pim_monto_impuesto_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none" id="montos">
+			<td>${lbl:b_monto_sustraendo_ma}</td>
+			<td>
+				<input id="pim_monto_sustraendo_ma" name="pim_monto_sustraendo_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none" id="monton">
+			<td>${lbl:b_monto_neto_impuesto_ma}</td>
+			<td>
+				<input id="pim_monto_neto_impuesto_ma" name="pim_monto_neto_impuesto_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	
+	<!-- PK-->
+<input type="hidden" name="id" value="">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();
+
+		document.getElementById('smn_presupuesto_detalle_id').value = '${fld:id_pre_det}';
+		document.getElementById('smn_presupuesto_detalle_id').disabled = true;
+
+		document.getElementById('smn_servicios_rf').value = '${fld:servicio}';
+		document.getElementById('smn_servicios_rf').disabled = true;
+
+		if (id!="")
+			edit(id);
+	} 
+
+	function cambiarmoneda() {
+		var mon = document.getElementById('smn_moneda_rf').value;
+		alert(mon);
+		if (mon == '360') {
+			document.getElementById('tasa').style.display='none';
+			document.getElementById('basei').style.display='none';
+			document.getElementById('basee').style.display='none';
+			document.getElementById('montoi').style.display='none';
+			document.getElementById('montos').style.display='none';
+			document.getElementById('monton').style.display='none';
+		}else{
+			document.getElementById('tasa').style.display='';
+			document.getElementById('basei').style.display='';
+			document.getElementById('basee').style.display='';
+			document.getElementById('montoi').style.display='';
+			document.getElementById('montos').style.display='';
+			document.getElementById('monton').style.display='';
+		}
+
+		if (mon == 0 ) {
+			document.getElementById('tasa').style.display='none';
+			document.getElementById('basei').style.display='none';
+			document.getElementById('basee').style.display='none';
+			document.getElementById('montoi').style.display='none';
+			document.getElementById('montos').style.display='none';
+			document.getElementById('monton').style.display='none';
+		}
+
+
+		
+	}
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save()
+	{
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+	
+</script>	
+</body>
+</html>

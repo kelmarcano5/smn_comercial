@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_solicitud_servicio_entregas_detalle_id_name' type='varchar' required='false' label='${lbl:b_detail_services_delivery_request}'/>
+	<parameter id='smn_solicitud_servicio_entregas_detalle_id' type='integer' required='false' label='${lbl:b_detail_services_delivery_request}' maxlen='10'/>
+	<parameter id='smn_ingredientes_id_name' type='varchar' required='false' label='${lbl:b_ingredients}'/>
+	<parameter id='smn_ingredientes_id' type='integer' required='false' label='${lbl:b_ingredients}' maxlen='10'/>
+</validator>

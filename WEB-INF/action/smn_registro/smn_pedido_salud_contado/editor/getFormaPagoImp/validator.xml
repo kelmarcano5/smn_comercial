@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+	<parameter id="id" type="integer" required="true" label="ID" />
+	<parameter id="codimp" type="integer" required="false" label="ID" />
+	<parameter id="porcen_cal" type="double" required="false" label="Porcentaje calculo" />
+	<parameter id="porcen_base" type="double" required="false" label="Porcentaje base" />
+</validator>

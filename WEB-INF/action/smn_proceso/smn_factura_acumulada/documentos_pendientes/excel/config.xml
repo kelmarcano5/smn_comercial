@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnmovdocumentocobcab.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="8" cellStep="0" name="Factura Acumulada"/>
+	
+	<excel 
+		recordset='query-smnmovdocumentocobcab.sql' 
+		sheetname='Factura Acumulada' 
+		filename='Factura Acumulada.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='paciente' label='Paciente' />
+		<col id='servicio' label='Servicio' />
+		<col id='pca_numero_pedido' label='N Pedido' />
+		<col id='igs_num_ingreso' label='N Ingreso' />
+		<col id='tca_descripcion' label='Tasa' />
+		<col id='pde_monto' label='${lbl:b_amount_ml}' />
+		<col id='pde_precio_moneda_alterna' label='${lbl:b_amount_ma}' />
+		<col id='pde_fecha_requerida' label='Fecha Requerida' />
+
+
+	</excel>
+
+</config>

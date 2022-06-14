@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_solicitud_servicio_entregas_cabecera_id' type='integer' required='false' label='${lbl:b_header_services_delivery_request}' maxlen='10'/>
+	<parameter id='smn_catalogo_item_comercio_id' type='integer' required='true' label='${lbl:b_catalog_item_commerce}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_rf' type='integer' required='true' label='${lbl:b_measurement_unit}' maxlen='10'/>
+	<parameter id='sed_cantidad' type='integer' required='true' label='${lbl:b_quantity}' maxlen='10'/>
+	<parameter id='sed_requirimientos' type='varchar' required='false' label='${lbl:b_requeriment}' maxlen='100'/>
+	<parameter id='sed_precio_ml' type='double' required='true' label='${lbl:b_price_ml}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='sed_precio_ma' type='double' required='false' label='${lbl:b_price_ma}' maxlen='10'/>
+	<parameter id='sed_monto_moneda_local' type='double' required='true' label='${lbl:b_amount_ml}' maxlen='10'/>
+	<parameter id='sed_monto_moneda_alterna' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_detail_services_delivery_request}' maxlen='10'/>
+	<parameter id='sed_tiempo_sug_preparacion' type='varchar' required='false' label='${lbl:b_time_suggerest_prepared}' maxlen='8'/>
+
+
+</validator>

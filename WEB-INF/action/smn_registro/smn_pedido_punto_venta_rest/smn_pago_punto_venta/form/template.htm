@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	<script type="text/javascript" src="${def:context}/action/script"/></script>
+		<script type="text/javascript" src="${def:context}/action/jquery"></script>
+
+	<!--codigo especifico de este modulo--> 
+	<script type="text/javascript">
+		var id_cab = '${fld:id2}';
+		var cliente = '${fld:cliente}';
+
+		//inicializacion de la pagina cuando carga
+		onload = function() { 
+			search();
+		} 
+
+	
+		//ejecutar consulta
+		function search() {
+			uri="${def:actionroot}/search?id2=${fld:id2}&codigo=${fld:codigo}&documento=${fld:documento}&cliente=${fld:cliente}&monto=${fld:monto}";
+			//alert("url search: "+uri);
+			ajaxCall(httpMethod="GET", 
+							uri, 
+							divResponse="response", 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);
+		}
+	
+		//recuperar una pagina X del grid
+		function viewPage() {
+			var url = "${def:actionroot}/view";
+			gotoPage(url);
+		}
+		
+		//exportar a PDF
+		function openPDF() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+	
+		//exportar a excel
+		function openExcel() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a xml
+		function openXml() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/xml/search?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a texto
+		function openTxt() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/txt/search?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//envio de emails
+		function openEmails() {
+			var uri = "${def:context}${def:actionroot}/email/form";					
+			openDialog("editor0", uri, 950, 600);	
+		}
+		
+		//mostrar el detalle de un registro
+		function getDetail(id)
+		{
+//			//alert('Colocar su código aquí.')
+			
+			var uri = "${def:context}${def:actionroot}/detail/form?id=" + id;
+			openDialog("dialog", uri, 650, 600);			
+		}
+		
+		//muestra un DIV+IFRAME con el formulario de CRUD
+		function showEditor(id)
+		{
+						
+			//editor a nivel de panel iconográfico&comprador=${fld:comprador}
+			if (id == 'editor')
+			{					
+				var uri = "${def:context}${def:actionroot}/editor/form?id2=${fld:id2}&codigo=${fld:codigo}&documento=${fld:documento}&cliente=${fld:cliente}&monto=${fld:monto}&smn_cliente_id=${fld:smn_cliente_id}&caja=${fld:caja}";		
+				//alert(uri);				
+				openDialog("editor1", uri, 750, 600);					
+			}
+			else if (id == 'filter')
+			{
+				var uri = "${def:context}${def:actionroot}/filter/form?id2=${fld:id2}&codigo=${fld:codigo}&documento=${fld:documento}&cliente=${fld:cliente}&monto=${fld:monto}&smn_cliente_id=${fld:smn_cliente_id}&caja=${fld:caja}";	
+				//alert(uri);					
+				openDialog("editor2", uri, 950, 600);		
+			} 
+			else if (id == 'importexcel')
+			{
+				var uri = "${def:context}${def:actionroot}/importexcel/form";					
+				openDialog("editor3", uri, 950, 600);		
+			} 
+			else if (id == 'repgen')
+			{
+				var uri = "${def:context}${def:actionroot}/repgen/form";		
+				openDialog("editor4", uri, 950, 600);		
+			}
+			//editor a nivel de registros
+			else {				
+				var uri = "";
+				if (id==null)
+					uri = "${def:context}${def:actionroot}/editor/form";
+				else
+					uri = "${def:context}${def:actionroot}/editor/form?id=" + id + "&id2=${fld:id2}&codigo=${fld:codigo}&documento=${fld:documento}&cliente=${fld:cliente}&monto=${fld:monto}&caja=${fld:caja}";
+					//alert(uri);
+				openDialog("editor5", uri, 650,400);
+			}
+			
+		}
+
+		function deleteRecord(id) {
+//			//alert('Colocar su código aquí.')
+			
+			alertBox('${lbl:b_delete_record_button}', '${lbl:b_delete_button}', '${lbl:b_cancel_button}', 'deleteRecordOK(' + id + ')')
+					
+		}
+		
+		//eliminar un registro
+		function deleteRecordOK(id) {
+				ajaxCall(httpMethod="GET", 
+								uri="${def:actionroot}/delete?id=" + id,
+								divResponse=null, 
+								divProgress="status", 
+								formName=null, 
+								afterResponseFn=null, 
+								onErrorFn=null);	
+		}
+
+
+		function procesar(id) {
+			
+				var id2 = '${fld:id2}';
+				var status = '${fld:status}';
+
+				//alert("ID CAB: "+id2 + "&status: "+ status);
+				if(status == 'RE'){
+
+					//alert("ENTRO AL IF");
+					var uri = "${def:context}${def:actionroot}/procesar?smn_pedido_cabecera_id="+id;
+					openDialog("editor6", uri, 650, 600);	
+					actualizar_status(id2);
+
+				}else{
+					alert("Este registro no puede ser procesado por que tiene estatus Generado");
+				}
+		}
+					
+	
+		function actualizar_status(id2) {
+
+			ajaxCall(httpMethod="POST", 
+								uri="${def:actionroot}/change_status?id2=" + id2,
+								divResponse=null, 
+								divProgress="status", 
+								formName=null, 
+								afterResponseFn=null, 
+								onErrorFn=null);	
+
+		}
+
+
+		// function procesar(id) {
+		// 	//var id2 = '${fld:id2}';
+		// 	//var status = '${fld:status}';
+		// 	//alert("ID CAB: "+id + "&status: "+ status);
+		// 	//if(status == 'PA'){
+		// 			var uri = "${def:context}${def:actionroot}/procesar?smn_pedido_cabecera_id="+id+"&usuario=${fld:userlogin}";
+		// 		//	alert(uri);
+		// 		openDialog("editor6", uri, 650, 600);	
+		// 		actualizar_status(id2);
+		// 	//}else{
+		// 		//alert("Este registro no puede ser procesado por que tiene estatus Generado");
+		// 	//}
+		// }
+					
+	
+		// function actualizar_status(id2) {
+		// 	ajaxCall(httpMethod="POST", 
+		// 						uri="${def:actionroot}/change_status?id2=" + id2,
+		// 						divResponse=null, 
+		// 						divProgress="status", 
+		// 						formName=null, 
+		// 						afterResponseFn=null, 
+		// 						onErrorFn=null);	
+
+		// }
+		
+	</script>
+
+</head>
+
+<body>
+
+	<!--banner-->
+	<div class="welcome" style="padding-right:50px; margin-top: 20px;"><br>
+        <b>${lbl:b_welcome}</b> ${fld:fname} ${fld:lname} ${req:progress} <img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+        <div class="" style="width: 100%; border-bottom: solid 6px #1d61a0; border-radius: 30px; margin-top: 4px;">
+        </div>
+    </div>
+    <br>
+    <div class="titulo-negocios">
+        <div style="padding-top: 15px;">Pago Punto de Venta</div>
+    </div>
+	
+	<!--incluir el menu iconografico de SIMONE-->
+	${inc:${def:actionroot}/panel/view}
+
+		<table class="record" style="width:500px;">
+		<tr>
+			<td width="40%">${lbl:b_header_order}</td>
+			<td style="background-color: white">${fld:id2}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_customer}/Comprador</td>
+ 			<td style="background-color: white">${fld:cliente}</td>
+		</tr>
+		<!-- </table>	 -->
+	<!-- 	<tr>
+			<td width="40%">Comprador</td>
+ 			<td style="background-color: white">${fld:comprador}</td>
+		</tr> -->
+		</table>	
+	
+	<br>
+	<br>
+	
+	<!--panel de respuesta AJAX #1-->
+	<div id="response" style="display: none; width: 100%"></div>
+	<input type="hidden" name="codigo" id="codigo">
+	<input type="hidden" name="descripcion" id="descripcion">
+	<input type="hidden" name="documento" id="documento">
+	<input type="hidden" name="cliente" id="cliente">
+	<input type="hidden" name="status" id="status">
+	<!-- <input type="hidden" name="comprador" id="comprador"> -->
+	<input type="hidden" name="monto" id="monto">
+
+</body>
+
+</html>

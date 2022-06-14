@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smningredientes.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="3" cellStep="0" name="${lbl:b_ingredients}"/>
+	
+	<excel 
+		recordset='query-smningredientes.sql' 
+		sheetname='${lbl:b_ingredients}' 
+		filename='${lbl:b_ingredients}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_solicitud_servicio_entregas_detalle_id' label='${lbl:b_detail_services_delivery_request}' />
+		<col id='smn_item_rf' label='${lbl:b_item}' />
+		<col id='smn_unidad_medida_rf' label='${lbl:b_measurement_unit}' />
+		<col id='igs_cantidad' label='${lbl:b_quantity}' />
+		<col id='igs_precio' label='${lbl:b_price}' />
+		<col id='igs_fecha_registro' label='${lbl:b_store_date}' />
+
+	</excel>
+
+</config>

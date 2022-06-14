@@ -1,0 +1,1 @@
+select smn_comercial.smn_pedido_detalle.smn_pedido_detalle_id as id, smn_comercial.smn_pedido_detalle.smn_pedido_detalle_id as item from smn_comercial.smn_pedido_detalle

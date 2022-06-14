@@ -1,0 +1,34 @@
+INSERT INTO smn_comercial.smn_factura_detalle
+(
+	smn_factura_detalle_id,
+	smn_factura_cabecera_id,
+	fde_naturaleza,
+	smn_servicios_rf,
+	smn_item_rf,
+	smn_activo_fijo_rf,
+	fde_cantidad,
+	fde_precio_ml,
+	fde_monto_ml,
+	smn_moneda_rf,
+	smn_tasa_rf,
+	fde_precio_ma,
+	fde_monto_ma,
+	fde_fecha_registro
+)
+VALUES
+(
+	${seq:nextval@smn_comercial.seq_smn_factura_detalle},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	{d '${def:date}'}
+)

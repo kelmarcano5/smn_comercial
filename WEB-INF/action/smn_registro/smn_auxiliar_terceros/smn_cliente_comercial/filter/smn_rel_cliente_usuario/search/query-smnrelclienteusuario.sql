@@ -1,0 +1,17 @@
+select
+		smn_comercial.smn_rel_cliente_usuario.smn_rel_cliente_usuario_id,
+select
+		smn_comercial.smn_rel_cliente_usuario.smn_rel_cliente_usuario_id,
+where
+select
+		smn_comercial.smn_rel_cliente_usuario.smn_rel_cliente_usuario_id,
+		smn_comercial.smn_rel_cliente_usuario.smn_rel_cliente_usuario_id,
+	smn_comercial.smn_rel_cliente_usuario.smn_cliente_id,
+	smn_comercial.smn_rel_cliente_usuario.smn_cliente_id,
+	smn_comercial.smn_rel_cliente_usuario.smn_usuario_rf
+	smn_comercial.smn_rel_cliente_usuario.smn_usuario_rf
+	
+	
+from
+	smn_comercial.smn_rel_cliente_usuario
+	smn_comercial.smn_rel_cliente_usuario

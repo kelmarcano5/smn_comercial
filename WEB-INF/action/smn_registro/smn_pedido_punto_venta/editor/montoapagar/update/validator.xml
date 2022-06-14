@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='pca_monto_pedido_ml' type='double' required='true' label='${lbl:b_amount_order_ml}' maxlen='10'/>
+	<parameter id='id2' type='integer' required='true' label='${lbl:b_header_order}' maxlen='10'/>
+	
+</validator>

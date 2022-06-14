@@ -1,0 +1,11 @@
+update smn_inventario.smn_documento
+set doc_secuencia=doc_secuencia+1
+from smn_comercial.smn_pedido_cabecera, smn_comercial.smn_documento, smn_base.smn_documentos_generales
+where
+smn_inventario.smn_documento.smn_documento_general_rf=smn_base.smn_documentos_generales.smn_documentos_generales_id
+and 
+smn_base.smn_documentos_generales.smn_documentos_generales_id=smn_comercial.smn_documento.smn_documentos_generales_rf
+and
+smn_comercial.smn_documento.smn_documento_id=smn_comercial.smn_pedido_cabecera.smn_documento_id
+and
+smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id=${fld:smn_pedido_cabecera_id}

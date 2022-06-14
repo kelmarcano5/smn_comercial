@@ -1,0 +1,12 @@
+select
+		smn_comercial.smn_rel_cliente_entidad_financiera.smn_cliente_id,
+	smn_comercial.smn_rel_cliente_entidad_financiera.smn_entidad_financiera_rf,
+	smn_comercial.smn_rel_cliente_entidad_financiera.smn_tipo_cuenta_banco_rf,
+	smn_comercial.smn_rel_cliente_entidad_financiera.cef_numero_cuenta,
+	smn_comercial.smn_rel_cliente_entidad_financiera.cef_estatus,
+	smn_comercial.smn_rel_cliente_entidad_financiera.cef_vigencia,
+	smn_comercial.smn_rel_cliente_entidad_financiera.cef_fecha_registro
+from
+	smn_comercial.smn_rel_cliente_entidad_financiera 
+where
+	smn_comercial.smn_rel_cliente_entidad_financiera.smn_rel_cliente_entidad_financiera_id = ${fld:id}

@@ -1,0 +1,8 @@
+select DISTINCT smn_comercial.smn_catalogo_item_comercio.smn_catalogo_item_comercio_id as id, 
+smn_base.smn_item.itm_nombre as item 
+from smn_comercial.smn_catalogo_item_comercio
+inner join smn_base.smn_item on smn_base.smn_item.smn_item_id = smn_comercial.smn_catalogo_item_comercio.smn_item_rf
+inner join smn_base.smn_unidad_medida on smn_base.smn_unidad_medida.smn_unidad_medida_id = smn_comercial.smn_catalogo_item_comercio.smn_unidad_medida_rf
+inner join smn_comercial.smn_centro_facturacion on smn_comercial.smn_centro_facturacion.smn_entidades_rf = smn_comercial.smn_catalogo_item_comercio.smn_cliente_rf
+where smn_comercial.smn_centro_facturacion.smn_entidades_rf=${fld:id}
+order by smn_base.smn_item.itm_nombre desc

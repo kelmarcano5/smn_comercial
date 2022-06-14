@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='pro_codigo' type='varchar' required='true' label='${lbl:b_code}' maxlen='18'/>
+	<parameter id='pro_descripcion' type='varchar' required='true' label='${lbl:b_description}' maxlen='100'/>
+	<parameter id='pro_email' type='varchar' required='true' label='${lbl:b_email}' maxlen='100' regexp="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$" regexp-error-label="${lbl:b_email_format}." />
+	<parameter id='pro_movil' type='varchar' required='true' label='${lbl:b_mobile}' maxlen='24'/>
+	<parameter id='pro_fijo' type='varchar' required='true' label='${lbl:b_fije}' maxlen='24'/>
+	<parameter id='pro_referido' type='varchar' required='true' label='${lbl:b_referid}' maxlen='100'/>
+	<parameter id='pro_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='pro_vigencia' type='date' required='false' label='${lbl:b_vigency}' maxlen='10'/>
+	<parameter id='smn_direccion_rf' type='integer' required='false' label='${lbl:b_address}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_leaflet}' maxlen='10'/>
+	<parameter id='smn_tipo_contactos_rf' type='integer' required='false' label='${lbl:b_contact_type}' maxlen='10'/>
+	<parameter id='pro_descripcion_contacto' type='varchar' required='false' label='${lbl:b_contact}' maxlen='100'/>
+
+
+</validator>

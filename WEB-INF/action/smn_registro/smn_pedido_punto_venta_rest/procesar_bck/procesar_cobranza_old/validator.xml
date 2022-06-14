@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id='smn_mov_documento_cob_cab_id' type='integer' required='false' label='${lbl:b_doc_mov_head_charg}' maxlen='10'/>
+	<parameter id='smn_tipo_documento_id' type='integer' required='false' label='${lbl:b_document_type}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document_type}' maxlen='10'/>
+	<parameter id='mdd_numero_documento' type='integer' required='true' label='${lbl:b_document_number}' maxlen='10'/>
+	<parameter id='smn_cliente_rf' type='integer' required='true' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_centro_costo_rf' type='integer' required='false' label='${lbl:b_cost_centers}' maxlen='10'/>
+	<parameter id='mdd_monto_ml' type='double' required='true' label='${lbl:b_amount_ml}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coin}' maxlen='10'/>
+	<parameter id='mdd_monto_ma' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='mdd_fecha_pago' type='date' required='true' label='${lbl:b_payment_date}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_rate}' maxlen='10'/>
+	<parameter id='mdd_diferencia_cambiario' type='double' required='false' label='${lbl:b_exchange_rate_difference}' maxlen='10'/>
+			
+	<parameter id='smn_modulo_origen_rf' type='varchar' required='true' label='${lbl:b_origin_module}' maxlen='1'/>
+	<parameter id='smn_documento_rf' type='integer' required='true' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='mdc_numero_doc_origen' type='integer' required='true' label='${lbl:b_origin_doc_num}' maxlen='10'/>
+	<parameter id='smn_cliente_rf' type='integer' required='true' label='${lbl:b_client}' maxlen='10'/>
+	<parameter id='mdc_fecha_documento' type='date' required='true' label='${lbl:b_document_date}' maxlen='10'/>
+	<parameter id='mdc_fecha_vencimiento' type='date' required='true' label='${lbl:b_thru_date}' maxlen='10'/>
+	<parameter id='mdc_monto_ml' type='double' required='true' label='${lbl:b_amount_ml}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_currency}' maxlen='10'/>
+	<parameter id='mdc_monto_ma' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='mdc_saldo_doc_ml' type='double' required='true' label='${lbl:b_balance_doc_ml}' maxlen='10'/>
+	<parameter id='mdc_saldo_doc_ma' type='double' required='false' label='${lbl:b_balance_doc_ma}' maxlen='10'/>
+	<parameter id='mdc_estatus_proceso' type='varchar' required='true' label='${lbl:b_process_status}' maxlen='2'/>
+	<parameter id='mdc_estatus_financiero' type='varchar' required='true' label='${lbl:b_finance_status}' maxlen='2'/>
+
+
+</validator>

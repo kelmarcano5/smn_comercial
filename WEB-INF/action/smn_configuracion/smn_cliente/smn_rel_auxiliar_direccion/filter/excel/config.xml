@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnrelauxiliardireccion.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="5" cellStep="0" name="${lbl:b_rel_auxiliar_direccion}"/>
+	
+	<excel 
+		recordset='query-smnrelauxiliardireccion.sql' 
+		sheetname='${lbl:b_rel_auxiliar_direccion}' 
+		filename='${lbl:b_rel_auxiliar_direccion}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_clase_auxiliar_id_combo' label='${lbl:b_auxiliary_class}' />
+		<col id='smn_auxiliar_id_combo' label='${lbl:b_auxiliary}' />
+		<col id='smn_direccion_id_combo' label='${lbl:b_address}' />
+		<col id='rad_tipo_direccion' label='${lbl:b_direction_type}' />
+		<col id='rad_status' label='${lbl:b_status}' />
+		<col id='rad_fecha_vigencia' label='${lbl:b_fecha_vigencia}' />
+		<col id='rad_idioma' label='${lbl:s_profile_lang}' />
+		<col id='rad_usuario' label='${lbl:b_users}' />
+		<col id='rad_fecha_registro' label='${lbl:b_store_date}' />
+		<col id='rad_hora' label='${lbl:s_loginhist_col2}' />
+		<col id='smn_zona_rf' label='${lbl:b_zone}' />
+
+	</excel>
+
+</config>

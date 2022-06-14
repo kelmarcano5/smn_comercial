@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+
+<!--biblioteca generica JS/Dinamica-->
+<script type="text/javascript" src="${def:context}/action/script">
+</script>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+		//inicializacion de la pagina cuando carga
+		onload = function()
+		{ 
+			showFilter();
+			//document.form1.elements[0].focus();
+			//document.getElementById("status").style.display='none';
+			
+			
+		} 
+		
+		
+		
+			function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+		
+	//mostrar filtro de busqueda
+	function showFilter()
+	{
+		document.getElementById("response").style.display='none';
+		setFocusOnForm("form1");
+	}
+	
+	//ejecutar consulta
+	function search()
+	{
+		var url = "${def:actionroot}/search";
+		
+		//determina si refresca y se para en la pagina actual o en la pagina 1
+		if (currentPage > 0)
+			url = "${def:actionroot}/search?currentpage=" + currentPage;
+
+		//definir funcion goBack()
+		_goBackFn = showFilter;
+		
+		clearErrorMessages();
+
+		//llamada Ajax...
+		return ajaxCall(	httpMethod="POST", 
+							uri=url, 
+							divResponse="response", 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=showFilter);
+
+	}
+		
+		//mostrar filtro de busqueda
+		/*function showFilter()
+		{
+			document.form1.elements[0].focus();			
+		}
+
+		//ejecutar consulta
+		function search()
+		{
+
+			//llamada Ajax...
+			return ajaxCall(	httpMethod="POST", 
+								uri="${def:actionroot}/search", 
+								divResponse="response", 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=showFilter, 
+								onErrorFn=showFilter);
+		
+		}*/
+	
+		//leer una pagina del grid
+		function viewPage()
+		{
+			var url = "${def:actionroot}/view";
+			gotoPage(url);
+		}
+
+		//retornar el item seleccionado a la pagina que llamo al picklist
+		function selectItem(id) {
+			var description = document.getElementById(id).innerHTML;
+			parent.selectSmnServiciosId(id, description);
+			document.form1.elements[0].value = '';
+			document.form1.elements[0].focus();
+		}
+		
+</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog">
+	Seleccionar un registro
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.pickClose()" title="Cerrar" style="float:right; cursor:pointer;">
+	<img id="status" src="${def:context}/images/progbar.gif" style="display:inline; float:right;">
+</div>
+
+<!--formulario de filtro-->
+<form id="form1" name="form1" onsubmit="return search()" style="width:90%; margin-top:10px;">
+	<table>
+
+	<!--ancho de la columna de etiquetas-->
+	<col width="30%">
+
+	<!--campos-->
+			<tr>
+			<td>${lbl:b_code}</td>
+			<td>
+				<input id="svc_codigo2" name="svc_codigo2" type="text" maxlength="16" >
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_description}</td>
+			<td>
+				<input id="svc_descripcion2" name="svc_descripcion2" type="text" maxlength="56" >
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_service_type}</td>
+		<td>
+			<select name="svc_tipo_servicio2" id="svc_tipo_servicio2" onchange="chgCombo(svc_tipo_servicio2.options[svc_tipo_servicio2.selectedIndex].text,'svc_tipo_servicio2_name');">
+				<option value="">[Cualquiera]</option>
+				<svc_tipo_servicio2_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</svc_tipo_servicio2_rows>
+			</select> 
+			<input id="svc_tipo_servicio2_name" name="svc_tipo_servicio2_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_inactive}</td>
+		<td>
+			<select name="svc_inactivo2" id="svc_inactivo2">
+				<option value="S">${lbl:b_yes}</option>
+				<option value="N">${lbl:b_not}</option>
+
+			</select> 
+		</td>
+	</tr>
+
+	
+	</table>
+	<!--botones-->	
+	<input type="submit" value="${lbl:b_find_button}" class="button">
+</form>
+
+<!--panel de respuesta AJAX #1-->
+<div id="response" style="display:none; width:100%; margin-top:10px;"></div>
+
+</body>
+
+</html>

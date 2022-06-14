@@ -1,0 +1,42 @@
+INSERT INTO smn_comercial.smn_metas
+(
+	smn_metas_id,
+	smn_tipo_documento_id,
+	smn_documento_id,
+	smn_clase_auxiliar_rf,
+	smn_auxiliar_rf,
+	smn_rol_id,
+	smn_usuario_rf,
+	met_fecha_desde,
+	met_fecha_hasta,
+	met_dias_habiles,
+	met_fecha_estadistica,
+	met_cantidad_diaria,
+	met_cantidad_usuario,
+	met_estatus,
+	met_idioma,
+	met_usuario,
+	met_fecha_registro,
+	met_hora
+)
+VALUES
+(
+	${seq:currval@smn_comercial.seq_smn_metas},
+	${fld:smn_tipo_documento_id},
+	${fld:smn_documento_id},
+	${fld:smn_clase_auxiliar_rf},
+	${fld:smn_auxiliar_rf},
+	${fld:smn_rol_id},
+	${fld:smn_usuario_rf},
+	${fld:met_fecha_desde},
+	${fld:met_fecha_hasta},
+	${fld:met_dias_habiles},
+	{d '${def:date}'},
+	${fld:met_cantidad_diaria},
+	${fld:met_cantidad_usuario},
+	${fld:met_estatus},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

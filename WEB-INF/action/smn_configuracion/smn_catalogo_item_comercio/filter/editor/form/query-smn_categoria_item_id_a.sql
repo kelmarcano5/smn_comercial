@@ -1,0 +1,1 @@
+select smn_comercial.smn_categoria_item.smn_categoria_item_id as id, smn_comercial.smn_categoria_item.cai_descripcion as item from smn_comercial.smn_categoria_item

@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_incrementos_rf' type='integer' required='true' label='${lbl:b_pre_documento}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_presupuesto}' maxlen='10'/>
+	<parameter id="porcentaje_incremento" type="double" required="false" label="ID" maxlen="10" />
+	<parameter id="porcentaje_base" type="double" required="false" label="ID" maxlen="10" />
+	<parameter id="aplica_it" type="varchar" required="false" label="APLICA ITEM" maxlen="10" />
+	<parameter id="aplica_se" type="varchar" required="false" label="APLICA SERVICIO" maxlen="10" />
+	<parameter id="aplica_af" type="varchar" required="false" label="APLICA ACTIVO FIJO" maxlen="10" />
+</validator>

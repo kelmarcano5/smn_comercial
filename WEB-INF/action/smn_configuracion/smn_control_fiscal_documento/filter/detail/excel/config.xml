@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="5" cellStep="0" name="${lbl:b_control_fiscal_document}"/>
+	
+	<excel 
+		recordset='query.sql' 
+		sheetname='${lbl:b_control_fiscal_document}' 
+		filename='${lbl:b_control_fiscal_document}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_documento_id' label='${lbl:b_document}' />
+		<col id='cfd_numero_documento_fiscal_inicial' label='${lbl:b_doc_num_fis_ini}' />
+		<col id='cfd_numero_documento_fiscal_final' label='${lbl:b_doc_num_fis_fin}' />
+		<col id='cfd_ultimo_numero_fiscal_usado' label='${lbl:b_num_ult_fis_usa}' />
+		<col id='smn_proveedor_rf' label='${lbl:b_proveedor}' />
+		<col id='cfd_fecha_solicitud' label='${lbl:b_application_date}' />
+		<col id='cfd_fecha_recepcion' label='${lbl:b_reception_date}' />
+		<col id='cfd_serie' label='${lbl:b_serie}' />
+		<col id='cfd_estatus' label='${lbl:b_estatus}' />
+		<col id='cfd_fecha_registro' label='${lbl:b_store_date}' />
+
+	</excel>
+
+</config>

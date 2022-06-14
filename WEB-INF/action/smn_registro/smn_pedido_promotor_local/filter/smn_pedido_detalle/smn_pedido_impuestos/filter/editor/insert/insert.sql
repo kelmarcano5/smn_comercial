@@ -1,0 +1,34 @@
+INSERT INTO smn_comercial.smn_pedido_impuestos
+(
+	smn_pedido_impuestos_id,
+	smn_pedido_detalle_id,
+	smn_codigos_impuestos_rf,
+	pim_monto_base_ml,
+	pim_porcentaje_impuesto,
+	pim_monto_sustraendo,
+	pim_monto_impuesto,
+	smn_moneda_rf,
+	smn_tasa_rf,
+	pim_monto_impuesto_ma,
+	pim_idioma,
+	pim_usuario,
+	pim_fecha_registro,
+	pim_hora
+)
+VALUES
+(
+	${seq:currval@smn_comercial.seq_smn_pedido_impuestos},
+	${fld:smn_pedido_detalle_id},
+	${fld:smn_codigos_impuestos_rf},
+	${fld:pim_monto_base_ml},
+	${fld:pim_porcentaje_impuesto},
+	${fld:pim_monto_sustraendo},
+	${fld:pim_monto_impuesto},
+	${fld:smn_moneda_rf},
+	${fld:smn_tasa_rf},
+	${fld:pim_monto_impuesto_ma},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

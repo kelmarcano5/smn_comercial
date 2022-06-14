@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_rel_linea_comercial_afijo>
+	<detail>
+		<rows>		
+		<record rla_fecha_registro="${fld:rla_fecha_registro}"    rla_vigencia="${fld:rla_vigencia}"    rla_estatus="${fld:rla_estatus}"    smn_activo_rf="${fld:smn_activo_rf}"    smn_linea_comercial_id="${fld:smn_linea_comercial_id}"    />
+		</rows>
+	</detail>
+</smn_rel_linea_comercial_afijo>

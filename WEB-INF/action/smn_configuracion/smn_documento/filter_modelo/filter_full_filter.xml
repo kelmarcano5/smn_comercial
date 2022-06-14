@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<model>
+	<summary>${lbl:b_document}</summary>
+	<filter>
+		<row field='smn_tipo_documentos_fact_id' id='smn_tipo_documentos_fact_id' label='${lbl:b_tipo_documento_factura}@{select smn_comercial.smn_tipo_documentos_fact.smn_tipo_documentos_fact_id as id, smn_comercial.smn_tipo_documentos_fact.tdf_codigo|| &apos; - &apos; || smn_comercial.smn_tipo_documentos_fact.tdf_nombre as item from smn_comercial.smn_tipo_documentos_fact order by tdf_nombre}' required='NO' fk='tdf_codigo' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_documento' len='10'/>
+		<row field='smn_documentos_generales_rf' id='smn_documentos_generales_rf' label='${lbl:b_general_documents}@{select smn_base.smn_documentos_generales.smn_documentos_generales_id as id, smn_base.smn_documentos_generales.dcg_codigo|| &apos; - &apos; || smn_base.smn_documentos_generales.dcg_descripcion as item from smn_base.smn_documentos_generales order by dcg_descripcion}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_documento' len='10'/>
+		<row field='dcf_codigo' id='dcf_codigo' label='${lbl:b_code}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='varchar' tableName='smn_documento' len='16'/>
+		<row field='dcf_descripcion' id='dcf_descripcion' label='${lbl:b_description} ' required='NO' fk='' mSelection='' condiction='Contiene' type='varchar' tableName='smn_documento' len='48'/>
+		<row field='dcf_fecha_registro' id='dcf_fecha_registro_ini' label='${lbl:b_store_date_greather_than}' required='NO' fk='' mSelection='' condiction='Mayor o igual que (&gt;=)' type='date' tableName='smn_documento' len='10'/>
+		<row field='dcf_fecha_registro' id='dcf_fecha_registro_fin' label='${lbl:b_store_date_less_than}' required='NO' fk='' mSelection='' condiction='Menor o igual que (&lt;=)' type='date' tableName='smn_documento' len='10'/>
+	</filter>
+	<detail>SI</detail>
+	<insert>SI</insert>
+	<edit>SI</edit>
+	<delete>SI</delete>
+	<audit>Consulta</audit>
+	<grid>
+		<row field='smn_tipo_documentos_fact_id' label='${lbl:b_tipo_documento_factura}@{select smn_comercial.smn_tipo_documentos_fact.smn_tipo_documentos_fact_id as id, smn_comercial.smn_tipo_documentos_fact.tdf_codigo|| &apos; - &apos; || smn_comercial.smn_tipo_documentos_fact.tdf_nombre as item from smn_comercial.smn_tipo_documentos_fact order by tdf_nombre}' fk='tdf_codigo' tableName='smn_documento' len='10' type='integer' align='center'/>
+		<row field='smn_documentos_generales_rf' label='${lbl:b_general_documents}@{select smn_base.smn_documentos_generales.smn_documentos_generales_id as id, smn_base.smn_documentos_generales.dcg_codigo|| &apos; - &apos; || smn_base.smn_documentos_generales.dcg_descripcion as item from smn_base.smn_documentos_generales order by dcg_descripcion}' fk='' tableName='smn_documento' len='10' type='integer' align='center'/>
+		<row field='dcf_codigo' label='${lbl:b_code}' fk='' tableName='smn_documento' len='16' type='varchar' align='left'/>
+		<row field='dcf_descripcion' label='${lbl:b_description} ' fk='' tableName='smn_documento' len='48' type='varchar' align='left'/>
+		<row field='dcf_tipo_movimiento' label='${lbl:b_accounting_movement_type}@{DE=${lbl:b_operation_debit}|CR=${lbl:b_operation_credit}}' fk='' tableName='smn_documento' len='2' type='varchar' align='left'/>
+		<row field='dcf_req_vigencia' label='${lbl:b_requiere_vigencia}@{SI=${lbl:b_yes}|NO=${lbl:b_not}}' fk='' tableName='smn_documento' len='2' type='varchar' align='left'/>
+		<row field='dcf_req_fecha_vencimiento' label='${lbl:b_requiere_fecha_vencimiento}@{SI=${lbl:b_yes}|NO=${lbl:b_not}}' fk='' tableName='smn_documento' len='2' type='varchar' align='left'/>
+		<row field='dcf_gen_orden_despacho' label='${lbl:b_genera_orden_despacho}@{SI=${lbl:b_yes}|NO=${lbl:b_not}}' fk='' tableName='smn_documento' len='2' type='varchar' align='left'/>
+		<row field='dcf_req_servicios' label='${lbl:b_requiere_servicios}@{SI=${lbl:b_yes}|NO=${lbl:b_not}}' fk='' tableName='smn_documento' len='2' type='varchar' align='left'/>
+		<row field='dcf_req_vendedor' label='${lbl:b_requiere_vendedor}@{SI=${lbl:b_yes}|NO=${lbl:b_not}}' fk='' tableName='smn_documento' len='2' type='varchar' align='left'/>
+		<row field='dcf_req_tiempo_entrega' label='${lbl:b_requiere_tiempo_entrega}@{SI=${lbl:b_yes}|NO=${lbl:b_not}}' fk='' tableName='smn_documento' len='2' type='varchar' align='left'/>
+		<row field='dcf_usa_bonificaciones' label='${lbl:b_usa_bonificaciones}@{SI=${lbl:b_yes}|NO=${lbl:b_not}}' fk='' tableName='smn_documento' len='2' type='varchar' align='left'/>
+		<row field='dcf_usa_descuentos' label='${lbl:b_usa_descuentos}@{SI=${lbl:b_yes}|NO=${lbl:b_not}}' fk='' tableName='smn_documento' len='2' type='varchar' align='left'/>
+		<row field='dcf_moneda_alterna' label='${lbl:b_alternative_currency}@{SI=${lbl:b_yes}|NO=${lbl:b_not}}' fk='' tableName='smn_documento' len='2' type='varchar' align='left'/>
+		<row field='dcf_selecciona_precio' label='${lbl:b_puede_seleccionar_precio}@{SI=${lbl:b_yes}|NO=${lbl:b_not}}' fk='' tableName='smn_documento' len='2' type='varchar' align='left'/>
+		<row field='dcf_usa_anexo' label='${lbl:b_usa_anexo}@{SI=${lbl:b_yes}|NO=${lbl:b_not}}' fk='' tableName='smn_documento' len='2' type='varchar' align='left'/>
+		<row field='dcf_vigencia' label='${lbl:b_validation_date}' fk='' tableName='smn_documento' len='10' type='date' align='center'/>
+		<row field='dcf_estatus' label='${lbl:b_status}@{AC=${lbl:b_account_type_active}|IN=${lbl:b_inactive}}' fk='' tableName='smn_documento' len='2' type='varchar' align='left'/>
+		<row field='dcf_idioma' label='${lbl:s_profile_lang}@{${def:locale}}' fk='' tableName='smn_documento' len='2' type='varchar' align='left'/>
+		<row field='dcf_usuario' label='${lbl:b_users}@{${def:user}}' fk='' tableName='smn_documento' len='10' type='varchar' align='left'/>
+		<row field='dcf_fecha_registro' label='${lbl:b_store_date}@{${def:date}}' fk='' tableName='smn_documento' len='10' type='date' align='center'/>
+		<row field='dcf_hora' label='${lbl:s_loginhist_col2}@{${def:time}}' fk='' tableName='smn_documento' len='8' type='varchar' align='left'/>
+	</grid>
+	<mobile>false</mobile>
+</model>

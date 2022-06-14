@@ -1,0 +1,35 @@
+UPDATE smn_comercial.smn_pago_punto_venta SET
+	smn_pedido_cabecera_id=${fld:smn_pedido_cabecera_id},
+	smn_mov_caja_cabecera_id=${fld:smn_mov_caja_cabecera_id},
+	smn_pagador_clase_rf=${fld:smn_pagador_clase_rf},
+	smn_rel_punto_venta_pago_rf=${fld:smn_rel_punto_venta_pago_rf},
+	smn_forma_pago_rf=${fld:smn_forma_pago_rf},
+	ppv_numero_documento_forma_pago=${fld:ppv_numero_documento_forma_pago},
+	ppv_numero_autorizacion=${fld:ppv_numero_autorizacion},
+	ppv_documento_identidad_pagador=${fld:ppv_documento_identidad_pagador},
+	ppv_nombre_pagador=${fld:ppv_nombre_pagador},
+	ppv_monto_pagar_ml=${fld:ppv_monto_pagar_ml},
+	ppv_monto_pago_ml=${fld:ppv_monto_pago_ml},
+	ppv_monto_devuelto_ml=${fld:ppv_monto_devuelto_ml},
+	ppv_monto_pagar_ma=${fld:ppv_monto_pagar_ma},
+	ppv_monto_pago_ma=${fld:ppv_monto_pago_ma},
+	ppv_monto_devuelto_ma=${fld:ppv_monto_devuelto_ma},
+	smn_moneda_rf=${fld:smn_moneda_rf},
+	smn_tasa_rf=${fld:smn_tasa_rf},
+	ppv_observacion=${fld:ppv_observacion},
+	ppv_estatus=${fld:ppv_estatus},
+	ppv_idioma='${def:locale}',
+	ppv_usuario='${def:user}',
+	ppv_fecha_registro={d '${def:date}'},
+	ppv_hora='${def:time}',
+	ppv_banco_origen=${fld:ppv_banco_origen},
+	ppv_banco_destino=${fld:ppv_banco_destino},
+	ppv_cuenta_bancaria=${fld:ppv_cuenta_bancaria},
+	smn_codigo_impuesto_rf=${fld:smn_codigo_impuesto_rf},
+	ppv_porcentaje=${fld:ppv_porcentaje},
+	ppv_monto_impuesto_ml=${fld:ppv_monto_impuesto_ml},
+	ppv_monto_impuesto_ma=${fld:ppv_monto_impuesto_ma}
+
+WHERE
+	smn_pago_punto_venta_id=${fld:id}
+

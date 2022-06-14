@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+
+<!--biblioteca generica JS/Dinamica-->
+<script type="text/javascript" src="${def:context}/action/script">
+</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="banner" id="encabezado_tabla">
+	Ventas Diarias
+	${req:progress}
+</div>
+
+<!--formulario de filtro-->
+<form name="form1" onsubmit="return search()" style="width:530px;">
+
+	<!--titulo-->
+	<h1>Filtro de búsqueda</h1>
+	
+	<table>
+	
+	<!--ancho de la columna de etiquetas-->
+	<col style="width:40%">
+
+	<!--campos-->
+	
+		<tr>
+		<td>${lbl:b_entities}</td>
+		<td>
+			<select name="smn_entidad_rf" id="smn_entidad_rf">
+				<option value="">[Cualquiera]</option>
+				<smn_entidad_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_entidad_rf_rows>
+			</select> 
+			<input id="smn_entidad_rf_name" name="smn_entidad_rf_name" type="hidden">
+		</td>
+	</tr>
+	
+	
+		<!--<tr>
+		<td>Compañía</td>
+		<td>
+			
+			<select id="smn_entidad_rf" name="smn_entidad_rf" onchange="chgCombo(smn_entidad_rf.options[smn_entidad_rf.selectedIndex].text,'smn_entidad_rf_name');">				
+				<option value="18">Estudios Cafe</option>
+			</select>
+			<input id="smn_entidad_rf_name" name="smn_entidad_rf_name" type="hidden">			
+		</td>-->
+		<!--<input id="smn_documento_id" name="smn_documento_id" type="text" maxlength="10" class="numeric">-->
+	</tr>
+	
+	<!--campos-->
+		<tr>
+		<td>Desde*</td>
+		<td>
+			<input id="pca_fecha_requerida" name="pca_fecha_requerida" type="text" class="date" maxlength="10">
+			<img src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('pca_fecha_requerida')">
+		</td>
+	</tr>
+	<tr>
+		<td>Hasta*</td>
+		<td>
+			<input id="pca_fecha_requerida_h" name="pca_fecha_requerida_h" type="text" class="date" maxlength="10">
+			<img src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('pca_fecha_requerida_h')">
+		</td>
+	</tr>
+	
+	</table>
+	
+	<input type="submit" value="Buscar" class="button"> 
+	
+</form>
+
+<!--panel de respuesta AJAX #1-->
+<div id="response" style="display:none; width:100%; margin-top:10px;"></div>
+	
+</body>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	//inicializacion de la pagina cuando carga
+	onload = function()
+	{ 
+		showFilter();		
+		//var txt_smn_entidad_rf = new NumericInput(document.form1.smn_entidad_rf_name, 0);
+		
+		//search();
+	} 
+	
+
+
+
+	
+	//mostrar filtro de busqueda
+	function showFilter()
+	{
+		document.getElementById("response").style.display='none';
+		setFocusOnForm("form1");
+	}
+	
+	//ejecutar consulta
+	function search()
+	{
+		//definir funcion goBack()
+		_goBackFn = showFilter;
+		
+		clearErrorMessages();
+
+		//llamada Ajax...
+		return ajaxCall(	httpMethod="POST", 
+							uri="${def:actionroot}/search", 
+							divResponse="response", 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=showGrid, 
+							onErrorFn=showFilter);
+
+	}
+
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//invoca la generacion de un PDF en un popup
+	function openPDF()
+	{
+		var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+		var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+		var w = window.open(url, null, features);
+	}
+	
+	//cambiar el tipo de gráfica
+	function changeChart(plugin, chartID) {
+		_plugin = plugin;
+		document.getElementById(chartID + "_wait").style.display='';
+		document.getElementById(chartID).src = "${def:context}${def:actionroot}/chart?dummy=" + Math.random() + "&plugin=" + plugin;
+	}
+		
+	//mostrar imagen y esconder su indicador de progreso de carga
+	function displayChart(chartID) {
+		document.getElementById(chartID + "_wait").style.display='none';
+		document.getElementById(chartID).style.display='';
+	}
+
+	//mostrar detalle de un registro
+	function drillDown(id)
+	{
+		alert('Colocar su código aquí.')
+		/*var uri = "${def:context}${def:actionroot}/drilldown/form?id=" + id;
+		openDialog("dialog", uri, 500, 280);*/
+	}
+	
+	//mostrar grid principal
+	function showGrid()
+	{
+		document.getElementById("response").style.display="block";
+		
+		//restaura el goBack que corresponde a este estado
+		_goBackFn = showFilter;
+	}
+
+</script>
+
+</html>

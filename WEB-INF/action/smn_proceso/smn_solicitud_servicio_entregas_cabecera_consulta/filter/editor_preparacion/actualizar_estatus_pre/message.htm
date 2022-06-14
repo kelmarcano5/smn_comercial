@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+    <link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+    <script type="text/javascript" src="${def:context}/action/script"></script>
+    <script type="text/javascript" src="${def:context}/action/jquery"></script>
+    <script type="text/javascript" src="${def:context}/action/jqueryi"></script>
+    
+</head>
+<body>
+    <div id="encabezado_tabla" class="" style="
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 14pt;
+        padding: 5px;
+        color: #ffffff;
+        height: 22px;
+        margin-bottom: 0px;
+        margin-top: 0px;
+        text-shadow: 1px 1px 0px #1d1d1d;
+        background: linear-gradient(to right, rgba(160,160,160,1) 0%,rgba(222,224,223,1) 100%);">
+        <img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+    </div>
+
+   
+
+    <form id="ticket" style="width:550px;">
+        <h2>Ticket</h2>
+         <div>
+            El pedido fue preparado exitosamente
+        </div>
+        <table class="record" style="width:300px;">
+            <tr>
+                <td width="40%">Numero de Pedido</td>
+                <td style="background-color: white">${fld:numero_documento}</td>
+            </tr>
+            <tr>
+                <td width="40%">${lbl:b_customer}</td>
+                <td style="background-color: white">${fld:comprador}</td>
+            </tr>
+            <tr>
+                <td width="40%">Descripcion del Producto</td>
+                <td style="background-color: white">${fld:sec_descripcion}</td>
+            </tr>
+            <tr>
+                <td width="40%">Extras</td>
+                <td style="background-color: white">${fld:ingrediente}</td>
+            </tr>
+            <tr>
+                <td width="40%">Requisitos</td>
+                <td style="background-color: white">${fld:requisitos}</td>
+            </tr>
+            <tr>
+                <td width="40%">Cantidad</td>
+                <td style="background-color: white">${fld:cantidad}</td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+<script type="text/javascript" >
+    onload = function() { 
+
+        alert("numero de documento: "+'${fld:numero_documento}'+'${fld:sec_descripcion}');
+
+            $('#ticket').printThis();
+        
+    }  
+
+</script>
+
+
+

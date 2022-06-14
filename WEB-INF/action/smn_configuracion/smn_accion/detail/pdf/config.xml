@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query.sql" source="session" scope="transaction" />
+		<recordset id='detail-smngestion.sql' source='session' scope='transaction' />
+
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_action}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_action}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='query.sql' title='${lbl:b_action}' width='60' spacingBefore='40'>
+			<col name='acc_codigo' title='${lbl:b_code}' align='left' />
+			<col name='acc_descripcion' title='${lbl:b_description}' align='left' />
+			<col name='acc_require_seguimiento_combo' title='${lbl:b_required_day}' align='left' />
+			<col name='acc_dias_seguimiento' title='${lbl:b_followup_days}' align='left'  />
+			<col name='pas_descripcion_combo' title='${lbl:b_pass}' align='left'  />
+			<col name='acc_estatus_combo' title='${lbl:b_status}' align='left' />
+			<col name='acc_vigencia' title='${lbl:b_vigency}' align='left' format='dd-MM-yyyy' />
+			<col name='acc_idioma' title='${lbl:s_profile_lang}' align='left' />
+			<col name='acc_usuario' title='${lbl:b_users}' align='left' />
+			<col name='acc_fecha_registro' title='${lbl:b_store_date}' align='left' format='dd-MM-yyyy' />
+			<col name='acc_hora' title='${lbl:s_loginhist_col2}' align='left' />
+		</record>
+		<table recordset='detail-smngestion.sql' width='100' spacingBefore='40'>
+			<col name='smn_gestion_id' title='${lbl:b_management}' width='11' align='left'  />
+			<col name='ges_codigo' title='${lbl:b_code}' width='11' align='left' />
+			<col name='ges_descripcion' title='${lbl:b_description}' width='11' align='left' />
+			<col name='ges_estatus_combo' title='${lbl:b_status}' width='11' align='left'  />
+			<col name='ges_vigencia' title='${lbl:b_vigency}' width='11' align='left'  />
+			<col name='ges_idioma' title='${lbl:s_profile_lang}' width='11' align='left'  />
+			<col name='ges_usuario' title='${lbl:b_users}' width='11' align='left'  />
+			<col name='ges_fecha_registro' title='${lbl:b_store_date}' width='11' align='left'  />
+			<col name='ges_hora' title='${lbl:s_loginhist_col2}' width='11' align='left'  />
+		</table>
+
+
+	</pdf-report>
+</config>

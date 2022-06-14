@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnevento.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="4" cellStep="0" name="${lbl:b_event}"/>
+	
+	<excel 
+		recordset='query-smnevento.sql' 
+		sheetname='${lbl:b_event}' 
+		filename='${lbl:b_event}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='eve_codigo' label='${lbl:b_code}' />
+		<col id='eve_descripcion_corta' label='${lbl:b_description_short}' />
+		<col id='eve_descripcion_larga' label='${lbl:b_description_large}' />
+		<col id='smn_servicios_rf' label='${lbl:b_services}' />
+		<col id='eve_fecha_inicial' label='${lbl:b_date_init}' />
+		<col id='eve_fecha_final' label='${lbl:b_date_end}' />
+		<col id='smn_prestador_servicio_rf' label='${fld:b_service_provider}' />
+		<col id='eve_estatus' label='${lbl:b_estatus}' />
+		<col id='eve_fecha_registro' label='${lbl:b_store_date}' />
+
+	</excel>
+
+</config>

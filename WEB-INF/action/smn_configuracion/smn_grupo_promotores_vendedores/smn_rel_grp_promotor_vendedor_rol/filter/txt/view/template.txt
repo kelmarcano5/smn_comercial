@@ -1,0 +1,3 @@
+<rows>
+smn_rol_id="${fld:smn_rol_id}"    smn_grupo_promotores_vendedores_id="${fld:smn_grupo_promotores_vendedores_id}"    
+</rows>

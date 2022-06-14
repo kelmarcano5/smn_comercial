@@ -1,0 +1,2 @@
+select * from smn_automotriz.smn_rel_diagnostico_servicio
+inner join smn_base.smn_servicios on smn_base.smn_servicios.smn_servicios_id = smn_automotriz.smn_rel_diagnostico_servicio.smn_servicio_rf

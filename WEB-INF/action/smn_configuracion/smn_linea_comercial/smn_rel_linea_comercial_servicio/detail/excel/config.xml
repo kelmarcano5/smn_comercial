@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="4" cellStep="0" name="${lbl:b_relacion_linea_comercial_servicio}"/>
+	
+	<excel 
+		recordset='query.sql' 
+		sheetname='${lbl:b_relacion_linea_comercial_servicio}' 
+		filename='${lbl:b_relacion_linea_comercial_servicio}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_linea_comercial_id_combo' label='${lbl:b_linea_comercial}' />
+		<col id='smn_servicio_rf_combo' label='${lbl:b_service}' />
+		<col id='rls_estatus_combo' label='${lbl:b_status}' />
+		<col id='rls_vigencia' label='${lbl:b_validation_date}' />
+		<col id='rls_idioma' label='${lbl:s_profile_lang}' />
+		<col id='rls_usuario' label='${lbl:b_users}' />
+		<col id='rls_fecha_registro' label='${lbl:b_store_date}' />
+		<col id='rls_hora' label='${lbl:s_loginhist_col2}' />
+
+	</excel>
+
+</config>

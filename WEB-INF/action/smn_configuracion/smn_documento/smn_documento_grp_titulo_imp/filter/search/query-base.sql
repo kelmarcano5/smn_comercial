@@ -1,0 +1,16 @@
+select
+	smn_comercial.smn_documento.dcf_descripcion as smn_documento_id,
+	smn_base.smn_grupo_titulo_impresion.gti_descripcion as smn_grupo_titulo_impresion_rf,
+	smn_comercial.smn_documento_grp_titulo_imp.rdi_secuencia_impresion,
+	smn_comercial.smn_documento_grp_titulo_imp.rdi_fecha_registro,
+	smn_comercial.smn_documento_grp_titulo_imp.smn_documento_grp_titulo_imp_id
+from
+	smn_comercial.smn_documento_grp_titulo_imp
+	inner join smn_comercial.smn_documento on smn_comercial.smn_documento.smn_documento_id = smn_comercial.smn_documento_grp_titulo_imp.smn_documento_id
+	inner join smn_base.smn_grupo_titulo_impresion on smn_base.smn_grupo_titulo_impresion.smn_grupo_titulo_impresion_id = smn_comercial.smn_documento_grp_titulo_imp.smn_grupo_titulo_impresion_rf
+where
+	smn_documento_grp_titulo_imp_id is not null
+	and 	smn_comercial.smn_documento.smn_documento_id=smn_comercial.smn_documento_grp_titulo_imp.smn_documento_id
+	${filter}
+order by
+		smn_documento_grp_titulo_imp_id

@@ -1,0 +1,52 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='15%'/>
+	<col width='15%'/>
+	<col width='15%'/>
+	<col width='15%'/>
+	<col width='15%'/>
+	<col width='15%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="9" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_evento_id','query-smnreservas.sql')" >${lbl:b_event}</th>
+		<th class='sortable' onclick="sortBy('smn_afiliado_id','query-smnreservas.sql')" >${lbl:b_afiliate}</th>
+		<th class='sortable' onclick="sortBy('smn_relacionado_id','query-smnreservas.sql')" >${lbl:b_related}</th>
+		<th class='sortable' onclick="sortBy('res_cantidad','query-smnreservas.sql')" >${lbl:b_quantity}</th>
+		<th class='sortable' onclick="sortBy('res_estatus','query-smnreservas.sql')" >${lbl:b_estatus}</th>
+		<th class='sortable' onclick="sortBy('res_fecha_registro','query-smnreservas.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_reservas_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_reservas_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_reservas_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_evento_id}</td>
+		<td align="center">${fld:smn_afiliado_id}</td>
+		<td align="center">${fld:smn_relacionado_id}</td>
+		<td align="center">${fld:res_cantidad}</td>
+		<td align="left">${fld:res_estatus}</td>
+		<td align="center">${fld:res_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

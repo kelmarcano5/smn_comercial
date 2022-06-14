@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_presupuesto_detalle>
+	<detail>
+		<rows>		
+		<record prd_fecha_registro="${fld:prd_fecha_registro}"    prd_moneda_alterna="${fld:prd_moneda_alterna}"    prd_monto_moneda_local="${fld:prd_monto_moneda_local}"    prd_precio_ma="${fld:prd_precio_ma}"    smn_moneda_rf="${fld:smn_moneda_rf}"    prd_precio="${fld:prd_precio}"    prd_cantidad="${fld:prd_cantidad}"    smn_servicios_rf="${fld:smn_servicios_rf}"    smn_presupuesto_id="${fld:smn_presupuesto_id}"    />
+		</rows>
+	</detail>
+</smn_presupuesto_detalle>

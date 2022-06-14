@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_factura_cabecera>
+	<detail>
+		<rows>		
+		<record fca_fecha_registro="${fld:fca_fecha_registro}"    fca_estatus_proceso="${fld:fca_estatus_proceso}"    fca_estatus_financiero="${fld:fca_estatus_financiero}"    fca_monto_neto_ma="${fld:fca_monto_neto_ma}"    fca_monto_bonificacion_ma="${fld:fca_monto_bonificacion_ma}"    fca_monto_descuento_ma="${fld:fca_monto_descuento_ma}"    fca_monto_impuesto_ma="${fld:fca_monto_impuesto_ma}"    fca_monto_factura_ma="${fld:fca_monto_factura_ma}"    smn_tasa_rf="${fld:smn_tasa_rf}"    smn_moneda_rf="${fld:smn_moneda_rf}"    fca_monto_neto_ml="${fld:fca_monto_neto_ml}"    fca_monto_bonificacion_ml="${fld:fca_monto_bonificacion_ml}"    fca_monto_descuento_ml="${fld:fca_monto_descuento_ml}"    fca_monto_impuesto_ml="${fld:fca_monto_impuesto_ml}"    fca_monto_factura_ml="${fld:fca_monto_factura_ml}"    fca_direccion_fiscal="${fld:fca_direccion_fiscal}"    fca_rif="${fld:fca_rif}"    fca_numero_control_fiscal="${fld:fca_numero_control_fiscal}"    smn_control_serie_fiscal_id="${fld:smn_control_serie_fiscal_id}"    smn_cliente_id="${fld:smn_cliente_id}"    smn_caja_rf="${fld:smn_caja_rf}"    smn_oferta_id="${fld:smn_oferta_id}"    smn_pedido_cabecera_id="${fld:smn_pedido_cabecera_id}"    smn_sucursal_rf="${fld:smn_sucursal_rf}"    smn_entidad_rf="${fld:smn_entidad_rf}"    fca_numero_documento_id="${fld:fca_numero_documento_id}"    smn_documento_id="${fld:smn_documento_id}"    />
+		</rows>
+	</detail>
+</smn_factura_cabecera>

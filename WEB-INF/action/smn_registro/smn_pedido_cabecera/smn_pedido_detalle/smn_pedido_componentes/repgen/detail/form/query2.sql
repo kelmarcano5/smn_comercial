@@ -1,0 +1,30 @@
+select
+		smn_comercial.smn_pedido_componentes.smn_pedido_detalle_id,
+	smn_comercial.smn_pedido_componentes.smn_mov_caja_detalle_id,
+	smn_comercial.smn_pedido_componentes.smn_ingreso_rf,
+	smn_comercial.smn_pedido_componentes.smn_grupo_componente_rf,
+	smn_comercial.smn_pedido_componentes.pco_tipo_componente,
+	smn_comercial.smn_pedido_componentes.smn_componente_rf,
+	smn_comercial.smn_pedido_componentes.pco_es_prestador_servicio,
+	smn_comercial.smn_pedido_componentes.smn_clase_auxiliar_rf,
+	smn_comercial.smn_pedido_componentes.smn_auxiliar_rf,
+	smn_comercial.smn_pedido_componentes.pdo_naturaleza,
+	smn_comercial.smn_pedido_componentes.smn_item_rf,
+	smn_comercial.smn_pedido_componentes.smn_servicio_rf,
+	smn_comercial.smn_pedido_componentes.pco_cantidad,
+	smn_comercial.smn_pedido_componentes.smn_precio_ml_rf,
+	smn_comercial.smn_pedido_componentes.pco_monto_ml,
+	smn_comercial.smn_pedido_componentes.smn_moneda_rf,
+	smn_comercial.smn_pedido_componentes.smn_tasa_rf,
+	smn_comercial.smn_pedido_componentes.smn_precio_ma,
+	smn_comercial.smn_pedido_componentes.smn_monto_ma,
+	smn_comercial.smn_pedido_componentes.pco_imprime,
+	smn_comercial.smn_pedido_componentes.smn_grupo_titulo_impresion_rf,
+	smn_comercial.smn_pedido_componentes.smn_tipo_gasto_rf,
+	smn_comercial.smn_pedido_componentes.smn_sub_tipo_gasto_rf,
+	smn_comercial.smn_pedido_componentes.pco_estatus,
+	smn_comercial.smn_pedido_componentes.pco_fecha_registro
+from
+	smn_comercial.smn_pedido_componentes 
+where
+	smn_comercial.smn_pedido_componentes.smn_pedido_componentes_id = ${fld:id}

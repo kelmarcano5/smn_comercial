@@ -1,0 +1,41 @@
+INSERT INTO smn_compras.smn_requisicion_detalle (
+	smn_requisicion_detalle_id,
+	smn_requisicion_cabecera_id,
+	smn_linea_id,
+	smn_naturaleza_id,
+	smn_servicio_id,
+	smn_item_id,
+	rrs_producto_encontrado,
+	rss_cantidad,
+	rrs_precio,
+	rrs_monto,
+	smn_moneda_id,
+	rrs_precio_moneda_alterna,
+	rrs_monto_moneda_alterna,
+	rrs_fecha_de_requerido,
+	rrs_idioma,
+ 	rrs_usuario,
+	rrs_fecha_registro,
+	rrs_hora
+)VALUES(
+	nextval('smn_compras.seq_smn_requisicion_detalle'),
+	(select smn_compras.smn_requisicion_cabecera.smn_requisicion_cabecera_id from smn_compras.smn_requisicion_cabecera
+where smn_compras.smn_requisicion_cabecera.igs_doc_origen = ${fld:smn_presupuesto_id}),
+	nextval('smn_compras.seq_smn_lineas'),
+	'IT',
+	${fld:smn_servicios_rf},
+	${fld:smn_item_rf},
+	'SI',
+	${fld:prd_cantidad},
+	${fld:prd_precio},
+	${fld:prd_monto_moneda_local},
+	${fld:smn_moneda_rf},
+	${fld:prd_precio_ma},
+	${fld:prd_moneda_alterna},
+	{d '${def:date}'},  
+	'${def:locale}',
+    '${def:user}',
+    {d '${def:date}'},
+    '${def:time}'
+);
+

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='ofe_numero_documento' type='integer' required='true' label='${lbl:b_document_number}' maxlen='10'/>
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+	<parameter id='ofe_fecha_desde' type='date' required='true' label='${lbl:b_init_date}' maxlen='10'/>
+	<parameter id='ofe_fecha_hasta' type='date' required='true' label='${lbl:b_end_date}' maxlen='10'/>
+	<parameter id='ofe_observaciones' type='varchar' required='false' label='${lbl:b_observations}' maxlen='200'/>
+	<parameter id='ofe_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_offer}' maxlen='10'/>
+	<parameter id='ofe_descripcion' type='varchar' required='false' label='${lbl:b_description}' maxlen='200'/>
+
+
+</validator>

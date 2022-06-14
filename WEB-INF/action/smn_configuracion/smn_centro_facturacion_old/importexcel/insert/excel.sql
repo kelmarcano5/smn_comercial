@@ -1,0 +1,38 @@
+INSERT INTO smn_comercial.smn_centro_facturacion
+(
+	smn_centro_facturacion_id,
+	cfc_codigo,
+	cfc_nombre,
+	smn_entidades_rf,
+	smn_sucursales_rf,
+	smn_areas_servicios_rf,
+	smn_unidades_servicios_rf,
+	cfc_numero_identificacion,
+	cfc_control_fiscal_1,
+	cfc_control_fiscal_2,
+	cfc_vigencia,
+	cfc_estatus,
+	cfc_idioma,
+	cfc_usuario,
+	cfc_fecha_registro,
+	cfc_hora
+)
+VALUES
+(
+	${seq:nextval@smn_comercial.seq_smn_centro_facturacion},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

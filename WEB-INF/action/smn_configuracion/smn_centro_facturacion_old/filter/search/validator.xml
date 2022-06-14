@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='cfc_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='16'/>
+	<parameter id='cfc_nombre' type='varchar' required='false' label='${lbl:b_name}' maxlen='48'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='cfc_nombre' rule='contains' />
+	<parameter id='cfc_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date_greather_than}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date_greather_than} mayor o igual que] no puede ser mayor que [${lbl:b_store_date_less_than} menor o igual que].' date1='cfc_fecha_registro_ini' date2='cfc_fecha_registro_fin' id='cfc_fecha_registro_ini' />
+	<parameter id='cfc_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date_less_than}' maxlen='10'/>
+</validator>

@@ -1,0 +1,2 @@
+ and
+ 	smn_comercial.smn_pago_punto_venta.ppv_numero_documento_forma_pago=${fld:ppv_numero_documento_forma_pago}

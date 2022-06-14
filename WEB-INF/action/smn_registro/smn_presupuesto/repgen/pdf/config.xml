@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnpresupuesto.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_presupuesto}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_presupuesto}.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smnpresupuesto.sql' width='100' spacingBefore='40'>
+			<col name='smn_entidades_rf' title='${lbl:b_entity}' width='14' align='left' format='######' />
+			<col name='smn_auxiliar_rf' title='${lbl:b_customer}' width='14' align='left' />
+			<col name='smn_documento_id' title='${lbl:b_document}' width='14' align='left' format='######' />
+			<col name='pre_numero_control' title='${lbl:b_pre_num_control}' width='14' align='left' format='######' />
+			<col name='pre_monto_ml' title='${lbl:b_pre_monto_loc}' width='14' align='left' format='######' />
+			<col name='pre_monto_ma' title='${lbl:b_pre_monto_alt}' width='14' align='left' format='######' />
+			<col name='status' title='${lbl:b_status}' width='14' align='left' format='######' />
+			<col name='pre_fecha_registro' title='${lbl:b_store_date}' width='14' align='left' format='dd-MM-yyyy' />
+
+		</record>
+
+		<record recordset='query-smnpresupuestodetalle.sql' width='100' spacingBefore='40'>
+			<col name='smn_entidades_rf' title='${lbl:b_entity}' width='14' align='left' format='######' />
+			<col name='smn_auxiliar_rf' title='${lbl:b_customer}' width='14' align='left' />
+			<col name='smn_documento_id' title='${lbl:b_document}' width='14' align='left' format='######' />
+			<col name='pre_numero_control' title='${lbl:b_pre_num_control}' width='14' align='left' format='######' />
+			<col name='pre_monto_ml' title='${lbl:b_pre_monto_loc}' width='14' align='left' format='######' />
+			<col name='pre_monto_ma' title='${lbl:b_pre_monto_alt}' width='14' align='left' format='######' />
+			<col name='status' title='${lbl:b_status}' width='14' align='left' format='######' />
+			<col name='pre_fecha_registro' title='${lbl:b_store_date}' width='14' align='left' format='dd-MM-yyyy' />
+
+		</record>
+
+	</pdf-report>
+
+	
+</config>

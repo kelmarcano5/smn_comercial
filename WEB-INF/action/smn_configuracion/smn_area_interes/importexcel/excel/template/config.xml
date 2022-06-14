@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnareainteres.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_areas_interes}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_areas_interes}">
+				<col id='ari_codigo' label='${lbl:b_code}' />
+		<col id='ari_descripcion' label='${lbl:b_description}' />
+		<col id='ari_vigencia' label='${lbl:b_validation_date}' />
+		<col id='ari_estatus_combo' label='${lbl:b_status}' />
+		<col id='ari_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

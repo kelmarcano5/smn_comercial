@@ -1,0 +1,1 @@
+select smn_base.smn_grupo_componente.smn_grupo_componente_id as id, smn_base.smn_grupo_componente.gco_codigo||'-'|| smn_base.smn_grupo_componente.gco_descripcion as item from smn_base.smn_grupo_componente

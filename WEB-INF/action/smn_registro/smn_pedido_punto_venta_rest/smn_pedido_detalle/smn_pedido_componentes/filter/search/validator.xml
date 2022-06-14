@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_pedido_detalle_id_name' type='varchar' required='false' label='${lbl:b_detail_bill}'/>
+	<parameter id='smn_pedido_detalle_id' type='integer' required='false' label='${lbl:b_detail_bill}' maxlen='10'/>
+	<parameter id='smn_mov_caja_detalle_id' type='integer' required='false' label='${lbl:b_movement_caj}' maxlen='10'/>
+	<parameter id='smn_ingresos_rf' type='integer' required='false' label='${lbl:b_income}' maxlen='10'/>
+	<parameter id='smn_grupo_componente_rf' type='integer' required='false' label='${lbl:b_component_group}' maxlen='10'/>
+	<parameter id='pco_tipo_componente' type='varchar' required='false' label='${lbl:b_components_types}' maxlen='2'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='pco_tipo_componente' rule='like' />
+	<parameter id='smn_componente_rf' type='integer' required='false' label='${lbl:b_component}' maxlen='10'/>
+	<parameter id='pco_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date}@{${def:date}} mayor o igual que] no puede ser mayor que [${lbl:b_store_date}@{${def:date}} menor o igual que].' date1='pco_fecha_registro_ini' date2='pco_fecha_registro_fin' id='pco_fecha_registro_ini' />
+	<parameter id='pco_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

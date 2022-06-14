@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Pago Punto de Venta
+	</summary>
+
+	<log>false</log>
+	
+	<set-request-attribute id="progress" value="file:/WEB-INF/action/progress/progress.htm"/>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id='query-smn_pagador_clase_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_rel_punto_venta_pago_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_forma_pago_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_moneda_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_tasa_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-ppv_banco_origen.sql' source='sql' scope='transaction'/>
+		<recordset id='query-ppv_banco_destino.sql' source='sql' scope='transaction'/>
+		<recordset id='query-ppv_cuenta_bancaria.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_codigo_impuesto_rf.sql' source='sql' scope='transaction'/>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<print mode='table' recordset='query-smn_pagador_clase_rf.sql' tag='smn_pagador_clase_rf_rows'/>
+		<print mode='table' recordset='query-smn_rel_punto_venta_pago_rf.sql' tag='smn_rel_punto_venta_pago_rf_rows'/>
+		<print mode='table' recordset='query-smn_forma_pago_rf.sql' tag='smn_forma_pago_rf_rows'/>
+		<print mode='table' recordset='query-smn_moneda_rf.sql' tag='smn_moneda_rf_rows'/>
+		<print mode='table' recordset='query-smn_tasa_rf.sql' tag='smn_tasa_rf_rows'/>
+		<print mode='table' recordset='query-ppv_banco_origen.sql' tag='ppv_banco_origen_rows'/>
+		<print mode='table' recordset='query-ppv_banco_destino.sql' tag='ppv_banco_destino_rows'/>
+		<print mode='table' recordset='query-ppv_cuenta_bancaria.sql' tag='ppv_cuenta_bancaria_rows'/>
+		<print mode='table' recordset='query-smn_codigo_impuesto_rf.sql' tag='smn_codigo_impuesto_rf_rows'/>
+		<print mode="form" recordset="_request" /> 
+	</output>
+
+</config>

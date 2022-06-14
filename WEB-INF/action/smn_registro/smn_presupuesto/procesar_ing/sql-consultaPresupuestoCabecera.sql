@@ -1,0 +1,9 @@
+SELECT smn_base.smn_grupos_prestadores.gpp_unidad_servicio, 
+smn_comercial.smn_presupuesto_detalle.smn_presupuesto_id,
+smn_comercial.smn_presupuesto_detalle.smn_grupo_prestador_rf,
+smn_comercial.smn_presupuesto_detalle.smn_prestadores_servicios_rf
+FROM smn_comercial.smn_presupuesto_detalle 
+inner join smn_base.smn_grupos_prestadores on smn_base.smn_grupos_prestadores.smn_grupos_prestadores_id = smn_comercial.smn_presupuesto_detalle.smn_grupo_prestador_rf
+WHERE smn_comercial.smn_presupuesto_detalle.smn_presupuesto_id =  ${fld:smn_presupuesto_id} and smn_comercial.smn_presupuesto_detalle.smn_tipo_componentes_rf ='HO'
+GROUP BY smn_comercial.smn_presupuesto_detalle.smn_grupo_prestador_rf, Smn_base.smn_grupos_prestadores.gpp_unidad_servicio, 
+smn_comercial.smn_presupuesto_detalle.smn_prestadores_servicios_rf, smn_comercial.smn_presupuesto_detalle.smn_presupuesto_id

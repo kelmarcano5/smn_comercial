@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Insertar registro 
+	</summary>
+
+	<log>false</log>
+
+	<!--soporte de auditoria-->
+	<audit>
+		<!--de donde saca los datos, por defecto es "_request"-->
+		<recordset></recordset>
+		<!--que campos extrae para el registro descriptivo-->
+		<cols>
+			<colname>smn_solicitud_servicio_entregas_cabecera_id</colname>
+			<colname>smn_catalogo_item_comercio_id</colname>
+			<colname>smn_descripcion_ingrediente</colname>
+			<colname>smn_unidad_medida_rf</colname>
+			<colname>sed_cantidad</colname>
+			<colname>sed_requirimientos</colname>
+			<colname>sed_precio_ml</colname>
+			<colname>smn_moneda_rf</colname>
+			<colname>sed_precio_ma</colname>
+			<colname>sed_monto_moneda_local</colname>
+			<colname>sed_monto_moneda_alterna</colname>
+		
+		</cols>
+		<table>smn_comercial.smn_solicitud_servicio_entregas_detalle</table>
+		<oper>AÑADIR</oper>
+		<area>Carga de datos</area>
+		<!--
+			query para obtener el ID generado o nombre de 
+			la columna que contiene el pkey, si es query, 
+			el alias del campo debe ser "id"
+		-->
+		<pkey>select ${seq:currval@smn_comercial.seq_smn_solicitud_servicio_entregas_detalle} as id</pkey>
+	</audit>
+
+	
+	 <colname>smn_ingredientes_id</colname>
+	 <sql-template>insert-query-smn_rel_detalle_ingrediente.sql</sql-template>
+	 
+	<transaction>
+		<classname>domain.admin.InsertMaster</classname>
+		<validator>true</validator>
+		<transaction>true</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="nextval.sql" source="sql" scope="transaction" />+
+		
+	</transaction>
+
+	<query>insert.sql</query>
+	
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>script.js</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/javascript</content-type>
+		<expiration>0</expiration>
+		<print mode="form" recordset="_request" />
+		<print mode="form" recordset="nextval.sql" />
+	</output>
+	
+	<!-- Envio de email declarativo -->
+	<mail enabled="false">
+		<subject>Subject</subject>
+		<mail-to>martin.cordova@gmail.com</mail-to>
+		<body>body.txt</body>
+	</mail>
+
+</config>

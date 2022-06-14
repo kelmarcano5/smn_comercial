@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		${lbl:b_point_of_sale_order_rest}
+	</summary>
+
+	<log>false</log>
+	
+	<set-request-attribute id="progress" value="file:/WEB-INF/action/progress/progress.htm"/>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id='query-smn_pedido_cabecera_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_pagador_clase_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_rel_punto_venta_pago_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_forma_pago_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_moneda_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_tasa_rf.sql' source='sql' scope='transaction'/>
+		<!-- <recordset id='query-requiere_moneda_alternativa.sql' source='sql' scope='transaction'/> -->
+		<!-- <recordset id='query-requiere_banco.sql' source='sql' scope='transaction'/> -->
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<print mode='table' recordset='query-smn_pedido_cabecera_id.sql' tag='smn_pedido_cabecera_id_rows'/>
+		<print mode='table' recordset='query-smn_pagador_clase_rf.sql' tag='smn_pagador_clase_rf_rows'/>
+		<print mode='table' recordset='query-smn_rel_punto_venta_pago_rf.sql' tag='smn_rel_punto_venta_pago_rf_rows'/>
+		<print mode='table' recordset='query-smn_forma_pago_rf.sql' tag='smn_forma_pago_rf_rows'/>
+		<print mode='table' recordset='query-smn_moneda_rf.sql' tag='smn_moneda_rf_rows'/>
+		<print mode='table' recordset='query-smn_tasa_rf.sql' tag='smn_tasa_rf_rows'/>
+		<!-- <print mode='form' recordset='query-requiere_moneda_alternativa.sql'/> -->
+		<!-- <print mode='form' recordset='query-requiere_banco.sql'/> -->
+		<print mode="form" recordset="_request" /> 
+	</output>
+
+</config>

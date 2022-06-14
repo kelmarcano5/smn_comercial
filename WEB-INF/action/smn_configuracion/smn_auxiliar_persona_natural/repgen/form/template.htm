@@ -1,0 +1,1867 @@
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+	
+	<title>${lbl:b_report_generator}</title>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="banner">
+	${lbl:b_report_generator}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<br>
+
+<!--formulario de filtro-->
+<div id="form">
+<form name="form1" onsubmit="return search()" style="width:500px;">
+
+<table style="width:500px;" class="formgrid">
+
+	<!--ancho de la columna de etiquetas-->
+	<col width="30%">
+	<col width="60%">
+	<col width="10%">
+
+	<!--titulo-->
+	<tr>
+		<th colspan="2">
+			${lbl:b_filter_find}
+		</th>
+	</tr>
+	
+	<!--separador-->
+	<tr height="10px">
+		<td colspan="2"></td>
+	</tr>
+	
+	<!--campos-->
+	<tr>
+		<td colspan="2">
+			${lbl:b_report_generator_fields}: 
+			<br>
+			<br>
+			${inc:${def:actionroot}/fields}
+			<div id="field_id_error" class="errormsg"></div>
+		</td>
+	</tr>
+	
+	<!--separador-->
+	<tr height="10px">
+		<td colspan="2"></td>
+	</tr>
+
+			<tr>
+		<td>${lbl:b_class_auxiliary}</td>
+		<td>
+			<select name="smn_clase_auxiliar_rf" id="smn_clase_auxiliar_rf" onchange="chgCombo(smn_clase_auxiliar_rf.options[smn_clase_auxiliar_rf.selectedIndex].text,'smn_clase_auxiliar_rf_name');" disabled >
+				<option value="">[Cualquiera]</option>
+				<smn_clase_auxiliar_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_clase_auxiliar_rf_rows>
+			</select> 
+			<input id="smn_clase_auxiliar_rf_name" name="smn_clase_auxiliar_rf_name" type="hidden" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_last_name}</td>
+		<td>
+			<input id="aux_apellidos" name="aux_apellidos" type="text" maxlength="64"  disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_first_name}</td>
+		<td>
+			<input id="aux_nombres" name="aux_nombres" type="text" maxlength="64"  disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_rif}</td>
+		<td>
+			<input id="aux_rif" name="aux_rif" type="text" maxlength="16"  disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_store_date}</td>
+		<td>
+			<input id="aux_fecha_registro_ini" name="aux_fecha_registro_ini" type="text" class="date" maxlength="10" disabled >
+			<img src="${def:context}/images/dropdown.png" title="${lbl:b_deploy_calendar}" onclick="calendarOpen('aux_fecha_registro_ini')">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_store_date}</td>
+		<td>
+			<input id="aux_fecha_registro_fin" name="aux_fecha_registro_fin" type="text" class="date" maxlength="10" disabled >
+			<img src="${def:context}/images/dropdown.png" title="${lbl:b_deploy_calendar}" onclick="calendarOpen('aux_fecha_registro_fin')">
+		</td>
+	</tr>
+
+	
+
+	
+	<tr>
+		<td class="formlabel required">
+			${lbl:b_store_date_grater_than}:
+		</td>
+		<td>
+			<input id="fdesde" name="fdesde" type="text" size="10" value="" maxlength="10" disabled>
+		</td>
+		<td>
+			<img src="${def:context}/images/dropdown.png" title="${lbl:b_deploy_calendar}" onclick="calendarOpen('fdesde')">
+		</td>
+	</tr>
+	<tr>
+		<td class="formlabel required">
+			${lbl:b_store_date_less_than}:
+		</td>
+		<td>
+			<input id="fhasta" name="fhasta" type="text" size="10" value="" maxlength="10" disabled>
+		</td>
+		<td>
+			<img src="${def:context}/images/dropdown.png" title="${lbl:b_deploy_calendar}" onclick="calendarOpen('fhasta', 'fdesde')">
+		</td>
+	</tr>
+	
+	<!--separador-->
+	<tr height="10px">
+		<td colspan="2"></td>
+	</tr>
+
+</table>	
+
+<!--botones-->
+<input id="buscar" type="submit" value="${lbl:b_find_button}" class="button">
+<input id="grabar" type="button" value="${lbl:b_save_button}" onclick="insert()" class="button">	
+<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+
+<br>
+
+</form>
+</div>
+
+<br>
+
+<!--panel de respuesta AJAX #1-->
+<div id="response" style="display:none;width:100%;margin-top:10px;"></div>
+
+<!--panel de respuesta AJAX #2-->
+<div id="detail" style="display:none;width:100%;margin-top:10px;"></div>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+		//apuntador a funcion para retornar dependiendo de donde este
+		var _goBackFn = null;
+
+		//inicializacion de la pagina cuando carga
+		onload = function()
+		{ 
+			document.form1.fdesde.focus();
+			document.forms[0].fdesde.onkeypress = keypressDate;
+			document.forms[0].fhasta.onkeypress = keypressDate;
+			loadConfiguration();
+		} 
+	
+		//mostrar filtro de busqueda
+		function showFilter()
+		{
+			document.getElementById("form").style.display="";
+			document.getElementById("response").style.display='none';
+			document.getElementById("detail").style.display='none';
+			document.form1.elements[0].focus();			
+		}
+		
+		//esconder filtro de busqueda	
+		function hideFilter() 
+		{
+			document.getElementById("form").style.display="none";
+		}
+
+		//ejecutar consulta
+		function search()
+		{
+			clearErrorMessages();
+			
+			//definir funcion goBack()
+			_goBackFn = showFilter;
+
+			//llamada Ajax...
+			return ajaxCall(	httpMethod="POST", 
+								uri="${def:actionroot}/search", 
+								divResponse="response", 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=null, 
+								onErrorFn=showFilter);
+		
+		}
+	
+		//retorna al estado previo que corresponde
+		//al estado actual de la pagina, cada llamada Ajax
+		//se encarga de definir cual es la funcion de goBack() que aplica
+		function goBack() 
+		{
+			_goBackFn()			
+		}
+	
+		//invoca la generacion de un PDF en un popup
+		function openPDF()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+
+		//invoca la generacion de un Excel en un popup
+		function openExcel()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a excel
+		function openXml() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/xml?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a excel
+		function openTxt() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/txt?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//envio de emails
+		function openEmails() {
+			var uri = "${def:context}${def:actionroot}/email/form";					
+			openDialog("editor0", uri, 750, 620);	
+		}
+	
+		//mostrar detalle de un registro
+		function drillDown(id)
+		{
+			//definir funcion goBack()
+			_goBackFn = showGrid;			
+		
+			//esconder grid principal
+			document.getElementById("response").style.display="none";
+	
+			//llamada Ajax...
+			return ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/drilldown?id=" + id, 
+							divResponse="detail", 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=showGrid);		
+		}
+		
+		//mostrar grid principal
+		function showGrid()
+		{
+			document.getElementById("response").style.display="";
+			document.getElementById("detail").style.display='none';
+			
+			//restaura el goBack que corresponde a este estado
+			_goBackFn = showFilter;
+		}
+		
+		//define la url en donde se mostrara el resultado de consulta
+		function viewPage()
+		{
+			hideFilter(); //esconde el formulario cuando muestra el resultado
+			var url = "${def:actionroot}/view";
+			//llama a la funcion para ir a la pagina indicada 
+			gotoPage(url);
+		}
+		
+		function checkAll(field)
+		{
+			for (i = 0; i < field.length; i++)
+			{
+	   			field[i].checked = true;
+
+								if (field[i].value == 360)
+				{
+					document.getElementById('tun_nombre').disabled=false;
+				}
+				if (field[i].value == 358)
+				{
+					document.getElementById('tcp_codigo').disabled=false;
+				}
+				if (field[i].value == 359)
+				{
+					document.getElementById('tcp_nombre').disabled=false;
+				}
+				if (field[i].value == 490)
+				{
+					document.getElementById('ant_nombres || ' ' || smn_base.smn_auxiliar_persona_natural.ant_apellidos as afc_afiliado').disabled=false;
+				}
+				if (field[i].value == 385)
+				{
+					document.getElementById('tts_codigo').disabled=false;
+				}
+				if (field[i].value == 386)
+				{
+					document.getElementById('tts_descripcion').disabled=false;
+				}
+				if (field[i].value == 389)
+				{
+					document.getElementById('tse_codigo as tse_codigo_pl0').disabled=false;
+				}
+				if (field[i].value == 390)
+				{
+					document.getElementById('tns_codigo').disabled=false;
+				}
+				if (field[i].value == 391)
+				{
+					document.getElementById('tns_descripcion').disabled=false;
+				}
+				if (field[i].value == 395)
+				{
+					document.getElementById('tse_codigo').disabled=false;
+				}
+				if (field[i].value == 396)
+				{
+					document.getElementById('tse_descripcion').disabled=false;
+				}
+				if (field[i].value == 394)
+				{
+					document.getElementById('tts_codigo as tts_codigo_pl0').disabled=false;
+				}
+				if (field[i].value == 398)
+				{
+					document.getElementById('trs_nombre').disabled=false;
+				}
+				if (field[i].value == 399)
+				{
+					document.getElementById('tun_nombre').disabled=false;
+				}
+				if (field[i].value == 402)
+				{
+					document.getElementById('aca_tipo_persona='PN' then '${lbl:b_natural_person}'
+	when smn_base.smn_auxiliar_categoria.aca_tipo_persona='PJ' then '${lbl:b_legal_person}'
+	when smn_base.smn_auxiliar_categoria.aca_tipo_persona='GO' then '${lbl:b_government_person}'
+	end as aca_tipo_persona').disabled=false;
+				}
+				if (field[i].value == 332)
+				{
+					document.getElementById('trs_codigo').disabled=false;
+				}
+				if (field[i].value == 333)
+				{
+					document.getElementById('trs_nombre').disabled=false;
+				}
+				if (field[i].value == 335)
+				{
+					document.getElementById('trs_responsable').disabled=false;
+				}
+				if (field[i].value == 337)
+				{
+					document.getElementById('trs_telefono_fijo').disabled=false;
+				}
+				if (field[i].value == 338)
+				{
+					document.getElementById('trs_telefono_movil').disabled=false;
+				}
+				if (field[i].value == 339)
+				{
+					document.getElementById('trs_email').disabled=false;
+				}
+				if (field[i].value == 334)
+				{
+					document.getElementById('tun_nombre').disabled=false;
+				}
+				if (field[i].value == 341)
+				{
+					document.getElementById('tun_codigo').disabled=false;
+				}
+				if (field[i].value == 342)
+				{
+					document.getElementById('tun_nombre').disabled=false;
+				}
+				if (field[i].value == 343)
+				{
+					document.getElementById('tun_responsable').disabled=false;
+				}
+				if (field[i].value == 345)
+				{
+					document.getElementById('tun_telefono_fijo').disabled=false;
+				}
+				if (field[i].value == 346)
+				{
+					document.getElementById('tun_telefono_movil').disabled=false;
+				}
+				if (field[i].value == 347)
+				{
+					document.getElementById('tun_email').disabled=false;
+				}
+				if (field[i].value == 310)
+				{
+					document.getElementById('cfn_dias_adic_saldos_venc').disabled=false;
+				}
+				if (field[i].value == 311)
+				{
+					document.getElementById('cfn_num_cheques_devuel').disabled=false;
+				}
+				if (field[i].value == 349)
+				{
+					document.getElementById('tco_codigo').disabled=false;
+				}
+				if (field[i].value == 350)
+				{
+					document.getElementById('tco_descripcion_corta').disabled=false;
+				}
+				if (field[i].value == 351)
+				{
+					document.getElementById('tco_descripcion_larga').disabled=false;
+				}
+				if (field[i].value == 289)
+				{
+					document.getElementById('acb_num_cuenta').disabled=false;
+				}
+				if (field[i].value == 291)
+				{
+					document.getElementById('acb_respons_cuenta').disabled=false;
+				}
+				if (field[i].value == 293)
+				{
+					document.getElementById('acb_num_aba').disabled=false;
+				}
+				if (field[i].value == 295)
+				{
+					document.getElementById('acn_telefono_fijo').disabled=false;
+				}
+				if (field[i].value == 296)
+				{
+					document.getElementById('acn_telefono_movil').disabled=false;
+				}
+				if (field[i].value == 297)
+				{
+					document.getElementById('acn_email').disabled=false;
+				}
+				if (field[i].value == 298)
+				{
+					document.getElementById('acn_facebook').disabled=false;
+				}
+				if (field[i].value == 299)
+				{
+					document.getElementById('acn_linkedin').disabled=false;
+				}
+				if (field[i].value == 300)
+				{
+					document.getElementById('acn_twitter').disabled=false;
+				}
+				if (field[i].value == 301)
+				{
+					document.getElementById('acn_swift').disabled=false;
+				}
+				if (field[i].value == 303)
+				{
+					document.getElementById('cfn_codigo').disabled=false;
+				}
+				if (field[i].value == 304)
+				{
+					document.getElementById('cfn_descripcion').disabled=false;
+				}
+				if (field[i].value == 307)
+				{
+					document.getElementById('cfn_limite_credito').disabled=false;
+				}
+				if (field[i].value == 308)
+				{
+					document.getElementById('cfn_porc_exceso_limite').disabled=false;
+				}
+				if (field[i].value == 309)
+				{
+					document.getElementById('cfn_valida_saldos_vec='S' then '${lbl:b_yes}'
+		when smn_base.smn_auxiliar_cond_financiera.cfn_valida_saldos_vec='N' then '${lbl:b_not}'
+	end as cfn_valida_saldos_vec').disabled=false;
+				}
+				if (field[i].value == 354)
+				{
+					document.getElementById('tco_responsable').disabled=false;
+				}
+				if (field[i].value == 356)
+				{
+					document.getElementById('tco_nivel').disabled=false;
+				}
+				if (field[i].value == 355)
+				{
+					document.getElementById('tco_tipo_cco='SR' then '${lbl:b_profitable}'
+	when smn_base.smn_auxiliar_centro_costo.tco_tipo_cco='SE' then '${lbl:b_services}'
+	when smn_base.smn_auxiliar_centro_costo.tco_tipo_cco='SP' then '${lbl:b_support}'
+	when smn_base.smn_auxiliar_centro_costo.tco_tipo_cco='DG' then '${lblb_distribution}'
+	end as tco_tipo_cco').disabled=false;
+				}
+				if (field[i].value == 673)
+				{
+					document.getElementById('smn_auxiliar_id_name').disabled=false;
+				}
+				if (field[i].value == 674)
+				{
+					document.getElementById('smn_auxiliar_id').disabled=false;
+				}
+				if (field[i].value == 675)
+				{
+					document.getElementById('smn_auxiliar_contacto_id').disabled=false;
+				}
+				if (field[i].value == 677)
+				{
+					document.getElementById('smn_auxiliar_id_name').disabled=false;
+				}
+				if (field[i].value == 678)
+				{
+					document.getElementById('smn_auxiliar_id').disabled=false;
+				}
+				if (field[i].value == 679)
+				{
+					document.getElementById('smn_auxiliar_sucursal_id').disabled=false;
+				}
+				if (field[i].value == 681)
+				{
+					document.getElementById('smn_naturaleza_auxiliar_rf').disabled=false;
+				}
+				if (field[i].value == 682)
+				{
+					document.getElementById('smn_clase_auxiliar_rf').disabled=false;
+				}
+				if (field[i].value == 683)
+				{
+					document.getElementById('aux_tipo_persona').disabled=false;
+				}
+				if (field[i].value == 684)
+				{
+					document.getElementById('aux_codigo').disabled=false;
+				}
+				if (field[i].value == 685)
+				{
+					document.getElementById('aux_descripcion').disabled=false;
+				}
+				if (field[i].value == 686)
+				{
+					document.getElementById('aux_apellidos').disabled=false;
+				}
+				if (field[i].value == 687)
+				{
+					document.getElementById('aux_nombres').disabled=false;
+				}
+				if (field[i].value == 688)
+				{
+					document.getElementById('aux_representante_legal').disabled=false;
+				}
+				if (field[i].value == 689)
+				{
+					document.getElementById('tdo_descripcion').disabled=false;
+				}
+				if (field[i].value == 690)
+				{
+					document.getElementById('aux_num_doc_oficial').disabled=false;
+				}
+				if (field[i].value == 691)
+				{
+					document.getElementById('aux_rif').disabled=false;
+				}
+				if (field[i].value == 692)
+				{
+					document.getElementById('aux_num_coleg_medicos').disabled=false;
+				}
+				if (field[i].value == 693)
+				{
+					document.getElementById('aux_num_minist_salud').disabled=false;
+				}
+				if (field[i].value == 694)
+				{
+					document.getElementById('aux_sexo').disabled=false;
+				}
+				if (field[i].value == 695)
+				{
+					document.getElementById('aux_estado_civil').disabled=false;
+				}
+				if (field[i].value == 696)
+				{
+					document.getElementById('aux_fecha_nac').disabled=false;
+				}
+				if (field[i].value == 697)
+				{
+					document.getElementById('aux_lugar_nac').disabled=false;
+				}
+				if (field[i].value == 698)
+				{
+					document.getElementById('dir_descripcion').disabled=false;
+				}
+				if (field[i].value == 699)
+				{
+					document.getElementById('pai_gentilicio').disabled=false;
+				}
+				if (field[i].value == 700)
+				{
+					document.getElementById('aux_nacionalizado').disabled=false;
+				}
+				if (field[i].value == 701)
+				{
+					document.getElementById('aux_fecha_gaceta_nac').disabled=false;
+				}
+				if (field[i].value == 702)
+				{
+					document.getElementById('aux_num_gaceta').disabled=false;
+				}
+				if (field[i].value == 703)
+				{
+					document.getElementById('aux_benef_pago').disabled=false;
+				}
+				if (field[i].value == 704)
+				{
+					document.getElementById('aux_cond_pago_rf').disabled=false;
+				}
+				if (field[i].value == 705)
+				{
+					document.getElementById('cfn_descripcion').disabled=false;
+				}
+				if (field[i].value == 706)
+				{
+					document.getElementById('cba_nombre').disabled=false;
+				}
+				if (field[i].value == 707)
+				{
+					document.getElementById('aux_persona_contacto').disabled=false;
+				}
+				if (field[i].value == 708)
+				{
+					document.getElementById('aux_observacion').disabled=false;
+				}
+				if (field[i].value == 714)
+				{
+					document.getElementById('smn_auxiliar_rf').disabled=false;
+				}
+
+				
+				//fecha desde y hasta
+	   			if (field[i].value == 363) 
+	   			{
+	   				document.getElementById("fdesde").disabled=false;
+	   				document.getElementById("fhasta").disabled=false;
+	   			}
+			}
+		}
+		
+		function uncheckAll(field)
+		{
+			for (i = 0; i < field.length; i++)
+			{
+	   			field[i].checked = false;
+
+								if (field[i].value == 360)
+				{
+					document.getElementById('tun_nombre').disabled=true;
+				}
+				if (field[i].value == 358)
+				{
+					document.getElementById('tcp_codigo').disabled=true;
+				}
+				if (field[i].value == 359)
+				{
+					document.getElementById('tcp_nombre').disabled=true;
+				}
+				if (field[i].value == 490)
+				{
+					document.getElementById('ant_nombres || ' ' || smn_base.smn_auxiliar_persona_natural.ant_apellidos as afc_afiliado').disabled=true;
+				}
+				if (field[i].value == 385)
+				{
+					document.getElementById('tts_codigo').disabled=true;
+				}
+				if (field[i].value == 386)
+				{
+					document.getElementById('tts_descripcion').disabled=true;
+				}
+				if (field[i].value == 389)
+				{
+					document.getElementById('tse_codigo as tse_codigo_pl0').disabled=true;
+				}
+				if (field[i].value == 390)
+				{
+					document.getElementById('tns_codigo').disabled=true;
+				}
+				if (field[i].value == 391)
+				{
+					document.getElementById('tns_descripcion').disabled=true;
+				}
+				if (field[i].value == 395)
+				{
+					document.getElementById('tse_codigo').disabled=true;
+				}
+				if (field[i].value == 396)
+				{
+					document.getElementById('tse_descripcion').disabled=true;
+				}
+				if (field[i].value == 394)
+				{
+					document.getElementById('tts_codigo as tts_codigo_pl0').disabled=true;
+				}
+				if (field[i].value == 398)
+				{
+					document.getElementById('trs_nombre').disabled=true;
+				}
+				if (field[i].value == 399)
+				{
+					document.getElementById('tun_nombre').disabled=true;
+				}
+				if (field[i].value == 402)
+				{
+					document.getElementById('aca_tipo_persona='PN' then '${lbl:b_natural_person}'
+	when smn_base.smn_auxiliar_categoria.aca_tipo_persona='PJ' then '${lbl:b_legal_person}'
+	when smn_base.smn_auxiliar_categoria.aca_tipo_persona='GO' then '${lbl:b_government_person}'
+	end as aca_tipo_persona').disabled=true;
+				}
+				if (field[i].value == 332)
+				{
+					document.getElementById('trs_codigo').disabled=true;
+				}
+				if (field[i].value == 333)
+				{
+					document.getElementById('trs_nombre').disabled=true;
+				}
+				if (field[i].value == 335)
+				{
+					document.getElementById('trs_responsable').disabled=true;
+				}
+				if (field[i].value == 337)
+				{
+					document.getElementById('trs_telefono_fijo').disabled=true;
+				}
+				if (field[i].value == 338)
+				{
+					document.getElementById('trs_telefono_movil').disabled=true;
+				}
+				if (field[i].value == 339)
+				{
+					document.getElementById('trs_email').disabled=true;
+				}
+				if (field[i].value == 334)
+				{
+					document.getElementById('tun_nombre').disabled=true;
+				}
+				if (field[i].value == 341)
+				{
+					document.getElementById('tun_codigo').disabled=true;
+				}
+				if (field[i].value == 342)
+				{
+					document.getElementById('tun_nombre').disabled=true;
+				}
+				if (field[i].value == 343)
+				{
+					document.getElementById('tun_responsable').disabled=true;
+				}
+				if (field[i].value == 345)
+				{
+					document.getElementById('tun_telefono_fijo').disabled=true;
+				}
+				if (field[i].value == 346)
+				{
+					document.getElementById('tun_telefono_movil').disabled=true;
+				}
+				if (field[i].value == 347)
+				{
+					document.getElementById('tun_email').disabled=true;
+				}
+				if (field[i].value == 310)
+				{
+					document.getElementById('cfn_dias_adic_saldos_venc').disabled=true;
+				}
+				if (field[i].value == 311)
+				{
+					document.getElementById('cfn_num_cheques_devuel').disabled=true;
+				}
+				if (field[i].value == 349)
+				{
+					document.getElementById('tco_codigo').disabled=true;
+				}
+				if (field[i].value == 350)
+				{
+					document.getElementById('tco_descripcion_corta').disabled=true;
+				}
+				if (field[i].value == 351)
+				{
+					document.getElementById('tco_descripcion_larga').disabled=true;
+				}
+				if (field[i].value == 289)
+				{
+					document.getElementById('acb_num_cuenta').disabled=true;
+				}
+				if (field[i].value == 291)
+				{
+					document.getElementById('acb_respons_cuenta').disabled=true;
+				}
+				if (field[i].value == 293)
+				{
+					document.getElementById('acb_num_aba').disabled=true;
+				}
+				if (field[i].value == 295)
+				{
+					document.getElementById('acn_telefono_fijo').disabled=true;
+				}
+				if (field[i].value == 296)
+				{
+					document.getElementById('acn_telefono_movil').disabled=true;
+				}
+				if (field[i].value == 297)
+				{
+					document.getElementById('acn_email').disabled=true;
+				}
+				if (field[i].value == 298)
+				{
+					document.getElementById('acn_facebook').disabled=true;
+				}
+				if (field[i].value == 299)
+				{
+					document.getElementById('acn_linkedin').disabled=true;
+				}
+				if (field[i].value == 300)
+				{
+					document.getElementById('acn_twitter').disabled=true;
+				}
+				if (field[i].value == 301)
+				{
+					document.getElementById('acn_swift').disabled=true;
+				}
+				if (field[i].value == 303)
+				{
+					document.getElementById('cfn_codigo').disabled=true;
+				}
+				if (field[i].value == 304)
+				{
+					document.getElementById('cfn_descripcion').disabled=true;
+				}
+				if (field[i].value == 307)
+				{
+					document.getElementById('cfn_limite_credito').disabled=true;
+				}
+				if (field[i].value == 308)
+				{
+					document.getElementById('cfn_porc_exceso_limite').disabled=true;
+				}
+				if (field[i].value == 309)
+				{
+					document.getElementById('cfn_valida_saldos_vec='S' then '${lbl:b_yes}'
+		when smn_base.smn_auxiliar_cond_financiera.cfn_valida_saldos_vec='N' then '${lbl:b_not}'
+	end as cfn_valida_saldos_vec').disabled=true;
+				}
+				if (field[i].value == 354)
+				{
+					document.getElementById('tco_responsable').disabled=true;
+				}
+				if (field[i].value == 356)
+				{
+					document.getElementById('tco_nivel').disabled=true;
+				}
+				if (field[i].value == 355)
+				{
+					document.getElementById('tco_tipo_cco='SR' then '${lbl:b_profitable}'
+	when smn_base.smn_auxiliar_centro_costo.tco_tipo_cco='SE' then '${lbl:b_services}'
+	when smn_base.smn_auxiliar_centro_costo.tco_tipo_cco='SP' then '${lbl:b_support}'
+	when smn_base.smn_auxiliar_centro_costo.tco_tipo_cco='DG' then '${lblb_distribution}'
+	end as tco_tipo_cco').disabled=true;
+				}
+				if (field[i].value == 673)
+				{
+					document.getElementById('smn_auxiliar_id_name').disabled=true;
+				}
+				if (field[i].value == 674)
+				{
+					document.getElementById('smn_auxiliar_id').disabled=true;
+				}
+				if (field[i].value == 675)
+				{
+					document.getElementById('smn_auxiliar_contacto_id').disabled=true;
+				}
+				if (field[i].value == 677)
+				{
+					document.getElementById('smn_auxiliar_id_name').disabled=true;
+				}
+				if (field[i].value == 678)
+				{
+					document.getElementById('smn_auxiliar_id').disabled=true;
+				}
+				if (field[i].value == 679)
+				{
+					document.getElementById('smn_auxiliar_sucursal_id').disabled=true;
+				}
+				if (field[i].value == 681)
+				{
+					document.getElementById('smn_naturaleza_auxiliar_rf').disabled=true;
+				}
+				if (field[i].value == 682)
+				{
+					document.getElementById('smn_clase_auxiliar_rf').disabled=true;
+				}
+				if (field[i].value == 683)
+				{
+					document.getElementById('aux_tipo_persona').disabled=true;
+				}
+				if (field[i].value == 684)
+				{
+					document.getElementById('aux_codigo').disabled=true;
+				}
+				if (field[i].value == 685)
+				{
+					document.getElementById('aux_descripcion').disabled=true;
+				}
+				if (field[i].value == 686)
+				{
+					document.getElementById('aux_apellidos').disabled=true;
+				}
+				if (field[i].value == 687)
+				{
+					document.getElementById('aux_nombres').disabled=true;
+				}
+				if (field[i].value == 688)
+				{
+					document.getElementById('aux_representante_legal').disabled=true;
+				}
+				if (field[i].value == 689)
+				{
+					document.getElementById('tdo_descripcion').disabled=true;
+				}
+				if (field[i].value == 690)
+				{
+					document.getElementById('aux_num_doc_oficial').disabled=true;
+				}
+				if (field[i].value == 691)
+				{
+					document.getElementById('aux_rif').disabled=true;
+				}
+				if (field[i].value == 692)
+				{
+					document.getElementById('aux_num_coleg_medicos').disabled=true;
+				}
+				if (field[i].value == 693)
+				{
+					document.getElementById('aux_num_minist_salud').disabled=true;
+				}
+				if (field[i].value == 694)
+				{
+					document.getElementById('aux_sexo').disabled=true;
+				}
+				if (field[i].value == 695)
+				{
+					document.getElementById('aux_estado_civil').disabled=true;
+				}
+				if (field[i].value == 696)
+				{
+					document.getElementById('aux_fecha_nac').disabled=true;
+				}
+				if (field[i].value == 697)
+				{
+					document.getElementById('aux_lugar_nac').disabled=true;
+				}
+				if (field[i].value == 698)
+				{
+					document.getElementById('dir_descripcion').disabled=true;
+				}
+				if (field[i].value == 699)
+				{
+					document.getElementById('pai_gentilicio').disabled=true;
+				}
+				if (field[i].value == 700)
+				{
+					document.getElementById('aux_nacionalizado').disabled=true;
+				}
+				if (field[i].value == 701)
+				{
+					document.getElementById('aux_fecha_gaceta_nac').disabled=true;
+				}
+				if (field[i].value == 702)
+				{
+					document.getElementById('aux_num_gaceta').disabled=true;
+				}
+				if (field[i].value == 703)
+				{
+					document.getElementById('aux_benef_pago').disabled=true;
+				}
+				if (field[i].value == 704)
+				{
+					document.getElementById('aux_cond_pago_rf').disabled=true;
+				}
+				if (field[i].value == 705)
+				{
+					document.getElementById('cfn_descripcion').disabled=true;
+				}
+				if (field[i].value == 706)
+				{
+					document.getElementById('cba_nombre').disabled=true;
+				}
+				if (field[i].value == 707)
+				{
+					document.getElementById('aux_persona_contacto').disabled=true;
+				}
+				if (field[i].value == 708)
+				{
+					document.getElementById('aux_observacion').disabled=true;
+				}
+				if (field[i].value == 714)
+				{
+					document.getElementById('smn_auxiliar_rf').disabled=true;
+				}
+
+				
+	   			//fecha desde y hasta
+	   			if (field[i].value == 363) 
+	   			{
+	   				document.getElementById("fdesde").disabled=true;
+	   				document.getElementById("fhasta").disabled=true;
+	   			}
+			}
+		}
+		
+		function enableField(field_id, checked)
+		{
+			if (checked)
+			{
+								if (field_id == 360)
+				{
+					document.getElementById('tun_nombre').disabled=false;
+				}
+				if (field_id == 358)
+				{
+					document.getElementById('tcp_codigo').disabled=false;
+				}
+				if (field_id == 359)
+				{
+					document.getElementById('tcp_nombre').disabled=false;
+				}
+				if (field_id == 490)
+				{
+					document.getElementById('ant_nombres || ' ' || smn_base.smn_auxiliar_persona_natural.ant_apellidos as afc_afiliado').disabled=false;
+				}
+				if (field_id == 385)
+				{
+					document.getElementById('tts_codigo').disabled=false;
+				}
+				if (field_id == 386)
+				{
+					document.getElementById('tts_descripcion').disabled=false;
+				}
+				if (field_id == 389)
+				{
+					document.getElementById('tse_codigo as tse_codigo_pl0').disabled=false;
+				}
+				if (field_id == 390)
+				{
+					document.getElementById('tns_codigo').disabled=false;
+				}
+				if (field_id == 391)
+				{
+					document.getElementById('tns_descripcion').disabled=false;
+				}
+				if (field_id == 395)
+				{
+					document.getElementById('tse_codigo').disabled=false;
+				}
+				if (field_id == 396)
+				{
+					document.getElementById('tse_descripcion').disabled=false;
+				}
+				if (field_id == 394)
+				{
+					document.getElementById('tts_codigo as tts_codigo_pl0').disabled=false;
+				}
+				if (field_id == 398)
+				{
+					document.getElementById('trs_nombre').disabled=false;
+				}
+				if (field_id == 399)
+				{
+					document.getElementById('tun_nombre').disabled=false;
+				}
+				if (field_id == 402)
+				{
+					document.getElementById('aca_tipo_persona='PN' then '${lbl:b_natural_person}'
+	when smn_base.smn_auxiliar_categoria.aca_tipo_persona='PJ' then '${lbl:b_legal_person}'
+	when smn_base.smn_auxiliar_categoria.aca_tipo_persona='GO' then '${lbl:b_government_person}'
+	end as aca_tipo_persona').disabled=false;
+				}
+				if (field_id == 332)
+				{
+					document.getElementById('trs_codigo').disabled=false;
+				}
+				if (field_id == 333)
+				{
+					document.getElementById('trs_nombre').disabled=false;
+				}
+				if (field_id == 335)
+				{
+					document.getElementById('trs_responsable').disabled=false;
+				}
+				if (field_id == 337)
+				{
+					document.getElementById('trs_telefono_fijo').disabled=false;
+				}
+				if (field_id == 338)
+				{
+					document.getElementById('trs_telefono_movil').disabled=false;
+				}
+				if (field_id == 339)
+				{
+					document.getElementById('trs_email').disabled=false;
+				}
+				if (field_id == 334)
+				{
+					document.getElementById('tun_nombre').disabled=false;
+				}
+				if (field_id == 341)
+				{
+					document.getElementById('tun_codigo').disabled=false;
+				}
+				if (field_id == 342)
+				{
+					document.getElementById('tun_nombre').disabled=false;
+				}
+				if (field_id == 343)
+				{
+					document.getElementById('tun_responsable').disabled=false;
+				}
+				if (field_id == 345)
+				{
+					document.getElementById('tun_telefono_fijo').disabled=false;
+				}
+				if (field_id == 346)
+				{
+					document.getElementById('tun_telefono_movil').disabled=false;
+				}
+				if (field_id == 347)
+				{
+					document.getElementById('tun_email').disabled=false;
+				}
+				if (field_id == 310)
+				{
+					document.getElementById('cfn_dias_adic_saldos_venc').disabled=false;
+				}
+				if (field_id == 311)
+				{
+					document.getElementById('cfn_num_cheques_devuel').disabled=false;
+				}
+				if (field_id == 349)
+				{
+					document.getElementById('tco_codigo').disabled=false;
+				}
+				if (field_id == 350)
+				{
+					document.getElementById('tco_descripcion_corta').disabled=false;
+				}
+				if (field_id == 351)
+				{
+					document.getElementById('tco_descripcion_larga').disabled=false;
+				}
+				if (field_id == 289)
+				{
+					document.getElementById('acb_num_cuenta').disabled=false;
+				}
+				if (field_id == 291)
+				{
+					document.getElementById('acb_respons_cuenta').disabled=false;
+				}
+				if (field_id == 293)
+				{
+					document.getElementById('acb_num_aba').disabled=false;
+				}
+				if (field_id == 295)
+				{
+					document.getElementById('acn_telefono_fijo').disabled=false;
+				}
+				if (field_id == 296)
+				{
+					document.getElementById('acn_telefono_movil').disabled=false;
+				}
+				if (field_id == 297)
+				{
+					document.getElementById('acn_email').disabled=false;
+				}
+				if (field_id == 298)
+				{
+					document.getElementById('acn_facebook').disabled=false;
+				}
+				if (field_id == 299)
+				{
+					document.getElementById('acn_linkedin').disabled=false;
+				}
+				if (field_id == 300)
+				{
+					document.getElementById('acn_twitter').disabled=false;
+				}
+				if (field_id == 301)
+				{
+					document.getElementById('acn_swift').disabled=false;
+				}
+				if (field_id == 303)
+				{
+					document.getElementById('cfn_codigo').disabled=false;
+				}
+				if (field_id == 304)
+				{
+					document.getElementById('cfn_descripcion').disabled=false;
+				}
+				if (field_id == 307)
+				{
+					document.getElementById('cfn_limite_credito').disabled=false;
+				}
+				if (field_id == 308)
+				{
+					document.getElementById('cfn_porc_exceso_limite').disabled=false;
+				}
+				if (field_id == 309)
+				{
+					document.getElementById('cfn_valida_saldos_vec='S' then '${lbl:b_yes}'
+		when smn_base.smn_auxiliar_cond_financiera.cfn_valida_saldos_vec='N' then '${lbl:b_not}'
+	end as cfn_valida_saldos_vec').disabled=false;
+				}
+				if (field_id == 354)
+				{
+					document.getElementById('tco_responsable').disabled=false;
+				}
+				if (field_id == 356)
+				{
+					document.getElementById('tco_nivel').disabled=false;
+				}
+				if (field_id == 355)
+				{
+					document.getElementById('tco_tipo_cco='SR' then '${lbl:b_profitable}'
+	when smn_base.smn_auxiliar_centro_costo.tco_tipo_cco='SE' then '${lbl:b_services}'
+	when smn_base.smn_auxiliar_centro_costo.tco_tipo_cco='SP' then '${lbl:b_support}'
+	when smn_base.smn_auxiliar_centro_costo.tco_tipo_cco='DG' then '${lblb_distribution}'
+	end as tco_tipo_cco').disabled=false;
+				}
+				if (field_id == 673)
+				{
+					document.getElementById('smn_auxiliar_id_name').disabled=false;
+				}
+				if (field_id == 674)
+				{
+					document.getElementById('smn_auxiliar_id').disabled=false;
+				}
+				if (field_id == 675)
+				{
+					document.getElementById('smn_auxiliar_contacto_id').disabled=false;
+				}
+				if (field_id == 677)
+				{
+					document.getElementById('smn_auxiliar_id_name').disabled=false;
+				}
+				if (field_id == 678)
+				{
+					document.getElementById('smn_auxiliar_id').disabled=false;
+				}
+				if (field_id == 679)
+				{
+					document.getElementById('smn_auxiliar_sucursal_id').disabled=false;
+				}
+				if (field_id == 681)
+				{
+					document.getElementById('smn_naturaleza_auxiliar_rf').disabled=false;
+				}
+				if (field_id == 682)
+				{
+					document.getElementById('smn_clase_auxiliar_rf').disabled=false;
+				}
+				if (field_id == 683)
+				{
+					document.getElementById('aux_tipo_persona').disabled=false;
+				}
+				if (field_id == 684)
+				{
+					document.getElementById('aux_codigo').disabled=false;
+				}
+				if (field_id == 685)
+				{
+					document.getElementById('aux_descripcion').disabled=false;
+				}
+				if (field_id == 686)
+				{
+					document.getElementById('aux_apellidos').disabled=false;
+				}
+				if (field_id == 687)
+				{
+					document.getElementById('aux_nombres').disabled=false;
+				}
+				if (field_id == 688)
+				{
+					document.getElementById('aux_representante_legal').disabled=false;
+				}
+				if (field_id == 689)
+				{
+					document.getElementById('tdo_descripcion').disabled=false;
+				}
+				if (field_id == 690)
+				{
+					document.getElementById('aux_num_doc_oficial').disabled=false;
+				}
+				if (field_id == 691)
+				{
+					document.getElementById('aux_rif').disabled=false;
+				}
+				if (field_id == 692)
+				{
+					document.getElementById('aux_num_coleg_medicos').disabled=false;
+				}
+				if (field_id == 693)
+				{
+					document.getElementById('aux_num_minist_salud').disabled=false;
+				}
+				if (field_id == 694)
+				{
+					document.getElementById('aux_sexo').disabled=false;
+				}
+				if (field_id == 695)
+				{
+					document.getElementById('aux_estado_civil').disabled=false;
+				}
+				if (field_id == 696)
+				{
+					document.getElementById('aux_fecha_nac').disabled=false;
+				}
+				if (field_id == 697)
+				{
+					document.getElementById('aux_lugar_nac').disabled=false;
+				}
+				if (field_id == 698)
+				{
+					document.getElementById('dir_descripcion').disabled=false;
+				}
+				if (field_id == 699)
+				{
+					document.getElementById('pai_gentilicio').disabled=false;
+				}
+				if (field_id == 700)
+				{
+					document.getElementById('aux_nacionalizado').disabled=false;
+				}
+				if (field_id == 701)
+				{
+					document.getElementById('aux_fecha_gaceta_nac').disabled=false;
+				}
+				if (field_id == 702)
+				{
+					document.getElementById('aux_num_gaceta').disabled=false;
+				}
+				if (field_id == 703)
+				{
+					document.getElementById('aux_benef_pago').disabled=false;
+				}
+				if (field_id == 704)
+				{
+					document.getElementById('aux_cond_pago_rf').disabled=false;
+				}
+				if (field_id == 705)
+				{
+					document.getElementById('cfn_descripcion').disabled=false;
+				}
+				if (field_id == 706)
+				{
+					document.getElementById('cba_nombre').disabled=false;
+				}
+				if (field_id == 707)
+				{
+					document.getElementById('aux_persona_contacto').disabled=false;
+				}
+				if (field_id == 708)
+				{
+					document.getElementById('aux_observacion').disabled=false;
+				}
+				if (field_id == 714)
+				{
+					document.getElementById('smn_auxiliar_rf').disabled=false;
+				}
+
+				
+	   			//fecha desde y hasta
+	   			if (field_id == 363) 
+	   			{
+	   				document.getElementById("fdesde").disabled=false;
+	   				document.getElementById("fhasta").disabled=false;
+	   			}
+			}
+			else
+			{
+								if (field_id == 360)
+				{
+					document.getElementById('tun_nombre').disabled=true;
+				}
+				if (field_id == 358)
+				{
+					document.getElementById('tcp_codigo').disabled=true;
+				}
+				if (field_id == 359)
+				{
+					document.getElementById('tcp_nombre').disabled=true;
+				}
+				if (field_id == 490)
+				{
+					document.getElementById('ant_nombres || ' ' || smn_base.smn_auxiliar_persona_natural.ant_apellidos as afc_afiliado').disabled=true;
+				}
+				if (field_id == 385)
+				{
+					document.getElementById('tts_codigo').disabled=true;
+				}
+				if (field_id == 386)
+				{
+					document.getElementById('tts_descripcion').disabled=true;
+				}
+				if (field_id == 389)
+				{
+					document.getElementById('tse_codigo as tse_codigo_pl0').disabled=true;
+				}
+				if (field_id == 390)
+				{
+					document.getElementById('tns_codigo').disabled=true;
+				}
+				if (field_id == 391)
+				{
+					document.getElementById('tns_descripcion').disabled=true;
+				}
+				if (field_id == 395)
+				{
+					document.getElementById('tse_codigo').disabled=true;
+				}
+				if (field_id == 396)
+				{
+					document.getElementById('tse_descripcion').disabled=true;
+				}
+				if (field_id == 394)
+				{
+					document.getElementById('tts_codigo as tts_codigo_pl0').disabled=true;
+				}
+				if (field_id == 398)
+				{
+					document.getElementById('trs_nombre').disabled=true;
+				}
+				if (field_id == 399)
+				{
+					document.getElementById('tun_nombre').disabled=true;
+				}
+				if (field_id == 402)
+				{
+					document.getElementById('aca_tipo_persona='PN' then '${lbl:b_natural_person}'
+	when smn_base.smn_auxiliar_categoria.aca_tipo_persona='PJ' then '${lbl:b_legal_person}'
+	when smn_base.smn_auxiliar_categoria.aca_tipo_persona='GO' then '${lbl:b_government_person}'
+	end as aca_tipo_persona').disabled=true;
+				}
+				if (field_id == 332)
+				{
+					document.getElementById('trs_codigo').disabled=true;
+				}
+				if (field_id == 333)
+				{
+					document.getElementById('trs_nombre').disabled=true;
+				}
+				if (field_id == 335)
+				{
+					document.getElementById('trs_responsable').disabled=true;
+				}
+				if (field_id == 337)
+				{
+					document.getElementById('trs_telefono_fijo').disabled=true;
+				}
+				if (field_id == 338)
+				{
+					document.getElementById('trs_telefono_movil').disabled=true;
+				}
+				if (field_id == 339)
+				{
+					document.getElementById('trs_email').disabled=true;
+				}
+				if (field_id == 334)
+				{
+					document.getElementById('tun_nombre').disabled=true;
+				}
+				if (field_id == 341)
+				{
+					document.getElementById('tun_codigo').disabled=true;
+				}
+				if (field_id == 342)
+				{
+					document.getElementById('tun_nombre').disabled=true;
+				}
+				if (field_id == 343)
+				{
+					document.getElementById('tun_responsable').disabled=true;
+				}
+				if (field_id == 345)
+				{
+					document.getElementById('tun_telefono_fijo').disabled=true;
+				}
+				if (field_id == 346)
+				{
+					document.getElementById('tun_telefono_movil').disabled=true;
+				}
+				if (field_id == 347)
+				{
+					document.getElementById('tun_email').disabled=true;
+				}
+				if (field_id == 310)
+				{
+					document.getElementById('cfn_dias_adic_saldos_venc').disabled=true;
+				}
+				if (field_id == 311)
+				{
+					document.getElementById('cfn_num_cheques_devuel').disabled=true;
+				}
+				if (field_id == 349)
+				{
+					document.getElementById('tco_codigo').disabled=true;
+				}
+				if (field_id == 350)
+				{
+					document.getElementById('tco_descripcion_corta').disabled=true;
+				}
+				if (field_id == 351)
+				{
+					document.getElementById('tco_descripcion_larga').disabled=true;
+				}
+				if (field_id == 289)
+				{
+					document.getElementById('acb_num_cuenta').disabled=true;
+				}
+				if (field_id == 291)
+				{
+					document.getElementById('acb_respons_cuenta').disabled=true;
+				}
+				if (field_id == 293)
+				{
+					document.getElementById('acb_num_aba').disabled=true;
+				}
+				if (field_id == 295)
+				{
+					document.getElementById('acn_telefono_fijo').disabled=true;
+				}
+				if (field_id == 296)
+				{
+					document.getElementById('acn_telefono_movil').disabled=true;
+				}
+				if (field_id == 297)
+				{
+					document.getElementById('acn_email').disabled=true;
+				}
+				if (field_id == 298)
+				{
+					document.getElementById('acn_facebook').disabled=true;
+				}
+				if (field_id == 299)
+				{
+					document.getElementById('acn_linkedin').disabled=true;
+				}
+				if (field_id == 300)
+				{
+					document.getElementById('acn_twitter').disabled=true;
+				}
+				if (field_id == 301)
+				{
+					document.getElementById('acn_swift').disabled=true;
+				}
+				if (field_id == 303)
+				{
+					document.getElementById('cfn_codigo').disabled=true;
+				}
+				if (field_id == 304)
+				{
+					document.getElementById('cfn_descripcion').disabled=true;
+				}
+				if (field_id == 307)
+				{
+					document.getElementById('cfn_limite_credito').disabled=true;
+				}
+				if (field_id == 308)
+				{
+					document.getElementById('cfn_porc_exceso_limite').disabled=true;
+				}
+				if (field_id == 309)
+				{
+					document.getElementById('cfn_valida_saldos_vec='S' then '${lbl:b_yes}'
+		when smn_base.smn_auxiliar_cond_financiera.cfn_valida_saldos_vec='N' then '${lbl:b_not}'
+	end as cfn_valida_saldos_vec').disabled=true;
+				}
+				if (field_id == 354)
+				{
+					document.getElementById('tco_responsable').disabled=true;
+				}
+				if (field_id == 356)
+				{
+					document.getElementById('tco_nivel').disabled=true;
+				}
+				if (field_id == 355)
+				{
+					document.getElementById('tco_tipo_cco='SR' then '${lbl:b_profitable}'
+	when smn_base.smn_auxiliar_centro_costo.tco_tipo_cco='SE' then '${lbl:b_services}'
+	when smn_base.smn_auxiliar_centro_costo.tco_tipo_cco='SP' then '${lbl:b_support}'
+	when smn_base.smn_auxiliar_centro_costo.tco_tipo_cco='DG' then '${lblb_distribution}'
+	end as tco_tipo_cco').disabled=true;
+				}
+				if (field_id == 673)
+				{
+					document.getElementById('smn_auxiliar_id_name').disabled=true;
+				}
+				if (field_id == 674)
+				{
+					document.getElementById('smn_auxiliar_id').disabled=true;
+				}
+				if (field_id == 675)
+				{
+					document.getElementById('smn_auxiliar_contacto_id').disabled=true;
+				}
+				if (field_id == 677)
+				{
+					document.getElementById('smn_auxiliar_id_name').disabled=true;
+				}
+				if (field_id == 678)
+				{
+					document.getElementById('smn_auxiliar_id').disabled=true;
+				}
+				if (field_id == 679)
+				{
+					document.getElementById('smn_auxiliar_sucursal_id').disabled=true;
+				}
+				if (field_id == 681)
+				{
+					document.getElementById('smn_naturaleza_auxiliar_rf').disabled=true;
+				}
+				if (field_id == 682)
+				{
+					document.getElementById('smn_clase_auxiliar_rf').disabled=true;
+				}
+				if (field_id == 683)
+				{
+					document.getElementById('aux_tipo_persona').disabled=true;
+				}
+				if (field_id == 684)
+				{
+					document.getElementById('aux_codigo').disabled=true;
+				}
+				if (field_id == 685)
+				{
+					document.getElementById('aux_descripcion').disabled=true;
+				}
+				if (field_id == 686)
+				{
+					document.getElementById('aux_apellidos').disabled=true;
+				}
+				if (field_id == 687)
+				{
+					document.getElementById('aux_nombres').disabled=true;
+				}
+				if (field_id == 688)
+				{
+					document.getElementById('aux_representante_legal').disabled=true;
+				}
+				if (field_id == 689)
+				{
+					document.getElementById('tdo_descripcion').disabled=true;
+				}
+				if (field_id == 690)
+				{
+					document.getElementById('aux_num_doc_oficial').disabled=true;
+				}
+				if (field_id == 691)
+				{
+					document.getElementById('aux_rif').disabled=true;
+				}
+				if (field_id == 692)
+				{
+					document.getElementById('aux_num_coleg_medicos').disabled=true;
+				}
+				if (field_id == 693)
+				{
+					document.getElementById('aux_num_minist_salud').disabled=true;
+				}
+				if (field_id == 694)
+				{
+					document.getElementById('aux_sexo').disabled=true;
+				}
+				if (field_id == 695)
+				{
+					document.getElementById('aux_estado_civil').disabled=true;
+				}
+				if (field_id == 696)
+				{
+					document.getElementById('aux_fecha_nac').disabled=true;
+				}
+				if (field_id == 697)
+				{
+					document.getElementById('aux_lugar_nac').disabled=true;
+				}
+				if (field_id == 698)
+				{
+					document.getElementById('dir_descripcion').disabled=true;
+				}
+				if (field_id == 699)
+				{
+					document.getElementById('pai_gentilicio').disabled=true;
+				}
+				if (field_id == 700)
+				{
+					document.getElementById('aux_nacionalizado').disabled=true;
+				}
+				if (field_id == 701)
+				{
+					document.getElementById('aux_fecha_gaceta_nac').disabled=true;
+				}
+				if (field_id == 702)
+				{
+					document.getElementById('aux_num_gaceta').disabled=true;
+				}
+				if (field_id == 703)
+				{
+					document.getElementById('aux_benef_pago').disabled=true;
+				}
+				if (field_id == 704)
+				{
+					document.getElementById('aux_cond_pago_rf').disabled=true;
+				}
+				if (field_id == 705)
+				{
+					document.getElementById('cfn_descripcion').disabled=true;
+				}
+				if (field_id == 706)
+				{
+					document.getElementById('cba_nombre').disabled=true;
+				}
+				if (field_id == 707)
+				{
+					document.getElementById('aux_persona_contacto').disabled=true;
+				}
+				if (field_id == 708)
+				{
+					document.getElementById('aux_observacion').disabled=true;
+				}
+				if (field_id == 714)
+				{
+					document.getElementById('smn_auxiliar_rf').disabled=true;
+				}
+
+				
+	   			//fecha desde y hasta
+	   			if (field_id == 363) 
+	   			{
+	   				document.getElementById("fdesde").disabled=true;
+	   				document.getElementById("fhasta").disabled=true;
+	   			}				
+			}
+
+		}
+		
+		//configurar formulario para ingresar registro nuevo
+		function addNew()
+		{
+			document.getElementById("grabar").disabled=false;
+			clearForm("form1");
+			setFocusOnForm("form1");
+		}
+		
+		//mostrar la actualizacion de un registro
+		function insert()
+		{		
+				clearErrorMessages();
+				document.getElementById("grabar").disabled=true;
+				
+				var fields = getFormValuesToStore('form1');
+				
+//				//alert("${def:actionroot}/insert?cfg_descripcion=" + fields);
+				
+				//llamada Ajax...
+				return ajaxCall(httpMethod="POST", 
+								uri="${def:actionroot}/insert?cfg_descripcion=" + fields, 
+								divResponse=null, 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=null, 
+								onErrorFn=retryAddnewOrEdit);	
+		}
+		
+		//restaurar el formulario en caso de error
+		function retryAddnewOrEdit() {
+			document.getElementById("grabar").disabled=false;
+			setFocusOnForm("form1");		
+		}
+		
+		//ejecutar consulta
+		function loadConfiguration() {
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/cargar_config", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=null);
+		}
+		
+		//asignar configuración
+		var fields = '';
+		function setConfiguration(config) {
+			var cfg = config.split("|");
+			formElements = document.forms['form1'].elements;
+			for(var k = 0; k < cfg.length; k++) {
+				var variable = cfg[k].split("=");
+				var field = variable[0];
+				var value = variable[1];				
+				for (var i=formElements.length-1; i>=0; --i) 
+				{
+					if (formElements[i].name != "" && formElements[i].name == field && formElements[i].name != 'field_id')
+					{ 						
+						formElements[i].value = value;
+						if (formElements[i].value != null)
+						{
+							formElements[i].disabled = false;
+						}
+						break;
+					}
+					else
+					{						
+						//añade elementos radio y checkbox
+						if (formElements[i].type=="checkbox" || formElements[i].type=="radio")  
+						{
+							if (formElements[i].value != null)
+							{
+								if (formElements[i].value == value)
+								{
+									formElements[i].checked = 'true';
+									fields = fields + value + ";";
+									break;
+								}
+							}
+						}
+						
+					}
+				}
+			}
+			fields = fields.substring(0, fields.length - 1);
+		}
+		
+		//mostrar el detalle de un registro
+		function getDetail(id)
+		{
+//			//alert('Colocar su código aquí.')
+			
+			var uri = "${def:context}${def:actionroot}/detail/form?id=" + id ; //+ '&field_id=' + fields;
+			openDialog("dialog", uri, 650, 300);			
+		}
+
+</script>
+
+</body>
+
+</html>

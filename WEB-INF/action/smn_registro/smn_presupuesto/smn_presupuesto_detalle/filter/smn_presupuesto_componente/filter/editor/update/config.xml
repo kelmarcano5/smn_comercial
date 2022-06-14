@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Actualiza valores de un formulario en una tabla
+	</summary>
+
+	<log>false</log>
+
+	<!--soporte de auditoria-->
+	<audit>
+		<!--de donde saca los datos, por defecto es "_request"-->
+		<recordset></recordset>
+		<!--que campos extrae para el registro descriptivo-->
+		<cols>
+			<colname>smn_presupuesto_detalle_id</colname>
+			<colname>smn_presupuesto_id</colname>
+			<colname>smn_servicios_rf</colname>
+			<colname>smn_tipos_componentes_rf</colname>
+			<colname>smn_componentes_rf</colname>
+			<colname>smn_grupo_prestador_rf</colname>
+			<colname>smn_prestadores_servicios_rf</colname>
+			<colname>prc_porcentaje_prestador</colname>
+			<colname>prc_forma_calculo_rf</colname>
+			<colname>prc_visible_rf</colname>
+			<colname>prc_cantidad</colname>
+			<colname>prc_precio_ml</colname>
+			<colname>prc_precio_ma</colname>
+			<colname>smn_moneda_rf</colname>
+			<colname>prc_monto_ml</colname>
+			<colname>prc_monto_ma</colname>
+			<colname>prc_monto_impuesto_ml</colname>
+			<colname>prc_monto_impuesto_ma</colname>
+			<colname>prc_monto_descuento_ml</colname>
+			<colname>prc_monto_descuento_ma</colname>
+			<colname>smn_incrementos_porcentaje_rf</colname>
+			<colname>prc_monto_incremento_ml</colname>
+			<colname>prc_monto_incremento_ma</colname>
+			<colname>prc_monto_neto_ml</colname>
+			<colname>prc_monto_neto_ma</colname>
+		
+		</cols>
+		<table>smn_comercial.smn_presupuesto_componente</table>
+		<oper>ACTUALIZAR</oper>
+		<area>Carga de datos</area>
+		<!--
+			query para obtener el ID generado o nombre de 
+			la columna que contiene el pkey, si es query, 
+			el alias del campo debe ser "id"
+		-->
+		<pkey>id</pkey>
+	</audit>
+
+	<transaction>
+		<classname>dinamica.audit.AuditableTransaction</classname>
+		<validator>true</validator>
+		<transaction>true</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<query>update.sql</query>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>script.js</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/javascript; charset=iso-8859-1</content-type>
+		<expiration>0</expiration>
+	</output>
+
+</config>

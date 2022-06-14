@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_rol_id' type='integer' required='true' label='${lbl:b_rol}' maxlen='10'/>
+	<parameter id='smn_usuario_rf' type='integer' required='true' label='${lbl:b_user}' maxlen='10'/>
+	<parameter id='smn_corporacion_rf' type='integer' required='false' label='${lbl:b_corporations}' maxlen='10'/>
+	<parameter id='scf_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='scf_vigencia' type='date' required='false' label='${lbl:b_validation_date}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_sub_centro_facturacion}' maxlen='10'/>
+
+
+</validator>

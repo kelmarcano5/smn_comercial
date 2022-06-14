@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnfacturacomponentes.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="7" cellStep="0" name="${lbl:b_components_bill}"/>
+	
+	<excel 
+		recordset='query-smnfacturacomponentes.sql' 
+		sheetname='${lbl:b_components_bill}' 
+		filename='${lbl:b_components_bill}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='fde_naturaleza_pl0' label='${lbl:b_detail_bill}' />
+		<col id='smn_grupo_componente_rf' label='${lbl:b_component_group}' />
+		<col id='smn_componente_rf' label='${lbl:b_component}' />
+		<col id='fco_es_prestador_servicio' label='${lbl:b_is_services_prestator}' />
+		<col id='smn_clase_auxiliar_rf' label='${lbl:b_class_auxiliary}' />
+		<col id='smn_auxiliar_rf' label='${lbl:b_auxiliar}' />
+		<col id='smn_item_rf' label='${lbl:b_item}' />
+		<col id='smn_servicio_rf' label='${lbl:b_services}' />
+		<col id='fco_forma_calculo' label='${lbl:b_calculus}' />
+		<col id='fco_cantidad' label='${lbl:b_quantity}' />
+		<col id='smn_precio_ml_rf' label='${lbl:b_price}' />
+		<col id='fco_monto_ml' label='${lbl:b_amount}' />
+		<col id='fco_estatus' label='${lbl:b_status}' />
+		<col id='fco_fecha_registro' label='${lbl:b_store_date}' />
+
+	</excel>
+
+</config>

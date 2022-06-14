@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_rel_oferta_cliente>
+	<detail>
+		<rows>		
+		<record roc_fecha_registro="${fld:roc_fecha_registro}"    roc_fecha_cierre="${fld:roc_fecha_cierre}"    roc_fecha_vigencia_hasta="${fld:roc_fecha_vigencia_hasta}"    roc_fecha_vigencia_desde="${fld:roc_fecha_vigencia_desde}"    roc_fecha_aprobacion="${fld:roc_fecha_aprobacion}"    roc_estatus_proceso="${fld:roc_estatus_proceso}"    smn_cliente_id="${fld:smn_cliente_id}"    smn_oferta_id="${fld:smn_oferta_id}"    />
+		</rows>
+	</detail>
+</smn_rel_oferta_cliente>

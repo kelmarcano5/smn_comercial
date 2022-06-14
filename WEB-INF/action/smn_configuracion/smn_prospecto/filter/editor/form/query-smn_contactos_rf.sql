@@ -1,0 +1,1 @@
+select smn_base.smn_contactos.smn_contactos_id as id, smn_base.smn_contactos.cnt_nombres as item from smn_base.smn_contactos

@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_documento_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='pre_numero_control' type='varchar' required='true' maxlen='16'/>
+	<parameter id='smn_entidades_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_sucursales_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_auxiliar_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_clase_ord_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_auxiliar_ord_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_baremo_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_auxiliar_unidades_negocios_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_auxiliar_sucursales_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_auxiliar_areas_servicios_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_auxiliar_unidades_servicios_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='pre_vigencia_hasta' type='date' required='true' maxlen='10'/>
+	<parameter id='smn_ordenes_medicas_id' type='integer' required='false' maxlen='10'/>
+	<parameter id='pre_fecha_entrega' type='date' required='false' maxlen='10'/>
+	<parameter id='pre_monto_ml' type='double' required='true' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='pre_monto_ma' type='double' required='false' maxlen='10'/>
+	<parameter id='smn_estado_presupuesto_id' type='integer' required='true' maxlen='4'/>
+
+
+
+</validator>

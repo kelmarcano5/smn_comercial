@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='acc_codigo' type='varchar' required='true' maxlen='10'/>
+	<parameter id='acc_descripcion' type='varchar' required='true' maxlen='100'/>
+	<parameter id='acc_require_seguimiento' type='varchar' required='true' maxlen='1'/>
+	<parameter id='acc_dias_seguimiento' type='integer' required='true' maxlen='10'/>
+	<parameter id='acc_paso_rf_desc_ref' type='varchar' required='true' maxlen='10'/>
+	<parameter id='acc_estatus' type='varchar' required='true' maxlen='2'/>
+	<parameter id='acc_vigencia' type='date' required='true' maxlen='10'/>
+
+	<parameter id='acc_paso_rf_ref' type='integer' required='false' maxlen='10'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='acc_codigo'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='acc_descripcion'/>
+
+
+
+	<custom-validator 
+		classname='dinamica.validators.GetColValueValidator' 
+		on-error-label='${lbl:b_field_does_not_registered}: acc_paso_rf' 
+		parameter='acc_paso_rf_ref' 
+		sql='acc_paso_rf.sql' 
+		id='acc_paso_rf_ref'/>
+
+</validator>

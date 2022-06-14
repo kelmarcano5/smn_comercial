@@ -1,0 +1,1 @@
+select smn_salud.smn_ingresos.smn_ingresos_id as id, smn_salud.smn_ingresos.igs_num_ingreso || ' - ' || smn_base.smn_auxiliar.aux_nombres ||' , '|| smn_base.smn_auxiliar.aux_apellidos as item from smn_salud.smn_ingresos inner join smn_base.smn_auxiliar on smn_base.smn_auxiliar.smn_auxiliar_id = smn_salud.smn_ingresos.smn_auxiliar_rf

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_oferta_id' type='integer' required='true' label='${lbl:b_offer}' maxlen='10'/>
+	<parameter id='smn_cliente_id' type='integer' required='true' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='roc_estatus_proceso' type='varchar' required='true' label='${lbl:b_process_status}' maxlen='2'/>
+	<parameter id='roc_fecha_aprobacion' type='date' required='false' label='${lbl:b_aprobation_date}' maxlen='10'/>
+	<parameter id='roc_fecha_vigencia_desde' type='date' required='true' label='${lbl:b_from_vigency_date}' maxlen='10'/>
+	<parameter id='roc_fecha_vigencia_hasta' type='date' required='true' label='${lbl:b_to_vigency_date}' maxlen='10'/>
+	<parameter id='roc_fecha_cierre' type='date' required='false' label='${lbl:b_close_date}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_rel_customer_offer}' maxlen='10'/>
+
+
+</validator>

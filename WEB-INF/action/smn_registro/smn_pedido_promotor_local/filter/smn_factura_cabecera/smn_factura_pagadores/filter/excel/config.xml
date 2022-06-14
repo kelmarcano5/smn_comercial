@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnfacturapagadores.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="2" cellStep="0" name="${lbl:b_paying_bill}"/>
+	
+	<excel 
+		recordset='query-smnfacturapagadores.sql' 
+		sheetname='${lbl:b_paying_bill}' 
+		filename='${lbl:b_paying_bill}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='fca_rif_pl0' label='${lbl:b_header_bill}' />
+		<col id='smn_cliente_id_combo' label='${lbl:b_customer}' />
+		<col id='smn_monto_rf' label='${lbl:b_amount}' />
+		<col id='fpa_fecha_registro' label='${lbl:b_store_date}' />
+
+	</excel>
+
+</config>

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		${lbl:b_auxiliary_third}
+	</summary>
+
+	<log>false</log>
+	
+	<set-request-attribute id="progress" value="file:/WEB-INF/action/progress/progress.htm"/>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id='query-smn_naturaleza_auxiliar_rf.sql' source='sql' scope='transaction'/><recordset id='query-smn_clase_auxiliar_rf.sql' source='sql' scope='transaction'/><recordset id='query-aux_direccion_rf.sql' source='sql' scope='transaction'/><recordset id='query-aux_comunidad_rf.sql' source='sql' scope='transaction'/><recordset id='query-aux_auxiliar_corporacion_rf.sql' source='sql' scope='transaction'/><recordset id='query-aux_auxiliar_unidad_negocio_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-aux_sectores_economicos_rf.sql' source='sql' scope='transaction'/><recordset id='query-aux_cond_pago_rf.sql' source='sql' scope='transaction'/><recordset id='query-aux_condicion_financiera_rf.sql' source='sql' scope='transaction'/><recordset id='query-aux_cuenta_bancaria_rf.sql' source='sql' scope='transaction'/><recordset id='query-aux_tipo_doc_oficial_rf.sql' source='sql' scope='transaction'/>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<print mode='table' recordset='query-smn_naturaleza_auxiliar_rf.sql' tag='smn_naturaleza_auxiliar_rf_rows'/><print mode='table' recordset='query-smn_clase_auxiliar_rf.sql' tag='smn_clase_auxiliar_rf_rows'/><print mode='table' recordset='query-aux_direccion_rf.sql' tag='aux_direccion_rf_rows'/><print mode='table' recordset='query-aux_comunidad_rf.sql' tag='aux_comunidad_rf_rows'/><print mode='table' recordset='query-aux_auxiliar_corporacion_rf.sql' tag='aux_auxiliar_corporacion_rf_rows'/><print mode='table' recordset='query-aux_auxiliar_unidad_negocio_rf.sql' tag='aux_auxiliar_unidad_negocio_rf_rows'/>
+
+		<print mode='table' recordset='query-aux_sectores_economicos_rf.sql' tag='aux_sectores_economicos_rf_rows'/>
+
+		<print mode='table' recordset='query-aux_cond_pago_rf.sql' tag='aux_cond_pago_rf_rows'/><print mode='table' recordset='query-aux_condicion_financiera_rf.sql' tag='aux_condicion_financiera_rf_rows'/><print mode='table' recordset='query-aux_cuenta_bancaria_rf.sql' tag='aux_cuenta_bancaria_rf_rows'/>
+			<print mode='table' recordset='query-aux_tipo_doc_oficial_rf.sql' tag='aux_tipo_doc_oficial_rf_rows'/>
+		<print mode="form" recordset="_request" /> 
+	</output>
+
+</config>

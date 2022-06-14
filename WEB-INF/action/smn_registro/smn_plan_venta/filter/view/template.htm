@@ -1,0 +1,67 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="14" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_entidades_rf","query-smnplanventa.sql")'>${lbl:b_item}</th>
+		<th class='sortable' onclick='sortBy("smn_almacen_rf","query-smnplanventa.sql")'>${lbl:b_store_code}</th>
+		<th class='sortable' onclick='sortBy("smn_documento_id","query-smnplanventa.sql")'>${lbl:b_document}</th>
+		<th class='sortable' onclick='sortBy("smn_servicio_rf","query-smnplanventa.sql")'>${lbl:b_services}</th>
+		<th class='sortable' onclick='sortBy("smn_item_rf","query-smnplanventa.sql")'>${lbl:b_item}</th>
+		<th class='sortable' onclick='sortBy("plv_fecha","query-smnplanventa.sql")'>${lbl:b_fecha}</th>
+		<th class='sortable' onclick='sortBy("plv_cantidad_rf","query-smnplanventa.sql")'>${lbl:b_quantity}</th>
+		<th class='sortable' onclick='sortBy("plv_precio_rf","query-smnplanventa.sql")'>${lbl:b_price}</th>
+		<th class='sortable' onclick='sortBy("plv_monto_rf","query-smnplanventa.sql")'>${lbl:b_amount}</th>
+		<th class='sortable' onclick='sortBy("plv_monto_ma_rf","query-smnplanventa.sql")'>${lbl:b_amount_ma}</th>
+		<th class='sortable' onclick='sortBy("plv_fecha_registro","query-smnplanventa.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_plan_venta_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_plan_venta_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_plan_venta_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_entidades_rf}</td>
+		<td>${fld:smn_almacen_rf}</td>
+		<td>${fld:smn_documento_id}</td>
+		<td>${fld:smn_servicio_rf}</td>
+		<td>${fld:smn_item_rf}</td>
+		<td>${fld:plv_fecha@dd-MM-yyyy}</td>
+		<td align='right'>${fld:plv_cantidad_rf@#,###,##0.00}</td>
+		<td align='right'>${fld:plv_precio_rf@#,###,##0.00}</td>
+		<td align='right'>${fld:plv_monto_rf@#,###,##0.00}</td>
+		<td align='right'>${fld:plv_monto_ma_rf@#,###,##0.00}</td>
+		<td>${fld:plv_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

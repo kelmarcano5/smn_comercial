@@ -1,0 +1,18 @@
+select
+		smn_comercial.smn_pedido_imp_deducc_detalle.smn_pedido_detalle_id,
+	smn_comercial.smn_pedido_imp_deducc_detalle.smn_codigos_impuestos_rf,
+	smn_comercial.smn_pedido_imp_deducc_detalle.pid_porcentaje_impuesto,
+	smn_comercial.smn_pedido_imp_deducc_detalle.pid_monto_sustraendo,
+	smn_comercial.smn_pedido_imp_deducc_detalle.pid_monto_impuesto,
+	smn_comercial.smn_pedido_imp_deducc_detalle.smn_moneda_rf,
+	smn_comercial.smn_pedido_imp_deducc_detalle.smn_tasa_rf,
+	smn_comercial.smn_pedido_imp_deducc_detalle.pid_monto_imp_moneda_alterna,
+	smn_comercial.smn_pedido_imp_deducc_detalle.smn_descuentos_retenciones_rf,
+	smn_comercial.smn_pedido_imp_deducc_detalle.pid_porcentaje_descuento_retencion,
+	smn_comercial.smn_pedido_imp_deducc_detalle.pid_monto_descuento_retencion,
+	smn_comercial.smn_pedido_imp_deducc_detalle.pid_monto_desc_moneda_alterna,
+	smn_comercial.smn_pedido_imp_deducc_detalle.pid_fecha_registro
+from
+	smn_comercial.smn_pedido_imp_deducc_detalle 
+where
+	smn_comercial.smn_pedido_imp_deducc_detalle.smn_pedido_imp_deducc_detalle_id = ${fld:id}

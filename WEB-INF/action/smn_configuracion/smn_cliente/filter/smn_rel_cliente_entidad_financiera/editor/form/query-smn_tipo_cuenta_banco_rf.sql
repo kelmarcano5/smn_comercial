@@ -1,0 +1,1 @@
+select smn_base.smn_tipo_cuenta_banco.smn_tipo_cuenta_banco_id as id, smn_base.smn_tipo_cuenta_banco.tcb_codigo|| ' - ' || smn_base.smn_tipo_cuenta_banco.tcb_descripcion as item from smn_base.smn_tipo_cuenta_banco order by tcb_descripcion

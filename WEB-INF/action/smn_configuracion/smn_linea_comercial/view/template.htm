@@ -1,0 +1,68 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='15%'/>
+	<col width='15%'/>
+	<col width='15%'/>
+	<col width='15%'/>
+	<col width='15%'/>
+	<col width='15%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="14" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_tipo_linea_comercial_id_combo","query-smnlineacomercial.sql")'>${lbl:b_tipo_linea_comercial}</th>
+		<th class='sortable' onclick='sortBy("lco_codigo","query-smnlineacomercial.sql")'>${lbl:b_code}</th>
+		<th class='sortable' onclick='sortBy("lco_nombre","query-smnlineacomercial.sql")'>${lbl:b_name}</th>
+		<th class='sortable' onclick='sortBy("lco_vigencia","query-smnlineacomercial.sql")'>${lbl:b_validation_date}</th>
+		<th class='sortable' onclick='sortBy("lco_estatus_combo","query-smnlineacomercial.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("lco_fecha_registro","query-smnlineacomercial.sql")'>${lbl:b_store_date}</th>
+		<th>R/U</th>
+		<th>R/I</th>
+		<th>R/S</th>
+		<th>R/A</th>
+		<th>R/C</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_linea_comercial_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_linea_comercial_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_linea_comercial_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_tipo_linea_comercial_id_combo}</td>
+		<td align='left'>${fld:lco_codigo}</td>
+		<td align='left'>${fld:lco_nombre}</td>
+		<td>${fld:lco_vigencia@dd-MM-yyyy}</td>
+		<td align='left'>${fld:lco_estatus_combo}</td>
+		<td>${fld:lco_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="relusu('${fld:smn_linea_comercial_id}','${fld:lco_codigo}','${fld:lco_nombre}')" title="${lbl:b_relacion_usuario_linea_comercial}"></td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="relitem('${fld:smn_linea_comercial_id}','${fld:lco_codigo}','${fld:lco_nombre}')" title="${lbl:b_relacion_linea_comercial_item}"></td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="relser('${fld:smn_linea_comercial_id}','${fld:lco_codigo}','${fld:lco_nombre}')" title="${lbl:b_relacion_linea_comercial_servicio}"></td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="relact('${fld:smn_linea_comercial_id}','${fld:lco_codigo}','${fld:lco_nombre}')" title="${lbl:b_relacion_linea_comercial_activo_fijo}"></td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="relcenfact('${fld:smn_linea_comercial_id}','${fld:lco_codigo}','${fld:lco_nombre}')" title="${lbl:b_rel_centro_facturacion_linea}"></td>
+		
+		
+
+	</tr>
+	</rows>
+
+</table>

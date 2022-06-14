@@ -1,0 +1,1 @@
+select smn_comercial.smn_catalogo_item_comercio.cic_maneja_ingredientes as maneja_ingrediente from smn_comercial.smn_catalogo_item_comercio

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+
+<config>
+	
+	<sumary> requisicion </sumary>
+	
+	<log> false </log>
+	
+	<transaction>
+		<classname>proceso.GenerarFacturaAcumulada</classname>
+		<validator>true</validator>
+		<transaction>true</transaction>
+		<jdbc-log>true</jdbc-log>
+	</transaction>
+
+	<!-- <output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>procesar.js</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/javascript</content-type>
+	</output> -->
+	
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>message.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<expiration>1</expiration>
+	</output>
+	
+</config>

@@ -1,0 +1,55 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="10" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_tipo_documento_id_combo','query-smnmetas.sql')" >${lbl:b_tipo_documento_factura}</th>
+		<th class='sortable' onclick="sortBy('smn_documento_id_combo','query-smnmetas.sql')" >${lbl:b_document}</th>
+		<th class='sortable' onclick="sortBy('smn_usuario_rf_combo','query-smnmetas.sql')" >${lbl:b_user}</th>
+		<th class='sortable' onclick="sortBy('met_cantidad_diaria','query-smnmetas.sql')" >${lbl:b_diary_quantity}</th>
+		<th class='sortable' onclick="sortBy('met_cantidad_usuario','query-smnmetas.sql')" >${lbl:b_user_quantity}</th>
+		<th class='sortable' onclick="sortBy('met_estatus_combo','query-smnmetas.sql')" >${lbl:b_status}</th>
+		<th class='sortable' onclick="sortBy('met_fecha_registro','query-smnmetas.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_metas_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_metas_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_metas_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_tipo_documento_id_combo}</td>
+		<td align="center">${fld:smn_documento_id_combo}</td>
+		<td align="center">${fld:smn_usuario_rf_combo}</td>
+		<td align="center">${fld:met_cantidad_diaria}</td>
+		<td align="center">${fld:met_cantidad_usuario}</td>
+		<td align="left">${fld:met_estatus_combo}</td>
+		<td align="center">${fld:met_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

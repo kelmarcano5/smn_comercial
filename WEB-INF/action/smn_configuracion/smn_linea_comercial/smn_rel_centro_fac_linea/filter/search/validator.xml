@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_centro_facturacion_id_name' type='varchar' required='false' label='${lbl:b_centro_facturacion}'/>
+	<parameter id='smn_centro_facturacion_id' type='integer' required='false' label='${lbl:b_centro_facturacion}' maxlen='10'/>
+	<parameter id='smn_linea_comercial_id_name' type='varchar' required='false' label='${lbl:b_linea_comercial}'/>
+	<parameter id='smn_linea_comercial_id' type='integer' required='false' label='${lbl:b_linea_comercial}' maxlen='10'/>
+</validator>

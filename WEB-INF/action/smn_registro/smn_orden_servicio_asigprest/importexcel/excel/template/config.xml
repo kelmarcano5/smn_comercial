@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnordenservicio.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_service_order}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_service_order}">
+				<col id='smn_documento_id' label='${lbl:b_document}' />
+		<col id='ors_numero' label='${lbl:b_number}' />
+		<col id='smn_cliente_id' label='${lbl:b_customer}' />
+		<col id='ors_descripcion' label='${lbl:b_description}' />
+		<col id='ors_fecha_inicial' label='${lbl:b_date_init}' />
+		<col id='ors_fecha_final' label='${lbl:b_date_end}' />
+		<col id='ors_hora_inicial' label='${lbl:b_hour_init}' />
+		<col id='ors_hora_final' label='${lbl:b_hour_end}' />
+		<col id='smn_prestador_servicio_rf' label='${fld:b_service_provider}' />
+		<col id='ors_observacion' label='${lbl:b_observation}' />
+		<col id='ors_estatus' label='${lbl:b_estatus}' />
+		<col id='ors_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

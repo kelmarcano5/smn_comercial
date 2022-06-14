@@ -1,0 +1,931 @@
+<!doctype html>
+<html>
+
+<head>
+	<!--biblioteca generica JS/Dinamica-->
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	<script type="text/javascript" src="${def:context}/action/script"></script>
+	<script type="text/javascript" src="${def:context}/action/jquery"></script>
+</head>
+<body>
+
+<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	${lbl:b_point_of_sale_order}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<tr>
+			<td width="10%">${lbl:b_header_order}</td>
+			<td><input id="codigo" name="codigo" type="text" maxlength="10" class="numeric" readonly disabled="true"></td>
+			
+<!--  			<td style="background-color: white">${fld:cliente}</td> -->
+ 			<!--<td style="background-color: white">${fld:descripcion}</td>
+ 			<td style="background-color: white">${fld:codigo}</td>
+ 			<td style="background-color: white">${fld:descripcion}</td>
+			<td style="background-color: white">${fld:codigo_aux}</td>
+			<td style="background-color: white">${fld:descripcion_aux}</td>-->
+		</tr>
+		<tr>
+			<td width="10%">${lbl:b_customer}</td>
+			<td><input id="cliente" name="cliente" type="text" maxlength="100" readonly disabled="true"></td>
+ 			<!--<td style="background-color: white">${fld:descripcion}</td>
+ 			<td style="background-color: white">${fld:codigo}</td>
+ 			<td style="background-color: white">${fld:descripcion}</td>
+			<td style="background-color: white">${fld:codigo_aux}</td>
+			<td style="background-color: white">${fld:descripcion_aux}</td>-->
+		</tr>
+		
+		<!--campos-->
+		<!-- <tr style="display: none">
+		<td>${lbl:b_header_order}*</td>
+		<td>
+			<select name="smn_pedido_cabecera_id" id="smn_pedido_cabecera_id" onchange="chgCombo(smn_pedido_cabecera_id.options[smn_pedido_cabecera_id.selectedIndex].text,'smn_pedido_cabecera_id_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_pedido_cabecera_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_pedido_cabecera_id_rows>
+			</select> 
+			<input id="smn_pedido_cabecera_id_name" name="smn_pedido_cabecera_id_name" type="hidden">
+		</td>
+		</tr> -->
+		<tr style="display: none">
+			<td>${lbl:b_header_order}*</td>
+			<td>
+				<input id="smn_pedido_cabecera_id" name="smn_pedido_cabecera_id" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none">
+			<td>${lbl:b_movement_caj}*</td>
+			<td>
+				<input id="smn_mov_caja_cabecera_id" name="smn_mov_caja_cabecera_id" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none">
+			<td>${lbl:b_class_auxiliary}*</td>
+			<td>
+				<select name="smn_pagador_clase_rf" id="smn_pagador_clase_rf" onchange="chgCombo(smn_pagador_clase_rf.options[smn_pagador_clase_rf.selectedIndex].text,'smn_pagador_clase_rf_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_pagador_clase_rf_rows>
+					<option value="${fld:id}">${fld:item}</option>
+
+					</smn_pagador_clase_rf_rows>
+				</select> 
+				<input id="smn_pagador_clase_rf_name" name="smn_pagador_clase_rf_name" type="hidden">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_way_to_pay}</td>
+			<td>
+				<select name="smn_forma_pago_rf" id="smn_forma_pago_rf"  onchange="chgCombo12(smn_forma_pago_rf.options[smn_forma_pago_rf.selectedIndex].text,'smn_forma_pago_rf_name');requiere_banco(smn_forma_pago_rf.options[smn_forma_pago_rf.selectedIndex].text,'smn_forma_pago_rf_name');chgCombo15(smn_forma_pago_rf.options[smn_forma_pago_rf.selectedIndex].text,'smn_forma_pago_rf_name');chgCombo16(smn_forma_pago_rf.options[smn_forma_pago_rf.selectedIndex].text,'smn_forma_pago_rf_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_forma_pago_rf_rows>
+					<option value="${fld:id}">${fld:item}</option>
+
+					</smn_forma_pago_rf_rows>
+				</select> 
+				<input id="smn_forma_pago_rf_name" name="smn_forma_pago_rf_name" type="hidden">
+			</td>
+		</tr>
+		<tr id="med_pag">
+			<td>${lbl:b_media_payment}</td>
+			<td>
+				<select name="smn_rel_punto_venta_pago_rf" id="smn_rel_punto_venta_pago_rf" onchange="chgCombo(smn_rel_punto_venta_pago_rf.options[smn_rel_punto_venta_pago_rf.selectedIndex].text,'smn_rel_punto_venta_pago_rf_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_rel_punto_venta_pago_rf_rows>
+					<option value="${fld:id}">${fld:item}</option>
+
+					</smn_rel_punto_venta_pago_rf_rows>
+				</select> 
+				<input id="smn_rel_punto_venta_pago_rf_name" name="smn_rel_punto_venta_pago_rf_name" type="hidden">
+			</td>
+		</tr>
+		<tr id="num_doc" style="display: none">
+			<td>${lbl:b_number_doc_form_pay}</td>
+			<td>
+				<input id="ppv_numero_documento_forma_pago" name="ppv_numero_documento_forma_pago" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr id="num_aut" style="display: none">
+			<td>${lbl:b_number_autorization}</td>
+			<td>
+				<input id="ppv_numero_autorizacion" name="ppv_numero_autorizacion" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		
+		<tr id="num_dep" style="display: none">
+			<td>${lbl:b_number_deposit}*</td>
+			<td>
+				<textarea id="ppv_numero_deposito" name="ppv_numero_deposito" cols="5" rows="3"></textarea>
+			</td>
+		</tr>
+		<tr id="doc_ident" style="display: none">
+			<td>${lbl:b_document_identity}</td>
+			<td>
+				<input id="ppv_documento_identidad_pagador" name="ppv_documento_identidad_pagador" type="text" maxlength="100" >
+			</td>
+		</tr>
+		<tr id="nom_pag" style="display: none">
+			<td>${lbl:b_paying_name}</td>
+			<td>
+				<input id="ppv_nombre_pagador" name="ppv_nombre_pagador" type="text" maxlength="100" >
+			</td>
+		</tr>
+		<tr id="coin" style="display: none">
+		<td>${lbl:b_coins}</td>
+		<td>
+			<select name="smn_moneda_rf" id="smn_moneda_rf" onchange="chgCombo1(smn_moneda_rf.options[smn_moneda_rf.selectedIndex].text,'smn_moneda_rf_name');activarmonedaalterna();">
+				<option value="">[Cualquiera]</option>
+				<smn_moneda_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_moneda_rf_rows>
+			</select> 
+			<input id="smn_moneda_rf_name" name="smn_moneda_rf_name" type="hidden">
+		</td>
+		</tr>
+		<tr id="tasa" style="display: none">
+			<td>${lbl:b_exchange_rate}</td>
+			<td>
+				<select name="smn_tasa_rf" id="smn_tasa_rf" onchange="chgCombo(smn_tasa_rf.options[smn_tasa_rf.selectedIndex].text,'smn_tasa_rf_name'); seteartasa(smn_tasa_rf.options[smn_tasa_rf.selectedIndex].text,'smn_tasa_rf_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_tasa_rf_rows>
+					<option value="${fld:id}">${fld:item}</option>
+
+					</smn_tasa_rf_rows>
+				</select> 
+				<input id="smn_tasa_rf_name" name="smn_tasa_rf_name" type="hidden">
+			</td>
+		</tr>
+		<tr  id="monto_pagar">
+			<td>${lbl:b_amount_payment_ml}</td>
+			<td>
+				<input id="ppv_monto_pagar_ml" name="ppv_monto_pagar_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr id="monto_pago">
+			<td>${lbl:b_amount_pay_ml}*</td>
+			<td>
+				<input id="ppv_monto_pago_ml" name="ppv_monto_pago_ml" type="text" maxlength="10" class="numeric" onchange="calcularvuelto();">
+			</td>
+		</tr>
+		<tr id="monto_vuelto">
+			<td>${lbl:b_amount_revers_ml}</td>
+			<td>
+				<input id="ppv_monto_devuelto_ml" name="ppv_monto_devuelto_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr id="mo_pago" style="display: none">
+			<td>${lbl:b_amount_payment_ma}</td>
+			<td>
+				<input id="ppv_monto_pago_ma" name="ppv_monto_pago_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr id="mo_pagar" style="display: none">
+			<td>${lbl:b_amount_payment_ma}</td>
+			<td>
+				<input id="ppv_monto_pagar_ma" name="ppv_monto_pagar_ma" type="text" maxlength="10" class="numeric" onchange="calcular_pago();">
+			</td>
+		</tr>
+		<tr id="mo_devo" style="display: none">
+			<td>${lbl:b_amount_revers_ma}</td>
+			<td>
+				<input id="ppv_monto_devuelto_ma" name="ppv_monto_devuelto_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none">
+			<td>${lbl:b_observation}</td>
+			<td>
+				<textarea id="ppv_observacion" name="ppv_observacion" cols="30" rows="3"></textarea>
+			</td>
+		</tr>
+		<tr style="display: none">
+			<td>${lbl:b_status}*</td>
+			<td>
+				<select name="ppv_estatus" id="ppv_estatus">
+				<option value="AC">${lbl:b_account_type_active}</option>
+				<option value="IN">${lbl:b_inactive}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr style="display: none">
+			<td>Dias</td>
+			<td>
+				<input id="dias" name="dias" type="text" maxlength="10" disabled="true"></input>
+			</td>
+		</tr>
+	</table>
+
+	<!--botones style="display: none"-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	<!-- <input id="procesar" type="button" value="Procesar" onclick="proceso()" class="button"> -->
+
+
+<!-- PK-->
+<input type="hidden" name="id" value="">
+<input type="hidden" name="req_banco" id="req_banco">
+<input type="hidden" name="id_pago" id="id_pago">
+<input type="hidden" name="divisa" id="divisa">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+	var co = '${fld:codigo}';
+	var cli =  '${fld:cliente}';
+	var id2 = '${fld:id2}';
+	var idcl = '${fld:smn_cliente_id}';
+	var caj = '${fld:caja}'
+
+	onload = function(){ 
+		addNew();
+
+		//getformapago(caj);
+		//alert("CAJA ID: "+caja+"CLIENTE ID: "+idcl);
+		//validarFormaPago(caja, idcl);
+		//consultar(id2);
+		//alert("codigo"+co+"cliente"+cli);
+		document.getElementById('codigo').value = '${fld:id2}';
+		document.getElementById('cliente').value = cli
+		document.form1.smn_tasa_rf.disabled=true;
+		document.getElementById("smn_pedido_cabecera_id").value = '${fld:id2}';
+		document.form1.smn_pedido_cabecera_id.disabled=true;
+
+		var mtx = '${fld:monto}';
+		var montox = parseFloat(mtx);
+		document.getElementById("ppv_monto_pagar_ml").value = montox;
+		document.getElementById("ppv_monto_pago_ml").value = montox;
+		document.getElementById("ppv_monto_devuelto_ml").value = 0;
+		document.form1.ppv_monto_pagar_ml.disabled=true;
+		document.getElementById('ppv_monto_pago_ml').disabled=true;
+		document.getElementById('ppv_monto_devuelto_ml').disabled=true;
+
+		consultar('${fld:id2}');
+
+		var doc = '${fld:documento}';
+		
+		document.form1.smn_rel_punto_venta_pago_rf.disabled=true;
+
+		if (id!="")
+			edit(id);
+	} 
+
+	function consultar(id) {
+
+		console.log(id);
+		uri="${def:actionroot}/consultarsaldo?id2=" + id
+		//alert("entro en el consultar: "+uri);
+		 ajaxCall(httpMethod="GET", 
+						uri,
+						divResponse=null, 
+						divProgress="status", 
+						formName=form1, 
+						afterResponseFn=null, 
+						onErrorFn=null);		
+	}
+
+
+	var geo_id3 = null;
+	function requiere_banco(text, id) {
+
+		var combo = document.getElementById('smn_forma_pago_rf');
+		var valueCombo = getIDSelectedIndex(combo);
+		geo_id3 = valueCombo.split("-").pop().trim();
+		
+		if (id!=null && id!="") 
+		{
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/getreqbank?id=" + geo_id3, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null);				
+		}
+	}
+
+	
+	function calcularvuelto() {
+		var mpagar = document.getElementById('ppv_monto_pagar_ml').value;
+		var mpagado = document.getElementById('ppv_monto_pago_ml').value;;
+		var mvuelto =0;
+
+		var fop = document.getElementById('smn_forma_pago_rf');
+		var fop_text = fop.options[fop.selectedIndex].text;
+		var text_ = fop_text.substring(4,0);
+
+		if (text_== 'EF01') {
+			if(mpagado>mpagar){
+				alert("El monto del pago no puede ser menor al monto a pagar");
+				document.form1.ppv_monto_devuelto_ml.disabled=true;
+			}else{
+				mvuelto = parseFloat(mpagar) - parseFloat(mpagado);
+				document.getElementById('ppv_monto_devuelto_ml').value=mvuelto;
+				document.form1.ppv_monto_devuelto_ml.disabled=true;
+				//alert("monto de entrega al cliente: "+mvuelto);
+			}
+		}else{
+				mvuelto = parseFloat(mpagar) - parseFloat(mpagado);
+				document.getElementById('ppv_monto_devuelto_ml').value=mvuelto;
+				document.form1.ppv_monto_devuelto_ml.disabled=true;
+		}
+
+	}
+
+	function requiere_moneda(doc) {
+		ajaxCall(httpMethod="GET", 
+					uri="${def:actionroot}/documento?id=" + doc , 
+					divResponse=null, 
+					divProgress="status", 
+					formName=null, 
+					afterResponseFn=null, 
+					onErrorFn=null);	
+	}
+	
+	function activarmonedaalterna() {
+		var mon = document.getElementById("smn_moneda_rf").value;
+
+		if(mon != 360){
+			document.getElementById("mo_pagar").style.display="";
+			document.getElementById("mo_devo").style.display="";	
+			document.getElementById("mo_pago").style.display="";		
+		}else{
+			document.getElementById("mo_pagar").style.display="none";
+			document.getElementById("mo_devo").style.display="none";	
+			document.getElementById("mo_pago").style.display="none";		
+		}
+	}
+	
+	function chgCombo(text,id){
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew(){
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.form1.ppv_numero_documento_forma_pago.value="";
+		document.form1.ppv_numero_autorizacion.value="";
+		document.form1.ppv_documento_identidad_pagador.value="";
+		document.form1.ppv_nombre_pagador.value="";
+		document.form1.ppv_monto_pago_ml.value="";
+		document.form1.ppv_monto_pagar_ma.value="";
+		document.form1.ppv_monto_pago_ma.value="";
+		document.form1.ppv_monto_devuelto_ma.value="";
+		document.form1.ppv_observacion.value="";
+		document.getElementById("grabar").disabled=false;
+		//clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() {
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert(){		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save(){
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id){
+		clearErrorMessages();
+		document.getElementById("med_pag").style.display="none";		
+		//llamada Ajax...
+		ajaxCall(httpMethod="GET", 
+						uri="${def:actionroot}/edit?id=" + id , 
+						divResponse=null, 
+						divProgress="status", 
+						formName=null, 
+						afterResponseFn=null, 
+						onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update(){		
+		clearErrorMessages();
+		document.getElementById("grabar").disabled=true;
+		
+		//llamada Ajax...
+		return ajaxCall(httpMethod="POST", 
+						uri="${def:actionroot}/update", 
+						divResponse=null, 
+						divProgress="status", 
+						formName="form1", 
+						afterResponseFn=null, 
+						onErrorFn=retryAddnewOrEdit);	
+	}
+
+			   //Author     : SIMONE
+    //Description: Set first element as selected value
+    //Return     : None
+    function setElementFirstIndex(id){
+        var combo = document.getElementById(id);
+        combo.selectedIndex = 0;
+    }
+
+    //Author     : SIMONE
+    //Description: Insert new value into combo box
+    //Return     : None
+    function insertComboBox(code, combo, description){
+        var valueText = code;
+        if (description != null)
+        {
+            valueText = valueText + ' - ' + description;
+        }
+        //alert("Insert Combo: "+valueText);
+       combo.options[combo.options.length] = new Option(valueText);
+    }
+    
+    //Author     : SIMONE
+    //Description: Add new value to combo box
+    //Return     : None
+    function addValueToCombo(code, description, field){
+        var combo = document.getElementById(field);        
+        insertComboBox(code, combo, description);
+    }
+    
+    //Author     : SIMONE
+    //Description: Set selected index into combo box
+    //Return     : None
+    function setSelectedIndex(code, combo, description){
+        for (var i = 0; i < combo.options.length; i++)
+        {
+            var valueText = code;
+            if (description != null)
+            {
+                valueText = valueText + ' - ' + description;
+            }
+            if (combo.options[i].text == valueText)
+            {
+                combo.options[i].selected = true;
+                return;
+            }
+        }
+    }
+    
+    //Author     : SIMONE
+    //Description: Get text valueof selected index
+    //Return     : Text associated to index
+    function getSelectedIndex(combo){
+        for (var i = 0; i < combo.options.length; i++)
+        {
+            if (combo.options[i].selected == true)
+            {
+                return combo.options[i].text;
+            }
+        }
+    }
+
+    function getIDSelectedIndex(combo){
+        for (var i = 0; i < combo.options.length; i++)
+        {
+            if (combo.options[i].selected == true)
+            {
+                return combo.options[i].value;
+            }
+        }
+    }
+    
+
+    //Author     : SIMONE
+    //Description: Set value to combo box
+    //Parameters : code - it is code associated into each database table
+    //             descripcion - it is description associated into each database table
+    //             field - name combo field
+    //             id - identifier retrieved after transaction
+    //             linked - flag indicates 'true' when combos are linked and 'false' otherwise
+    //Return     : None
+    function setValueComboBox(code, description, field, linked){
+        //add value text to combo
+        addValueToCombo(code,description,field);
+        //get select object
+        var combo = document.getElementById(field);
+        //set element selected to field referenced
+        setSelectedIndex(code,combo, description);
+        //set text value to combo field
+        var valueText = getSelectedIndex(combo);        
+        //get hidden field in order to set any value
+        var combo = document.getElementById(field+'_name');
+        //alert("Text: "+valueText+" - bdID: "+bdID);
+        combo.text  = valueText;
+        combo.value = bdID;
+        //enable linked fields
+        if (linked)
+        {
+          
+        }
+    }
+    
+
+
+	var geo_id1 = null;
+	function chgCombo1(text,id){		
+		document.form1.smn_tasa_rf.disabled=false;
+		
+		var combo = document.getElementById('smn_moneda_rf');
+		var valueCombo = getIDSelectedIndex(combo);
+		geo_id1 = valueCombo.split("-").pop().trim();
+		
+		if (id!=null && id!=""){
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/gettasa?id=" + geo_id1, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=setElementFirstIndex('smn_tasa_rf'), //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null);				
+		}
+		
+	}
+
+	function moneda_alterna() {
+		var moneda_alterna = '${fld:alterna}';
+		if(moneda_alterna=='SI'){
+			document.getElementById("moneda").style="";
+			document.getElementById("tasa").style="";
+			document.getElementById("prec_alt").style="";
+			document.getElementById("mont_alt").style="";
+		}
+	}
+
+	function activarmonedaalterna() {
+		var mon = document.getElementById("smn_moneda_rf").value;
+		if(mon != 360){
+			document.getElementById("mo_pagar").style.display="";
+			document.getElementById("mo_devo").style.display="";	
+			document.getElementById("mo_pago").style.display="";		
+		}else{
+			document.getElementById("mo_pagar").style.display="none";
+			document.getElementById("mo_devo").style.display="none";	
+			document.getElementById("mo_pago").style.display="none";		
+		}
+	}
+
+
+	var geo_id2 = null;
+	function chgCombo12(text,id){	
+
+		var fop = document.getElementById('smn_forma_pago_rf');
+		var fop_text = fop.options[fop.selectedIndex].text;
+		var text_ = fop_text.substring(4,0);
+		//alert(text_);
+		if (text_ == 'EF01'){
+			document.getElementById('med_pag').style.display="none";
+			document.getElementById('num_doc').style.display="none";
+			document.getElementById('num_aut').style.display="none";
+			document.getElementById('num_dep').style.display="none";
+			document.getElementById('doc_ident').style.display="none";
+			document.getElementById('nom_pag').style.display="none";
+			document.getElementById('ppv_monto_pago_ml').disabled=false;
+			document.getElementById('grabar').disabled=false;
+		}
+
+		if (text_ == 'EF02'){
+			document.getElementById('coin').style.display="";
+			document.getElementById('tasa').style.display="";
+			document.getElementById('med_pag').style.display="none";
+			document.getElementById('num_doc').style.display="none";
+			document.getElementById('num_aut').style.display="none";
+			document.getElementById('num_dep').style.display="none";
+			document.getElementById('doc_ident').style.display="none";
+			document.getElementById('nom_pag').style.display="none";
+			document.getElementById('ppv_monto_pago_ml').disabled=true;
+			document.getElementById('grabar').disabled=false;
+		}
+
+		if (text_ == 'TR01'){
+			document.getElementById('num_doc').style.display="none";
+			document.getElementById('num_aut').style.display="none";
+			document.getElementById('num_dep').style.display="none";
+			document.getElementById('doc_ident').style.display="none";
+			document.getElementById('nom_pag').style.display="none";
+			document.getElementById('ppv_monto_pago_ml').disabled=false;		
+			document.getElementById('grabar').disabled=false;
+		}
+
+		if (text_ == 'CH01'){
+			document.getElementById('num_doc').style.display="none";
+			document.getElementById('num_aut').style.display="none";
+			document.getElementById('num_dep').style.display="none";
+			document.getElementById('doc_ident').style.display="none";
+			document.getElementById('nom_pag').style.display="none";
+			document.getElementById('ppv_monto_pago_ml').disabled=false;
+			document.getElementById('grabar').disabled=false;
+		}
+
+		if (text_ == 'NC01'){
+			//document.getElementById('med_pag').style.display="none";
+			document.getElementById('num_doc').style.display="none";
+			document.getElementById('num_aut').style.display="none";
+			document.getElementById('num_dep').style.display="none";
+			document.getElementById('doc_ident').style.display="none";
+			document.getElementById('nom_pag').style.display="none";
+			document.getElementById('ppv_monto_pago_ml').disabled=false;
+			document.getElementById('monto_vuelto').style.display="none";
+			document.getElementById('grabar').disabled=false;
+		}
+
+		if (text_ == 'T001' || text_ == 'T002' || text_ == 'T003' || text_ == 'T004' || text_ == 'T005'){
+			document.getElementById('ppv_monto_pago_ml').disabled=false;
+			document.getElementById('med_pag').style.display="";
+			document.getElementById('ppv_monto_pago_ml').disabled=false;
+			document.getElementById('smn_rel_punto_venta_pago_rf').disabled=false;
+		}
+
+	}
+
+	var geo_id2 = null;
+	function chgCombo15(text, id) {
+		var combo = document.getElementById('smn_forma_pago_rf');
+		var valueCombo = getIDSelectedIndex(combo);
+		geo_id2 = valueCombo.split("-").pop().trim();
+		//alert(geo_id2);
+		if (id!=null && id!="") 
+		{
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/getrelptovta?id=" + geo_id2, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=setElementFirstIndex('smn_rel_punto_venta_pago_rf'), //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null);				
+		}	
+	}
+
+
+	function recalcular_monto() {
+		var id2 = document.getElementById("smn_pedido_cabecera_id").value;
+		uri="${def:actionroot}/montoapagar3?id2=" + id2
+		//alert(uri);
+		 ajaxCall(httpMethod="GET", 
+						uri,
+						divResponse=null, 
+						divProgress="status", 
+						formName=null, 
+						afterResponseFn=null, 
+						onErrorFn=null);		
+	}
+
+
+	function updateMontoPedido() {
+		var id2 = document.getElementById("smn_pedido_cabecera_id").value;
+		uri="${def:actionroot}/montoapagar?id2="+id2;
+		//alert(uri);
+		ajaxCall(httpMethod="GET", 
+					uri, 
+					divResponse="response", 
+					divProgress="status", 
+					formName=null, 
+					afterResponseFn=null, 
+					onErrorFn=null);
+	}
+
+
+function consultar(id) {
+		//var id2 = document.form1.smn_pedido_cabecera_id.value;
+		uri="${def:actionroot}/consultarsaldo?id2=" + id;
+		//alert(uri);
+		 ajaxCall(httpMethod="GET", 
+						uri,
+						divResponse=null, 
+						divProgress="status", 
+						formName=null, 
+						afterResponseFn=null, 
+						onErrorFn=null);		
+}
+
+
+		//ejecutar consulta
+	var geo_id16 = null;
+	function chgCombo16(text, id) {
+		var combo = document.getElementById('smn_forma_pago_rf');
+		var valueCombo = getIDSelectedIndex(combo);
+		geo_id16 = valueCombo.split("-").pop().trim();
+
+		if (id!=null && id!="") 
+		{
+			return ajaxCall(httpMethod="GET", 
+						uri="${def:actionroot}/getmonedalterna?id2="+geo_id16, 
+						divResponse="response", 
+						divProgress="status", 
+						formName="form1", 
+						afterResponseFn=habilitarCampos(), 
+						onErrorFn=null);
+		}
+	}
+
+	function habilitarCampos() {
+		
+		if(moneda_alterna=='Si'){
+			//alert("Si: "+moneda_alterna);
+			document.getElementById('mo_pagar').style.display='';
+			document.getElementById('mo_pago').style.display='';
+			document.getElementById('mo_devo').style.display='';
+			document.getElementById('monto_pagar').style.display='none';
+			document.getElementById('monto_pago').style.display='none';
+			document.getElementById('monto_vuelto').style.display='none';
+		}else{
+			//alert("No: "+moneda_alterna);
+			document.getElementById('monto_pagar').style.display='';
+			document.getElementById('monto_pago').style.display='';
+			document.getElementById('monto_vuelto').style.display='';
+			document.getElementById('mo_pagar').style.display='none';
+			document.getElementById('mo_pago').style.display='none';
+			document.getElementById('mo_devo').style.display='none';
+		}
+		
+
+	}
+
+//Este codigo fue creado por SIMONE y ajustado en este crud por Kelvin Marcano
+	var geo_idt = null;
+	function chgCombo30(text,id)
+	{				
+		document.form1.smn_tasa_rf.disabled=false;
+		var combo = document.form1.smn_moneda_rf;
+		var valueCombo = getIDSelectedIndex(combo);
+		//geo_idt = valueCombo.split("-").pop().trim();
+		//alert(valueCombo);
+		if (id!=null && id!="") 
+		{	
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/gettasa?id=" + valueCombo, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=setElementFirstIndex('smn_tasa_rf'), //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null); 				
+		}
+	}
+
+	function seteartasa(text, id) {
+
+			//Este codigo fue creado por SIMONE y ajustado en este crud por Kelvin Marcano
+
+		//document.form1.smn_tasa_rf.disabled=false;
+		var combo = document.getElementById('smn_tasa_rf');
+		var valueCombo = getIDSelectedIndex(combo);
+		//geo_idt = valueCombo.split("-").pop().trim();
+		//alert(valueCombo);
+		if (id!=null && id!="") 
+		{	
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/gettasa_value?id=" + valueCombo, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null); 				
+		}
+	}
+
+
+
+	function calcular_pago() {
+		var divid = document.getElementById('divisa').value;
+		var monto_dolar = document.getElementById('ppv_monto_pagar_ma').value;
+		//var total = 0;
+		//var total2 = 0;
+		total = monto_dolar * divid;
+		document.getElementById('ppv_monto_pago_ml').value = total; 
+		document.getElementById('ppv_monto_pago_ml').disabled=true;
+
+		var mp = document.getElementById('ppv_monto_pagar_ma').value;
+		var mpp = document.getElementById('ppv_monto_pago_ma').value ;
+
+		//alert(mp);
+		//	alert(mpp);
+		total2 =  mpp - mp;
+		//alert(total2);
+
+		document.getElementById('ppv_monto_devuelto_ma').value= total2.toFixed(2);
+
+		var m1 = document.getElementById('ppv_monto_pagar_ml').value;
+		var m2 = document.getElementById('ppv_monto_pago_ml').value;
+		total3 = m1 -  m2;
+
+		document.getElementById('ppv_monto_devuelto_ml').value= total3.toFixed(2);
+
+	}
+
+	function proceso() {
+		actualizar_status();
+	}
+
+	function actualizar_status() {
+			var id2 = document.getElementById("smn_pedido_cabecera_id").value;
+			ajaxCall(httpMethod="POST", 
+								uri="${def:actionroot}/change_status?id2=" + id2,
+								divResponse=null, 
+								divProgress="status", 
+								formName=null, 
+								afterResponseFn=null, 
+								onErrorFn=null);	
+	}
+
+	function getformapago(pag){
+
+		if (pag!=null && pag!="") 
+		{
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/getformapago?id=" + pag, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null);				
+		}
+	}
+
+	//var geo_id5 = null;
+	function getformapago_cre(pag){
+
+		if (pag!=null && pag!="") 
+		{
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/getformapago_cre?id=" + pag, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null);				
+		}
+	}
+
+	function validarCondicionFinanciera(id) {
+		//alert("ID: "+id);
+		if (id!=null && id!="") 
+		{	
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/getobtenercondfinanciera?id=" + id, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=prueba(), //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null); 				
+		}
+	}
+
+	function validarFormaPago(pag, idcl) {
+		validarCondicionFinanciera(idcl);	
+	}
+</script>	
+</body>
+</html>

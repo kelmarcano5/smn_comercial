@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id="smn_presupuesto_id" type="integer" required="true" label="PRESUPUESTO ID" maxlen="10" />
+	<parameter id="ingreso" type="integer" required="true" label="INGRESO ID" maxlen="10" />
+	<parameter id="montoml" type="double" required="false" label="MONTO ML" maxlen="30" />
+	<parameter id="montoma" type="double" required="false" label="MONTO MA" maxlen="30" />
+
+</validator>

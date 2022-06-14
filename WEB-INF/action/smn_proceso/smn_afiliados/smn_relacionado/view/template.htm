@@ -1,0 +1,55 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="10" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_afiliados_id","query-smnrelacionado.sql")'>${lbl:b_afiliate}</th>
+		<th class='sortable' onclick='sortBy("aux_descripcion","query-smnrelacionado.sql")'>${lbl:b_auxiliary}</th>
+		<th class='sortable' onclick='sortBy("rel_fecha_inicio","query-smnrelacionado.sql")'>${lbl:b_date_init}</th>
+		<th class='sortable' onclick='sortBy("rel_fecha_final","query-smnrelacionado.sql")'>${lbl:b_date_end}</th>
+		<th class='sortable' onclick='sortBy("rel_fecha_desafiliado","query-smnrelacionado.sql")'>${lbl:b_date_desafiliate}</th>
+		<th class='sortable' onclick='sortBy("rel_estatus","query-smnrelacionado.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("rel_fecha_registro","query-smnrelacionado.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_relacionado_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_relacionado_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_relacionado_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_afiliados_id}</td>
+		<td>${fld:aux_descripcion}</td>
+		<td>${fld:rel_fecha_inicio@dd-MM-yyyy}</td>
+		<td>${fld:rel_fecha_final@dd-MM-yyyy}</td>
+		<td>${fld:rel_fecha_desafiliado@dd-MM-yyyy}</td>
+		<td align='left'>${fld:rel_estatus}</td>
+		<td>${fld:rel_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

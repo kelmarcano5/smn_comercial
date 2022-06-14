@@ -1,0 +1,61 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="12" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_solicitud_servicio_entregas_cabecera_id_combo','query-smnpagoservicio.sql')" >${lbl:b_header_services_delivery_request}</th>
+		<th class='sortable' onclick="sortBy('smn_forma_pago_rf_combo','query-smnpagoservicio.sql')" >${lbl:b_way_to_pay}</th>
+		<th class='sortable' onclick="sortBy('smn_franquicia_rf_combo','query-smnpagoservicio.sql')" >${lbl:b_franchises}</th>
+		<th class='sortable' onclick="sortBy('pas_numero_tarjeta','query-smnpagoservicio.sql')" >${lbl:b_card_number}</th>
+		<th class='sortable' onclick="sortBy('pas_codigo_seguridad','query-smnpagoservicio.sql')" >${lbl:b_security_code}</th>
+		<th class='sortable' onclick="sortBy('pas_documento_identidad','query-smnpagoservicio.sql')" >${lbl:b_identity_document}</th>
+		<th class='sortable' onclick="sortBy('pas_nombre_pagador','query-smnpagoservicio.sql')" >${lbl:b_payer_name}</th>
+		<th class='sortable' onclick="sortBy('pas_numero_autorizacion','query-smnpagoservicio.sql')" >${lbl:b_authorization_number}</th>
+		<th class='sortable' onclick="sortBy('pas_fecha_registro','query-smnpagoservicio.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_pago_servicio_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_pago_servicio_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_pago_servicio_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_solicitud_servicio_entregas_cabecera_id_combo}</td>
+		<td align="center">${fld:smn_forma_pago_rf_combo}</td>
+		<td align="center">${fld:smn_franquicia_rf_combo}</td>
+		<td align="center">${fld:pas_numero_tarjeta}</td>
+		<td align="center">${fld:pas_codigo_seguridad}</td>
+		<td align="center">${fld:pas_documento_identidad}</td>
+		<td align="left">${fld:pas_nombre_pagador}</td>
+		<td align="center">${fld:pas_numero_autorizacion}</td>
+		<td align="center">${fld:pas_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

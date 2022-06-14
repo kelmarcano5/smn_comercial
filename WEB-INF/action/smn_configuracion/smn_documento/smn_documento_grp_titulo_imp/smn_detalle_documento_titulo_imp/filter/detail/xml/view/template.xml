@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_detalle_documento_titulo_imp>
+	<detail>
+		<rows>		
+		<record dgi_fecha_registro="${fld:dgi_fecha_registro}"    smn_componentes_rf="${fld:smn_componentes_rf}"    smn_id_rf="${fld:smn_id_rf}"    smn_item_servicio_rf="${fld:smn_item_servicio_rf}"    smn_documento_grp_titulo_imp_id="${fld:smn_documento_grp_titulo_imp_id}"    />
+		</rows>
+	</detail>
+</smn_detalle_documento_titulo_imp>

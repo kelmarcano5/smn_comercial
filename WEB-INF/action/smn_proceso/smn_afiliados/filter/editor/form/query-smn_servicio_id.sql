@@ -1,0 +1,2 @@
+select smn_base.smn_servicios.smn_servicios_id as id, smn_base.smn_servicios.svc_codigo ||' - '|| smn_base.smn_servicios.svc_descripcion as item from smn_base.smn_servicios
+inner join smn_base.smn_tipos_servicios on smn_base.smn_tipos_servicios.smn_tipos_servicios_id = smn_base.smn_servicios.smn_tipo_servicio_rf where smn_base.smn_tipos_servicios.tsr_servicio_afiliacion='SI'

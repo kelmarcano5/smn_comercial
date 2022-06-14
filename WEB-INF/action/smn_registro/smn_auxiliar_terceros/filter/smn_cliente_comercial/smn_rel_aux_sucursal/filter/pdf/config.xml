@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnrelauxsucursal.sql" source="session" scope="transaction" />
+		<recordset id="filter.params" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_outsourced_subsidiary}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' align="left" />
+	<pdf-file-name>${lbl:b_outsourced_subsidiary}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='filter.params' title='${lbl:b_filter_find}' noFilterMsg='-- ${lbl:b_all_message} --' width='55' spacingBefore='15'>
+			<col name='smn_auxiliar_id_name' title='${lbl:b_auxiliary}'  align='left' />
+			<col name='smn_auxiliar_sucursal_id' title='${lbl:b_outsourced_subsidiary}'  format='######' align='left' />
+
+		</record>
+		<record recordset='query-smnrelauxsucursal.sql' width='100' spacingBefore='10'>
+			<col name='smn_auxiliar_id' title='${lbl:b_auxiliary}' width='50' align='left' format='######' />
+			<col name='smn_auxiliar_sucursal_id' title='${lbl:b_outsourced_subsidiary}' width='50' align='left' format='######' />
+
+		</record>
+
+	</pdf-report>
+</config>

@@ -1,0 +1,1 @@
+select smn_base.smn_incrementos.smn_incrementos_id as id, smn_base.smn_incrementos.inc_codigo ||' - '|| smn_base.smn_incrementos.inc_descripcion as item, smn_base.smn_incrementos.inc_porcentaje_incremento as porcentaje_incremento, smn_base.smn_incrementos.inc_porcentaje_base as porcentaje_base from smn_base.smn_incrementos

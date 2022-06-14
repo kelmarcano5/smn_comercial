@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_rel_cliente_cond_financiera>
+	<detail>
+		<rows>		
+		<record rcc_fecha_registro="${fld:rcc_fecha_registro}"    rcc_vigencia="${fld:rcc_vigencia}"    rcc_estatus="${fld:rcc_estatus}"    smn_condicion_financiera_rf="${fld:smn_condicion_financiera_rf}"    smn_cliente_id="${fld:smn_cliente_id}"    />
+		</rows>
+	</detail>
+</smn_rel_cliente_cond_financiera>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smncliente.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_customer}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_customer}">
+				<col id='smn_clasificacion_cliente_id' label='${lbl:b_clasificacion_cliente}' />
+		<col id='smn_clase_auxiliar_rf' label='${lbl:b_auxiliary_classes}' />
+		<col id='smn_auxiliar_rf' label='${lbl:b_auxiliary}' />
+		<col id='smn_condicion_financiera_rf' label='${lbl:b_naturaleza}' />
+		<col id='smn_clasificacion_abc_rf' label='${lbl:b_abc_clasification}' />
+		<col id='smn_sector_economico_rf' label='${lbl:b_economic_sectors}' />
+		<col id='cli_nacional_ext' label='${lbl:b_cliente_nacional_extranjero}' />
+		<col id='cli_vigencia' label='${lbl:b_validation_date}' />
+		<col id='cli_estatus' label='${lbl:b_status}' />
+		<col id='cli_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

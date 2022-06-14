@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_factura_pagadores>
+	<detail>
+		<rows>		
+		<record fpa_fecha_registro="${fld:fpa_fecha_registro}"    smn_monto_rf="${fld:smn_monto_rf}"    smn_cliente_id="${fld:smn_cliente_id}"    smn_factura_cabecera_id="${fld:smn_factura_cabecera_id}"    />
+		</rows>
+	</detail>
+</smn_factura_pagadores>

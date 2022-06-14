@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_pedido_detalle_id' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_mov_caja_detalle_id' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_ingresos_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_grupo_componente_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='pco_tipo_componente' type='varchar' required='true' maxlen='2'/>
+	<parameter id='smn_componente_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='pco_es_prestador_servicio' type='varchar' required='true' maxlen='10'/>
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_auxiliar_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='pco_naturaleza' type='varchar' required='true' maxlen='2'/>
+	<parameter id='smn_item_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_servicio_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='pco_cantidad' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_precio_ml_rf' type='double' required='true' maxlen='10'/>
+	<parameter id='pco_monto_ml' type='double' required='true' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_precio_ma' type='double' required='false' maxlen='10'/>
+	<parameter id='smn_monto_ma' type='double' required='false' maxlen='10'/>
+	<parameter id='pco_imprime' type='varchar' required='true' maxlen='2'/>
+	<parameter id='smn_grupo_titulo_impresion_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_tipo_gasto_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_sub_tipo_gasto_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='pco_estatus' type='varchar' required='true' maxlen='2'/>
+
+
+
+</validator>

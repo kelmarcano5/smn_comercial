@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_centro_facturacion_id_name' type='varchar' required='true' label='${lbl:b_centro_facturacion}'/>
+	<parameter id='smn_centro_facturacion_id' type='integer' required='false' label='${lbl:b_centro_facturacion}' maxlen='10'/>
+	<parameter id='smn_usuario_rf' type='integer' required='true' label='${lbl:b_users}' maxlen='10'/>
+	<parameter id='rfu_vigencia' type='date' required='false' label='${lbl:b_validation_date}' maxlen='10'/>
+	<parameter id='rfu_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_rel_centro_facturacion_usuario}' maxlen='10'/>
+
+
+</validator>

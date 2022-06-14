@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		${lbl:b_calls}
+	</summary>
+
+	<log>false</log>
+	
+	<set-request-attribute id="progress" value="file:/WEB-INF/action/progress/progress.htm"/>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id='query-smn_solicitud_afiliacion_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_cita_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_gestion_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-lla_usuario.sql' source='sql' scope='transaction'/>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<print mode='table' recordset='query-smn_solicitud_afiliacion_id.sql' tag='smn_solicitud_afiliacion_id_rows'/>
+		<print mode='table' recordset='query-smn_cita_id.sql' tag='smn_cita_id_rows'/>
+		<print mode='table' recordset='query-smn_gestion_id.sql' tag='smn_gestion_id_rows'/>
+		<print mode='table' recordset='query-lla_usuario.sql' tag='lla_usuario_rows'/>
+	</output>
+
+</config>

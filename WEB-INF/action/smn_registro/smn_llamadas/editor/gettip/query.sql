@@ -1,0 +1,6 @@
+select smn_comercial.smn_tipo_documentos_fact.smn_tipo_documentos_fact_id as id,
+smn_comercial.smn_tipo_documentos_fact.tdf_nombre as item from smn_comercial.smn_rel_cliente_documento
+inner join smn_comercial.smn_documento on smn_comercial.smn_documento.smn_documento_id = smn_comercial.smn_rel_cliente_documento.smn_documento_id
+inner join smn_comercial.smn_tipo_documentos_fact on smn_comercial.smn_tipo_documentos_fact.smn_tipo_documentos_fact_id = smn_comercial.smn_documento.smn_tipo_documentos_fact_id
+inner join smn_comercial.smn_cliente on smn_comercial.smn_cliente.smn_cliente_id = smn_comercial.smn_rel_cliente_documento.smn_cliente_id
+WHERE smn_comercial.smn_rel_cliente_documento.smn_cliente_id=${fld:id}

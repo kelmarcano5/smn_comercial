@@ -1,0 +1,60 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="12" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_tipo_documentos_fact_id","query-smndocumento.sql")'>${lbl:b_tipo_documento_factura}</th>
+		<th class='sortable' onclick='sortBy("smn_documentos_generales_rf","query-smndocumento.sql")'>${lbl:b_general_documents}</th>
+		<th class='sortable' onclick='sortBy("dcf_codigo","query-smndocumento.sql")'>${lbl:b_code}</th>
+		<th class='sortable' onclick='sortBy("dcf_descripcion","query-smndocumento.sql")'>${lbl:b_description} </th>
+		<th class='sortable' onclick='sortBy("dcf_tipo_movimiento","query-smndocumento.sql")'>${lbl:b_accounting_movement_type}</th>
+		<th class='sortable' onclick='sortBy("dcf_req_vigencia","query-smndocumento.sql")'>${lbl:b_requiere_vigencia}</th>
+		<th class='sortable' onclick='sortBy("dcf_fecha_registro","query-smndocumento.sql")'>${lbl:b_store_date}</th>
+		<th>DGI</th>
+		<th>RDE</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_documento_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_documento_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_documento_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_tipo_documentos_fact_id}</td>
+		<td>${fld:smn_documentos_generales_rf}</td>
+		<td align='left'>${fld:dcf_codigo}</td>
+		<td align='left'>${fld:dcf_descripcion}</td>
+		<td align='left'>${fld:dcf_tipo_movimiento}</td>
+		<td align='left'>${fld:dcf_req_vigencia}</td>
+		<td>${fld:dcf_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="doc_grp('${fld:smn_documento_id}','${fld:dcf_codigo}','${fld:dcf_descripcion}')" title="${lbl:b_relacion_documento_titulo_impresion}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="doc_ent('${fld:smn_documento_id}','${fld:dcf_codigo}','${fld:dcf_descripcion}')" title="${lbl:b_relacion_documento_entidad}"></td>
+
+
+	</tr>
+	</rows>
+
+</table>

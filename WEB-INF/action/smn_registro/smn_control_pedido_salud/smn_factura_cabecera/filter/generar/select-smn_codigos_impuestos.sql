@@ -1,0 +1,10 @@
+SELECT
+	imp_porcentaje_base
+FROM
+	smn_base.smn_codigos_impuestos
+INNER JOIN
+	smn_comercial.smn_factura_impuesto_deducc
+ON
+	smn_base.smn_codigos_impuestos.smn_codigos_impuestos_id = smn_comercial.smn_factura_impuesto_deducc.smn_codigos_impuestos_rf
+WHERE
+	smn_comercial.smn_factura_impuesto_deducc.smn_factura_detalle_id = ${fld:smn_factura_detalle_id}

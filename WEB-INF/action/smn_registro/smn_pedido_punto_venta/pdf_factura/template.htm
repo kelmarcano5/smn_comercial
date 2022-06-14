@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reporte</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />	
+	<script type="text/javascript" src="${def:context}/action/script"></script>
+	<script type="text/javascript" src="${def:context}/action/jquery"></script>
+   	<script type="text/javascript" src="${def:context}/action/jqueryi"></script>
+</head>
+<body>
+	<form id="facturas"  class="form2" style="width:1000px;">
+		<br>
+		<div align="center"><img src="${def:context}/images/logo-simone.png" border="0" alt="" vspace="0" hspace="0" width="200" height="200"></div></img>
+		<br>
+		<div align="center">
+			REPORTE DE PEDIDO
+			FECHA: ${fld:pca_fecha_registro@dd-MM-yyyy}   
+		</div>
+		<!-- <br> -->
+		<table id="encabezado">
+			<thead>
+				<tr>
+					<td>EMPRESA:</td>
+					<td>${fld:entidad}</td>
+
+ 					<td>CLIENTE:</td>
+					<td>${fld:cliente}</td>
+
+				<!-- 	<td>RIF:</td>
+					<td align='left'>${fld:fca_rif}</td> -->
+				</tr>
+				<tr>
+					<td>DOCUMENTO:</td>
+					<td>${fld:documento}</td>
+
+					<td>NUM. DOCUMENTO:</td>
+					<!-- <td>${fld:fca_numero_documento_id}</td> -->
+
+					<!-- <td>CAJA:</td> -->
+					<!-- <td>${fld:smn_caja_rf}</td>					 -->
+				</tr>
+				<tr>
+					<td>ESTATUS:</td>
+					<td align='left'>${fld:pca_estatus}</td>	
+
+					<td>ESTATUS FINANCIERO:</td>
+					<td align='left'>${fld:pca_estatus_pago}</td>	
+				</tr>
+				<br>
+			</thead>
+			<tbody>
+				<tr>	
+				</tr>
+			</tbody>
+		</table>
+
+	<br>
+	<br>
+
+		<table class="record2" style="width:95%;" >
+			<thead>
+				<tr class="bo">
+					<td align="left">N</td>
+					<td align="left">Descripcion Servicio</td>
+					<td align="left">Naturaleza</td>
+					<td>Cantidad</td>
+					<td align="right">Precio ML</td>
+					<td align="right">Monto ML</td>
+					<!-- <td align="center">%</td>
+					<td align="right">Monto Descuento MA</td>
+					<td align="right">Monto Neto MA</td> -->
+				</tr>
+			</thead>
+			<tbody>
+				<rows>
+					<!-- <tr>
+						<td></td>
+						<td></td>
+						<td>${fld:smn_grupo_titulo_impresion_rf}</td>
+					</tr> -->
+					<tr>
+						<td align="center">${fld:smn_pedido_cabecera_id}</td>
+						<td align="left">${fld:pca_descripcion}</td>
+						<td align="left">${fld:pde_naturaleza}</td>
+						<td align="center">${fld:pde_cantidad_pedido@#,###,##0.00}</td>
+						<td align="right">${fld:pde_precio@#,###,##0.00}</td>
+						<td align="right">${fld:pde_monto@#,###,##0.00}</td>
+					<!-- 	<td align="center">${fld:dyr_porcentaje_descuento@#,###,##0.00}%</td>
+						<td align="right">${fld:prd_monto_descuento_ma@#,###,##0.00}$</td>
+						<td align="right">${fld:prd_monto_neto_ma@#,###,##0.00}$</td> -->
+					</tr>
+				</rows>
+			</tbody>
+			
+			<tr>
+				<td></td>
+				<td></td>
+			<!-- 	<td></td> -->
+				<td>TOTALES</td>
+				<td></td>
+				<td align="right">${fld:precioml@#,###,##0.00}</td>
+				<td align="right">${fld:montoml@#,###,##0.00}</td>
+			<!-- 	<td align="right"></td>
+				<td align="right">${fld:descuentoma}$</td>
+				<td align="right">${fld:netoma}$</td> -->
+			</tr>
+		</table>
+	<br>
+	<br>
+		<!-- <div align="center">
+			<button id="imprimir" onclick="imprimir();">Imprimir</button>
+		</div> -->
+	</form>
+</body>
+</html>
+
+<script type="text/javascript" >
+  	onload = function() {
+  		//document.getElementById('imprimir').style.display='none';
+  		$('#facturas').printThis();
+  	}
+</script>
+
+

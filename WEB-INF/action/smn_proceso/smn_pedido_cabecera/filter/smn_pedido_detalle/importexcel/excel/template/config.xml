@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnpedidodetalle.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_control_header_order_detail}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_control_header_order_detail}">
+				<col id='smn_pedido_cabecera_id' label='${lbl:b_control_header_order}' />
+		<col id='pde_naturaleza' label='${lbl:b_nature}' />
+		<col id='pde_cantidad_oferta' label='${lbl:b_quantity_offer}' />
+		<col id='pde_cantidad_pedido' label='${lbl:b_quantity_order}' />
+		<col id='pde_cantidad_aprobada' label='${lbl:b_quantity_aprob}' />
+		<col id='pde_precio' label='${lbl:b_price}' />
+		<col id='pde_monto' label='${lbl:b_amount}' />
+		<col id='pde_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

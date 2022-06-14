@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smncatalogoitemcomercio.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_catalog_item_commerce}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_catalog_item_commerce}">
+				<col id='cic_origen' label='${lbl:b_origen}' />
+		<col id='smn_cliente_rf' label='${lbl:b_customer}' />
+		<col id='smn_item_rf' label='${lbl:b_item}' />
+		<col id='smn_clasificacion_abc_rf_a' label='${lbl:b_clasification_abc_a}' />
+		<col id='smn_clasificacion_abc_rf_b' label='${lbl:b_clasification_abc_b}' />
+		<col id='smn_clasificacion_abc_rf_c' label='${lbl:b_clasification_abc_c}' />
+		<col id='smn_baremos_rf' label='${lbl:b_baremo}' />
+		<col id='cic_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

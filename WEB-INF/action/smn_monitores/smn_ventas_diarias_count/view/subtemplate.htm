@@ -1,0 +1,40 @@
+	<table class="datagrid" width="600px">
+		<col width='100%'/>	
+		<tr>
+			<td>${fld:pca_fecha_requerida}</td>			
+		</tr>							
+							
+	</table>
+									
+	<table class="datagrid" width="600px" style="display:items.sql.display">
+		
+			<!--toolbar-->
+			<tr>
+				<th colspan="2" style="font-weight:bold;font-size:10pt;">
+					
+				</th>
+			</tr>
+		
+			<!--encabezados-->
+			<tr>
+				<th width="50%">Item</th>
+				<th width="50%">Cantidad</th>
+			
+			</tr>
+		
+			<!--data-->
+			<rows-query-smnpedidodetalle.sql>
+			<tr>
+				<td align="right">${fld:smn_item}</td>
+				<td align="right">${fld:pde_monto}</td>
+			
+			</tr>					
+			</rows-query-smnpedidodetalle.sql>
+			<tr>
+				<th align="right">Total</th>
+				<td align="right">${fld:pca_monto_neto_ml}</td>
+			</tr>
+
+
+	</table>
+	<br>

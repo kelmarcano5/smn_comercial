@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smncategoriamenu.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_menu_category}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_menu_category}">
+				<col id='cam_codigo' label='${lbl:b_code}' />
+		<col id='cam_descripcion' label='${lbl:b_description}' />
+		<col id='cam_estatus_combo' label='${lbl:b_status}' />
+		<col id='cam_fecha_vigencia' label='${lbl:b_vigency}' />
+		<col id='cam_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

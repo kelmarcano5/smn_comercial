@@ -1,0 +1,57 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<!-- <col width='3%'/> -->
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<!-- <col width='3%'/> -->
+	<col width='3%'/>
+	<!--toolbar-->
+	<tr>
+		<th colspan="10" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<!-- <th></th> -->
+		<th class='sortable' onclick='sortBy("codigo","query-smnpedidodetalle.sql")'>Codigo Servicio</th>
+		<th class='sortable' onclick='sortBy("descripcion","query-smnpedidodetalle.sql")'>Descripcion Servicio</th>
+		<th class='sortable' onclick='sortBy("cantidad","query-smnpedidodetalle.sql")'>${lbl:b_quantity}</th>
+		<th class='sortable' onclick='sortBy("pde_precio","query-smnpedidodetalle.sql")'>${lbl:b_price_ml}</th>
+		<th class='sortable' onclick='sortBy("pde_monto","query-smnpedidodetalle.sql")'>${lbl:b_amount_ml}</th>
+		<th class='sortable' onclick='sortBy("pde_precio_moneda_alterna","query-smnpedidodetalle.sql")'>${lbl:b_price_ma}</th>
+		<th class='sortable' onclick='sortBy("pde_monto_moneda_alterna","query-smnpedidodetalle.sql")'>${lbl:b_amount_ma}</th>
+		<th class='sortable' onclick='sortBy("sed_fecha_registro","query-smnpedidodetalle.sql")'>${lbl:b_store_date}</th>
+		<!-- <th>I&R</th> -->
+		<th>CO</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_pedido_detalle_id}')" title="${lbl:b_view_detail}"></td>
+		<!-- <td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_pedido_detalle_id}','${fld:pde_naturaleza}')" title="${lbl:b_edit_button}"></td> -->
+		<td>${fld:codigo}</td>
+		<td>${fld:descripcion}</td>
+		<td align='center'>${fld:pde_cantidad_pedido}</td>
+		<td align='right'>${fld:pde_precio@#,###,##0.00}</td>
+		<td align='right'>${fld:pde_monto@#,###,##0.00}</td>
+		<td align='right'>${fld:pde_precio_moneda_alterna@#,###,##0.00}</td>
+		<td align='right'>${fld:pde_monto_moneda_alterna@#,###,##0.00}</td>
+		<td>${fld:pde_fecha_registro}</td>
+		<!-- <td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="impuestos('${fld:smn_pedido_detalle_id}')" title="Impuestos"></td> -->
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="componentes('${fld:smn_pedido_detalle_id}','${fld:smn_mov_caja_cabecera_id}')" title="Componentes"></td>
+	</tr>
+	</rows>
+
+</table>

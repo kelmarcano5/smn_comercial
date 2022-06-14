@@ -1,0 +1,2 @@
+select smn_comercial.smn_documento.smn_documento_id as id, smn_comercial.smn_documento.doc_codigo|| ' - ' || smn_comercial.smn_documento.doc_nombre as item from smn_comercial.smn_documento where smn_comercial.smn_documento.smn_tipo_documento_id = (select smn_comercial.smn_tipo_documento.smn_tipo_documento_id from smn_comercial.smn_tipo_documento where smn_comercial.smn_tipo_documento.tdc_naturaleza = 'PR')
+order by smn_comercial.smn_documento.doc_nombre

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_factura_detalle_id' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_item_origen_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_item_destino_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='fki_cantidad' type='integer' required='true' maxlen='10'/>
+	<parameter id='fki_precio_ml' type='double' required='true' maxlen='10'/>
+	<parameter id='fki_monto_ml' type='double' required='true' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_precio_ma_rf' type='double' required='false' maxlen='10'/>
+	<parameter id='fki_monto_ma_rf' type='double' required='false' maxlen='10'/>
+	<parameter id='fki_estatus' type='varchar' required='true' maxlen='2'/>
+
+
+
+</validator>

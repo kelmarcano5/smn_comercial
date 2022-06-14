@@ -1,0 +1,1 @@
+select smn_base.smn_sectores_economicos.smn_sectores_economicos_id as id, smn_base.smn_sectores_economicos.sec_codigo|| ' - ' || smn_base.smn_sectores_economicos.sec_descripcion as item from smn_base.smn_sectores_economicos order by sec_descripcion

@@ -1,0 +1,13 @@
+select
+		smn_comercial.smn_envio_oferta.smn_envio_oferta_id,
+	smn_comercial.smn_envio_oferta.smn_oferta_id,
+	smn_comercial.smn_envio_oferta.eof_fecha_envio,
+	smn_comercial.smn_envio_oferta.eof_fecha_cierre,
+	smn_comercial.smn_envio_oferta.smn_clasificacion_cliente_id,
+	smn_comercial.smn_envio_oferta.smn_clientes_area_interes_id,
+	smn_comercial.smn_envio_oferta.smn_tipo_contactos_rf,
+	smn_comercial.smn_envio_oferta.eof_descripcion,
+	smn_comercial.smn_envio_oferta.eof_fecha_registro
+	
+from
+	smn_comercial.smn_envio_oferta

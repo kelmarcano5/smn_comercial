@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_solicitud_servicio_entregas_cabecera_id' type='integer' required='true' label='${lbl:b_header_services_delivery_request}' maxlen='10'/>
+	<parameter id='smn_forma_pago_rf' type='integer' required='true' label='${lbl:b_way_to_pay}' maxlen='10'/>
+	<parameter id='smn_franquicia_rf' type='integer' required='true' label='${lbl:b_franchises}' maxlen='10'/>
+	<parameter id='pas_numero_tarjeta' type='varchar' required='true' label='${lbl:b_card_number}' maxlen='10'/>
+	<parameter id='pas_codigo_seguridad' type='integer' required='true' label='${lbl:b_security_code}' maxlen='10'/>
+	<parameter id='pas_documento_identidad' type='integer' required='true' label='${lbl:b_identity_document}' maxlen='10'/>
+	<parameter id='pas_nombre_pagador' type='varchar' required='true' label='${lbl:b_payer_name}' maxlen='100'/>
+	<parameter id='pas_numero_autorizacion' type='integer' required='true' label='${lbl:b_authorization_number}' maxlen='10'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='pas_codigo_seguridad'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarNombre.sql'
+			id='pas_nombre_pagador'/>
+
+
+</validator>

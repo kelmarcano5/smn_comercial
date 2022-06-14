@@ -1,0 +1,10 @@
+select
+		smn_comercial.smn_pedido_componentes.smn_pedido_componentes_id,
+	${field}
+from
+	smn_comercial.smn_pedido_componentes
+where
+		smn_comercial.smn_pedido_componentes.smn_pedido_componentes_id is not null
+	${filter}
+	
+	

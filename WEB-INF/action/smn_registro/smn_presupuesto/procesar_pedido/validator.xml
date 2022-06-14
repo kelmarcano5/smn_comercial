@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+
+<validator onerror="/action/error/validation/alert">
+	
+	<!-- VARIABLES PEDIDO -->
+	<parameter id="smn_presupuesto_id" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id='smn_entidades_rf' type='integer' required='false' label='${fld:smn_entidad_id}' maxlen='10' />
+	<parameter id='smn_sucursales_rf' type='integer' required='false' label='${fld:smn_sucursal_id}' maxlen='10' />
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>
+	<parameter id='smn_cliente_id' type='integer' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>
+	<parameter id='pca_descripcion' type='varchar' required='false' label='${lbl:b_pre_documento}' maxlen='200'/>
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>	
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>
+	<parameter id='smn_area_servicio_rf' type='integer' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>	
+	<parameter id='smn_unidad_servicio_rf' type='integer' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>
+	<parameter id='smn_centro_costo_rf' type='integer' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>	
+	<parameter id='smn_centro_facturacion_id' type='integer' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>
+	<parameter id='pre_numero_control' type='integer' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>	
+	<parameter id='smn_usuario_rf' type='integer' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>	
+
+	<!-- VARIABLES PEDIDO DETALLE-->
+	<parameter id='smn_servicios_rf' type='integer' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>	
+	<parameter id='smn_item_rf' type='integer' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>	
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>	
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>	
+	<parameter id='pde_cantidad_oferta' type='integer' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>	
+	<parameter id='pde_cantidad_pedido' type='integer' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>	
+	<parameter id='pde_precio' type='double' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>	
+	<parameter id='pde_monto' type='double' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>	
+	<parameter id='pde_precio_moneda_alterna' type='double' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>	
+	<parameter id='pde_monto_moneda_alterna' type='double' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>
+	<parameter id='pde_naturaleza' type='varchar' required='false' label='${lbl:b_pre_documento}' maxlen='10'/>	
+
+	<!-- VARIABLES PEDIDO COMPONENTE-->
+	
+
+
+</validator>

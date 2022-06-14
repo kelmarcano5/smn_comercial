@@ -1,0 +1,16 @@
+Usted ha sido registrado en el Sistema de Modelos de Negocios (SIMONE), y ha indicado esta dirección 
+de email, por este motivo está recibiendo este mensaje solicitando la confirmación de su registro.
+
+Por favor haga click en el link que aparece abajo para confirmar su registro
+y así poder ingresar al Sistema:
+
+${def:httpserver}${def:context}/action/confirm?id=${fld:user_id}
+
+Si su programa de correo no le permite hacer click, copie la dirección
+que aparece arriba y péguela en su navegador de costumbre.
+
+Atentamente,
+
+Administrador SIMONE.
+
+NOTA: Este es un mensaje generado automáticamente, por favor no lo responda. Gracias.

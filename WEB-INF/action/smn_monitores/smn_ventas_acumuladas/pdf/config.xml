@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnpedidocabecera.sql" source="session" scope="transaction" />
+		<recordset id="filter.params" source="session" scope="transaction" />
+		<recordset id='gran-total.sql' source='session' scope='transaction' />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>smn_ventas_diarias</pdf-title>
+	<pdf-logo url='/images/logo-dinamica.png' scale='100' />
+
+	<pdf-report pageSize="letter" rotate="false">
+		<record recordset='filter.params' title='Filtro de Búsqueda' noFilterMsg='-- Sin filtro de búsqueda --' width='55' spacingBefore='15'>
+			<col name='smn_documento_id' title='Documento'  format='######' align='center' />
+		</record>
+		<record recordset='query-smnpedidocabecera.sql' width='70' spacingBefore='15'>
+			<col name='smn_pedido_cabecera_id' title='ID' format='#,###,##0' align='center' />
+			<col name='pca_monto_pedido_ml' title='Monto' format='#,###,##0.00' align='center' />
+			<col name='pca_estatus' title='Estado' align='center' />
+			<col name='pca_fecha_vencimiento' title='F. Vencimiento' format='dd-MM-yyyy' align='center' />
+			<table recordset='query-smnpedidodetalle.sql' width='70' spacingBefore='10' title=''>
+				<col name='smn_pedido_detalle_id' title='ID' width='12' align='center' format='#,###,##0' />
+				<col name='smn_mov_caja_cabecera_id' title='ID2' width='12' align='center' format='#,###,##0' />
+				<col name='smn_item_rf' title='ITM' width='12' align='center' format='#,###,##0' />
+				<col name='pde_cantidad_oferta' title='CAN O' width='12' align='center' format='#,###,##0' />
+				<col name='pde_cantidad_pedido' title='CAN P' width='12' align='center' format='#,###,##0' />
+				<col name='pde_cantidad_aprobada' title='CAN A' width='12' align='center' format='#,###,##0' />
+				<col name='pde_precio' title='Precio' width='12' align='right' format='#,###,##0.00' />
+				<col name='pde_monto' title='Monto' width='12' align='right' format='#,###,##0.00' />
+			</table>
+
+		</record>
+
+		<record recordset='gran-total.sql' width='70' spacingBefore='15'>
+			<col name='gran_total' title='GRAN TOTAL' format='#,###,##0.00' align='right' />
+		</record>
+
+
+	</pdf-report>
+</config>

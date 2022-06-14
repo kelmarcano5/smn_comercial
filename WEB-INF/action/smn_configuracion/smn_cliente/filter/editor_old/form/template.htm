@@ -1,0 +1,338 @@
+<!doctype html>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	${lbl:b_customer}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+			<tr>
+		<td>${lbl:b_clasificacion_cliente}*</td>
+		<td>
+			<select name="smn_clasificacion_cliente_id" id="smn_clasificacion_cliente_id" onchange="chgCombo(smn_clasificacion_cliente_id.options[smn_clasificacion_cliente_id.selectedIndex].text,'smn_clasificacion_cliente_id_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_clasificacion_cliente_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_clasificacion_cliente_id_rows>
+			</select> 
+			<input id="smn_clasificacion_cliente_id_name" name="smn_clasificacion_cliente_id_name" type="hidden">
+		</td>
+		<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="clasificacion_cliente()" title="${lbl:b_clasificacion_cliente}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>		
+	</tr>
+	<tr>
+		<td>${lbl:b_auxiliary_classes}*</td>
+		<td>
+			<select name="smn_clase_auxiliar_rf" id="smn_clase_auxiliar_rf" onchange="chgCombo(smn_clase_auxiliar_rf.options[smn_clase_auxiliar_rf.selectedIndex].text,'smn_clase_auxiliar_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_clase_auxiliar_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_clase_auxiliar_rf_rows>
+			</select> 
+			<input id="smn_clase_auxiliar_rf_name" name="smn_clase_auxiliar_rf_name" type="hidden">
+		</td>
+		<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="auxiliary_classes()" title="${lbl:b_auxiliary_classes}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>		
+	</tr>
+	<tr>
+		<td>${lbl:b_auxiliary}*</td>
+		<td>
+			<select name="smn_auxiliar_rf" id="smn_auxiliar_rf" onchange="chgCombo(smn_auxiliar_rf.options[smn_auxiliar_rf.selectedIndex].text,'smn_auxiliar_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_auxiliar_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_auxiliar_rf_rows>
+			</select> 
+			<input id="smn_auxiliar_rf_name" name="smn_auxiliar_rf_name" type="hidden">
+		</td>
+		<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="auxiliary()" title="${lbl:b_auxiliary}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>		
+	</tr>
+	<tr style="display: none">
+		<td>${lbl:b_financial_condition}*</td>
+		<td>
+			<select name="smn_condicion_financiera_rf" id="smn_condicion_financiera_rf" onchange="chgCombo(smn_condicion_financiera_rf.options[smn_condicion_financiera_rf.selectedIndex].text,'smn_condicion_financiera_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_condicion_financiera_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_condicion_financiera_rf_rows>
+			</select> 
+			<input id="smn_condicion_financiera_rf_name" name="smn_condicion_financiera_rf_name" type="hidden">
+		</td>
+		<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="financial_condition()" title="${lbl:b_financial_condition}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>			
+	</tr>
+	<tr>
+		<td>${lbl:b_abc_clasification}*</td>
+		<td>
+			<select name="smn_clasificacion_abc_rf" id="smn_clasificacion_abc_rf" onchange="chgCombo(smn_clasificacion_abc_rf.options[smn_clasificacion_abc_rf.selectedIndex].text,'smn_clasificacion_abc_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_clasificacion_abc_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_clasificacion_abc_rf_rows>
+			</select> 
+			<input id="smn_clasificacion_abc_rf_name" name="smn_clasificacion_abc_rf_name" type="hidden">
+		</td>
+		<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="abc_clasification()" title="${lbl:b_abc_clasification}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>				
+	</tr>
+	<tr>
+		<td>${lbl:b_economic_sectors}*</td>
+		<td>
+			<select name="smn_sector_economico_rf" id="smn_sector_economico_rf" onchange="chgCombo(smn_sector_economico_rf.options[smn_sector_economico_rf.selectedIndex].text,'smn_sector_economico_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_sector_economico_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_sector_economico_rf_rows>
+			</select> 
+			<input id="smn_sector_economico_rf_name" name="smn_sector_economico_rf_name" type="hidden">
+		</td>
+		<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="economic_sectors()" title="${lbl:b_economic_sectors}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>				
+		
+	</tr>
+		<tr>
+			<td>${lbl:b_cliente_nacional_extranjero}*</td>
+			<td>
+				<select name="cli_nacional_ext" id="cli_nacional_ext">
+				<option value="N">${lbl:b_nacional}</option>
+				<option value="E">${lbl:b_extranjero}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_validation_date}*</td>
+			<td>
+				<input id="cli_vigencia" name="cli_vigencia" type="text" class="date" maxlength="10">
+				<img src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('cli_vigencia')">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_status}*</td>
+			<td>
+				<select name="cli_estatus" id="cli_estatus">
+				<option value="AC">${lbl:b_account_type_active}</option>
+				<option value="IN">${lbl:b_inactive}</option>
+
+				</select> 
+			</td>
+		</tr>
+
+
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	
+	<!-- PK-->
+<input type="hidden" name="id" value="">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();
+
+		if (id!="")
+			edit(id);
+	} 
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save()
+	{
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+	function clasificacion_cliente()
+	{
+	//alert ('Colocar su código aquí­.')
+		var uri = "/smn_comercial/action/smn_configuracion/smn_clasificacion_cliente/editor/form";	
+		openDialog("editor20", uri, 650, 580);
+	}
+	function auxiliary_classes()
+	{
+		//alert ('Colocar su código aquí­.')
+			var uri = "/smn_base/action/smn_configuracion/smn_auxiliares/smn_clase_auxiliar/editor/form";	
+			openDialog("editor20", uri, 650, 580);
+	}
+	function auxiliary()
+	{
+		//alert ('Colocar su código aquí­.')
+			var uri = "/smn_base/action/smn_configuracion/smn_auxiliares/smn_auxiliar/editor/form";	
+			openDialog("editor20", uri, 650, 580);
+	}
+	function financial_condition()
+	{
+		//alert ('Colocar su código aquí­.')
+			var uri = "/smn_base/action/smn_configuracion/smn_auxiliares/smn_auxiliar_cond_financiera/editor/form";	
+			openDialog("editor20", uri, 650, 580);
+	}
+	function abc_clasification()
+	{
+		//alert ('Colocar su código aquí­.')
+			var uri = "/smn_base/action/smn_configuracion/smn_auxiliares/smn_auxiliar_cond_financiera/editor/form";	
+			openDialog("editor20", uri, 650, 580);
+	}
+	function economic_sectors()
+	{
+		//alert ('Colocar su código aquí­.')
+			var uri = "/smn_base/action/smn_configuracion/smn_financiera/smn_sectores_economicos/editor/form";	
+			openDialog("editor20", uri, 650, 580);
+	}
+
+	
+</script>	
+</body>
+</html>

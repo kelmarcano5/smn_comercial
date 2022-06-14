@@ -1,0 +1,20 @@
+select
+	smn_comercial.smn_factura_descuentos_retenciones.smn_factura_descuentos_retenciones_id,
+	smn_comercial.smn_factura_descuentos_retenciones.smn_factura_detalle_id,
+	 smn_base.smn_descuentos_retenciones.dyr_codigo||' - '|| smn_base.smn_descuentos_retenciones.dyr_descripcion as smn_descuentos_retenciones_rf,
+	smn_comercial.smn_factura_descuentos_retenciones.fdr_monto_base_ml,
+	smn_comercial.smn_factura_descuentos_retenciones.fdr_porcentaje_descuento,
+	smn_comercial.smn_factura_descuentos_retenciones.fdr_monto_descuento_ml,
+	smn_base.smn_monedas.mon_codigo||' - '|| smn_base.smn_monedas.mon_nombre as smn_moneda_rf,
+	smn_base.smn_tasas_de_cambio.tca_tasa_cambio as smn_tasa_rf,
+	smn_comercial.smn_factura_descuentos_retenciones.fdr_monto_descuento_ma,
+	smn_comercial.smn_factura_descuentos_retenciones.fdr_fecha_registro
+	
+from
+	smn_comercial.smn_factura_descuentos_retenciones
+	inner join smn_base.smn_descuentos_retenciones on smn_base.smn_descuentos_retenciones.smn_descuentos_retenciones_id = smn_comercial.smn_factura_descuentos_retenciones.smn_descuentos_retenciones_rf
+	inner join smn_base.smn_monedas on smn_base.smn_monedas.smn_monedas_id = 	smn_comercial.smn_factura_descuentos_retenciones.smn_moneda_rf
+	inner join smn_base.smn_tasas_de_cambio on smn_base.smn_tasas_de_cambio.smn_tasas_de_cambio_id = 	smn_comercial.smn_factura_descuentos_retenciones.smn_tasa_rf
+
+where
+	smn_factura_descuentos_retenciones_id = ${fld:id}

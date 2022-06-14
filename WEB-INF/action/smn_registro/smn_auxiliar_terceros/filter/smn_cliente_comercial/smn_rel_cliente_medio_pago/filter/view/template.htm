@@ -1,0 +1,40 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='45%'/>
+	<col width='45%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="5" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_cliente_id','query-smnrelclientemediopago.sql')" >${lbl:b_customer}</th>
+		<th class='sortable' onclick="sortBy('smn_medio_pago_rf','query-smnrelclientemediopago.sql')" >${lbl:b_medio_pago}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_rel_cliente_medio_pago_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_rel_cliente_medio_pago_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_rel_cliente_medio_pago_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_cliente_id}</td>
+		<td align="center">${fld:smn_medio_pago_rf}</td>
+
+	</tr>
+	</rows>
+
+</table>

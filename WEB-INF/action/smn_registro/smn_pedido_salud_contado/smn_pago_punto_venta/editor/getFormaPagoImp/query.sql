@@ -1,0 +1,4 @@
+select  smn_caja.smn_forma_pago_impuestos.smn_codigo_impuesto_rf as codimp, smn_base.smn_codigos_impuestos.imp_porcentaje_calculo as porcen_cal, smn_base.smn_codigos_impuestos.imp_porcentaje_base as porcen_base
+from smn_caja.smn_forma_pago_impuestos 
+inner join smn_base.smn_codigos_impuestos on smn_base.smn_codigos_impuestos.smn_codigos_impuestos_id = smn_caja.smn_forma_pago_impuestos.smn_codigo_impuesto_rf
+where smn_caja.smn_forma_pago_impuestos.smn_forma_pago_rf=${fld:id}

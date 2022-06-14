@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='eve_codigo' type='varchar' required='true' maxlen='6'/>
+	<parameter id='eve_descripcion_corta' type='varchar' required='true' maxlen='32'/>
+	<parameter id='eve_descripcion_larga' type='varchar' required='true' maxlen='64'/>
+	<parameter id='smn_servicios_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='eve_fecha_inicial' type='date' required='true' maxlen='10'/>
+	<parameter id='eve_fecha_final' type='date' required='true' maxlen='10'/>
+	<parameter id='eve_hora_inicial' type='varchar' required='true' maxlen='8'/>
+	<parameter id='eve_hora_final' type='varchar' required='true' maxlen='8'/>
+	<parameter id='smn_prestador_servicio_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_clasificacion_abc_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='eve_cupo' type='integer' required='true' maxlen='10'/>
+	<parameter id='eve_reservas_por_afiliado' type='integer' required='true' maxlen='10'/>
+	<parameter id='eve_estatus' type='varchar' required='true' maxlen='10'/>
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='eve_codigo'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='eve_descripcion_corta'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='eve_descripcion_larga'/>
+
+
+</validator>

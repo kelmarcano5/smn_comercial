@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/select2.min.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script"></script>
+	<script type="text/javascript" src="${def:context}/action/jquery"></script>
+	<script type="text/javascript" src="${def:context}/action/select2"></script>
+</head>
+<body>
+	<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	Segmentaci&oacute;n de Factura
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:800px; margin-top: 20px;">
+
+	<div>
+		<br>
+		<!--  <label>Pedido ID: ${fld:id2}</label> -->
+		<label>N&deg; Pedido: ${fld:id2}</label>
+		<label>Paciente: ${fld:paciente}</label>
+		<label>N&deg; Ingreso: ${fld:num_ingreso}</label>
+		<label>Documento: ${fld:smn_documento_id}</label>
+		<label>Cliente: ${fld:cliente}</label>
+	</div>
+	
+	<br>
+	
+	<table>
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+		<tr>
+			<td>Detalle de la factura: </td>
+			<td>
+				<smn_pedido_detalle_rows>
+				<input name="smn_pedido_detalle_id" id="smn_pedido_detalle_id" class="smn_pedido_detalle_id" type="checkbox" value="${fld:smn_pedido_detalle_id}" style="width:10px"> ${fld:descripcion} - ${fld:monto_ml@##,###,##0.00}<br>
+				</smn_pedido_detalle_rows>
+			</td>
+		</tr>
+	</table>
+
+	<br>
+	<br>
+	<input id="grabar" type="submit" value="Procesar" class="button">
+	<!-- <input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	sumar('${fld:monto_ml}','${fld:monto_ma}',(this))
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button"> onclick="seleccionardetalle();"
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button"> -->
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+
+<input type="hidden" name="id2" id="id2">
+</form>
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function(){ 
+		
+		$('#id2').val('${fld:id2}');
+	}
+
+	 //grabar el formulario
+	function save()
+	{
+		//determina si es un insert o un update
+		//if (document.form1.id2.value=="")
+			return insert();
+		//else
+			//return update();
+	}
+
+
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack(){
+		_goBackFn()			
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit(){
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+
+	//mostrar la actualizacion de un registro
+	function insert()
+	{		
+			var pedido_id = $('#id2').val();
+			var uri="${def:actionroot}/insert?id="+pedido_id;
+			//clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+
+	//Sumamos la selección de totales
+	function sumar(precio_ml, precio_ma, input) {
+		
+		if (input.checked === true){
+			monto_total_ml += parseFloat(precio_ml);
+			monto_total_ma += parseFloat(precio_ma);
+	    } else {
+	    	monto_total_ml -= parseFloat(precio_ml);
+	    	monto_total_ma -= parseFloat(precio_ma);
+	    }
+	}
+
+</script>
+</body>
+</html>

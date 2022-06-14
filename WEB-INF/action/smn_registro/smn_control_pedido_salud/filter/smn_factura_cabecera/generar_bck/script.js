@@ -1,0 +1,2 @@
+search();
+alert('${fld:mensaje}');

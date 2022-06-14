@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_factura_detalle_id_name' type='varchar' required='false' label='${lbl:b_detail_bill}'/>
+	<parameter id='smn_factura_detalle_id' type='integer' required='false' label='${lbl:b_detail_bill}' maxlen='10'/>
+	<parameter id='smn_grupo_componente_rf' type='integer' required='false' label='${lbl:b_component_group}' maxlen='10'/>
+	<parameter id='smn_componente_rf' type='integer' required='false' label='${lbl:b_component}' maxlen='10'/>
+	<parameter id='fco_es_prestador_servicio' type='varchar' required='false' label='${lbl:b_is_services_prestator}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='fco_es_prestador_servicio' rule='like' />
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='false' label='${lbl:b_class_auxiliary}' maxlen='10'/>
+	<parameter id='smn_auxiliar_rf' type='integer' required='false' label='${lbl:b_auxiliar}' maxlen='10'/>
+	<parameter id='fco_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date} mayor o igual que] no puede ser mayor que [${lbl:b_store_date} menor o igual que].' date1='fco_fecha_registro_ini' date2='fco_fecha_registro_fin' id='fco_fecha_registro_ini' />
+	<parameter id='fco_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_clase_auxiliar_id' type='integer' required='true' label='${lbl:b_auxiliary_class}' maxlen='10'/>
+	<parameter id='smn_auxiliar_id' type='integer' required='true' label='${lbl:b_auxiliary}' maxlen='10'/>
+	<parameter id='smn_direccion_id' type='integer' required='true' label='${lbl:b_address}' maxlen='10'/>
+	<parameter id='rad_tipo_direccion' type='varchar' required='true' label='${lbl:b_direction_type}' maxlen='1'/>
+	<parameter id='rad_status' type='varchar' required='true' label='${lbl:b_status}' maxlen='1'/>
+	<parameter id='rad_fecha_vigencia' type='date' required='true' label='${lbl:b_fecha_vigencia}' maxlen='13'/>
+	<parameter id='smn_zona_rf' type='integer' required='true' label='${lbl:b_zone}' maxlen='10'/>
+
+
+</validator>

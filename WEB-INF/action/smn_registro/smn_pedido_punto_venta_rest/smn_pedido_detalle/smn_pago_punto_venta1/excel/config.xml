@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnpagopuntoventa.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="5" cellStep="0" name="${lbl:b_point_of_sale_order_rest}"/>
+	
+	<excel 
+		recordset='query-smnpagopuntoventa.sql' 
+		sheetname='${lbl:b_point_of_sale_order_rest}' 
+		filename='${lbl:b_point_of_sale_order_rest}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_pedido_cabecera_id' label='${lbl:b_header_order}' />
+		<col id='smn_mov_caja_cabecera_id' label='${lbl:b_movement_caj}' />
+		<col id='ppv_numero_documento_forma_pago' label='${lbl:b_number_doc_form_pay}' />
+		<col id='ppv_numero_autorizacion' label='${lbl:b_number_autorization}' />
+		<col id='ppv_documento_identidad_pagador' label='${lbl:b_document_identity}' />
+		<col id='ppv_nombre_pagador' label='${lbl:b_paying_name}' />
+		<col id='ppv_monto_pagar_ml' label='${lbl:b_amount_payment_ml}' />
+		<col id='ppv_monto_pago_ml' label='${lbl:b_amount_pay_ml}' />
+		<col id='ppv_monto_devuelto_ml' label='${lbl:b_amount_revers_ml}' />
+		<col id='ppv_estatus' label='${lbl:b_status}' />
+		<col id='ppv_fecha_registro' label='${lbl:b_store_date}' />
+
+	</excel>
+
+</config>

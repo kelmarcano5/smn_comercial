@@ -1,0 +1,34 @@
+INSERT INTO smn_comercial.smn_factura_impuestos
+(
+	smn_factura_impuestos_id,
+	smn_factura_detalle_id,
+	smn_codigos_impuestos_rf,
+	fai_monto_base_ml,
+	fai_porcentaje_impuesto,
+	fai_monto_sustraendo,
+	fai_monto_impuesto_ml,
+	smn_moneda_rf,
+	smn_tasa_rf,
+	fai_monto_impuesto_ma,
+	fai_idioma,
+	fai_usuario,
+	fai_fecha_registro,
+	fai_hora
+)
+VALUES
+(
+	${seq:currval@smn_comercial.seq_smn_factura_impuestos},
+	${fld:smn_factura_detalle_id},
+	${fld:smn_codigos_impuestos_rf},
+	${fld:fai_monto_base_ml},
+	${fld:fai_porcentaje_impuesto},
+	${fld:fai_monto_sustraendo},
+	${fld:fai_monto_impuesto_ml},
+	${fld:smn_moneda_rf},
+	${fld:smn_tasa_rf},
+	${fld:fai_monto_impuesto_ma},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

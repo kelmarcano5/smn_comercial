@@ -1,0 +1,74 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='12%'/>
+	<col width='9%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='15%'/>
+	<col width='18%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="17" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th>VNE</th>
+		<th class='sortable' onclick='sortBy("smn_documento_id","query-smnpedidocabecera.sql")'>${lbl:b_document}</th>
+		<th class='sortable' onclick='sortBy("pca_numero_pedido","query-smnpedidocabecera.sql")'>${lbl:b_order_number}</th>
+		<th class='sortable' onclick='sortBy("smn_cliente_id","query-smnpedidocabecera.sql")'>${lbl:b_customer}</th>
+		<th class='sortable' onclick='sortBy("smn_promotor","query-smnpedidocabecera.sql")'>${lbl:b_promotor}</th>
+		<th class='sortable' onclick='sortBy("pca_descripcion","query-smnpedidocabecera.sql")'>${lbl:b_description}</th>
+		<th class='sortable' onclick='sortBy("pca_monto_neto_ml","query-smnpedidodetalle.sql")'>${lbl:b_amount}</th>
+		<th class='sortable' onclick='sortBy("pca_monto_neto_ma","query-smnpedidodetalle.sql")'>Monto MA</th>
+		<th class='sortable' onclick='sortBy("pca_estatus","query-smnpedidocabecera.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("pca_fecha_requerida","query-smnpedidocabecera.sql")'>${lbl:b_required_date}</th>
+		<th class='sortable' onclick='sortBy("pca_fecha_registro","query-smnpedidocabecera.sql")'>${lbl:b_store_date}</th>
+		<th>DT</th>
+		<th>PP</th>
+		<th>FA</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_pedido_cabecera_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_pedido_cabecera_id}','${fld:modulo}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_pedido_cabecera_id}','${fld:modulo}')" title="${lbl:b_edit_button}"></td>
+		<td><img src="${def:context}/images/search.png"  onclick="openNota_Entrega('${fld:smn_pedido_cabecera_id}')" title="Ver Nota Entrega"></td>
+		<td>${fld:smn_documento_id}</td>
+		<td>${fld:pca_numero_pedido}</td>
+		<td>${fld:smn_cliente_id}</td>
+		<td>${fld:smn_promotor}</td>
+		<td align='left'>${fld:pca_descripcion}</td>
+		<td align='right'>${fld:pca_monto_neto_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:pca_monto_neto_ma@#,###,###0.00}${fld:mon_simbolo}</td>
+		<td align='center'>${fld:pca_estatus}</td>
+		<td>${fld:pca_fecha_requerida@dd-MM-yyyy}</td>
+		<td>${fld:pca_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="detalle('${fld:smn_pedido_cabecera_id}','${fld:pca_numero_pedido}','${fld:pca_descripcion}','${fld:smn_baremos_rf}','${fld:modulo}','${fld:pca_fecha_requerida}','${fld:centro_facturacion}','${fld:tipolinea}','${fld:tipotasa}')" title="${lbl:b_header_order}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="pagadores('${fld:smn_pedido_cabecera_id}','${fld:pca_numero_pedido}','${fld:pca_descripcion}')" title="${lbl:b_order_paying}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="factura('${fld:smn_pedido_cabecera_id}','${fld:pca_numero_pedido}','${fld:pca_descripcion}')" title="Factura"></td>
+
+	</tr>
+	</rows>
+
+</table>

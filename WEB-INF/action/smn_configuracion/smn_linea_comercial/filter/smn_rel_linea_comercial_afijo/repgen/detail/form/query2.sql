@@ -1,0 +1,10 @@
+select
+		smn_comercial.smn_rel_linea_comercial_afijo.smn_linea_comercial_id,
+	smn_comercial.smn_rel_linea_comercial_afijo.smn_activo_rf,
+	smn_comercial.smn_rel_linea_comercial_afijo.rla_estatus,
+	smn_comercial.smn_rel_linea_comercial_afijo.rla_vigencia,
+	smn_comercial.smn_rel_linea_comercial_afijo.rla_fecha_registro
+from
+	smn_comercial.smn_rel_linea_comercial_afijo 
+where
+	smn_comercial.smn_rel_linea_comercial_afijo.smn_rel_linea_comercial_afijo_id = ${fld:id}

@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id="id" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id="codigo_aux" type="varchar" required="false" label="CODIGO" maxlen="10" />
+	<parameter id="descripcion_aux" type="varchar" required="false" label="DESCRIPCION" maxlen="50" />
+	<parameter id="codigo_clase" type="varchar" required="false" label="NOMBRES" maxlen="50" />
+	<parameter id="descripcion_clase" type="varchar" required="fakse" label="APELLIDOS" maxlen="50" />
+	<parameter id="reference" type="varchar" required="false" label="Reference" maxlen="5" />
+	<parameter id="source" type="varchar" required="false" label="Source" maxlen="60" />
+</validator>

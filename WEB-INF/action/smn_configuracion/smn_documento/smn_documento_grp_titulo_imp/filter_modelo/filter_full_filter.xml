@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<model>
+	<summary>${lbl:b_relacion_documento_titulo_impresion}</summary>
+	<filter>
+		<row field='smn_documento_id' id='smn_documento_id' label='${lbl:b_document}@{select smn_comercial.smn_documento.smn_documento_id as id, smn_comercial.smn_documento.dcf_codigo|| &apos; - &apos; || smn_comercial.smn_documento.dcf_descripcion as item from smn_comercial.smn_documento order by dcf_descripcion}' required='NO' fk='dcf_codigo' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_documento_grp_titulo_imp' len='10'/>
+		<row field='smn_grupo_titulo_impresion_rf' id='smn_grupo_titulo_impresion_rf' label='${lbl:b_group_tittle_print}@{select smn_base.smn_grupo_titulo_impresion.smn_grupo_titulo_impresion_id as id, smn_base.smn_grupo_titulo_impresion.gti_codigo|| &apos; - &apos; || smn_base.smn_grupo_titulo_impresion.gti_descripcion as item from smn_base.smn_grupo_titulo_impresion order by gti_descripcion}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_documento_grp_titulo_imp' len='10'/>
+		<row field='rdi_fecha_registro' id='rdi_fecha_registro_ini' label='${lbl:b_store_date_greather_than}' required='NO' fk='' mSelection='' condiction='Mayor o igual que (&gt;=)' type='date' tableName='smn_documento_grp_titulo_imp' len='10'/>
+		<row field='rdi_fecha_registro' id='rdi_fecha_registro_fin' label='${lbl:b_store_date_less_than}' required='NO' fk='' mSelection='' condiction='Menor o igual que (&lt;=)' type='date' tableName='smn_documento_grp_titulo_imp' len='10'/>
+	</filter>
+	<detail>SI</detail>
+	<insert>SI</insert>
+	<edit>SI</edit>
+	<delete>SI</delete>
+	<audit>Consulta</audit>
+	<grid>
+		<row field='smn_documento_id' label='${lbl:b_document}@{select smn_comercial.smn_documento.smn_documento_id as id, smn_comercial.smn_documento.dcf_codigo|| &apos; - &apos; || smn_comercial.smn_documento.dcf_descripcion as item from smn_comercial.smn_documento order by dcf_descripcion}' fk='dcf_codigo' tableName='smn_documento_grp_titulo_imp' len='10' type='integer' align='center'/>
+		<row field='smn_grupo_titulo_impresion_rf' label='${lbl:b_group_tittle_print}@{select smn_base.smn_grupo_titulo_impresion.smn_grupo_titulo_impresion_id as id, smn_base.smn_grupo_titulo_impresion.gti_codigo|| &apos; - &apos; || smn_base.smn_grupo_titulo_impresion.gti_descripcion as item from smn_base.smn_grupo_titulo_impresion order by gti_descripcion}' fk='' tableName='smn_documento_grp_titulo_imp' len='10' type='integer' align='center'/>
+		<row field='rdi_secuencia_impresion' label='${lbl:b_secuencia}' fk='' tableName='smn_documento_grp_titulo_imp' len='10' type='integer' align='center'/>
+		<row field='rdi_idioma' label='${lbl:s_profile_lang}@{${def:locale}}' fk='' tableName='smn_documento_grp_titulo_imp' len='2' type='varchar' align='left'/>
+		<row field='rdi_usuario' label='${lbl:b_users}@{${def:user}}' fk='' tableName='smn_documento_grp_titulo_imp' len='10' type='varchar' align='left'/>
+		<row field='rdi_fecha_registro' label='${lbl:b_store_date}@{${def:date}}' fk='' tableName='smn_documento_grp_titulo_imp' len='10' type='date' align='center'/>
+		<row field='rdi_hora' label='${lbl:s_loginhist_col2}@{${def:time}}' fk='' tableName='smn_documento_grp_titulo_imp' len='8' type='varchar' align='left'/>
+	</grid>
+	<mobile>false</mobile>
+</model>

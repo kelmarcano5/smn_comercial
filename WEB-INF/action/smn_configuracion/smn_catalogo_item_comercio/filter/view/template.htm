@@ -1,0 +1,62 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="13" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("cic_origen","query-smncatalogoitemcomercio.sql")'>${lbl:b_origen}</th>
+		<th class='sortable' onclick='sortBy("smn_cliente_rf","query-smncatalogoitemcomercio.sql")'>${lbl:b_customer}</th>
+		<th class='sortable' onclick='sortBy("smn_item_rf","query-smncatalogoitemcomercio.sql")'>${lbl:b_item}</th>
+		<th class='sortable' onclick='sortBy("smn_categoria_menu_id","query-smncatalogoitemcomercio.sql")'>${lbl:b_menu_category}</th>
+		<th class='sortable' onclick='sortBy("maneja_ingredientes","query-smncatalogoitemcomercio.sql")'>Maneja Ingredientes</th>
+		<th class='sortable' onclick='sortBy("cic_tiempo_sug_preparacion","query-smncatalogoitemcomercio.sql")'>${lbl:b_time_suggerest_prepared}</th>
+		<th class='sortable' onclick='sortBy("smn_baremos_rf","query-smncatalogoitemcomercio.sql")'>${lbl:b_baremo}</th>
+		<th class='sortable' onclick='sortBy("cic_fecha_registro","query-smncatalogoitemcomercio.sql")'>${lbl:b_store_date}</th>
+		<th>IM</th>
+		<th>IN</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_catalogo_item_comercio_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_catalogo_item_comercio_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_catalogo_item_comercio_id}')" title="${lbl:b_edit_button}"></td>
+		<td align='left'>${fld:cic_origen}</td>
+		<td>${fld:smn_cliente_rf}</td>
+		<td>${fld:smn_item_rf}</td>
+		<td>${fld:smn_categoria_menu_id}</td>
+		<td>${fld:maneja_ingredientes}</td>
+		<td>${fld:cic_tiempo_sug_preparacion}</td>
+		<td>${fld:smn_baremos_rf}</td>
+		<td>${fld:cic_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="imagen('${fld:smn_catalogo_item_comercio_id}')" title="${lbl:b_image_item_commerce}"></td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="ingredientes('${fld:smn_item_rf2}','${fld:smn_item_rf_des}','${fld:smn_unidad_medida_rf}', '${fld:maneja_ingredientes}')" title="${lbl:b_ingredients}"></td>
+
+	</tr>
+	</rows>
+
+</table>

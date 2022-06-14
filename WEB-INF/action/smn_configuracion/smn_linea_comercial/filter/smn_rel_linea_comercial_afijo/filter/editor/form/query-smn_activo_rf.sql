@@ -1,0 +1,1 @@
+select smn_activo_fijo.smn_activo.smn_activo_id as id, smn_activo_fijo.smn_activo.act_codigo|| ' - ' || smn_activo_fijo.smn_activo.act_descripcion as item from smn_activo_fijo.smn_activo order by act_descripcion

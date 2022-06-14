@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		${lbl:b_header_order}
+	</summary>
+
+	<log>false</log>
+	
+	<set-request-attribute id="progress" value="file:/WEB-INF/action/progress/progress.htm"/>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id='query-smn_documento_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_oferta_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_cliente_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_usuario_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_entidad_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_sucursal_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_area_servicio_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_unidad_servicio_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_almacen_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_centro_costo_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_centro_facturacion_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_linea_comercial_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_tipo_linea_comercial_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-pca_vendedor.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_condicion_financiera_rf.sql' source='sql' scope='transaction'/>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<print mode='table' recordset='query-smn_documento_id.sql' tag='smn_documento_id_rows'/>
+		<print mode='table' recordset='query-smn_oferta_id.sql' tag='smn_oferta_id_rows'/>
+		<print mode='table' recordset='query-smn_cliente_id.sql' tag='smn_cliente_id_rows'/>
+		<print mode='table' recordset='query-smn_usuario_rf.sql' tag='smn_usuario_rf_rows'/>
+		<print mode='table' recordset='query-smn_entidad_rf.sql' tag='smn_entidad_rf_rows'/>
+		<print mode='table' recordset='query-smn_sucursal_rf.sql' tag='smn_sucursal_rf_rows'/>
+		<print mode='table' recordset='query-smn_area_servicio_rf.sql' tag='smn_area_servicio_rf_rows'/>
+		<print mode='table' recordset='query-smn_unidad_servicio_rf.sql' tag='smn_unidad_servicio_rf_rows'/>
+		<print mode='table' recordset='query-smn_almacen_rf.sql' tag='smn_almacen_rf_rows'/>
+		<print mode='table' recordset='query-smn_centro_costo_rf.sql' tag='smn_centro_costo_rf_rows'/>
+		<print mode='table' recordset='query-smn_centro_facturacion_id.sql' tag='smn_centro_facturacion_id_rows'/>
+		<print mode='table' recordset='query-smn_linea_comercial_id.sql' tag='smn_linea_comercial_id_rows'/>
+		<print mode='table' recordset='query-smn_tipo_linea_comercial_id.sql' tag='smn_tipo_linea_comercial_id_rows'/>
+		<print mode='table' recordset='query-pca_vendedor.sql' tag='pca_vendedor_rows'/>
+		<print mode='table' recordset='query-smn_condicion_financiera_rf.sql' tag='smn_condicion_financiera_rf_rows'/>
+		<print mode="form" recordset="_request" /> 
+	</output>
+
+</config>

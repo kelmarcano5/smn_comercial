@@ -1,0 +1,12 @@
+SELECT
+	smn_base.smn_item.smn_nivel_estructura_id
+FROM
+	smn_comercial.smn_pedido_cabecera
+	INNER JOIN
+	smn_cobranzas.smn_mov_documento_cob_cab ON smn_cobranzas.smn_mov_documento_cob_cab.smn_documento_rf=smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id
+	INNER JOIN 
+	smn_comercial.smn_pedido_detalle ON smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id = smn_comercial.smn_pedido_detalle.smn_pedido_cabecera_id
+	INNER JOIN 
+	smn_base.smn_item ON smn_comercial.smn_pedido_detalle.smn_item_rf = smn_base.smn_item.smn_item_id
+WHERE
+	smn_cobranzas.smn_mov_documento_cob_cab.smn_mov_documento_cob_cab_id=${fld:smn_mov_documento_cob_cab_id}

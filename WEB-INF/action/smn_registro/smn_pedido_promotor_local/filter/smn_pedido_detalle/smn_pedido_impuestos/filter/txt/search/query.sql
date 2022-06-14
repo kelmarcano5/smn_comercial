@@ -1,0 +1,21 @@
+select
+		smn_comercial.smn_pedido_impuestos.smn_pedido_impuestos_id,
+select
+		smn_comercial.smn_pedido_impuestos.smn_pedido_impuestos_id,
+select
+		smn_comercial.smn_pedido_impuestos.smn_pedido_impuestos_id,
+select
+		smn_comercial.smn_pedido_impuestos.smn_pedido_impuestos_id,
+	smn_comercial.smn_pedido_impuestos.smn_pedido_detalle_id,
+	smn_comercial.smn_pedido_impuestos.smn_codigos_impuestos_rf,
+	smn_comercial.smn_pedido_impuestos.pim_monto_base_ml,
+	smn_comercial.smn_pedido_impuestos.pim_porcentaje_impuesto,
+	smn_comercial.smn_pedido_impuestos.pim_monto_sustraendo,
+	smn_comercial.smn_pedido_impuestos.pim_monto_impuesto,
+	smn_comercial.smn_pedido_impuestos.smn_moneda_rf,
+	smn_comercial.smn_pedido_impuestos.smn_tasa_rf,
+	smn_comercial.smn_pedido_impuestos.pim_monto_impuesto_ma,
+	smn_comercial.smn_pedido_impuestos.pim_fecha_registro
+	
+from
+	smn_comercial.smn_pedido_impuestos

@@ -1,0 +1,1 @@
+select smn_comercial.smn_ingredientes.smn_ingredientes_id as id, smn_comercial.smn_ingredientes.smn_ingredientes_id as item  from smn_comercial.smn_ingredientes

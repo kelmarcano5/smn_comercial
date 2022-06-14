@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_documento_id' type='integer' required='true' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='ors_numero' type='integer' required='true' label='${lbl:b_number}' maxlen='10'/>
+	<parameter id='smn_cliente_id' type='integer' required='true' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='ors_descripcion' type='varchar' required='true' label='${lbl:b_description}' maxlen='100'/>
+	<parameter id='ors_fecha_inicial' type='date' required='false' label='${lbl:b_date_init}' maxlen='10'/>
+	<parameter id='ors_fecha_final' type='date' required='false' label='${lbl:b_date_end}' maxlen='10'/>
+	<parameter id='ors_hora_inicial' type='varchar' required='false' label='${lbl:b_hour_init}' maxlen='8'/>
+	<parameter id='ors_hora_final' type='varchar' required='false' label='${lbl:b_hour_end}' maxlen='8'/>
+	<parameter id='smn_prestador_servicio_rf' type='integer' required='false' label='${fld:b_service_provider}' maxlen='10'/>
+	<parameter id='ors_observacion' type='varchar' required='false' label='${lbl:b_observation}' maxlen='200'/>
+	<parameter id='ors_estatus' type='varchar' required='true' label='${lbl:b_estatus}' maxlen='2'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='ors_descripcion'/>
+
+
+</validator>

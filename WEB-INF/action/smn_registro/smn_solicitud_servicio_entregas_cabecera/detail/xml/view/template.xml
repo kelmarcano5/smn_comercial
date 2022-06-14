@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_solicitud_servicio_entregas_cabecera>
+	<detail>
+		<rows>		
+		<record sec_fecha_registro="${fld:sec_fecha_registro}"    sec_estatus_financiera="${fld:sec_estatus_financiera}"    sec_estatus_proceso="${fld:sec_estatus_proceso}"    sec_otras_instrucciones="${fld:sec_otras_instrucciones}"    sec_monto_pago_efectivo="${fld:sec_monto_pago_efectivo}"    smn_forma_pago_rf="${fld:smn_forma_pago_rf}"    sec_monto_ma="${fld:sec_monto_ma}"    smn_moneda_rf="${fld:smn_moneda_rf}"    sec_monto_ml="${fld:sec_monto_ml}"    sec_observacion_servicio="${fld:sec_observacion_servicio}"    sec_especificacion_servicio="${fld:sec_especificacion_servicio}"    sec_fecha_solicitud="${fld:sec_fecha_solicitud}"    sec_direccion_entrega="${fld:sec_direccion_entrega}"    sec_direccion_busqueda="${fld:sec_direccion_busqueda}"    sec_descripcion="${fld:sec_descripcion}"    smn_tipo_servicio_rf="${fld:smn_tipo_servicio_rf}"    smn_cliente_rf="${fld:smn_cliente_rf}"    smn_documento_id="${fld:smn_documento_id}"    sec_origen="${fld:sec_origen}"    />
+		</rows>
+	</detail>
+</smn_solicitud_servicio_entregas_cabecera>

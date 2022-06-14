@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_pedido_cabecera_id' type='integer' required='false' label='${lbl:b_header_order}' maxlen='10'/>
+	<parameter id='smn_mov_caja_cabecera_id' type='integer' required='false' label='${lbl:b_movement_caj}' maxlen='10'/>
+	<parameter id='smn_forma_pago_rf' type='integer' required='false' label='${lbl:b_way_to_pay}' maxlen='10'/>
+	<parameter id='ppv_numero_documento_forma_pago' type='integer' required='false' label='${lbl:b_number_doc_form_pay}' maxlen='10'/>
+	<parameter id='ppv_numero_autorizacion' type='integer' required='false' label='${lbl:b_number_autorization}' maxlen='10'/>
+	<parameter id='ppv_documento_identidad_pagador' type='varchar' required='false' label='${lbl:b_document_identity}' maxlen='100'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='ppv_documento_identidad_pagador' rule='like' />
+</validator>

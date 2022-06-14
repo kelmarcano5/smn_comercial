@@ -1,0 +1,23 @@
+select
+		smn_comercial.smn_pedido_detalle.smn_pedido_cabecera_id,
+	smn_comercial.smn_pedido_detalle.pde_naturaleza,
+	smn_comercial.smn_pedido_detalle.smn_servicios_rf,
+	smn_comercial.smn_pedido_detalle.smn_item_rf,
+	smn_comercial.smn_pedido_detalle.smn_activo_fijo_rf,
+	smn_comercial.smn_pedido_detalle.pde_cantidad_oferta,
+	smn_comercial.smn_pedido_detalle.pde_cantidad_pedido,
+	smn_comercial.smn_pedido_detalle.pde_cantidad_aprobada,
+	smn_comercial.smn_pedido_detalle.pde_precio,
+	smn_comercial.smn_pedido_detalle.pde_monto,
+	smn_comercial.smn_pedido_detalle.smn_moneda_rf,
+	smn_comercial.smn_pedido_detalle.smn_tasa_rf,
+	smn_comercial.smn_pedido_detalle.pde_precio_moneda_alterna,
+	smn_comercial.smn_pedido_detalle.pde_monto_moneda_alterna,
+	smn_comercial.smn_pedido_detalle.pde_especificaciones_pedido,
+	smn_comercial.smn_pedido_detalle.pde_fecha_requerido,
+	smn_comercial.smn_pedido_detalle.pde_observaciones,
+	smn_comercial.smn_pedido_detalle.pde_fecha_registro
+from
+	smn_comercial.smn_pedido_detalle 
+where
+	smn_comercial.smn_pedido_detalle.smn_pedido_detalle_id = ${fld:id}

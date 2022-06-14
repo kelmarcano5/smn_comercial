@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+
+<validator onerror="/action/error/validation/alert"  id="presupuestoid">
+	
+	<!-- <parameter id='smn_requisicion_cabecera_id' type='integer' required='true' label='${fld:smn_requisicion_cabecera_id}' maxlen='10' /> -->
+	
+	<parameter id='smn_item_rf' type='integer' required='false' label='${fld:smn_item_rf}' maxlen='10' />
+	<parameter id='smn_servicio_id' type='integer' required='false' label='${fld:smn_servicio_id}' maxlen='10' />
+	<parameter id='smn_afijo_id' type='integer' required='false' label='${fld:smn_afijo_id}' maxlen='10' />
+	
+	<parameter id='smn_tipo_documento_id' type='integer' required='false' label='${fld:smn_tipo_documento_id}' maxlen='10' />
+	<parameter id='smn_documento_id' type='integer' required='false' label='${fld:smn_documento_id}' maxlen='10' />
+	<parameter id='req_descripcion' type='varchar' required='false' label='${fld:req_descripcion}' maxlen='64' />
+	<parameter id='req_fecha_requerido' type='date' required='false' label='${fld:req_fecha_requerido}' maxlen='10' />
+	<parameter id='req_estatus_ruta' type='varchar' required='false' label='${fld:req_estatus_ruta}' maxlen='2' />
+	<parameter id='smn_entidad_id' type='integer' required='false' label='${fld:smn_entidad_id}' maxlen='10' />
+	<parameter id='smn_sucursal_id' type='integer' required='false' label='${fld:smn_sucursal_id}' maxlen='10' />
+	<parameter id='req_cabecera_version' type='varchar' required='false' label='${fld:req_cabecera_version}' maxlen='1' />
+	
+	<parameter id='smn_linea_id' type='integer' required='false' label='${fld:smn_linea_id}' maxlen='10' />
+	<parameter id='smn_naturaleza_id' type='varchar' required='false' label='${fld:smn_naturaleza_id}' maxlen='2' />
+	<parameter id='rrs_producto_encontrado' type='varchar' required='false' label='${fld:rrs_producto_encontrado}' maxlen='2' />
+	<parameter id='smn_contrato_id' type='integer' required='false' label='${fld:smn_contrato_id}' maxlen='10' />
+	<parameter id='rrs_motivo_variacion' type='varchar' required='false' label='${fld:rrs_motivo_variacion}' maxlen='100' />
+	<parameter id='rrs_porcentaje' type='double' required='false' label='${fld:rrs_porcentaje}' maxlen='10' />
+	<parameter id='rss_cantidad' type='integer' required='false' label='${fld:rss_cantidad}' maxlen='10' />
+	<parameter id='rrs_precio' type='double' required='false' label='${fld:rrs_precio}' maxlen='10' />
+	<parameter id='rrs_monto' type='double' required='false' label='${fld:rrs_monto}' maxlen='10' />
+	<parameter id='smn_moneda_id' type='integer' required='false' label='${fld:smn_moneda_id}' maxlen='10' />
+	<parameter id='rrs_precio_moneda_alterna' type='double' required='false' label='${fld:rrs_precio_moneda_alterna}' maxlen='10' />
+	<parameter id='rrs_monto_moneda_alterna' type='double' required='false' label='${fld:rrs_monto_moneda_alterna}' maxlen='10' />
+	<parameter id='smn_proveedor_id' type='integer' required='false' label='${fld:smn_proveedor_id}' maxlen='10' />
+	<parameter id='rrs_especificaciones_del_requerimiento' type='varchar' required='false' label='${fld:rrs_especificaciones_del_requerimiento}' maxlen='256' />
+	<parameter id='rrs_fecha_de_requerido' type='date' required='false' label='${fld:rrs_fecha_de_requerido}' maxlen='10' />
+	<parameter id='rrs_observaciones' type='varchar' required='false' label='${fld:rrs_observaciones}' maxlen='256' />
+
+	<parameter id='smn_cabecera_id' type='integer' required='false' label='${fld:smn_cabecera_id}' maxlen='10' />
+	<parameter id="smn_presupuesto_id" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id='smn_modulo_rf' type='integer' required='false' label='Modulo' maxlen='10' />
+	<parameter id='smn_doc_orig' type='integer' required='false' label='Tipo Documento Presupuesto' maxlen='10' />
+	<parameter id='ig_doc_origen' type='integer' required='false' label='ID Presupuesto' maxlen='10' />
+	<parameter id='smn_componentes_rf' type='integer' required='false' label='Componentes' maxlen='10'/>
+	<parameter id='smn_entidades_rf' type='integer' required='false' label='${fld:smn_entidad_id}' maxlen='10' />
+	<parameter id='smn_sucursales_rf' type='integer' required='false' label='${fld:smn_sucursal_id}' maxlen='10' />
+	<parameter id='ingreso' type='integer' required='false' label='Tipo Documento Presupuesto' maxlen='10' />
+
+	<parameter id='smn_ingresos_id' type='integer' required='false' label='Tipo Documento Presupuesto' maxlen='10' />
+	<parameter id='prd_monto_moneda_local' type='double' required='false' label='Monto Descuento ML' maxlen='10'/>
+	<parameter id='prd_monto_descuento_ml' type='double' required='false' label='Monto Descuento ML' maxlen='10'/>
+	<parameter id='prd_precio_ma' type='double' required='false' label='Monto Descuento ML' maxlen='10'/>
+	<parameter id='prd_moneda_alterna' type='double' required='false' label='Monto Descuento ML' maxlen='10'/>
+	<parameter id='prd_monto_descuento_ml' type='double' required='false' label='Monto Descuento ML' maxlen='10'/>
+	<parameter id='prd_monto_descuento_ma' type='double' required='false' label='Monto Descuento ML' maxlen='10'/>
+	<parameter id='prd_monto_neto_ml' type='double' required='false' label='Monto Descuento ML' maxlen='10'/>
+	<parameter id='prd_monto_neto_ma' type='double' required='false' label='Monto Descuento ML' maxlen='10'/>
+
+	<parameter id='smn_servicios_rf' type='integer' required='false' label='${fld:smn_cabecera_id}' maxlen='10' />
+	<parameter id='smn_tipo_componentes_rf' type='integer' required='false' label='${fld:smn_cabecera_id}' maxlen='10' />
+	<parameter id='smn_componentes_rf' type='integer' required='false' label='${fld:smn_cabecera_id}' maxlen='10' />
+	<parameter id='smn_item_rf' type='integer' required='false' label='${fld:smn_cabecera_id}' maxlen='10' />
+	<!-- <parameter id='smn_prestadores_servicios_rf' type='integer' required='false' label='${fld:smn_cabecera_id}' maxlen='10' /> -->
+	<parameter id='prd_cantidad' type='integer' required='false' label='${fld:smn_cabecera_id}' maxlen='10' />
+	<parameter id='prd_precio' type='double' required='false' label='${fld:smn_cabecera_id}' maxlen='10' />
+
+	<parameter id='smn_grupo_prestador_rf' type='integer' required='false' label='${fld:smn_cabecera_id}' maxlen='10' />
+	<parameter id='smn_prestadores_servicios_rf' type='integer' required='false' label='${fld:smn_cabecera_id}' maxlen='10' />
+
+	<parameter id='gpp_unidad_servicio' type='integer' required='false' label='Unidad Servicio' maxlen='10' />
+
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='Tipo Documento Presupuesto' maxlen='10' />
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='Tipo Documento Presupuesto' maxlen='10' />
+
+	<parameter id='smn_prestacion_servicio_medico_cabecera_id' type='integer' required='false' label='${fld:smn_cabecera_id}' maxlen='10' />
+	<parameter id='smn_ingresos_mov_id' type='integer' required='false' label='${fld:smn_cabecera_id}' maxlen='10' />
+</validator>

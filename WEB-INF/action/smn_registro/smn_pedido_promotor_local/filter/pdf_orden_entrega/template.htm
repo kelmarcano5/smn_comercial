@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Orden de Entrega</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />	
+	<script type="text/javascript" src="${def:context}/action/script"></script>
+	<script type="text/javascript" src="${def:context}/action/jquery"></script>
+   	<script type="text/javascript" src="${def:context}/action/jqueryi"></script>
+</head>
+
+<body>
+	<form id="facturas"  class="form2" style="width:1000px;">
+		<br>
+		<div align="left" style="margin-left: 20px; margin-top: -80px"><img src="${def:context}/images/logo-lux.jpg" border="0" alt="" vspace="0" hspace="0" width="300" height="300"></div></img>
+		<br>
+		<div align="right" style="margin-right: 150px;">
+			<p>FECHA: ${fld:pca_fecha_registro@dd-MM-yyyy}</p>
+			<p>FORMA LIBRE</p>
+			<p>N&deg; DE CONTROL: </p>
+			<strong><p>Orden de Entrega</p></strong>
+			<strong><p>N&deg;. ${fld:numeropedido} </p></strong>
+			
+		</div>
+		<div align="left" style="margin-left: 20px; margin-top: -230px">
+			<strong><p>Luxx Distribution, C.A.</p></strong>
+				<strong><p>RIF J-50031742-5</p></strong>
+			<p>Av. Oeste con Segunda Transversal, Edif K7, Segunda Planta, </p>
+			<p>Piso 2, Local A-09, Oficiona A, Urb. Cloris, Guarenas, Miranda,</p> 
+			<p>Zona Postal 1221.</p>
+			<p>Telf.: +58 412.624.65.83</p>
+			<p>Email: luxxdistributionvzla@gmail.com</p>
+		</div>
+
+		<div align="left" style="margin-left: 160px; margin-top: 30px">
+			<p>CLIENTE:${fld:cliente}</p>
+			<p>RIF: ${fld:rif}</p>
+			<p>Telf: ${fld:telefono}</p>
+			<p>Direccion: ${fld:direccion}</p> 
+			<p>Vendedor: ${fld:promotor}</p>
+		
+		</div>
+		<br>
+		<br>
+
+		<table class="record2" style="width:95%;" >
+			<thead>
+				<tr >
+					<td align="left">Codigo</td>
+					<td align="left">Descripcion</td>
+					<td>Cantidad</td>
+					<td align="right">Precio</td>
+					<td align="right">Total</td>
+					<!-- <td align="center">%</td>
+					<td align="right">Monto Descuento MA</td>
+					<td align="right">Monto Neto MA</td> -->
+				</tr>
+			</thead>
+			<tbody>
+				<rows>
+					<!-- <tr>
+						<td></td>
+						<td></td>
+						<td>${fld:smn_grupo_titulo_impresion_rf}</td>
+					</tr> -->
+					<tr>
+						<td align="center">${fld:codigo_producto}</td>
+						<td align="left">${fld:pca_descripcion}</td>
+						<td align="center">${fld:pde_cantidad_pedido@#,###,##0.00}</td>
+						<td align="right">${fld:precio@#,###,##0.00}</td>
+						<td align="right">${fld:monto@#,###,##0.00}</td>
+					<!-- 	<td align="center">${fld:dyr_porcentaje_descuento@#,###,##0.00}%</td>
+						<td align="right">${fld:prd_monto_descuento_ma@#,###,##0.00}$</td>
+						<td align="right">${fld:prd_monto_neto_ma@#,###,##0.00}$</td> -->
+					</tr>
+				</rows>
+			</tbody>
+			
+			<!-- <tr>
+				<td></td>
+				<td></td> -->
+			<!-- 	<td></td> -->
+				<td></td>
+				<td></td>
+				<td></td>
+				<td align="right" style="font-weight:bold">Total Neto</td>
+				<!-- <td align="right">${fld:precioml}</td> -->
+				<td align="right" style="font-weight:bold">${fld:montoml@#,###,##0.00}</td>
+			<!-- 	<td align="right"></td>
+				<td align="right">${fld:descuentoma}$</td>
+				<td align="right">${fld:netoma}$</td> -->
+			<!-- </tr> -->
+		</table>
+	<br>
+	<br>
+	<div align="left" style="margin-left: 20px;">
+		<p>La factura es calculada en Bs a la tasa del BCV del dia de pago</p>
+		<p>Para todos los efectos se elige como domicilio especial la ciudad de Caracas.</p>
+		<p>La mercancia viaja por cuenta y riesgo del COMPRADOR. Revisar la mercancia.</p>
+		<p>El costo del flete esta incluido en el precio de venta</p>
+	</div>
+		<!-- <div align="center">
+			<button id="imprimir" onclick="imprimir();">Imprimir</button>
+		</div> -->
+	</form>
+</body>
+</html>
+
+<script type="text/javascript" >
+  	onload = function() {
+  		//document.getElementById('imprimir').style.display='none';
+  		$('#facturas').printThis();
+  	}
+</script>
+
+

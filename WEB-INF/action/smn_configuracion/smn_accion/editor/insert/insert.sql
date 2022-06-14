@@ -1,0 +1,30 @@
+INSERT INTO smn_comercial.smn_accion
+(
+	smn_accion_id,
+	acc_codigo,
+	acc_descripcion,
+	acc_require_seguimiento,
+	acc_dias_seguimiento,
+	acc_paso_rf,
+	acc_estatus,
+	acc_vigencia,
+	acc_idioma,
+	acc_usuario,
+	acc_fecha_registro,
+	acc_hora
+)
+VALUES
+(
+	${seq:currval@smn_comercial.seq_smn_accion},
+	${fld:acc_codigo},
+	${fld:acc_descripcion},
+	${fld:acc_require_seguimiento},
+	${fld:acc_dias_seguimiento},
+	${fld:acc_paso_rf},
+	${fld:acc_estatus},
+	${fld:acc_vigencia},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

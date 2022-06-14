@@ -1,0 +1,30 @@
+INSERT INTO smn_comercial.smn_envio_oferta
+(
+	smn_envio_oferta_id,
+	smn_oferta_id,
+	eof_fecha_envio,
+	eof_fecha_cierre,
+	smn_clasificacion_cliente_id,
+	smn_clientes_area_interes_id,
+	smn_tipo_contactos_rf,
+	eof_descripcion,
+	eof_idioma,
+	eof_usuario,
+	eof_fecha_registro,
+	eof_hora
+)
+VALUES
+(
+	${seq:currval@smn_comercial.seq_smn_envio_oferta},
+	${fld:smn_oferta_id},
+	${fld:eof_fecha_envio},
+	${fld:eof_fecha_cierre},
+	${fld:smn_clasificacion_cliente_id},
+	${fld:smn_clientes_area_interes_id},
+	${fld:smn_tipo_contactos_rf},
+	${fld:eof_descripcion},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

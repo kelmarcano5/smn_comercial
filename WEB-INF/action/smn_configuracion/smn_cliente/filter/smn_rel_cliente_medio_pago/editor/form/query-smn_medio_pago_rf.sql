@@ -1,0 +1,1 @@
+select smn_base.smn_medio_pago.smn_medio_pago_id as id, smn_base.smn_medio_pago.mpa_tipo_medio_pago ||' - '|| smn_base.smn_medio_pago.mpa_descripcion as item from smn_base.smn_medio_pago

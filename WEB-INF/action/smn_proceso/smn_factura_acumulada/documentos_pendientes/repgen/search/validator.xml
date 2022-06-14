@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<!-- <parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/> -->
+	
+	<parameter id='smn_modulo_origen_rf' type='varchar' required='false' label='${lbl:b_origin_module}' maxlen='1'/>
+	<parameter id='smn_documento_rf' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='mdc_numero_doc_origen' type='integer' required='false' label='${lbl:b_origin_doc_num}' maxlen='10'/>
+	<parameter id='smn_cliente_rf' type='integer' required='false' label='${lbl:b_client}' maxlen='10'/>
+	<parameter id='mdc_fecha_documento' type='date' required='false' label='${lbl:b_document_date}' maxlen='10'/>
+	<parameter id='mdc_fecha_vencimiento' type='date' required='false' label='${lbl:b_thru_date}' maxlen='10'/>
+	<parameter id='mdc_monto_ml' type='double' required='false' label='${lbl:b_amount_ml}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_currency}' maxlen='10'/>
+	<parameter id='mdc_monto_ma' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='mdc_saldo_doc_ml' type='double' required='false' label='${lbl:b_balance_doc_ml}' maxlen='10'/>
+	<parameter id='mdc_saldo_doc_ma' type='double' required='false' label='${lbl:b_balance_doc_ma}' maxlen='10'/>
+	<parameter id='mdc_estatus_proceso' type='varchar' required='false' label='${lbl:b_process_status}' maxlen='2'/>
+	<parameter id='mdc_estatus_financiero' type='varchar' required='false' label='${lbl:b_finance_status}' maxlen='2'/>
+	<parameter id='mdc_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<parameter id='mdc_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+
+	<parameter id='smn_modulo_origen_rf_filter' type='varchar' required='false' label='${lbl:b_origin_module}' maxlen='1'/>
+	<parameter id='smn_documento_rf_filter' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='mdc_numero_doc_origen_filter' type='integer' required='false' label='${lbl:b_origin_doc_num}' maxlen='10'/>
+	<parameter id='smn_cliente_rf_filter' type='integer' required='false' label='${lbl:b_client}' maxlen='10'/>
+	<parameter id='mdc_fecha_documento_filter' type='date' required='false' label='${lbl:b_document_date}' maxlen='10'/>
+	<parameter id='mdc_fecha_vencimiento_filter' type='date' required='false' label='${lbl:b_thru_date}' maxlen='10'/>
+	<parameter id='mdc_monto_ml_filter' type='double' required='false' label='${lbl:b_amount_ml}' maxlen='10'/>
+	<parameter id='smn_moneda_rf_filter' type='integer' required='false' label='${lbl:b_currency}' maxlen='10'/>
+	<parameter id='mdc_monto_ma_filter' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='mdc_saldo_doc_ml_filter' type='double' required='false' label='${lbl:b_balance_doc_ml}' maxlen='10'/>
+	<parameter id='mdc_saldo_doc_ma_filter' type='double' required='false' label='${lbl:b_balance_doc_ma}' maxlen='10'/>
+	<parameter id='mdc_estatus_proceso_filter' type='varchar' required='false' label='${lbl:b_process_status}' maxlen='2'/>
+	<parameter id='mdc_estatus_financiero_filter' type='varchar' required='false' label='${lbl:b_finance_status}' maxlen='2'/>
+	<parameter id='mdc_fecha_registro_ini_filter' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<parameter id='mdc_fecha_registro_fin_filter' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='smn_modulo_origen_rf'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='mdc_estatus_proceso'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='mdc_estatus_financiero'
+		rule='contains' />
+
+
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generaci�n del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

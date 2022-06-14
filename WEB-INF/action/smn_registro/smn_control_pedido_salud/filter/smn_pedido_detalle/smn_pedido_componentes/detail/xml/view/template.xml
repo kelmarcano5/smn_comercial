@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_pedido_componentes>
+	<detail>
+		<rows>		
+		<record pco_fecha_registro="${fld:pco_fecha_registro}"    pco_estatus="${fld:pco_estatus}"    smn_sub_tipo_gasto_rf="${fld:smn_sub_tipo_gasto_rf}"    smn_tipo_gasto_rf="${fld:smn_tipo_gasto_rf}"    smn_grupo_titulo_impresion_rf="${fld:smn_grupo_titulo_impresion_rf}"    pco_imprime="${fld:pco_imprime}"    smn_monto_ma="${fld:smn_monto_ma}"    smn_precio_ma="${fld:smn_precio_ma}"    smn_tasa_rf="${fld:smn_tasa_rf}"    smn_moneda_rf="${fld:smn_moneda_rf}"    pco_monto_ml="${fld:pco_monto_ml}"    smn_precio_ml_rf="${fld:smn_precio_ml_rf}"    pco_cantidad="${fld:pco_cantidad}"    smn_servicio_rf="${fld:smn_servicio_rf}"    smn_item_rf="${fld:smn_item_rf}"    pdo_naturaleza="${fld:pdo_naturaleza}"    smn_auxiliar_rf="${fld:smn_auxiliar_rf}"    smn_clase_auxiliar_rf="${fld:smn_clase_auxiliar_rf}"    pco_es_prestador_servicio="${fld:pco_es_prestador_servicio}"    smn_componente_rf="${fld:smn_componente_rf}"    pco_tipo_componente="${fld:pco_tipo_componente}"    smn_grupo_componente_rf="${fld:smn_grupo_componente_rf}"    smn_ingreso_rf="${fld:smn_ingreso_rf}"    smn_mov_caja_detalle_id="${fld:smn_mov_caja_detalle_id}"    smn_pedido_detalle_id="${fld:smn_pedido_detalle_id}"    />
+		</rows>
+	</detail>
+</smn_pedido_componentes>

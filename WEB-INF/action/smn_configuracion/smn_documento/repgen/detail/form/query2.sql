@@ -1,0 +1,29 @@
+select
+		smn_comercial.smn_documento.smn_tipo_documentos_fact_id,
+	smn_comercial.smn_documento.smn_documento_generales_rf,
+	smn_comercial.smn_documento.dcf_codigo,
+	smn_comercial.smn_documento.dcf_descripcion,
+	smn_comercial.smn_documento.dcf_tipo_movimiento,
+	smn_comercial.smn_documento.dcf_req_vigencia,
+	smn_comercial.smn_documento.dcf_req_fecha_vencimiento,
+	smn_comercial.smn_documento.dcf_gen_orden_despacho,
+	smn_comercial.smn_documento.dcf_req_servicios,
+	smn_comercial.smn_documento.dcf_req_vendedor,
+	smn_comercial.smn_documento.dcf_req_tiempo_entrega,
+	smn_comercial.smn_documento.dcf_usa_bonificaciones,
+	smn_comercial.smn_documento.dcf_usa_descuentos,
+	smn_comercial.smn_documento.dcf_moneda_alterna,
+	smn_comercial.smn_documento.dcf_selecciona_precio,
+	smn_comercial.smn_documento.dcf_usa_anexo,
+	smn_comercial.smn_documento.dcf_vigencia,
+	smn_comercial.smn_documento.dcf_estatus,
+	smn_comercial.smn_documento.dcf_fecha_registro,
+	smn_comercial.smn_documento.doc_codigo,
+	smn_comercial.smn_documento.doc_descripcion,
+	smn_comercial.smn_documento.doc_estatus,
+	smn_comercial.smn_documento.doc_vigencia,
+	smn_comercial.smn_documento.doc_fecha_registro
+from
+	smn_comercial.smn_documento 
+where
+	smn_comercial.smn_documento.smn_documento_id = ${fld:id}

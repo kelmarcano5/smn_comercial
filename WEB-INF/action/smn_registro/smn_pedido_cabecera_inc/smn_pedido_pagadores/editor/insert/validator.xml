@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_pedido_cabecera_id' type='integer' required='false' label='${lbl:b_header_order}' maxlen='10'/>
+	<parameter id='smn_cliente_id' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='ppa_monto' type='double' required='true' label='${lbl:b_amount}' maxlen='10'/>
+
+    <parameter id='smn_codigo_impuesto_rf' type='integer' required='false' label='${lbl:b_key_form}' maxlen='10'/>
+	<parameter id='ppa_porcentaje_impuesto' type='double' required='false' label='${lbl:b_dpd_mount_of_pay_ml}' maxlen='50'/>
+	<parameter id='ppa_monto_impuesto_ml' type='double' required='false' label='${lbl:b_dpd_mount_of_pay_ml}' maxlen='50'/>
+	<parameter id='ppa_monto_impuesto_ma' type='double' required='false' label='${lbl:b_dpd_mount_of_pay_ml}' maxlen='50'/>
+
+</validator>

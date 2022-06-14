@@ -1,0 +1,10 @@
+select DISTINCT smn_base.smn_item.smn_item_id as id, smn_base.smn_item.itm_codigo||' - '||smn_base.smn_item.itm_nombre as item, smn_inventario.smn_control_item.coi_saldo_final_existencia as cantidad_existente from smn_comercial.smn_linea_comercial 
+inner join smn_comercial.smn_rel_centro_fac_linea on smn_comercial.smn_rel_centro_fac_linea.smn_linea_comercial_id = smn_comercial.smn_linea_comercial.smn_linea_comercial_id
+inner join smn_comercial.smn_rel_linea_comercial_item on smn_comercial.smn_rel_linea_comercial_item.smn_linea_comercial_id = smn_comercial.smn_linea_comercial.smn_linea_comercial_id
+inner join smn_base.smn_item on smn_base.smn_item.smn_item_id = smn_comercial.smn_rel_linea_comercial_item.smn_item_rf
+inner join smn_comercial.smn_centro_facturacion on smn_comercial.smn_centro_facturacion.smn_centro_facturacion_id = smn_comercial.smn_rel_centro_fac_linea.smn_centro_facturacion_id
+inner join smn_inventario.smn_control_item on smn_inventario.smn_control_item.smn_almacen_id = smn_comercial.smn_centro_facturacion.smn_almacen_rf and smn_inventario.smn_control_item.smn_item_id = smn_comercial.smn_rel_linea_comercial_item.smn_item_rf
+inner join smn_base.smn_baremos_detalle on smn_base.smn_baremos_detalle.smn_item_rf = smn_base.smn_item.smn_item_id
+where smn_inventario.smn_control_item.smn_item_id='${fld:id}' and smn_inventario.smn_control_item.coi_saldo_final_existencia>0 
+and smn_inventario.smn_control_item.coi_fecha_movimiento<=CURRENT_DATE and smn_base.smn_baremos_detalle.bad_estatus='A' 
+AND smn_base.smn_baremos_detalle.bad_precio_moneda_local is not null

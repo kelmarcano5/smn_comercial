@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_pedido_detalle_id_name' type='varchar' required='false' label='${lbl:b_control_header_order_health_detail}'/>
+	<parameter id='smn_pedido_detalle_id' type='integer' required='false' label='${lbl:b_control_header_order_health_detail}' maxlen='10'/>
+	<parameter id='smn_codigos_impuestos_rf' type='integer' required='false' label='${lbl:b_tax}' maxlen='10'/>
+	<parameter id='pid_porcentaje_impuesto' type='double' required='false' label='${lbl:b_tax_porcentaje}' maxlen='10'/>
+	<parameter id='pid_monto_sustraendo' type='double' required='false' label='${lbl:b_amount_less}' maxlen='10'/>
+	<parameter id='pid_monto_impuesto' type='double' required='false' label='${lbl:b_amount_tax}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='pid_monto_imp_moneda_alterna' type='double' required='false' label='${lbl:b_discount_coin_amount_altern}' maxlen='10'/>
+	<parameter id='smn_descuentos_retenciones_rf' type='integer' required='false' label='${lbl:b_retencion_discount}' maxlen='10'/>
+	<parameter id='pid_porcentaje_descuento_retencion' type='double' required='false' label='${lbl:b_discount_retention_percentage}' maxlen='10'/>
+	<parameter id='pid_monto_descuento_retencion' type='double' required='false' label='${lbl:b_discount_retention_percentage_amount}' maxlen='10'/>
+	<parameter id='pid_monto_desc_moneda_alterna' type='double' required='false' label='${lbl:b_discount_retencion_percentage_amount_altern}' maxlen='10'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='smn_pedido_detalle_id_name'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='smn_codigos_impuestos_rf'
+		rule='contains' />
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='smn_codigos_impuestos_rf'/>
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

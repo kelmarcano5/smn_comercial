@@ -1,0 +1,58 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="11" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_oferta_id','query-smnenviooferta.sql')" >${lbl:b_offer}</th>
+		<th class='sortable' onclick="sortBy('eof_fecha_envio','query-smnenviooferta.sql')" >${lbl:b_delivery_date}</th>
+		<th class='sortable' onclick="sortBy('eof_fecha_cierre','query-smnenviooferta.sql')" >${lbl:b_close_date}</th>
+		<th class='sortable' onclick="sortBy('smn_clasificacion_cliente_id','query-smnenviooferta.sql')" >${lbl:b_customer_clasification}</th>
+		<th class='sortable' onclick="sortBy('smn_clientes_area_interes_id','query-smnenviooferta.sql')" >${lbl:b_customer_interesting_area}</th>
+		<th class='sortable' onclick="sortBy('smn_tipo_contactos_rf','query-smnenviooferta.sql')" >${lbl:b_type_contacts}</th>
+		<th class='sortable' onclick="sortBy('eof_descripcion','query-smnenviooferta.sql')" >${lbl:b_description}</th>
+		<th class='sortable' onclick="sortBy('eof_fecha_registro','query-smnenviooferta.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_envio_oferta_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_envio_oferta_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_envio_oferta_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_oferta_id}</td>
+		<td align="center">${fld:eof_fecha_envio@dd-MM-yyyy}</td>
+		<td align="center">${fld:eof_fecha_cierre@dd-MM-yyyy}</td>
+		<td align="center">${fld:smn_clasificacion_cliente_id}</td>
+		<td align="center">${fld:smn_clientes_area_interes_id}</td>
+		<td align="center">${fld:smn_tipo_contactos_rf}</td>
+		<td align="left">${fld:eof_descripcion}</td>
+		<td align="center">${fld:eof_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

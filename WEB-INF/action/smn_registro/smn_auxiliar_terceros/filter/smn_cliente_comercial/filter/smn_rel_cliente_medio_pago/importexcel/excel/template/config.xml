@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnrelclientemediopago.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_relation_medio_pago_customer}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_relation_medio_pago_customer}">
+				<col id='smn_cliente_id_combo' label='${lbl:b_customer}' />
+		<col id='smn_medio_pago_rf_combo' label='${lbl:b_medio_pago}' />
+		<col id='smn_cliente_id_combo' label='${lbl:b_customer}' />
+		<col id='smn_medio_pago_rf_combo' label='${lbl:b_medio_pago}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

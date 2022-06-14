@@ -1,0 +1,2 @@
+	select smn_comercial.smn_relacionado.smn_relacionado_id as id, rel.aux_nombres ||' - '|| rel.aux_apellidos as item from smn_comercial.smn_relacionado
+	left join smn_base.smn_auxiliar rel on rel.smn_auxiliar_id = smn_comercial.smn_relacionado.rel_auxiliar_rf

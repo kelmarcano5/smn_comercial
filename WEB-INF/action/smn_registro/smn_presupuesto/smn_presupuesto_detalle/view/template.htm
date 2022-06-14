@@ -1,0 +1,73 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='9%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='14%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="17" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th>RA</th>
+		<th>RC</th>
+		<th class='sortable' onclick='sortBy("smn_servicios_rf_combo","query-smnpresupuestodetalle.sql")'>${lbl:b_service}</th>
+		<th class='sortable' onclick='sortBy("smn_componentes_rf","query-smnpresupuestodetalle.sql")'>${lbl:b_item}</th>
+		<th class='sortable' onclick='sortBy("prd_cantidad","query-smnpresupuestodetalle.sql")'>${lbl:b_amount_presupuesto}</th>
+		<th class='sortable' onclick='sortBy("prd_precio","query-smnpresupuestodetalle.sql")'>${lbl:b_prd_precio}</th>
+		<th class='sortable' onclick='sortBy("prd_monto_moneda_local","query-smnpresupuestodetalle.sql")'>${lbl:b_prd_mon_loc}</th>
+		<th class='sortable' onclick='sortBy("prd_precio_ma","query-smnpresupuestodetalle.sql")'>${lbl:b_prd_precio_ma}</th>
+		<th class='sortable' onclick='sortBy("prd_moneda_alterna","query-smnpresupuestodetalle.sql")'>${lbl:b_prd_mon_alt}</th>
+		<th class='sortable' onclick='sortBy("prd_moneda_alterna","query-smnpresupuestodetalle.sql")'>Monto + Incremento</th>
+		<th class='sortable' onclick='sortBy("prd_estatus","query-smnpresupuestodetalle.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("prd_fecha_registro","query-smnpresupuestodetalle.sql")'>${lbl:b_store_date}</th>
+		<th>PC</th>
+		<th>PI</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png" onclick="getDetail('${fld:smn_presupuesto_detalle_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png" onclick="deleteRecord('${fld:smn_presupuesto_detalle_id}','${fld:prd_estatus}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png" onclick="showEditor('${fld:smn_presupuesto_detalle_id}')" title="${lbl:b_edit_button}"></td>
+		<td><img src="${def:context}/images/accept.png" onclick="accept('${fld:smn_presupuesto_detalle_id}','${fld:prd_estatus}')" title="Reactivar"></td>
+		<td><img src="${def:context}/images/reject.png" onclick="reject('${fld:smn_presupuesto_detalle_id}','${fld:prd_estatus}')" title="Rechazar"></td>
+		<td>${fld:smn_servicios_rf}</td>
+		<td>${fld:smn_componentes_rf}</td>
+		<td align='right'>${fld:prd_cantidad@#,###,##0.00}</td>
+		<td align='right'>${fld:prd_precio@#,###,##0.00}</td>
+		<td align='right'>${fld:prd_monto_moneda_local@#,###,##0.00}</td>
+		<td align='right'>${fld:prd_precio_ma@#,###,##0.00}</td>
+		<td align='right'>${fld:prd_moneda_alterna@#,###,##0.00}</td>
+		<td align='right'>${fld:monto_incremento@#,###,##0.00}</td>
+		<td>${fld:prd_estatus}</td>
+		<td>${fld:prd_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="presupuesto_componente('${fld:smn_presupuesto_detalle_id}','${fld:smn_presupuesto_id}','${fld:servicio}','${fld:smn_item_rf}','${fld:prd_monto_moneda_local}','${fld:prd_moneda_alterna}','${fld:prd_monto_neto_ml}','${fld:prd_monto_neto_ma}')" title="Presupuesto Componente"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="presupuesto_impuesto('${fld:smn_presupuesto_detalle_id}','${fld:smn_presupuesto_id}','${fld:servicio}','${fld:smn_item_rf}','${fld:prd_monto_moneda_local}','${fld:prd_moneda_alterna}','${fld:prd_monto_neto_ml}','${fld:prd_monto_neto_ma}')" title="${lbl:b_presupuesto_impuesto}"></td>
+	</tr>
+	</rows>
+
+</table>

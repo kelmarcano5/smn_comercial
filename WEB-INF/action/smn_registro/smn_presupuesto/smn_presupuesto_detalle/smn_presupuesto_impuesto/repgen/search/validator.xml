@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_presupuesto_detalle_id' type='integer' required='false' label='${lbl:b_presupuesto_det}' maxlen='10'/>
+	<parameter id='smn_servicios_rf' type='integer' required='false' label='${lbl:b_service}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='smn_codigo_impuesto_id' type='integer' required='false' label='${lbl:b_codigo_impuesto}' maxlen='10'/>
+	<parameter id='pim_base_imponible_ml' type='double' required='false' label='${lbl:b_base_imponible_ml}' maxlen='10'/>
+	<parameter id='pim_base_excenta_ml' type='double' required='false' label='${lbl:b_base_excenta_ml}' maxlen='10'/>
+	<parameter id='pim_monto_impuesto_ml' type='double' required='false' label='${lbl:b_monto_impuesto_ml}' maxlen='10'/>
+	<parameter id='pim_monto_sustraendo_ml' type='double' required='false' label='${lbl:b_monto_sustraendo_ma}' maxlen='10'/>
+	<parameter id='pim_monto_neto_impuesto_ml' type='double' required='false' label='${lbl:b_monto_neto_impuesto_ml}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='pim_base_imponible_ma' type='double' required='false' label='${lbl:b_base_imponible_ma}' maxlen='10'/>
+	<parameter id='pim_base_excenta_ma' type='double' required='false' label='${lbl:b_base_excenta_ma}' maxlen='10'/>
+	<parameter id='pim_monto_impuesto_ma' type='double' required='false' label='${lbl:b_monto_impuesto_ma}' maxlen='10'/>
+	<parameter id='pim_monto_sustraendo_ma' type='double' required='false' label='${lbl:b_monto_sustraendo_ma}' maxlen='10'/>
+	<parameter id='pim_monto_neto_impuesto_ma' type='double' required='false' label='${lbl:b_monto_neto_impuesto_ma}' maxlen='10'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='smn_codigo_impuesto_id'
+		rule='contains' />
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='smn_codigo_impuesto_id'/>
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

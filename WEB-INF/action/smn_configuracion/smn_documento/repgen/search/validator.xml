@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_tipo_documentos_fact_id_name' type='varchar' required='false' label='${lbl:b_tipo_documento_factura}'/>
+	<parameter id='smn_tipo_documentos_fact_id' type='integer' required='false' label='${lbl:b_tipo_documento_factura}' maxlen='10'/>
+	<parameter id='smn_documentos_generales_rf' type='integer' required='false' label='${lbl:b_general_documents}' maxlen='10'/>
+	<parameter id='dcf_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='16'/>
+	<parameter id='dcf_descripcion' type='varchar' required='false' label='${lbl:b_description} ' maxlen='48'/>
+	<parameter id='dcf_tipo_movimiento' type='varchar' required='false' label='${lbl:b_accounting_movement_type}' maxlen='2'/>
+	<parameter id='dcf_req_vigencia' type='varchar' required='false' label='${lbl:b_requiere_vigencia}' maxlen='2'/>
+	<parameter id='dcf_req_fecha_vencimiento' type='varchar' required='false' label='${lbl:b_requiere_fecha_vencimiento}' maxlen='2'/>
+	<parameter id='dcf_gen_orden_despacho' type='varchar' required='false' label='${lbl:b_genera_orden_despacho}' maxlen='2'/>
+	<parameter id='dcf_req_servicios' type='varchar' required='false' label='${lbl:b_requiere_servicios}' maxlen='2'/>
+	<parameter id='dcf_req_vendedor' type='varchar' required='false' label='${lbl:b_requiere_vendedor}' maxlen='2'/>
+	<parameter id='dcf_req_tiempo_entrega' type='varchar' required='false' label='${lbl:b_requiere_tiempo_entrega}' maxlen='2'/>
+	<parameter id='dcf_usa_bonificaciones' type='varchar' required='false' label='${lbl:b_usa_bonificaciones}' maxlen='2'/>
+	<parameter id='dcf_usa_descuentos' type='varchar' required='false' label='${lbl:b_usa_descuentos}' maxlen='2'/>
+	<parameter id='dcf_moneda_alterna' type='varchar' required='false' label='${lbl:b_alternative_currency}' maxlen='2'/>
+	<parameter id='dcf_selecciona_precio' type='varchar' required='false' label='${lbl:b_puede_seleccionar_precio}' maxlen='2'/>
+	<parameter id='dcf_usa_anexo' type='varchar' required='false' label='${lbl:b_usa_anexo}' maxlen='2'/>
+	<parameter id='dcf_vigencia' type='date' required='false' label='${lbl:b_validation_date}' maxlen='10'/>
+	<parameter id='dcf_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='smn_tipo_documentos_fact_id_name'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='dcf_codigo'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+parameter='dcf_descripcion'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='dcf_tipo_movimiento'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='dcf_req_vigencia'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='dcf_req_fecha_vencimiento'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='dcf_gen_orden_despacho'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='dcf_req_servicios'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='dcf_req_vendedor'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='dcf_req_tiempo_entrega'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='dcf_usa_bonificaciones'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='dcf_usa_descuentos'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='dcf_moneda_alterna'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='dcf_selecciona_precio'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='dcf_usa_anexo'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='dcf_estatus'
+		rule='contains' />
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='dcf_codigo'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='dcf_descripcion'/>
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

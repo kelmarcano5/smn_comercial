@@ -1,0 +1,10 @@
+select
+		smn_comercial.smn_detalle_documento_titulo_imp.smn_documento_grp_titulo_imp_id,
+	smn_comercial.smn_detalle_documento_titulo_imp.smn_item_servicio_rf,
+	smn_comercial.smn_detalle_documento_titulo_imp.smn_id_rf,
+	smn_comercial.smn_detalle_documento_titulo_imp.smn_componentes_rf,
+	smn_comercial.smn_detalle_documento_titulo_imp.dgi_fecha_registro
+from
+	smn_comercial.smn_detalle_documento_titulo_imp 
+where
+	smn_comercial.smn_detalle_documento_titulo_imp.smn_detalle_documento_titulo_imp_id = ${fld:id}

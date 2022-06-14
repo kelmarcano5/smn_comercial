@@ -1,0 +1,23 @@
+SELECT
+	smn_comercial.smn_pedido_detalle.smn_pedido_detalle_id,
+	smn_comercial.smn_pedido_detalle.smn_pedido_cabecera_id,
+	smn_comercial.smn_pedido_detalle.smn_servicios_rf,
+	smn_comercial.smn_pedido_detalle.pde_cantidad_pedido,
+	smn_comercial.smn_pedido_detalle.pde_precio,
+	smn_comercial.smn_pedido_detalle.pde_monto,
+	smn_comercial.smn_pedido_detalle.pde_precio_moneda_alterna,
+	smn_comercial.smn_pedido_detalle.pde_monto_moneda_alterna,
+	smn_comercial.smn_pedido_detalle.smn_moneda_rf, 
+	smn_comercial.smn_pedido_detalle.smn_tasa_rf,
+	smn_comercial.smn_pedido_detalle.pde_fecha_registro,
+	smn_base.smn_rel_servicio_area_unidad.smn_unidades_servicios_rf,
+		0 as smn_grupo_prestador_rf,--smn_base.smn_rel_unid_grup_prest_contado.smn_grupo_prestador_rf,
+	0 as smn_prestador_servicio_rf,--smn_base.smn_rel_unid_grup_prest_contado.smn_prestador_servicio_rf,
+	${fld:smn_ingresos_id} as smn_ingresos_id
+FROM
+	smn_comercial.smn_pedido_detalle
+	inner join smn_comercial.smn_pedido_cabecera on smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id = smn_comercial.smn_pedido_detalle.smn_pedido_cabecera_id
+	inner join smn_base.smn_rel_servicio_area_unidad on smn_base.smn_rel_servicio_area_unidad.smn_servicios_id = smn_comercial.smn_pedido_detalle.smn_servicios_rf
+	inner join smn_comercial.smn_rel_pac_conta_gps_defecto on smn_comercial.smn_rel_pac_conta_gps_defecto.smn_unidad_servicio_rf = smn_base.smn_rel_servicio_area_unidad.smn_unidades_servicios_rf
+WHERE
+	smn_comercial.smn_pedido_detalle.smn_pedido_cabecera_id = ${fld:smn_pedido_cabecera_id}

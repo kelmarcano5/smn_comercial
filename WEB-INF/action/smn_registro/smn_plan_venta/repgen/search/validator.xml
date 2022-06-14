@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_entidades_rf' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${lbl:b_subsidiary}' maxlen='10'/>
+	<parameter id='smn_area_servicio_rf' type='integer' required='false' label='${lbl:b_service_areas}' maxlen='10'/>
+	<parameter id='smn_unidad_servicio_rf' type='integer' required='false' label='${lbl:b_service_units}' maxlen='10'/>
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='${lbl:b_store_code}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='smn_servicio_rf' type='integer' required='false' label='${lbl:b_services}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='plv_semestre_rf' type='varchar' required='false' label='${lbl:b_semestre}' maxlen='1'/>
+	<parameter id='plv_trimestre_rf' type='varchar' required='false' label='${lbl:b_trimestre}' maxlen='1'/>
+	<parameter id='plv_mes_rf' type='varchar' required='false' label='${lbl:b_mes}' maxlen='1'/>
+	<parameter id='plv_semana_rf' type='varchar' required='false' label='${lbl:b_semana}' maxlen='1'/>
+	<parameter id='plv_fecha' type='date' required='false' label='${lbl:b_fecha}' maxlen='10'/>
+	<parameter id='plv_cantidad_rf' type='double' required='false' label='${lbl:b_quantity}' maxlen='10'/>
+	<parameter id='plv_precio_rf' type='double' required='false' label='${lbl:b_price}' maxlen='10'/>
+	<parameter id='plv_monto_rf' type='double' required='false' label='${lbl:b_amount}' maxlen='10'/>
+	<parameter id='plv_precio_ma_rf' type='double' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='plv_monto_ma_rf' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='plv_fecha_registro_ini' type='date' required='false' label='${lbl:b_init_date}' maxlen='10'/>
+	<!-- <custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date} mayor o igual que] no puede ser mayor que [${lbl:b_store_date} menor o igual que].' date1='plv_fecha_registro_ini' date2='plv_fecha_registro_fin' id='plv_fecha_registro_ini' /> -->
+	<parameter id='plv_fecha_registro_fin' type='date' required='false' label='${lbl:b_end_date}' maxlen='10'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='plv_semestre_rf'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='plv_trimestre_rf'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='plv_mes_rf'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='plv_semana_rf'
+		rule='contains' />
+
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generaci�n del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

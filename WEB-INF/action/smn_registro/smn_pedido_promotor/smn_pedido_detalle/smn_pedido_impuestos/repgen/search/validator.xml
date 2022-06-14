@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_pedido_detalle_id' type='integer' required='false' label='${lbl:b_header_order_detail}' maxlen='10'/>
+	<parameter id='smn_codigos_impuestos_rf' type='integer' required='false' label='${lbl:b_code_tax}' maxlen='10'/>
+	<parameter id='pim_monto_base_ml' type='integer' required='false' label='${lbl:b_amount_base}' maxlen='10'/>
+	<parameter id='pim_porcentaje_impuesto' type='integer' required='false' label='${lbl:b_percentaje_tax}' maxlen='10'/>
+	<parameter id='pim_monto_sustraendo' type='integer' required='false' label='${lbl:b_amount_sustrain}' maxlen='10'/>
+	<parameter id='pim_monto_impuesto' type='integer' required='false' label='${lbl:b_amount_tax}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='pim_monto_impuesto_ma' type='integer' required='false' label='${lbl:b_amount_tax_ma}' maxlen='10'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='smn_codigos_impuestos_rf'
+		rule='contains' />
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='smn_codigos_impuestos_rf'/>
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_factura_detalle_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_codigos_impuestos_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='fai_monto_base_ml' type='double' required='false' maxlen='10'/>
+	<parameter id='fai_porcentaje_impuesto' type='double' required='false' maxlen='10'/>
+	<parameter id='fai_monto_impuesto_ml' type='double' required='false' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='fai_monto_impuesto_ma' type='double' required='false' maxlen='10'/>
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='smn_codigos_impuestos_rf'/>
+
+
+</validator>

@@ -1,0 +1,1 @@
+select smn_entrega.smn_documento.smn_documento_id as id, smn_entrega.smn_documento.doc_codigo|| ' - ' || smn_entrega.smn_documento.doc_descripcion as item from smn_entrega.smn_documento order by doc_descripcion

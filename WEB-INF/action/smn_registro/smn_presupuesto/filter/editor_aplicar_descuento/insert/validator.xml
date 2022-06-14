@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_documento_id' type='integer' required='true' label='${lbl:b_pre_documento}' maxlen='10'/>
+	<parameter id='smn_entidades_rf' type='integer' required='true' label='${lbl:b_pre_entidades}' maxlen='10'/>
+	<parameter id='smn_sucursales_rf' type='integer' required='false' label='${lbl:b_pre_sucursal}' maxlen='10'/>
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='false' label='${lbl:b_paciente_clase}' maxlen='10'/>
+	<parameter id='smn_auxiliar_rf' type='integer' required='true' label='${lbl:b_paciente}' maxlen='10'/>
+	<parameter id='smn_clase_ord_rf' type='integer' required='false' label='${lbl:b_contratante_clase}' maxlen='10'/>
+	<parameter id='smn_auxiliar_ord_rf' type='integer' required='false' label='${lbl:b_contratante}' maxlen='10'/>
+	<parameter id='smn_baremo_rf' type='integer' required='false' label='${lbl:b_baremo}' maxlen='10'/>
+	<parameter id='smn_auxiliar_unidades_negocios_rf' type='integer' required='false' label='${lbl:b_pre_unidad_neg}' maxlen='10'/>
+	<parameter id='smn_auxiliar_sucursales_rf' type='integer' required='false' label='${lbl:b_pre_sucursales}' maxlen='10'/>
+	<parameter id='smn_auxiliar_areas_servicios_rf' type='integer' required='false' label='${lbl:b_area_serv}' maxlen='10'/>
+	<parameter id='smn_auxiliar_unidades_servicios_rf' type='integer' required='false' label='${lbl:b_aux_unidades_serv}' maxlen='10'/>
+	<parameter id='pre_vigencia_hasta' type='date' required='true' label='${lbl:b_budget_date}' maxlen='10'/>
+	<parameter id='smn_ordenes_medicas_id' type='integer' required='false' label='${lbl:b_ord_med}' maxlen='10'/>
+	<parameter id='pre_fecha_entrega' type='date' required='false' label='${lbl:b_fech_entrega}' maxlen='10'/>
+	
+
+</validator>

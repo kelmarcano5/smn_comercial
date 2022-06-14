@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='sec_origen' type='varchar' required='false' label='${lbl:b_origen}' maxlen='1'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='smn_cliente_rf' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_tipo_servicio_rf' type='integer' required='false' label='${lbl:b_type_services}' maxlen='10'/>
+	<parameter id='sec_descripcion' type='varchar' required='false' label='${lbl:b_description}' maxlen='200'/>
+	<parameter id='sec_direccion_busqueda' type='varchar' required='false' label='${lbl:b_address_find}' maxlen='200'/>
+	<parameter id='sec_direccion_entrega' type='varchar' required='false' label='${lbl:b_address_delivery}' maxlen='200'/>
+	<parameter id='sec_fecha_solicitud' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<parameter id='sec_hora_solicitud' type='varchar' required='false' label='${lbl:s_loginhist_col2}' maxlen='8'/>
+	<parameter id='sec_especificacion_servicio' type='varchar' required='false' label='${lbl:b_especifications}' maxlen='200'/>
+	<parameter id='sec_observacion_servicio' type='varchar' required='false' label='${lbl:b_observation}' maxlen='200'/>
+	<parameter id='sec_monto_ml' type='double' required='false' label='${lbl:b_amount}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='sec_monto_ma' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='smn_forma_pago_rf' type='integer' required='false' label='${lbl:b_way_to_pay}' maxlen='10'/>
+	<parameter id='sec_monto_pago_efectivo' type='double' required='false' label='${lbl:b_amount_pay_cash}' maxlen='10'/>
+	<parameter id='sec_otras_instrucciones' type='varchar' required='false' label='${lbl:b_others_instructions}' maxlen='200'/>
+	<parameter id='sec_estatus_proceso' type='varchar' required='false' label='${lbl:b_estatus_proceso}' maxlen='2'/>
+	<parameter id='sec_estatus_financiera' type='varchar' required='false' label='${lbl:b_estatus_financiero}' maxlen='2'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='sec_origen'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+parameter='sec_descripcion'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='sec_direccion_busqueda'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='sec_direccion_entrega'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='sec_hora_solicitud'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='sec_especificacion_servicio'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='sec_observacion_servicio'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='sec_otras_instrucciones'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='sec_estatus_proceso'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='sec_estatus_financiera'
+		rule='contains' />
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='sec_descripcion'/>
+
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

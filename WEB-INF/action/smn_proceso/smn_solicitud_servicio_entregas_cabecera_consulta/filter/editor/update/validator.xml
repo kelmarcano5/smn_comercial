@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='sec_origen' type='varchar' required='true' label='${lbl:b_origen}' maxlen='1'/>
+	<parameter id='smn_documento_id' type='integer' required='true' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='smn_cliente_rf' type='integer' required='true' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_tipo_servicio_rf' type='integer' required='true' label='${lbl:b_type_services}' maxlen='10'/>
+	<parameter id='sec_descripcion' type='varchar' required='true' label='${lbl:b_description}' maxlen='200'/>
+	<parameter id='sec_direccion_busqueda' type='integer' required='false' label='${lbl:b_address_find}' maxlen='200'/>
+	<parameter id='sec_direccion_entrega' type='integer' required='true' label='${lbl:b_address_delivery}' maxlen='200'/>
+	<parameter id='sec_fecha_solicitud' type='date' required='true' label='${lbl:b_store_date}' maxlen='10'/>
+	<parameter id='sec_hora_solicitud' type='varchar' required='true' label='${lbl:s_loginhist_col2}' maxlen='8'/>
+	<parameter id='sec_especificacion_servicio' type='varchar' required='false' label='${lbl:b_especifications}' maxlen='200'/>
+	<parameter id='sec_observacion_servicio' type='varchar' required='false' label='${lbl:b_observation}' maxlen='200'/>
+	<parameter id='sec_monto_ml' type='double' required='false' label='${lbl:b_amount}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='sec_monto_ma' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='smn_forma_pago_rf' type='integer' required='true' label='${lbl:b_way_to_pay}' maxlen='10'/>
+	<parameter id='sec_monto_pago_efectivo' type='double' required='false' label='${lbl:b_amount_pay_cash}' maxlen='10'/>
+	<parameter id='sec_otras_instrucciones' type='varchar' required='false' label='${lbl:b_others_instructions}' maxlen='200'/>
+	<parameter id='sec_estatus_proceso' type='varchar' required='true' label='${lbl:b_estatus_proceso}' maxlen='2'/>
+	<parameter id='sec_estatus_financiera' type='varchar' required='true' label='${lbl:b_estatus_financiero}' maxlen='2'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_header_services_delivery_request}' maxlen='10'/>
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='true' label='${lbl:b_auxiliary_class}' maxlen='10'/>
+	<parameter id='smn_auxiliar_rf' type='integer' required='true' label='${lbl:b_auxiliary}' maxlen='10'/>
+
+
+
+</validator>

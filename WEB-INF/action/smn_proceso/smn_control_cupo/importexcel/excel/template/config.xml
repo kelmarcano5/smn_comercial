@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smncontrolcupo.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_quota_control}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_quota_control}">
+				<col id='smn_evento_id' label='${lbl:b_event}' />
+		<col id='ccu_cupo' label='${lbl:b_quota}' />
+		<col id='ccu_reservas' label='${fld:b_booking}' />
+		<col id='ccu_saldo' label='${fld:b_balance}' />
+		<col id='ccu_estatus_combo' label='${lbl:b_estatus}' />
+		<col id='ccu_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

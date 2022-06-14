@@ -1,0 +1,85 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='2%'/>
+<!-- 	<col width='2%'/>
+	<col width='2%'/>
+	<col width='2%'/>
+	<col width='2%'/>
+	<col width='2%'/>
+	<col width='2%'/> -->
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='3%'/>
+<!-- 	<col width='3%'/>
+	<col width='3%'/> -->
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="12" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<!-- <th>VL</th>
+		<th>VD</th>
+		<th>SF</th>
+	 	<th>GE</th>
+	 	<th>RZ</th>
+	 	<th>RV</th> -->
+		<th class='sortable' onclick='sortBy("smn_centro_facturacion_id", "numero_documento","query-smnpedidocabecera.sql")'>${lbl:b_centro_facturacion}</th>
+		<th class='sortable' onclick='sortBy("numero_documento","query-smnpedidocabecera.sql")'>Numero/${lbl:b_document}</th>
+		<th class='sortable' onclick='sortBy("num_ingreso","query-smnpedidocabecera.sql")'>N&deg; Ingreso</th>
+		<th class='sortable' onclick='sortBy("paciente","query-smnpedidocabecera.sql")'>Paciente</th>
+		<th class='sortable' onclick='sortBy("cliente","query-smnpedidocabecera.sql")'>Cliente</th>
+		<th class='sortable' onclick='sortBy("monto_pedido","query-smnpedidocabecera.sql")'>${lbl:b_amount}</th>
+		<th class='sortable' onclick='sortBy("montoma","query-smnpedidocabecera.sql")'>${lbl:b_amount} MA</th>
+		<th class='sortable' onclick='sortBy("estatus_proceso","query-smnpedidocabecera.sql")'>Estatus</th>
+		<th class='sortable' onclick='sortBy("pca_estatus_pago","query-smnpedidocabecera.sql")'>Estatus Pagado</th>
+		<th class='sortable' onclick='sortBy("pca_fecha_requerida","query-smnpedidocabecera.sql")'>${lbl:b_required_date}</th>
+		<th>DT</th>
+		<!-- <th>PV</th>
+		<th>FA</th> -->
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_pedido_cabecera_id}')" title="${lbl:b_view_detail}"></td>
+		<!-- <td><img src="${def:context}/images/search.png"  onclick="openPDF_factura_cab('${fld:smn_pedido_cabecera_id}')" title="Ver Factura Moneda Local"></td>
+		<td><img src="${def:context}/images/search.png"  onclick="openPDF_factura_cab_d('${fld:smn_pedido_cabecera_id}')" title="Ver Factura Moneda Alterna"></td>
+		<td><img src="${def:context}/images/search.png"  onclick="segmentar_factura('${fld:smn_pedido_cabecera_id}','${fld:pca_estatus}','${fld:pca_estatus_pago}','${fld:pca_segmentada}')" title="Segmentar Factura"></td>
+		
+		<td><img src="${def:context}/images/icongrid/Generar.png" onclick="aprobacion('${fld:smn_pedido_cabecera_id}','${fld:numeropedido}','${fld:oferta}','${fld:smn_sucursal_rf}','${fld:smn_entidad_rf}','${fld:smn_cliente_id}','${fld:caja}','${fld:documento}','${fld:auxiliar}','${fld:monto}','${fld:montoneto}','${fld:pca_estatus}','${fld:pca_estatus_pago}','${fld:tiempo_inicio}');" title="Aprobaci&oacute;n Pedido/Factura"></td>
+		<td><img src="${def:context}/images/reject.png"  onclick="rechazar('${fld:smn_pedido_cabecera_id}','${fld:pca_estatus}','${fld:pca_estatus_pago}','${fld:numeropedido}')" title="Rechazar Pedido"></td>
+		<td><img src="${def:context}/images/icongrid/Reversar.png"  onclick="reversar('${fld:smn_pedido_cabecera_id}','${fld:pca_estatus}','${fld:pca_estatus_pago}','${fld:numeropedido}','${fld:caja_id}','${fld:pca_segmentada}')" title="Reversar Pedido"></td> -->
+ 		<td>${fld:smn_centro_facturacion_id}</td>
+		<td align='left'>${fld:numeropedido} - ${fld:documento}</td>
+		<td>${fld:num_ingreso}</td>
+		<td>${fld:paciente}</td>
+		<td>${fld:cliente}</td>
+		<td align="right">${fld:monto_pedido@#,###,##0.00}</td>
+		<td align="right">${fld:montoma@#,###,##0.00}</td>
+		<td align='center'>${fld:pca_estatus}</td>
+		<td align='center'>${fld:pca_estatus_pago}</td>
+		<td>${fld:pca_fecha_requerida@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="detalle('${fld:smn_pedido_cabecera_id}','${fld:numeropedido}','${fld:pca_descripcion}','${fld:documento_id}','${fld:cliente}','${fld:pca_estatus_val}','${fld:comprador}','${fld:monto}','${fld:entidad}','${fld:smn_baremos_rf}','${fld:caja}','${fld:modulo}','${fld:linea}')" title="${lbl:b_header_order}"></td>
+		<!-- <td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="pagadores('${fld:smn_pedido_cabecera_id}','${fld:numeropedido}','${fld:pca_descripcion}','${fld:documento_id}','${fld:cliente}','${fld:pca_estatus_val}','${fld:comprador}','${fld:monto@######0.00}','${fld:smn_cliente_id}','${fld:caja}','${fld:comprador_id}')" title="${lbl:b_order_paying}"></td>
+			<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="factura('${fld:smn_pedido_cabecera_id}','${fld:pca_numero_pedido}','${fld:pca_descripcion}')" title="Factura"></td> -->
+
+	</tr>
+	</rows>
+
+</table>

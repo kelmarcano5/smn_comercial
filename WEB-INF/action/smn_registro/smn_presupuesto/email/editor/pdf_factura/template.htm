@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reporte de Presupuesto</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />	
+	<script type="text/javascript" src="${def:context}/action/script"></script>
+	<script type="text/javascript" src="${def:context}/action/jquery"></script>
+   	<script type="text/javascript" src="${def:context}/action/jqueryi"></script>
+</head>
+<body>
+	<form id="facturas" style="width:1000px;">
+		<br>
+		<div align="center"><img src="${def:context}/images/Logo EGR Final-01.png" border="0" alt="" vspace="0" hspace="0" width="200" height="200"></div></img>
+		<br>
+
+		<table align="left" style="margin-left: -200px">
+			<thead align="left">
+				<tr>
+					<td style=" font-weight: bold;">FECHA</td>
+					<td>${fld:pre_fecha_registro@dd-MM-yyyy}</td>
+				</tr>
+				<tr>
+					<td style=" font-weight: bold;">EMPRESA</td>
+					<td>${fld:smn_entidades_rf_combo}</td>
+				</tr>
+				<tr>
+					<td style=" font-weight: bold;">DOCUMENTO</td>
+					<td>${fld:smn_documento_id_combo}</td>
+				</tr>
+				<tr>
+					<td style=" font-weight: bold;">NUM. CONTROL</td>
+					<td>${fld:pre_numero_control}</td>
+				</tr>
+			</thead>
+		</table>
+
+		<!-- <br> -->
+		<table id="encabezado">
+			<thead align="left">
+				<tr>
+ 					<td style=" font-weight: bold;">CLIENTE:</td>
+ 					<td>${fld:contratante}</td>
+ 				</tr>
+ 				<tr>
+					<td style=" font-weight: bold;">PROPIETARIO:</td>
+					<td >${fld:propietario}</td>
+				</tr>
+				<tr>
+					<td style=" font-weight: bold;">PLACA DEL VEHICULO:</td>
+					<td>${fld:placa}</td>
+				</tr>
+				<tr>
+					<td style=" font-weight: bold;">MARCA:</td>
+					<td>${fld:marca}</td>
+				</tr>
+				<tr>
+					<td style=" font-weight: bold;">MODELO:</td>
+					<td>${fld:modelo}</td>
+				</tr>
+				<tr>
+					<td style=" font-weight: bold;">COLOR:</td>
+					<td>${fld:color}</td>
+				</tr>
+				<tr>
+					<td style=" font-weight: bold;">NUMERO INGRESO: </td>
+					<td>${fld:num_ingreso}</td>
+				</tr>
+				<br>
+			</thead>
+			<tbody>
+				<tr>	
+				</tr>
+			</tbody>
+		</table>
+
+	<br>
+	<br>
+
+	<table class="record2" style="width:95%;" >
+		<thead>
+			<tr>
+				<td align="center">SERVICIO</td>
+				<td align="center">ITEM</td>
+				<td align="center">CANTIDAD</td>
+				<td align="right">Monto US$</td>
+				<td align="right">Monto Descuento</td>
+				<td align="right">Monto Neto</td>
+			</tr>
+		</thead>
+		<tbody>
+			<rows>
+				<tr>
+					<td align="left">${fld:smn_servicios_rf}</td>
+					<td align="left">${fld:smn_componentes_rf}</td>
+					<td align="center">${fld:prd_cantidad@#,###,##0.00}</td>
+					<td align="right">${fld:prd_moneda_alterna@#,###,##0.00}$</td>
+					<td align="right">${fld:prd_monto_descuento_ma@#,###,##0.00}$</td>
+					<td align="right">${fld:prd_monto_neto_ma@#,###,##0.00}$</td>
+				</tr>
+			</rows>
+		</tbody>
+
+		
+		<tr>
+			<td></td>
+			<td align="right" style=" font-weight: bold;">TOTAL ITEM</td>
+			<td></td>
+			<td align="right" style=" font-weight: bold;">${fld:montomait@#,###,##0.00}$</td>
+			<td align="right"></td>
+			<td align="right"></td>
+			<td align="right"></td>
+		</tr>
+		
+		<tr>
+			<td></td>
+			<td align="right" style=" font-weight: bold;">TOTAL SERVICIO</td>
+			<td></td>
+			<td align="right" style=" font-weight: bold;">${fld:montomase@#,###,##0.00}$</td>
+			<td align="right"></td>
+			<td align="right"></td>
+			<td align="right"></td>
+		</tr>
+
+		<tr>
+			<td></td>
+			<td align="right" style=" font-weight: bold;">TOTAL IMPUESTO</td>
+			<td></td>
+			<td align="right" style=" font-weight: bold;">${fld:impuestoma@#,###,##0.00}$</td>
+			<td align="right"></td>
+			<td align="right"></td>
+			<td align="right"></td>
+			<td align="right"></td>
+		</tr>
+
+
+		<tr>
+			<td></td>
+			<td align="right" style=" font-weight: bold;">TOTAL GENERAL</td>
+			<td></td>
+			<td align="right" style=" font-weight: bold;">${fld:netoma@#,###,##0.00}$</td>
+			<td align="right"></td>
+			<td align="right"></td>
+			<td align="right"></td>
+		</tr>
+
+		<!-- <tr>
+			<td></td>
+			<td align="right" style=" font-weight: bold;">TOTAL NETO</td>
+			<td></td>
+			<td align="right" style=" font-weight: bold;">${fld:netoma@#,###,##0.00}$</td>
+			<td align="right"></td>
+			<td align="right"></td>
+			<td align="right"></td>
+		</tr> -->
+	</table>
+	<br>
+	<br>
+		<!-- <div align="center">
+			<button id="imprimir" onclick="imprimir();">Imprimir</button>
+		</div> -->
+	</form>
+</body>
+</html>
+
+<script type="text/javascript" >
+  	onload = function() {
+  		//document.getElementById('imprimir').style.display='none';
+  		$('#facturas').printThis();
+  	}
+</script>
+
+

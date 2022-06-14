@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		${lbl:b_calls}
+	</summary>
+
+	<log>false</log>
+	
+	<set-request-attribute id="progress" value="file:/WEB-INF/action/progress/progress.htm"/>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id='query-smn_cliente_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_prospecto_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_tipo_documento_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_documento_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_oferta_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_gestion_id.sql' source='sql' scope='transaction'/>
+	 	<recordset id='query-smn_solicitud_servicio_entrega_rf.sql' source='sql' scope='transaction'/> 
+			<!-- <recordset id='query-smn_cita_id.sql' source='sql' scope='transaction'/> -->
+			<recordset id='query-smn_orden_pedido_id.sql' source='sql' scope='transaction'/>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<print mode='table' recordset='query-smn_cliente_id.sql' tag='smn_cliente_id_rows'/>
+		<print mode='table' recordset='query-smn_prospecto_id.sql' tag='smn_prospecto_id_rows'/>
+		<print mode='table' recordset='query-smn_tipo_documento_id.sql' tag='smn_tipo_documento_id_rows'/>
+		<print mode='table' recordset='query-smn_documento_id.sql' tag='smn_documento_id_rows'/>
+		<print mode='table' recordset='query-smn_oferta_id.sql' tag='smn_oferta_id_rows'/>
+		<print mode='table' recordset='query-smn_gestion_id.sql' tag='smn_gestion_id_rows'/>
+		<print mode='table' recordset='query-smn_solicitud_servicio_entrega_rf.sql' tag='smn_solicitud_servicio_entrega_rf_rows'/> 
+				<!-- <print mode='table' recordset='query-smn_cita_id.sql' tag='smn_cita_id_rows'/> -->
+					<print mode='table' recordset='query-smn_orden_pedido_id.sql' tag='smn_orden_pedido_id_rows'/>
+		<print mode="form" recordset="_request" /> 
+	</output>
+
+</config>

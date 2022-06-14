@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_catalogo_item_comercio>
+	<detail>
+		<rows>		
+		<record cic_fecha_registro="${fld:cic_fecha_registro}"    smn_baremos_rf="${fld:smn_baremos_rf}"    smn_clasificacion_abc_rf_c="${fld:smn_clasificacion_abc_rf_c}"    smn_clasificacion_abc_rf_b="${fld:smn_clasificacion_abc_rf_b}"    smn_clasificacion_abc_rf_a="${fld:smn_clasificacion_abc_rf_a}"    smn_item_rf="${fld:smn_item_rf}"    smn_cliente_rf="${fld:smn_cliente_rf}"    cic_origen="${fld:cic_origen}"    />
+		</rows>
+	</detail>
+</smn_catalogo_item_comercio>

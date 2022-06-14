@@ -1,0 +1,2 @@
+ and
+ 	smn_comercial.smn_solicitud_servicio_entregas_detalle.smn_catalogo_item_comercio_id=${fld:smn_catalogo_item_comercio_id}

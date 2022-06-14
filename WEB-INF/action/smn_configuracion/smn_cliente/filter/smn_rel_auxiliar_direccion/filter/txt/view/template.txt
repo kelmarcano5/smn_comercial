@@ -1,0 +1,3 @@
+<rows>
+smn_zona_rf="${fld:smn_zona_rf}"    rad_fecha_registro="${fld:rad_fecha_registro}"    rad_fecha_vigencia="${fld:rad_fecha_vigencia}"    rad_status="${fld:rad_status}"    rad_tipo_direccion="${fld:rad_tipo_direccion}"    smn_direccion_id="${fld:smn_direccion_id}"    smn_auxiliar_id="${fld:smn_auxiliar_id}"    smn_clase_auxiliar_id="${fld:smn_clase_auxiliar_id}"    
+</rows>

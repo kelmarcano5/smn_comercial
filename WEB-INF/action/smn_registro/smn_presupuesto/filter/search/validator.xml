@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='pre_numero_control' type='integer' required='false' label='${lbl:b_num_ingreso}' maxlen='10'/>
+	<parameter id='smn_entidades_rf' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='smn_sucursales_rf' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+	<parameter id='pre_monto_ml' type='double' required='false' label='${lbl:b_service_area}' maxlen='10'/>
+	<parameter id='pre_numero_control' type='integer' required='false' label='${lbl:b_service_units}' maxlen='10'/>
+	<parameter id='smn_auxiliar_rf' type='integer' required='false' label='${lbl:b_auxiliary_pa}' maxlen='10'/>
+	<parameter id='pre_fecha_registro' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<parameter id='smn_estado_presupuesto_id' type='integer' required='false' label='${lbl:b_budget_status}' maxlen='10'/>
+ 	<parameter id='smn_presupuesto_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+</validator>

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/crud'>
+	<parameter id='dcf_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='16'/>
+	<parameter id='dcf_descripcion' type='varchar' required='false' label='${lbl:b_description} ' maxlen='48'/>
+	<parameter id='dcf_tipo_movimiento' type='varchar' required='false' label='${lbl:b_accounting_movement_type}' maxlen='2'/>
+	<parameter id='dcf_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<custom-validator classname="dinamica.validators.SQLPatternTransformer" parameter="dcf_codigo" rule="contains" />
+	<custom-validator classname="dinamica.validators.SQLPatternTransformer" parameter="dcf_descripcion" rule="contains" />
+	<custom-validator classname="dinamica.validators.SQLPatternTransformer" parameter="dcf_tipo_movimiento" rule="contains" />
+	<custom-validator classname="dinamica.validators.SQLPatternTransformer" parameter="dcf_estatus" rule="contains" />
+</validator>

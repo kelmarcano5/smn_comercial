@@ -1,0 +1,56 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='3%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="11">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_documento_id_combo","query-smnpresupuesto.sql")'>${lbl:b_pre_documento}</th>
+		<th class='sortable' onclick='sortBy("pre_numero_control","query-smnpresupuesto.sql")'>${lbl:b_pre_num_control}</th>
+		<th class='sortable' onclick='sortBy("smn_entidades_rf_combo","query-smnpresupuesto.sql")'>${lbl:b_pre_entidades}</th>
+		<th class='sortable' onclick='sortBy("smn_sucursales_rf_combo","query-smnpresupuesto.sql")'>${lbl:b_pre_sucursal}</th>
+		<th class='sortable' onclick='sortBy("smn_clase_auxiliar_rf_combo","query-smnpresupuesto.sql")'>${lbl:b_paciente_clase}</th>
+		<th class='sortable' onclick='sortBy("smn_auxiliar_rf_combo","query-smnpresupuesto.sql")'>${lbl:b_paciente}</th>
+		<th class='sortable' onclick='sortBy("pre_fecha_registro","query-smnpresupuesto.sql")'>${lbl:b_store_date}</th>
+		<th>PD</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_presupuesto_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_presupuesto_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_presupuesto_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_documento_id_combo}</td>
+		<td align='left'>${fld:pre_numero_control}</td>
+		<td>${fld:smn_entidades_rf_combo}</td>
+		<td>${fld:smn_sucursales_rf_combo}</td>
+		<td>${fld:smn_clase_auxiliar_rf_combo}</td>
+		<td>${fld:smn_auxiliar_rf_combo}</td>
+		<td>${fld:pre_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="presupuesto_detalle('${fld:smn_presupuesto_id}','${fld:pre_numero_control}','${fld:smn_documento_id}')" title="${lbl:b_presupuesto_det}"></td>
+	</tr>
+	</rows>
+
+</table>

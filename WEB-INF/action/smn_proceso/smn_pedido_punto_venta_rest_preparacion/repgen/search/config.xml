@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Ejecutar consulta usando un modulo de motor
+		de b�squeda y enrutar dependiendo de que un recordset
+		tenga o no registros
+	</summary>
+
+	<log>false</log>
+
+	<!--configura el control de paginacion-->
+	<set-request-attribute id="paging.recordset" value="query.sql" />
+	<set-request-attribute id="paging.pagesize" value="10" />
+
+	<transaction>
+		<classname>domain.repgen.RepGen</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+	
+	<searchCols>pca_numero_pedido_filter;smn_cliente_id_filter;smn_documento_id_filter;smn_entidad_rf_filter;smn_sucursal_rf_filter;smn_area_servicio_rf_filter;smn_unidad_servicio_rf_filter;smn_almacen_rf_filter;smn_centro_facturacion_id;smn_sub_centro_facturacion_id;smn_linea_comercial_id;pca_monto_pedido_ml;pca_monto_impuesto_ml;pca_monto_descuento_ml;pca_monto_bonificacion_ml;pca_monto_neto_ml;pca_monto_pedido_ma;pca_monto_impuesto_ma;pca_monto_descuento_ma;pca_monto_bonificacion_ma;pca_monto_neto_ma;pca_estatus;pca_estatus_pago;</searchCols>
+	
+	<on-exit return-code="0" forward-to="/action/initview" />
+	<on-exit return-code="1" forward-to="${def:actionroot}/notfound" />
+
+</config>

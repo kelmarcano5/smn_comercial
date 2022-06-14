@@ -1,0 +1,1 @@
+select smn_base.smn_auxiliar_sucursales.smn_auxiliar_sucursales_id as id, smn_base.smn_auxiliar_sucursales.trs_codigo|| ' - ' || smn_base.smn_auxiliar_sucursales.trs_nombre as item from smn_base.smn_auxiliar_sucursales order by smn_base.smn_auxiliar_sucursales.trs_nombre

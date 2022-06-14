@@ -1,0 +1,6 @@
+SELECT distinct smn_base.smn_grupos_prestadores.gpp_unidad_servicio, smn_comercial.smn_presupuesto.smn_presupuesto_id
+FROM smn_comercial.smn_presupuesto
+inner join smn_comercial.smn_ingresos on smn_comercial.smn_ingresos.smn_ingresos_id = smn_comercial.smn_presupuesto.smn_ingresos_id 
+inner join smn_comercial.smn_presupuesto_detalle on smn_comercial.smn_presupuesto_detalle.smn_presupuesto_id = smn_comercial.smn_presupuesto.smn_presupuesto_id
+inner join smn_base.smn_grupos_prestadores on smn_base.smn_grupos_prestadores.smn_grupos_prestadores_id = smn_comercial.smn_presupuesto_detalle.smn_grupo_prestador_rf
+WHERE smn_comercial.smn_presupuesto.smn_presupuesto_id = ${fld:smn_presupuesto_id}

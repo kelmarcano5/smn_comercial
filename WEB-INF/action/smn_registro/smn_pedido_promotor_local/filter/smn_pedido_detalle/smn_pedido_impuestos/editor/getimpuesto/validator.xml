@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+	<parameter id="id" type="varchar" required="true" label="ID Servicio" />
+
+	<parameter id="porccal" type="double" required="false" label="procentaje" maxlen='50'/>
+	<parameter id="sustrae" type="double" required="false" label="sustranedo" maxlen='50'/>
+</validator>

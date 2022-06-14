@@ -1,0 +1,1 @@
+select smn_comercial.smn_area_interes.smn_area_interes_id as id, smn_comercial.smn_area_interes.ari_codigo ||' - '|| smn_comercial.smn_area_interes.ari_descripcion as item from smn_comercial.smn_area_interes

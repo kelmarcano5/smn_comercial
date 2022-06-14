@@ -1,0 +1,58 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="11" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("acc_codigo","query-smnaccion.sql")'>${lbl:b_code}</th>
+		<th class='sortable' onclick='sortBy("acc_descripcion","query-smnaccion.sql")'>${lbl:b_description}</th>
+		<th class='sortable' onclick='sortBy("acc_require_seguimiento_combo","query-smnaccion.sql")'>${lbl:b_required_day}</th>
+		<th class='sortable' onclick='sortBy("acc_dias_seguimiento","query-smnaccion.sql")'>${lbl:b_followup_days}</th>
+		<th class='sortable' onclick='sortBy("pas_descripcion_combo","query-smnaccion.sql")'>${lbl:b_pass}</th>
+		<th class='sortable' onclick='sortBy("acc_estatus_combo","query-smnaccion.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("acc_vigencia","query-smnaccion.sql")'>${lbl:b_vigency}</th>
+		<th class='sortable' onclick='sortBy("acc_fecha_registro","query-smnaccion.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_accion_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_accion_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_accion_id}')" title="${lbl:b_edit_button}"></td>
+		<td align='left'>${fld:acc_codigo}</td>
+		<td align='left'>${fld:acc_descripcion}</td>
+		<td align='left'>${fld:acc_require_seguimiento_combo}</td>
+		<td>${fld:acc_dias_seguimiento}</td>
+		<td>${fld:pas_descripcion_combo}</td>
+		<td align='left'>${fld:acc_estatus_combo}</td>
+		<td>${fld:acc_vigencia@dd-MM-yyyy}</td>
+		<td>${fld:acc_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

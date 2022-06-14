@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id='smn_pedido_cabecera_id' type='integer' required='true' label='${lbl:b_header_order}' maxlen='10'/>
+	<parameter id='smn_pedido_detalle_id' type='integer' required='false' label='${lbl:b_header_order_detail}' maxlen='10'/>
+	<parameter id="usuario" type="varchar" required="false" label="ID" maxlen="10" />
+
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='fca_numero_documento_id' type='integer' required='false' label='${lbl:b_document_number}' maxlen='10'/>
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+	
+	<parameter id='smn_caja_rf' type='integer' required='false' label='${lbl:b_box}' maxlen='10'/>
+	<parameter id='smn_cliente_id' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_control_serie_fiscal_id' type='integer' required='false' label='${lbl:b_control_serie_fiscal}' maxlen='10'/>
+	<parameter id='fca_numero_control_fiscal' type='integer' required='false' label='${lbl:b_document_number}' maxlen='10'/>
+	<parameter id='fca_rif' type='varchar' required='false' label='${lbl:b_rif}' maxlen='50'/>
+	<parameter id='fca_direccion_fiscal' type='varchar' required='false' label='${lbl:b_adress_fiscal}' maxlen='200'/>
+	<parameter id='fca_monto_factura_ml' type='double' required='false' label='${lbl:b_amount_bill_ml}' maxlen='10'/>
+	<parameter id='fca_monto_impuesto_ml' type='double' required='false' label='${lbl:b_amount_tax}' maxlen='10'/>
+	<parameter id='fca_monto_descuento_ml' type='double' required='false' label='${lbl:b_amount_discount}' maxlen='10'/>
+	<parameter id='fca_monto_bonificacion_ml' type='double' required='false' label='${lbl:b_amount_bonification}' maxlen='10'/>
+	<parameter id='fca_monto_neto_ml' type='double' required='false' label='${lbl:b_amount_net}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='fca_monto_factura_ma' type='double' required='false' label='${lbl:b_amount_bill_ma}' maxlen='10'/>
+	<parameter id='fca_monto_impuesto_ma' type='double' required='false' label='${lbl:b_amount_tax_ma}' maxlen='10'/>
+	<parameter id='fca_monto_descuento_ma' type='double' required='false' label='${lbl:b_amount_discount_ma}' maxlen='10'/>
+	<parameter id='fca_monto_bonificacion_ma' type='double' required='false' label='${lbl:b_amount_bonification_ma}' maxlen='10'/>
+	<parameter id='fca_monto_neto_ma' type='double' required='false' label='${lbl:b_amount_net_ma}' maxlen='10'/>
+	<parameter id='fca_estatus_financiero' type='varchar' required='false' label='${lbl:b_financial_status}' maxlen='2'/>
+	<parameter id='fca_estatus_proceso' type='varchar' required='false' label='${lbl:b_process_status}' maxlen='2'/>
+
+	<parameter id='entidad' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='sucursal' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+	<parameter id='documento' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+	<parameter id='pedidoid' type='integer' required='false' label='${lbl:b_header_order}' maxlen='10'/>
+	<parameter id='smn_oferta_id' type='integer' required='false' label='${lbl:b_offer}' maxlen='10'/>
+	<parameter id='caja' type='integer' required='false' label='${lbl:b_box}' maxlen='10'/>
+	<parameter id='cliente' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='auxiliar' type='integer' required='false' label='${lbl:b_auxiliary}' maxlen='10'/>
+	<parameter id='monto' type='double' required='false' label='${lbl:b_amount}' maxlen='10'/>
+	<parameter id='montoneto' type='double' required='false' label='${lbl:b_amount_net}' maxlen='10'/>
+
+	<parameter id='id_despacho' type='integer' required='false' label='id_despacho' maxlen='10'/>
+	<parameter id='id_mov_cab' type='integer' required='false' label='id_mov_cab' maxlen='10'/>
+	
+
+</validator>

@@ -1,0 +1,18 @@
+SELECT
+	smn_base.smn_diccionario.dic_campo,
+	smn_cont_financiera.smn_documento_detalle.smn_documento_detalle_id,
+	smn_cont_financiera.smn_documento_detalle.smn_elemento_id,
+	smn_cont_financiera.smn_documento_detalle.dod_monto_ml,
+	smn_cont_financiera.smn_documento_detalle.dod_monto_ma
+FROM
+	smn_cont_financiera.smn_documento_detalle
+INNER JOIN
+	smn_cont_financiera.smn_tipo_elemento
+ON
+	smn_cont_financiera.smn_documento_detalle.smn_tipo_elemento_id = smn_cont_financiera.smn_tipo_elemento.smn_tipo_elemento_id
+INNER JOIN
+	smn_base.smn_diccionario
+ON
+	smn_cont_financiera.smn_tipo_elemento.smn_diccionario_rf = smn_base.smn_diccionario.smn_diccionario_id
+WHERE
+	smn_cont_financiera.smn_documento_detalle.smn_documento_id = ${fld:smn_documento_id}

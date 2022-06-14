@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_tipo_documento_id' type='integer' required='true' label='${lbl:b_tipo_documento_factura}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='true' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='false' label='${lbl:b_class_auxiliary}' maxlen='10'/>
+	<parameter id='smn_auxiliar_rf' type='integer' required='false' label='${lbl:b_auxiliar}' maxlen='10'/>
+	<parameter id='smn_rol_id' type='integer' required='false' label='${lbl:b_rol}' maxlen='10'/>
+	<parameter id='smn_usuario_rf' type='integer' required='false' label='${lbl:b_user}' maxlen='10'/>
+	<parameter id='met_fecha_desde' type='date' required='true' label='${lbl:b_from_date}' maxlen='10'/>
+	<parameter id='met_fecha_hasta' type='date' required='true' label='${lbl:b_to_date}' maxlen='10'/>
+	<parameter id='met_dias_habiles' type='integer' required='true' label='${lbl:b_free_day}' maxlen='10'/>
+	<parameter id='met_fecha_estadistica' type='date' required='false' label='${lbl:b_estadistic_date}' maxlen='10'/>
+	<parameter id='met_cantidad_diaria' type='integer' required='true' label='${lbl:b_diary_quantity}' maxlen='10'/>
+	<parameter id='met_cantidad_usuario' type='integer' required='false' label='${lbl:b_user_quantity}' maxlen='10'/>
+	<parameter id='met_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_goals}' maxlen='10'/>
+
+
+</validator>

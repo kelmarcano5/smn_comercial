@@ -1,0 +1,1 @@
+delete from smn_comercial.smn_rel_centro_facturacion_usuario where smn_rel_centro_facturacion_usuario_id = ${fld:id}

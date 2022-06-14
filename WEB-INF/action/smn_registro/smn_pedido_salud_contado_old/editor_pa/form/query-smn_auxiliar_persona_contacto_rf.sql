@@ -1,0 +1,1 @@
+select smn_base.smn_auxiliar_persona_contacto.smn_auxiliar_persona_contacto_id as id, smn_base.smn_auxiliar_persona_contacto.apc_nombres|| ' - ' ||smn_base.smn_auxiliar_persona_contacto.apc_apellidos as item from smn_base.smn_auxiliar_persona_contacto

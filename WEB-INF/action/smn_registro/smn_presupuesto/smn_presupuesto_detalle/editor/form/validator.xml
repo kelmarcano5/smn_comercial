@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id="id" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id="id_pre" type="integer" required="false" label="ID Presupuesto" maxlen="10" />
+	<parameter id="numero_control_pre" type="varchar" required="false" label="${lbl:b_pre_num_control}" maxlen="10" />
+	<parameter id="smn_baremos_id" type="integer" required="false" label="${lbl:b_pre_documento}" maxlen="10" />
+		<parameter id="tipo" type="varchar" required="false" label="ID" maxlen="10" />
+</validator>

@@ -1,0 +1,61 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="12" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_pedido_detalle_id','query-smnpedidodescretenciones.sql')" >${lbl:b_header_order_detail}</th>
+		<th class='sortable' onclick="sortBy('smn_descuentos_retenciones_rf_combo','query-smnpedidodescretenciones.sql')" >${lbl:b_discount_retention}</th>
+		<th class='sortable' onclick="sortBy('pim_monto_base_ml','query-smnpedidodescretenciones.sql')" >${lbl:b_amount_base_ml}</th>
+		<th class='sortable' onclick="sortBy('pim_porcentaje_retencion','query-smnpedidodescretenciones.sql')" >${lbl:b_percentage_discount}</th>
+		<th class='sortable' onclick="sortBy('pim_monto_descuento_retencion','query-smnpedidodescretenciones.sql')" >${lbl:b_amount_discount}</th>
+		<th class='sortable' onclick="sortBy('smn_moneda_rf_combo','query-smnpedidodescretenciones.sql')" >${lbl:b_coins}</th>
+		<th class='sortable' onclick="sortBy('smn_tasa_rf_combo','query-smnpedidodescretenciones.sql')" >${lbl:b_exchange_rate}</th>
+		<th class='sortable' onclick="sortBy('pim_monto_descuento_ma','query-smnpedidodescretenciones.sql')" >${lbl:b_amount_discount_ma}</th>
+		<th class='sortable' onclick="sortBy('pim_fecha_registro','query-smnpedidodescretenciones.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_pedido_desc_retenciones_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_pedido_desc_retenciones_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_pedido_desc_retenciones_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_pedido_detalle_id}</td>
+		<td align="center">${fld:smn_descuentos_retenciones_rf_combo}</td>
+		<td align="center">${fld:pim_monto_base_ml}</td>
+		<td align="center">${fld:pim_porcentaje_retencion}</td>
+		<td align="center">${fld:pim_monto_descuento_retencion}</td>
+		<td align="center">${fld:smn_moneda_rf_combo}</td>
+		<td align="center">${fld:smn_tasa_rf_combo}</td>
+		<td align="center">${fld:pim_monto_descuento_ma}</td>
+		<td align="center">${fld:pim_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_orden_cab_det_servicio_id' type='integer' required='true' label='${lbl:b_service_order}' maxlen='10'/>
+	<parameter id='smn_servicios_rf' type='integer' required='true' label='${lbl:b_services}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='smn_componentes_rf' type='integer' required='false' label='${lbl:b_component}' maxlen='10'/>
+	<parameter id='osd_cantidad' type='double' required='false' label='${lbl:b_quantity}' maxlen='10'/>
+	<parameter id='smn_tipo_componente' type='varchar' required='false' label='${lbl:b_component_type}' maxlen='2'/>
+	<parameter id='smn_grupo_prestador_rf' type='integer' required='false' label='${lbl:b_group_of_provider}' maxlen='10'/>
+	<parameter id='smn_prestador_servicio_rf' type='integer' required='false' label='${fld:b_service_provider}' maxlen='10'/>
+	<parameter id='smn_nivel_estructura_rf' type='integer' required='false' label='${lbl:b_structure_level}' maxlen='10'/>
+	<parameter id='osd_estatus' type='varchar' required='true' label='${lbl:b_estatus}' maxlen='2'/>
+	
+	
+
+
+</validator>

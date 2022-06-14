@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smncatalogoitemcomercio.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="4" cellStep="0" name="${lbl:b_catalog_item_commerce}"/>
+	
+	<excel 
+		recordset='query-smncatalogoitemcomercio.sql' 
+		sheetname='${lbl:b_catalog_item_commerce}' 
+		filename='${lbl:b_catalog_item_commerce}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_cliente_rf' label='${lbl:b_customer}' />
+		<col id='smn_item_rf' label='${lbl:b_item}' />
+		<col id='smn_categoria_menu_id' label='${lbl:b_clasification_abc_a}' />
+		<col id='smn_categoria_item_id_a' label='${lbl:b_clasification_abc_b}' />
+		<col id='smn_categoria_item_id_b' label='${lbl:b_clasification_abc_c}' />
+		<col id='smn_baremos_rf' label='${lbl:b_baremo}' />
+		<col id='cic_fecha_registro' label='${lbl:b_store_date}' />
+	</excel>
+
+</config>

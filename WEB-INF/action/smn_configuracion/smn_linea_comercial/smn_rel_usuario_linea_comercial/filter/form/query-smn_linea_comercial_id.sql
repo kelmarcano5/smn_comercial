@@ -1,0 +1,4 @@
+select smn_comercial.smn_linea_comercial.smn_linea_comercial_id as id, 
+smn_comercial.smn_linea_comercial.lco_codigo|| ' - ' || smn_comercial.smn_linea_comercial.lco_nombre as item 
+from smn_comercial.smn_linea_comercial 
+--where smn_comercial.smn_linea_comercial.smn_linea_comercial_id = ${fld:id2}

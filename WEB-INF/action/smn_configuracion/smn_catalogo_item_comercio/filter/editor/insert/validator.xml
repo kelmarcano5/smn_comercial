@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='cic_origen' type='varchar' required='true' label='${lbl:b_origen}' maxlen='2'/>
+	<parameter id='smn_cliente_rf' type='integer' required='true' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='true' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_rf' type='integer' required='true' label='${lbl:b_measurement_unit}' maxlen='10'/>
+	<!-- <parameter id='smn_clasificacion_abc_rf_a' type='integer' required='false' label='${lbl:b_clasification_abc_a}' maxlen='10'/>
+	<parameter id='smn_clasificacion_abc_rf_b' type='integer' required='false' label='${lbl:b_clasification_abc_b}' maxlen='10'/>
+	<parameter id='smn_clasificacion_abc_rf_c' type='integer' required='false' label='${lbl:b_clasification_abc_c}' maxlen='10'/> -->
+	<parameter id='smn_categoria_menu_id' type='integer' required='false' label='${lbl:b_clasification_abc_a}' maxlen='10'/>
+	<parameter id='smn_categoria_item_id_a' type='integer' required='false' label='${lbl:b_clasification_abc_b}' maxlen='10'/>
+	<parameter id='smn_categoria_item_id_b' type='integer' required='false' label='${lbl:b_clasification_abc_c}' maxlen='10'/>
+	<parameter id='smn_baremos_rf' type='integer' required='true' label='${lbl:b_baremo}' maxlen='10'/>
+	<parameter id='cic_maneja_ingredientes' type='varchar' required='true' label='${lbl:b_measurement_unit}' maxlen='2'/>
+
+	<parameter id='cic_tiempo_sug_preparacion' type='varchar' required='false' label='${lbl:b_time_suggerest_prepared}' maxlen='8'/>
+	<parameter id='cic_descripcion' type='varchar' required='false' label='${lbl:b_description}' maxlen='200'/>
+	<parameter id="id2" type="integer" required="false" label="ID" maxlen="10" />
+	
+		
+
+</validator>

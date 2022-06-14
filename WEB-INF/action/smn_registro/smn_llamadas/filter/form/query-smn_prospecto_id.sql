@@ -1,0 +1,1 @@
+select smn_comercial.smn_prospecto.smn_prospecto_id as id, smn_comercial.smn_prospecto.pro_codigo ||' - '|| smn_comercial.smn_prospecto.pro_descripcion as item from smn_comercial.smn_prospecto

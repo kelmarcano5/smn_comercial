@@ -1,0 +1,32 @@
+<!-- 	<table class="datagrid" width="600px">
+		<col width='100%'/>	
+		<tr>
+			<td>${fld:pca_fecha_requerida}</td>			
+		</tr>							
+							
+	</table> -->
+									
+	<table class="datagrid" width="600px" style="display:items.sql.display">
+			<thead>
+				<tr>
+					<th width="50%">Item</th>
+					<th width="50%">Monto</th>
+				</tr>
+			</thead>
+			<tbody>
+				<rows-query-smnpedidodetalle.sql>
+					<tr>
+						<td align="right">${fld:smn_item}</td>
+						<td align="right">${fld:pde_monto@#,###,##0.00}</td>
+					
+					</tr>					
+				</rows-query-smnpedidodetalle.sql>
+			</tbody>
+			<tr>
+				<th align="right">Total</th>
+				<td align="right">${fld:pca_monto_neto_ml@#,###,##0.00}</td>
+			</tr>
+
+
+	</table>
+	<br>

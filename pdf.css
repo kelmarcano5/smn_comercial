@@ -1,0 +1,33 @@
+.banner{
+    display: flex;
+    justify-content: space-around;
+	font-family: sans-serif;
+	margin-left: 9px;
+	font-size: 11px;
+	line-height: 1pt; 
+	margin-top: 60px;
+
+}
+
+.datos p{
+	/* Ajusta el texto del párrafo a un cuerpo de letra muy grande. */
+	font-family: sans-serif;
+	margin-left: -100px;
+	font-size: 9px;
+    margin: 0;
+}
+
+
+.final{
+    border-bottom: 1px solid black;
+}
+
+
+.direccion p {
+	width: 390px; 
+	display:block; 
+	overflow:hidden; 
+	word-break:keep-all; 
+	text-overflow:ellipsis; 
+	line-height: 10px;
+}

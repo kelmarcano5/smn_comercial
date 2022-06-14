@@ -1,0 +1,1 @@
+select smn_base.smn_tipos_servicios.smn_tipos_servicios_id as id, smn_base.smn_tipos_servicios.tsr_codigo || ' - ' || smn_base.smn_tipos_servicios.tsr_descripcion as item from smn_base.smn_tipos_servicios order by 2

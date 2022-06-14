@@ -1,0 +1,36 @@
+select
+	case
+	when smn_comercial.smn_centro_facturacion.cfc_estatus='AC' then '${lbl:b_account_type_active}'
+	when smn_comercial.smn_centro_facturacion.cfc_estatus='IN' then '${lbl:b_inactive}'
+	end as cfc_estatus,
+	smn_comercial.smn_centro_facturacion.smn_centro_facturacion_id,
+	smn_comercial.smn_centro_facturacion.cfc_codigo,
+	smn_comercial.smn_centro_facturacion.cfc_nombre,
+	smn_base.smn_entidades.ent_descripcion_corta as smn_entidades_rf,
+	smn_base.smn_sucursales.suc_nombre as smn_sucursales_rf,
+	smn_base.smn_areas_servicios.ase_descripcion as smn_areas_servicios_rf,
+	smn_base.smn_unidades_servicios.uns_descripcion as smn_unidades_servicios_rf,
+	smn_base.smn_centro_costo.cco_descripcion_corta as smn_centro_costo_rf,
+	smn_base.smn_almacen.alm_nombre as smn_almacen_rf,
+	--smn_comercial.smn_documento.dcf_descripcion as smn_documento_id,
+	smn_caja.smn_caja.cja_descripcion as smn_caja_rf, 
+	smn_comercial.smn_centro_facturacion.cfc_numero_identificacion,
+	smn_comercial.smn_centro_facturacion.cfc_control_fiscal_1,
+	smn_comercial.smn_centro_facturacion.cfc_control_fiscal_2,
+	smn_comercial.smn_centro_facturacion.cfc_vigencia,
+	smn_comercial.smn_centro_facturacion.cfc_fecha_registro	
+from
+	smn_comercial.smn_centro_facturacion
+	inner join smn_base.smn_entidades on smn_base.smn_entidades.smn_entidades_id = smn_comercial.smn_centro_facturacion.smn_entidades_rf
+	left outer join smn_base.smn_sucursales on smn_base.smn_sucursales.smn_sucursales_id = smn_comercial.smn_centro_facturacion.smn_sucursales_rf
+	left outer join smn_base.smn_areas_servicios on smn_base.smn_areas_servicios.smn_areas_servicios_id = smn_comercial.smn_centro_facturacion.smn_areas_servicios_rf
+	left outer join smn_base.smn_unidades_servicios on smn_base.smn_unidades_servicios.smn_unidades_servicios_id = smn_comercial.smn_centro_facturacion.smn_unidades_servicios_rf
+	left outer join smn_base.smn_centro_costo on smn_base.smn_centro_costo.smn_centro_costo_id = smn_comercial.smn_centro_facturacion.smn_centro_costo_rf
+	left outer join smn_base.smn_almacen on smn_base.smn_almacen.smn_almacen_id = smn_comercial.smn_centro_facturacion.smn_almacen_rf
+	--inner join smn_comercial.smn_documento on smn_comercial.smn_documento.smn_documento_id = smn_comercial.smn_centro_facturacion.smn_documento_id
+	left outer join smn_caja.smn_caja on smn_caja.smn_caja.smn_caja_id = smn_comercial.smn_centro_facturacion.smn_caja_rf
+where
+	smn_centro_facturacion_id is not null
+	${filter}
+order by
+		smn_centro_facturacion_id

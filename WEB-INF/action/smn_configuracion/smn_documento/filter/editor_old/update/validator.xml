@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_tipo_documentos_fact_id_name' type='varchar' required='false' label='${lbl:b_tipo_documento_factura}'/>
+	<parameter id='smn_tipo_documentos_fact_id' type='integer' required='false' label='${lbl:b_tipo_documento_factura}' maxlen='10'/>
+	<parameter id='smn_documentos_generales_rf' type='integer' required='true' label='${lbl:b_general_documents}' maxlen='10'/>
+	<parameter id='dcf_codigo' type='varchar' required='true' label='${lbl:b_code}' maxlen='16'/>
+	<parameter id='dcf_descripcion' type='varchar' required='true' label='${lbl:b_description} ' maxlen='48'/>
+	<parameter id='dcf_tipo_movimiento' type='varchar' required='true' label='${lbl:b_accounting_movement_type}' maxlen='2'/>
+	<parameter id='dcf_req_vigencia' type='varchar' required='true' label='${lbl:b_requiere_vigencia}' maxlen='2'/>
+	<parameter id='dcf_req_fecha_vencimiento' type='varchar' required='true' label='${lbl:b_requiere_fecha_vencimiento}' maxlen='2'/>
+	<parameter id='dcf_gen_orden_despacho' type='varchar' required='true' label='${lbl:b_genera_orden_despacho}' maxlen='2'/>
+	<parameter id='dcf_req_servicios' type='varchar' required='true' label='${lbl:b_requiere_servicios}' maxlen='2'/>
+	<parameter id='dcf_req_vendedor' type='varchar' required='true' label='${lbl:b_requiere_vendedor}' maxlen='2'/>
+	<parameter id='dcf_req_tiempo_entrega' type='varchar' required='true' label='${lbl:b_requiere_tiempo_entrega}' maxlen='2'/>
+	<parameter id='dcf_usa_bonificaciones' type='varchar' required='true' label='${lbl:b_usa_bonificaciones}' maxlen='2'/>
+	<parameter id='dcf_usa_descuentos' type='varchar' required='true' label='${lbl:b_usa_descuentos}' maxlen='2'/>
+	<parameter id='dcf_moneda_alterna' type='varchar' required='false' label='${lbl:b_alternative_currency}' maxlen='2'/>
+	<parameter id='dcf_selecciona_precio' type='varchar' required='true' label='${lbl:b_puede_seleccionar_precio}' maxlen='2'/>
+	<parameter id='dcf_usa_anexo' type='varchar' required='false' label='${lbl:b_usa_anexo}' maxlen='2'/>
+	<parameter id='dcf_vigencia' type='date' required='true' label='${lbl:b_validation_date}' maxlen='10'/>
+	<parameter id='dcf_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='dcf_genera_factura_pv' type='varchar' required='false' label='${lbl:b_genera_factura_pv}' maxlen='2'/>
+
+</validator>

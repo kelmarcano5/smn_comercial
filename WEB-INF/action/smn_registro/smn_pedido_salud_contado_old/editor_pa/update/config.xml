@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Actualiza valores de un formulario en una tabla
+	</summary>
+
+	<log>false</log>
+
+	<!--soporte de auditoria-->
+	<audit>
+		<!--de donde saca los datos, por defecto es "_request"-->
+		<recordset></recordset>
+		<!--que campos extrae para el registro descriptivo-->
+		<cols>
+			<colname>smn_naturaleza_auxiliar_rf</colname>
+			<colname>smn_clase_auxiliar_rf</colname>
+			<colname>aux_tipo_persona</colname>
+			<colname>aux_codigo</colname>
+			<colname>aux_descripcion</colname>
+			<colname>aux_apellidos</colname>
+			<colname>aux_nombres</colname>
+			<colname>aux_tipo_doc_oficial_rf</colname>
+			<colname>aux_num_doc_oficial</colname>
+			<colname>aux_rif</colname>
+			<colname>aux_sexo</colname>
+			<colname>aux_estado_civil</colname>
+			<colname>aux_fecha_nac</colname>
+			<colname>aux_lugar_nac</colname>
+			<colname>aux_direccion_rf</colname>
+			<colname>aux_nacionalidad_rf</colname>
+			<colname>aux_nacionalizado</colname>
+			<colname>aux_fecha_gaceta_nac</colname>
+			<colname>aux_num_gaceta</colname>
+			<colname>aux_afiliacion</colname>
+			<colname>aux_condicion_financiera_rf</colname>
+			<colname>aux_cuenta_bancaria_rf</colname>
+			<colname>aux_persona_contacto</colname>
+			<colname>aux_titular_rf</colname>
+			<colname>aux_observacion</colname>
+			<colname>aux_peso</colname>
+			<colname>aux_unidad_med_peso_rf</colname>
+			<colname>aux_estatura</colname>
+			<colname>aux_unidad_med_estatura_rf</colname>
+			<colname>aux_lateralidad</colname>
+			<colname>aux_talla_camisa</colname>
+			<colname>aux_unidad_med_camisa_rf</colname>
+			<colname>aux_talla_pantalon</colname>
+			<colname>aux_unidad_med_pantalon_rf</colname>
+			<colname>aux_talla_zapato</colname>
+			<colname>aux_unidad_med_zapato_rf</colname>
+			<colname>aux_talla_braga</colname>
+			<colname>aux_unidad_med_braga_rf</colname>
+			<colname>aux_talla_casco</colname>
+			<colname>aux_unidad_med_casco_rf</colname>
+			<colname>aux_numero_historia</colname>
+		
+		</cols>
+		<table>smn_base.smn_auxiliar</table>
+		<oper>ACTUALIZAR</oper>
+		<area>Carga de datos</area>
+		<!--
+			query para obtener el ID generado o nombre de 
+			la columna que contiene el pkey, si es query, 
+			el alias del campo debe ser "id"
+		-->
+		<pkey>id</pkey>
+	</audit>
+
+	<transaction>
+		<classname>dinamica.audit.AuditableTransaction</classname>
+		<validator>true</validator>
+		<transaction>true</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<query>update.sql</query>
+	<!-- <query>update-persona-contacto.sql</query> -->
+	<query>update-contactos.sql</query>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>script.js</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/javascript; charset=iso-8859-1</content-type>
+		<expiration>0</expiration>
+	</output>
+
+</config>

@@ -1,0 +1,84 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='3%'/>
+<!-- 	<col width='3%'/> -->
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="19" id="encabezado_tabla">
+			${req:controls}
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_clasificacion_cliente_id","query-smncliente.sql")'>${lbl:b_clasificacion_cliente}</th>
+		<th class='sortable' onclick='sortBy("smn_clase_auxiliar_rf","query-smncliente.sql")'>${lbl:b_auxiliary_classes}</th>
+		<th class='sortable' onclick='sortBy("smn_auxiliar_rf","query-smncliente.sql")'>${lbl:b_customer}</th>
+		<th class='sortable' onclick='sortBy("smn_clasificacion_abc_rf","query-smncliente.sql")'>${lbl:b_abc_clasification}</th>
+		<th class='sortable' onclick='sortBy("promotor","query-smncliente.sql")'>${lbl:b_promotor}</th>
+		<th class='sortable' onclick='sortBy("cli_fecha_registro","query-smncliente.sql")'>${lbl:b_store_date}</th>
+		<th>IC</th>
+		<!-- <th>RCF</th> -->
+		<th>RCE</th>
+		<th>RCP</th>
+		<th>RCM</th>
+		<th>RCA</th>
+		<th>RCS</th>
+		<th>RCU</th>
+		<th>RCAG</th>
+		<th>RCD</th>
+		<th>RAD</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_cliente_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_cliente_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_cliente_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_clasificacion_cliente_id}</td>
+		<td>${fld:smn_clase_auxiliar_rf}</td>
+		<td>${fld:smn_auxiliar_rf}</td>
+		<td>${fld:smn_clasificacion_abc_rf}</td>
+		<td>${fld:promotor}</td>
+		<td>${fld:cli_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="imagen('${fld:smn_cliente_id}')" title="${lbl:b_customer_image}"></td>
+		<!-- <td><img src="${def:context}/images/view-list-details.png" onclick="relacion('${fld:smn_cliente_id}','${fld:smn_auxiliar_rf}')" title="${lbl:b_rel_client_condition_financiery}"></td> -->
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="relacion_entidad('${fld:smn_cliente_id}','${fld:smn_auxiliar_rf}')" title="${lbl:b_relacion_cliente_entidad_financiera}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="relacion_forma('${fld:smn_cliente_id}','${fld:smn_auxiliar_rf}')" title="${lbl:b_relacion_cliente_forma_pago}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="relacion_medio('${fld:smn_cliente_id}','${fld:smn_auxiliar_rf}')" title="${lbl:b_relation_medio_pago_customer}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="relacion_area('${fld:smn_cliente_id}','${fld:smn_auxiliar_rf}')" title="${lbl:b_relacion_cliente_area_interes}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="relacion_servicio('${fld:smn_cliente_id}','${fld:smn_auxiliar_rf}')" title="${lbl:b_relation_service_customer}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="relacion_usuario('${fld:smn_cliente_id}','${fld:smn_auxiliar_rf}')" title="${lbl:b_relation_user_customer}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="relacion_agenda('${fld:smn_cliente_id}','${fld:smn_auxiliar_rf}')" title="${lbl:b_relation_timetable_customer}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="relacion_client_doc('${fld:smn_cliente_id}','${fld:smn_auxiliar_rf}')" title="${lbl:b_document_customers_relationship}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="relacion_auxiliar_direccion('${fld:smn_cliente_id}','${fld:smn_auxiliar_rf}','${fld:smn_clase_auxiliar_id}')" title="${lbl:b_rel_auxiliar_direccion}"></td>
+
+
+	</tr>
+	</rows>
+
+</table>

@@ -1,0 +1,3 @@
+<rows>
+${smn:pairs_parameter_value}
+</rows>

@@ -1,0 +1,2 @@
+select smn_automotriz.smn_citas.smn_citas_id as id, smn_automotriz.smn_citas.cts_num_control ||' - '||smn_automotriz.smn_estatus_citas.eci_descripcion as item from smn_automotriz.smn_citas
+left outer join smn_automotriz.smn_estatus_citas on smn_automotriz.smn_estatus_citas.smn_estatus_citas_id = smn_automotriz.smn_citas.smn_estatus_citas_id

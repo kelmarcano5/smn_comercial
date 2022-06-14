@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='pca_numero_pedido' type='integer' required='false' label='${lbl:b_order_number}' maxlen='10'/>
+	<parameter id='smn_cliente' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_usuario_rf' type='integer' required='false' label='${lbl:b_user}' maxlen='10'/>
+	<parameter id='id_usuario' type='integer' required='false' label='id_usuario' maxlen='10'/>
+	<parameter id='pca_descripcion' type='varchar' required='false' label='${lbl:b_description}' maxlen='200'/>
+	<parameter id='pca_fecha_requerida' type='date' required='false' label='${lbl:b_required_date}' maxlen='10'/>
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+	<parameter id='smn_area_servicio_rf' type='integer' required='false' label='${lbl:b_area_service}' maxlen='10'/>
+	<parameter id='smn_unidad_servicio_rf' type='integer' required='false' label='${lbl:b_units_service}' maxlen='10'/>
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='${lbl:b_store_code}' maxlen='10'/>
+	<parameter id='smn_centro_costo_rf' type='integer' required='false' label='${lbl:b_cost_centers}' maxlen='10'/>
+	<parameter id='smn_centro_facturacion_id_1' type='integer' required='false' label='${lbl:b_cost_centers}' maxlen='10'/>
+	<parameter id='smn_sub_centro_facturacion_id_1' type='integer' required='false' label='${lbl:b_cost_centers}' maxlen='10'/>
+	<parameter id='smn_tipo_linea_comercial_id' type='integer' required='false' label='${lbl:b_cost_centers}' maxlen='10'/>
+	<parameter id='smn_linea_comercial_id' type='integer' required='false' label='${lbl:b_cost_centers}' maxlen='10'/>
+	<parameter id='pca_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='pca_estatus_pago' type='varchar' required='false' label='${lbl:b_cost_centers}' maxlen='2'/>
+	<parameter id='pca_fecha_vencimiento' type='date' required='false' label='${lbl:b_expiration_date}' maxlen='10'/>
+	<parameter id='tlc_naturaleza' type='varchar' required='false' label='Naturaleza' maxlen='2'/>
+
+	<!-- <parameter id='smn_linea_comercial_id' type='integer' required='false' label='${lbl:b_cost_centers}' maxlen='10'/> -->
+
+	<parameter id='cfc_vigencia' type='date' required='false' label='${lbl:b_validation_date}' maxlen='10'/>
+
+	<parameter id='cfc_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+
+	<parameter id='smn_auxiliar_rf' type='integer' required='false' label='${lbl:b_user}' maxlen='10'/>
+
+</validator>
+
+
+	

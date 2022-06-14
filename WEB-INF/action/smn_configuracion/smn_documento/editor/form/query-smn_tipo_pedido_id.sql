@@ -1,0 +1,1 @@
+select smn_comercial.smn_tipo_pedido.smn_tipo_pedido_id as id, smn_comercial.smn_tipo_pedido.tpp_codigo|| ' - ' || smn_comercial.smn_tipo_pedido.tpp_descripcion as item from smn_comercial.smn_tipo_pedido order by tpp_descripcion

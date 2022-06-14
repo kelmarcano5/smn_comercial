@@ -1,0 +1,1 @@
+alertBox('Factura Acumulara generada');

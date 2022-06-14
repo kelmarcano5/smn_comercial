@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnpagoservicio.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_service_payment}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_service_payment}.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smnpagoservicio.sql' width='100' spacingBefore='40'>
+			<col name='smn_solicitud_servicio_entregas_cabecera_id_combo' title='${lbl:b_header_services_delivery_request}' width='11' align='left' format='######' />
+			<col name='smn_forma_pago_rf_combo' title='${lbl:b_way_to_pay}' width='11' align='left' format='######' />
+			<col name='smn_franquicia_rf_combo' title='${lbl:b_franchises}' width='11' align='left' format='######' />
+			<col name='pas_numero_tarjeta' title='${lbl:b_card_number}' width='11' align='left' format='######' />
+			<col name='pas_codigo_seguridad' title='${lbl:b_security_code}' width='11' align='left' format='######' />
+			<col name='pas_documento_identidad' title='${lbl:b_identity_document}' width='11' align='left' format='######' />
+			<col name='pas_nombre_pagador' title='${lbl:b_payer_name}' width='11' align='left' />
+			<col name='pas_numero_autorizacion' title='${lbl:b_authorization_number}' width='11' align='left' format='######' />
+			<col name='pas_fecha_registro' title='${lbl:b_store_date}' width='11' align='left' format='dd-MM-yyyy' />
+
+		</record>
+
+	</pdf-report>
+</config>

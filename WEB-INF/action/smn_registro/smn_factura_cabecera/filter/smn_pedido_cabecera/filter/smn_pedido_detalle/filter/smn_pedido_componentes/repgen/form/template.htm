@@ -1,0 +1,892 @@
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+	
+	<title>${lbl:b_report_generator}</title>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="banner">
+	${lbl:b_report_generator}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<br>
+
+<!--formulario de filtro-->
+<div id="form">
+<form name="form1" onsubmit="return search()" style="width:500px;">
+
+<table style="width:500px;" class="formgrid">
+
+	<!--ancho de la columna de etiquetas-->
+	<col width="30%">
+	<col width="60%">
+	<col width="10%">
+
+	<!--titulo-->
+	<tr>
+		<th colspan="2">
+			${lbl:b_filter_find}
+		</th>
+	</tr>
+	
+	<!--separador-->
+	<tr height="10px">
+		<td colspan="2"></td>
+	</tr>
+	
+	<!--campos-->
+	<tr>
+		<td colspan="2">
+			${lbl:b_report_generator_fields}: 
+			<br>
+			<br>
+			${inc:${def:actionroot}/fields}
+			<div id="field_id_error" class="errormsg"></div>
+		</td>
+	</tr>
+	
+	<!--separador-->
+	<tr height="10px">
+		<td colspan="2"></td>
+	</tr>
+
+			<!--control picklist de seleccion simple-->
+	<tr>
+		<td>${lbl:b_detail_bill}</td>
+		<td>
+			<!--almacena el ID del item seleccionado--> 
+			<input type="hidden" name="smn_pedido_detalle_id" id="smn_pedido_detalle_id" / disabled >
+			<!--almacena el nombre del item seleccionado-->
+			<input type="text" name="smn_pedido_detalle_id_name" id="smn_pedido_detalle_id_name" style="width: 80%;" readonly / disabled >
+			<!--botones del picklist--> 
+			<img src="${def:context}/images/dropdown.png" onclick="pickSmnPedidoDetalleId();" title="Desplegar lista" /> 
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_movement_caj}</td>
+		<td>
+			<input id="smn_mov_caja_detalle_id" name="smn_mov_caja_detalle_id" type="text" maxlength="10" class="numeric" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_income}</td>
+		<td>
+			<select name="smn_ingresos_rf" id="smn_ingresos_rf" onchange="chgCombo(smn_ingresos_rf.options[smn_ingresos_rf.selectedIndex].text,'smn_ingresos_rf_name');" disabled >
+				<option value="">[Cualquiera]</option>
+				<smn_ingresos_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_ingresos_rf_rows>
+			</select> 
+			<input id="smn_ingresos_rf_name" name="smn_ingresos_rf_name" type="hidden" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_component_group}</td>
+		<td>
+			<select name="smn_grupo_componente_rf" id="smn_grupo_componente_rf" onchange="chgCombo(smn_grupo_componente_rf.options[smn_grupo_componente_rf.selectedIndex].text,'smn_grupo_componente_rf_name');" disabled >
+				<option value="">[Cualquiera]</option>
+				<smn_grupo_componente_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_grupo_componente_rf_rows>
+			</select> 
+			<input id="smn_grupo_componente_rf_name" name="smn_grupo_componente_rf_name" type="hidden" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_components_types}</td>
+		<td>
+			<select name="pco_tipo_componente" id="pco_tipo_componente" disabled >
+				<option value="">[Cualquiera]</option>
+				<option value="IT">${lbl:b_item}</option>
+				<option value="SE">${lbl:b_services}</option>
+
+			</select> 
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_component}</td>
+		<td>
+			<select name="smn_componente_rf" id="smn_componente_rf" onchange="chgCombo(smn_componente_rf.options[smn_componente_rf.selectedIndex].text,'smn_componente_rf_name');" disabled >
+				<option value="">[Cualquiera]</option>
+				<smn_componente_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_componente_rf_rows>
+			</select> 
+			<input id="smn_componente_rf_name" name="smn_componente_rf_name" type="hidden" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_store_date}@{${def:date}}</td>
+		<td>
+			<input id="pco_fecha_registro_ini" name="pco_fecha_registro_ini" type="text" class="date" maxlength="10" disabled >
+			<img src="${def:context}/images/dropdown.png" title="${lbl:b_deploy_calendar}" onclick="calendarOpen('pco_fecha_registro_ini')">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_store_date}@{${def:date}}</td>
+		<td>
+			<input id="pco_fecha_registro_fin" name="pco_fecha_registro_fin" type="text" class="date" maxlength="10" disabled >
+			<img src="${def:context}/images/dropdown.png" title="${lbl:b_deploy_calendar}" onclick="calendarOpen('pco_fecha_registro_fin')">
+		</td>
+	</tr>
+
+	
+
+	
+	<tr>
+		<td class="formlabel required">
+			${lbl:b_store_date_grater_than}:
+		</td>
+		<td>
+			<input id="fdesde" name="fdesde" type="text" size="10" value="" maxlength="10" disabled>
+		</td>
+		<td>
+			<img src="${def:context}/images/dropdown.png" title="${lbl:b_deploy_calendar}" onclick="calendarOpen('fdesde')">
+		</td>
+	</tr>
+	<tr>
+		<td class="formlabel required">
+			${lbl:b_store_date_less_than}:
+		</td>
+		<td>
+			<input id="fhasta" name="fhasta" type="text" size="10" value="" maxlength="10" disabled>
+		</td>
+		<td>
+			<img src="${def:context}/images/dropdown.png" title="${lbl:b_deploy_calendar}" onclick="calendarOpen('fhasta', 'fdesde')">
+		</td>
+	</tr>
+	
+	<!--separador-->
+	<tr height="10px">
+		<td colspan="2"></td>
+	</tr>
+
+</table>	
+
+<!--botones-->
+<input id="buscar" type="submit" value="${lbl:b_find_button}" class="button">
+<input id="grabar" type="button" value="${lbl:b_save_button}" onclick="insert()" class="button">	
+<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+
+<br>
+
+</form>
+</div>
+
+<br>
+
+<!--panel de respuesta AJAX #1-->
+<div id="response" style="display:none;width:100%;margin-top:10px;"></div>
+
+<!--panel de respuesta AJAX #2-->
+<div id="detail" style="display:none;width:100%;margin-top:10px;"></div>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+		//apuntador a funcion para retornar dependiendo de donde este
+		var _goBackFn = null;
+
+		//inicializacion de la pagina cuando carga
+		onload = function()
+		{ 
+			document.form1.fdesde.focus();
+			document.forms[0].fdesde.onkeypress = keypressDate;
+			document.forms[0].fhasta.onkeypress = keypressDate;
+			loadConfiguration();
+		} 
+	
+		//mostrar filtro de busqueda
+		function showFilter()
+		{
+			document.getElementById("form").style.display="";
+			document.getElementById("response").style.display='none';
+			document.getElementById("detail").style.display='none';
+			document.form1.elements[0].focus();			
+		}
+		
+		//esconder filtro de busqueda	
+		function hideFilter() 
+		{
+			document.getElementById("form").style.display="none";
+		}
+
+		//ejecutar consulta
+		function search()
+		{
+			clearErrorMessages();
+			
+			//definir funcion goBack()
+			_goBackFn = showFilter;
+
+			//llamada Ajax...
+			return ajaxCall(	httpMethod="POST", 
+								uri="${def:actionroot}/search", 
+								divResponse="response", 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=null, 
+								onErrorFn=showFilter);
+		
+		}
+	
+		//retorna al estado previo que corresponde
+		//al estado actual de la pagina, cada llamada Ajax
+		//se encarga de definir cual es la funcion de goBack() que aplica
+		function goBack() 
+		{
+			_goBackFn()			
+		}
+	
+		//invoca la generacion de un PDF en un popup
+		function openPDF()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+
+		//invoca la generacion de un Excel en un popup
+		function openExcel()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a excel
+		function openXml() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/xml?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a excel
+		function openTxt() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/txt?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//envio de emails
+		function openEmails() {
+			var uri = "${def:context}${def:actionroot}/email/form";					
+			openDialog("editor0", uri, 750, 620);	
+		}
+	
+		//mostrar detalle de un registro
+		function drillDown(id)
+		{
+			//definir funcion goBack()
+			_goBackFn = showGrid;			
+		
+			//esconder grid principal
+			document.getElementById("response").style.display="none";
+	
+			//llamada Ajax...
+			return ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/drilldown?id=" + id, 
+							divResponse="detail", 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=showGrid);		
+		}
+		
+		//mostrar grid principal
+		function showGrid()
+		{
+			document.getElementById("response").style.display="";
+			document.getElementById("detail").style.display='none';
+			
+			//restaura el goBack que corresponde a este estado
+			_goBackFn = showFilter;
+		}
+		
+		//define la url en donde se mostrara el resultado de consulta
+		function viewPage()
+		{
+			hideFilter(); //esconde el formulario cuando muestra el resultado
+			var url = "${def:actionroot}/view";
+			//llama a la funcion para ir a la pagina indicada 
+			gotoPage(url);
+		}
+		
+		function checkAll(field)
+		{
+			for (i = 0; i < field.length; i++)
+			{
+	   			field[i].checked = true;
+
+								if (field[i].value == 745)
+				{
+					document.getElementById('smn_pedido_detalle_id_name').disabled=false;
+				}
+				if (field[i].value == 746)
+				{
+					document.getElementById('smn_pedido_detalle_id').disabled=false;
+				}
+				if (field[i].value == 747)
+				{
+					document.getElementById('smn_mov_caja_detalle_id').disabled=false;
+				}
+				if (field[i].value == 748)
+				{
+					document.getElementById('smn_ingreso_rf').disabled=false;
+				}
+				if (field[i].value == 749)
+				{
+					document.getElementById('smn_grupo_componente_rf').disabled=false;
+				}
+				if (field[i].value == 750)
+				{
+					document.getElementById('pco_tipo_componente').disabled=false;
+				}
+				if (field[i].value == 751)
+				{
+					document.getElementById('smn_componente_rf').disabled=false;
+				}
+				if (field[i].value == 752)
+				{
+					document.getElementById('pco_es_prestador_servicio').disabled=false;
+				}
+				if (field[i].value == 753)
+				{
+					document.getElementById('smn_clase_auxiliar_rf').disabled=false;
+				}
+				if (field[i].value == 754)
+				{
+					document.getElementById('smn_auxiliar_rf').disabled=false;
+				}
+				if (field[i].value == 755)
+				{
+					document.getElementById('pdo_naturaleza').disabled=false;
+				}
+				if (field[i].value == 756)
+				{
+					document.getElementById('smn_item_rf').disabled=false;
+				}
+				if (field[i].value == 757)
+				{
+					document.getElementById('smn_servicio_rf').disabled=false;
+				}
+				if (field[i].value == 758)
+				{
+					document.getElementById('pco_cantidad').disabled=false;
+				}
+				if (field[i].value == 759)
+				{
+					document.getElementById('smn_precio_ml_rf').disabled=false;
+				}
+				if (field[i].value == 760)
+				{
+					document.getElementById('pco_monto_ml').disabled=false;
+				}
+				if (field[i].value == 761)
+				{
+					document.getElementById('smn_moneda_rf').disabled=false;
+				}
+				if (field[i].value == 762)
+				{
+					document.getElementById('smn_tasa_rf').disabled=false;
+				}
+				if (field[i].value == 763)
+				{
+					document.getElementById('smn_precio_ma').disabled=false;
+				}
+				if (field[i].value == 764)
+				{
+					document.getElementById('smn_monto_ma').disabled=false;
+				}
+				if (field[i].value == 765)
+				{
+					document.getElementById('pco_imprime').disabled=false;
+				}
+				if (field[i].value == 766)
+				{
+					document.getElementById('smn_grupo_titulo_impresion_rf').disabled=false;
+				}
+				if (field[i].value == 767)
+				{
+					document.getElementById('smn_tipo_gasto_rf').disabled=false;
+				}
+				if (field[i].value == 768)
+				{
+					document.getElementById('smn_sub_tipo_gasto_rf').disabled=false;
+				}
+				if (field[i].value == 769)
+				{
+					document.getElementById('pco_estatus').disabled=false;
+				}
+
+				
+				//fecha desde y hasta
+	   			if (field[i].value == 770) 
+	   			{
+	   				document.getElementById("fdesde").disabled=false;
+	   				document.getElementById("fhasta").disabled=false;
+	   			}
+			}
+		}
+		
+		function uncheckAll(field)
+		{
+			for (i = 0; i < field.length; i++)
+			{
+	   			field[i].checked = false;
+
+								if (field[i].value == 745)
+				{
+					document.getElementById('smn_pedido_detalle_id_name').disabled=true;
+				}
+				if (field[i].value == 746)
+				{
+					document.getElementById('smn_pedido_detalle_id').disabled=true;
+				}
+				if (field[i].value == 747)
+				{
+					document.getElementById('smn_mov_caja_detalle_id').disabled=true;
+				}
+				if (field[i].value == 748)
+				{
+					document.getElementById('smn_ingreso_rf').disabled=true;
+				}
+				if (field[i].value == 749)
+				{
+					document.getElementById('smn_grupo_componente_rf').disabled=true;
+				}
+				if (field[i].value == 750)
+				{
+					document.getElementById('pco_tipo_componente').disabled=true;
+				}
+				if (field[i].value == 751)
+				{
+					document.getElementById('smn_componente_rf').disabled=true;
+				}
+				if (field[i].value == 752)
+				{
+					document.getElementById('pco_es_prestador_servicio').disabled=true;
+				}
+				if (field[i].value == 753)
+				{
+					document.getElementById('smn_clase_auxiliar_rf').disabled=true;
+				}
+				if (field[i].value == 754)
+				{
+					document.getElementById('smn_auxiliar_rf').disabled=true;
+				}
+				if (field[i].value == 755)
+				{
+					document.getElementById('pdo_naturaleza').disabled=true;
+				}
+				if (field[i].value == 756)
+				{
+					document.getElementById('smn_item_rf').disabled=true;
+				}
+				if (field[i].value == 757)
+				{
+					document.getElementById('smn_servicio_rf').disabled=true;
+				}
+				if (field[i].value == 758)
+				{
+					document.getElementById('pco_cantidad').disabled=true;
+				}
+				if (field[i].value == 759)
+				{
+					document.getElementById('smn_precio_ml_rf').disabled=true;
+				}
+				if (field[i].value == 760)
+				{
+					document.getElementById('pco_monto_ml').disabled=true;
+				}
+				if (field[i].value == 761)
+				{
+					document.getElementById('smn_moneda_rf').disabled=true;
+				}
+				if (field[i].value == 762)
+				{
+					document.getElementById('smn_tasa_rf').disabled=true;
+				}
+				if (field[i].value == 763)
+				{
+					document.getElementById('smn_precio_ma').disabled=true;
+				}
+				if (field[i].value == 764)
+				{
+					document.getElementById('smn_monto_ma').disabled=true;
+				}
+				if (field[i].value == 765)
+				{
+					document.getElementById('pco_imprime').disabled=true;
+				}
+				if (field[i].value == 766)
+				{
+					document.getElementById('smn_grupo_titulo_impresion_rf').disabled=true;
+				}
+				if (field[i].value == 767)
+				{
+					document.getElementById('smn_tipo_gasto_rf').disabled=true;
+				}
+				if (field[i].value == 768)
+				{
+					document.getElementById('smn_sub_tipo_gasto_rf').disabled=true;
+				}
+				if (field[i].value == 769)
+				{
+					document.getElementById('pco_estatus').disabled=true;
+				}
+
+				
+	   			//fecha desde y hasta
+	   			if (field[i].value == 770) 
+	   			{
+	   				document.getElementById("fdesde").disabled=true;
+	   				document.getElementById("fhasta").disabled=true;
+	   			}
+			}
+		}
+		
+		function enableField(field_id, checked)
+		{
+			if (checked)
+			{
+								if (field_id == 745)
+				{
+					document.getElementById('smn_pedido_detalle_id_name').disabled=false;
+				}
+				if (field_id == 746)
+				{
+					document.getElementById('smn_pedido_detalle_id').disabled=false;
+				}
+				if (field_id == 747)
+				{
+					document.getElementById('smn_mov_caja_detalle_id').disabled=false;
+				}
+				if (field_id == 748)
+				{
+					document.getElementById('smn_ingreso_rf').disabled=false;
+				}
+				if (field_id == 749)
+				{
+					document.getElementById('smn_grupo_componente_rf').disabled=false;
+				}
+				if (field_id == 750)
+				{
+					document.getElementById('pco_tipo_componente').disabled=false;
+				}
+				if (field_id == 751)
+				{
+					document.getElementById('smn_componente_rf').disabled=false;
+				}
+				if (field_id == 752)
+				{
+					document.getElementById('pco_es_prestador_servicio').disabled=false;
+				}
+				if (field_id == 753)
+				{
+					document.getElementById('smn_clase_auxiliar_rf').disabled=false;
+				}
+				if (field_id == 754)
+				{
+					document.getElementById('smn_auxiliar_rf').disabled=false;
+				}
+				if (field_id == 755)
+				{
+					document.getElementById('pdo_naturaleza').disabled=false;
+				}
+				if (field_id == 756)
+				{
+					document.getElementById('smn_item_rf').disabled=false;
+				}
+				if (field_id == 757)
+				{
+					document.getElementById('smn_servicio_rf').disabled=false;
+				}
+				if (field_id == 758)
+				{
+					document.getElementById('pco_cantidad').disabled=false;
+				}
+				if (field_id == 759)
+				{
+					document.getElementById('smn_precio_ml_rf').disabled=false;
+				}
+				if (field_id == 760)
+				{
+					document.getElementById('pco_monto_ml').disabled=false;
+				}
+				if (field_id == 761)
+				{
+					document.getElementById('smn_moneda_rf').disabled=false;
+				}
+				if (field_id == 762)
+				{
+					document.getElementById('smn_tasa_rf').disabled=false;
+				}
+				if (field_id == 763)
+				{
+					document.getElementById('smn_precio_ma').disabled=false;
+				}
+				if (field_id == 764)
+				{
+					document.getElementById('smn_monto_ma').disabled=false;
+				}
+				if (field_id == 765)
+				{
+					document.getElementById('pco_imprime').disabled=false;
+				}
+				if (field_id == 766)
+				{
+					document.getElementById('smn_grupo_titulo_impresion_rf').disabled=false;
+				}
+				if (field_id == 767)
+				{
+					document.getElementById('smn_tipo_gasto_rf').disabled=false;
+				}
+				if (field_id == 768)
+				{
+					document.getElementById('smn_sub_tipo_gasto_rf').disabled=false;
+				}
+				if (field_id == 769)
+				{
+					document.getElementById('pco_estatus').disabled=false;
+				}
+
+				
+	   			//fecha desde y hasta
+	   			if (field_id == 770) 
+	   			{
+	   				document.getElementById("fdesde").disabled=false;
+	   				document.getElementById("fhasta").disabled=false;
+	   			}
+			}
+			else
+			{
+								if (field_id == 745)
+				{
+					document.getElementById('smn_pedido_detalle_id_name').disabled=true;
+				}
+				if (field_id == 746)
+				{
+					document.getElementById('smn_pedido_detalle_id').disabled=true;
+				}
+				if (field_id == 747)
+				{
+					document.getElementById('smn_mov_caja_detalle_id').disabled=true;
+				}
+				if (field_id == 748)
+				{
+					document.getElementById('smn_ingreso_rf').disabled=true;
+				}
+				if (field_id == 749)
+				{
+					document.getElementById('smn_grupo_componente_rf').disabled=true;
+				}
+				if (field_id == 750)
+				{
+					document.getElementById('pco_tipo_componente').disabled=true;
+				}
+				if (field_id == 751)
+				{
+					document.getElementById('smn_componente_rf').disabled=true;
+				}
+				if (field_id == 752)
+				{
+					document.getElementById('pco_es_prestador_servicio').disabled=true;
+				}
+				if (field_id == 753)
+				{
+					document.getElementById('smn_clase_auxiliar_rf').disabled=true;
+				}
+				if (field_id == 754)
+				{
+					document.getElementById('smn_auxiliar_rf').disabled=true;
+				}
+				if (field_id == 755)
+				{
+					document.getElementById('pdo_naturaleza').disabled=true;
+				}
+				if (field_id == 756)
+				{
+					document.getElementById('smn_item_rf').disabled=true;
+				}
+				if (field_id == 757)
+				{
+					document.getElementById('smn_servicio_rf').disabled=true;
+				}
+				if (field_id == 758)
+				{
+					document.getElementById('pco_cantidad').disabled=true;
+				}
+				if (field_id == 759)
+				{
+					document.getElementById('smn_precio_ml_rf').disabled=true;
+				}
+				if (field_id == 760)
+				{
+					document.getElementById('pco_monto_ml').disabled=true;
+				}
+				if (field_id == 761)
+				{
+					document.getElementById('smn_moneda_rf').disabled=true;
+				}
+				if (field_id == 762)
+				{
+					document.getElementById('smn_tasa_rf').disabled=true;
+				}
+				if (field_id == 763)
+				{
+					document.getElementById('smn_precio_ma').disabled=true;
+				}
+				if (field_id == 764)
+				{
+					document.getElementById('smn_monto_ma').disabled=true;
+				}
+				if (field_id == 765)
+				{
+					document.getElementById('pco_imprime').disabled=true;
+				}
+				if (field_id == 766)
+				{
+					document.getElementById('smn_grupo_titulo_impresion_rf').disabled=true;
+				}
+				if (field_id == 767)
+				{
+					document.getElementById('smn_tipo_gasto_rf').disabled=true;
+				}
+				if (field_id == 768)
+				{
+					document.getElementById('smn_sub_tipo_gasto_rf').disabled=true;
+				}
+				if (field_id == 769)
+				{
+					document.getElementById('pco_estatus').disabled=true;
+				}
+
+				
+	   			//fecha desde y hasta
+	   			if (field_id == 770) 
+	   			{
+	   				document.getElementById("fdesde").disabled=true;
+	   				document.getElementById("fhasta").disabled=true;
+	   			}				
+			}
+
+		}
+		
+		//configurar formulario para ingresar registro nuevo
+		function addNew()
+		{
+			document.getElementById("grabar").disabled=false;
+			clearForm("form1");
+			setFocusOnForm("form1");
+		}
+		
+		//mostrar la actualizacion de un registro
+		function insert()
+		{		
+				clearErrorMessages();
+				document.getElementById("grabar").disabled=true;
+				
+				var fields = getFormValuesToStore('form1');
+				
+//				//alert("${def:actionroot}/insert?cfg_descripcion=" + fields);
+				
+				//llamada Ajax...
+				return ajaxCall(httpMethod="POST", 
+								uri="${def:actionroot}/insert?cfg_descripcion=" + fields, 
+								divResponse=null, 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=null, 
+								onErrorFn=retryAddnewOrEdit);	
+		}
+		
+		//restaurar el formulario en caso de error
+		function retryAddnewOrEdit() {
+			document.getElementById("grabar").disabled=false;
+			setFocusOnForm("form1");		
+		}
+		
+		//ejecutar consulta
+		function loadConfiguration() {
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/cargar_config", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=null);
+		}
+		
+		//asignar configuración
+		var fields = '';
+		function setConfiguration(config) {
+			var cfg = config.split("|");
+			formElements = document.forms['form1'].elements;
+			for(var k = 0; k < cfg.length; k++) {
+				var variable = cfg[k].split("=");
+				var field = variable[0];
+				var value = variable[1];				
+				for (var i=formElements.length-1; i>=0; --i) 
+				{
+					if (formElements[i].name != "" && formElements[i].name == field && formElements[i].name != 'field_id')
+					{ 						
+						formElements[i].value = value;
+						if (formElements[i].value != null)
+						{
+							formElements[i].disabled = false;
+						}
+						break;
+					}
+					else
+					{						
+						//añade elementos radio y checkbox
+						if (formElements[i].type=="checkbox" || formElements[i].type=="radio")  
+						{
+							if (formElements[i].value != null)
+							{
+								if (formElements[i].value == value)
+								{
+									formElements[i].checked = 'true';
+									fields = fields + value + ";";
+									break;
+								}
+							}
+						}
+						
+					}
+				}
+			}
+			fields = fields.substring(0, fields.length - 1);
+		}
+		
+		//mostrar el detalle de un registro
+		function getDetail(id)
+		{
+//			//alert('Colocar su código aquí.')
+			
+			var uri = "${def:context}${def:actionroot}/detail/form?id=" + id ; //+ '&field_id=' + fields;
+			openDialog("dialog", uri, 650, 300);			
+		}
+
+</script>
+
+</body>
+
+</html>

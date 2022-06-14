@@ -1,0 +1,5 @@
+select * from smn_comercial.smn_ingredientes
+inner join smn_comercial.smn_catalogo_item_comercio on smn_comercial.smn_catalogo_item_comercio.smn_item_rf = smn_comercial.smn_ingredientes.smn_item_rf
+inner join smn_base.smn_item on smn_base.smn_item.smn_item_id = smn_comercial.smn_ingredientes.smn_item_rf
+
+	

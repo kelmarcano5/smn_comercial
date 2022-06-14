@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert" id='smn_auxiliar_id'>
+	<parameter id="id" type="integer" required="true" label="ID" maxlen="10" />
+	<parameter id="codigo_aux" type="varchar" required="true" label="CODIGO" maxlen="10" />
+	<parameter id="descripcion_aux" type="varchar" required="true" label="DESCRIPCION" maxlen="50" />
+	<parameter id="codigo_clase" type="varchar" required="true" label="NOMBRES" maxlen="50" />
+	<parameter id="descripcion_clase" type="varchar" required="true" label="APELLIDOS" maxlen="50" />
+</validator>

@@ -1,0 +1,5 @@
+select smn_comercial.smn_ingredientes.smn_ingredientes_id as smn_ingredientes_id, smn_base.smn_item.itm_nombre as item, smn_comercial.smn_ingredientes.igs_precio as precio from smn_comercial.smn_rel_detalle_ingrediente
+left outer join smn_comercial.smn_ingredientes on smn_comercial.smn_ingredientes.smn_ingredientes_id = smn_comercial.smn_rel_detalle_ingrediente.smn_ingredientes_id
+left outer join smn_comercial.smn_pedido_detalle on smn_comercial.smn_pedido_detalle.smn_pedido_detalle_id = smn_comercial.smn_rel_detalle_ingrediente.smn_pedido_detalle_id
+left outer join smn_base.smn_item on smn_base.smn_item.smn_item_id = smn_comercial.smn_ingredientes.smn_pedido_detalle_id
+where smn_comercial.smn_rel_detalle_ingrediente.smn_pedido_detalle_id=${fld:id}

@@ -1,0 +1,1 @@
+select ${seq:nextval@smn_entrega.seq_smn_solicitud_servicio_entregas_cabecera} as id

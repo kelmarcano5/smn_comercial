@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		${lbl:b_presupuesto}
+	</summary>
+
+	<log>false</log>
+	
+	<set-request-attribute id="progress" value="file:/WEB-INF/action/progress/progress.htm"/>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id='query-smn_documento_id.sql' source='sql' scope='transaction'/><recordset id='query-smn_entidades_rf.sql' source='sql' scope='transaction'/><recordset id='query-smn_sucursales_rf.sql' source='sql' scope='transaction'/><recordset id='query-smn_clase_auxiliar_rf.sql' source='sql' scope='transaction'/><recordset id='query-smn_auxiliar_rf.sql' source='sql' scope='transaction'/><recordset id='query-smn_clase_ord_rf.sql' source='sql' scope='transaction'/><recordset id='query-smn_auxiliar_ord_rf.sql' source='sql' scope='transaction'/><recordset id='query-smn_baremo_rf.sql' source='sql' scope='transaction'/><recordset id='query-smn_auxiliar_unidades_negocios_rf.sql' source='sql' scope='transaction'/><recordset id='query-smn_auxiliar_sucursales_rf.sql' source='sql' scope='transaction'/><recordset id='query-smn_auxiliar_areas_servicios_rf.sql' source='sql' scope='transaction'/><recordset id='query-smn_auxiliar_unidades_servicios_rf.sql' source='sql' scope='transaction'/><recordset id='query-smn_ordenes_medicas_id.sql' source='sql' scope='transaction'/><recordset id='query-smn_moneda_rf.sql' source='sql' scope='transaction'/>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<print mode='table' recordset='query-smn_documento_id.sql' tag='smn_documento_id_rows'/><print mode='table' recordset='query-smn_entidades_rf.sql' tag='smn_entidades_rf_rows'/><print mode='table' recordset='query-smn_sucursales_rf.sql' tag='smn_sucursales_rf_rows'/><print mode='table' recordset='query-smn_clase_auxiliar_rf.sql' tag='smn_clase_auxiliar_rf_rows'/><print mode='table' recordset='query-smn_auxiliar_rf.sql' tag='smn_auxiliar_rf_rows'/><print mode='table' recordset='query-smn_clase_ord_rf.sql' tag='smn_clase_ord_rf_rows'/><print mode='table' recordset='query-smn_auxiliar_ord_rf.sql' tag='smn_auxiliar_ord_rf_rows'/><print mode='table' recordset='query-smn_baremo_rf.sql' tag='smn_baremo_rf_rows'/><print mode='table' recordset='query-smn_auxiliar_unidades_negocios_rf.sql' tag='smn_auxiliar_unidades_negocios_rf_rows'/><print mode='table' recordset='query-smn_auxiliar_sucursales_rf.sql' tag='smn_auxiliar_sucursales_rf_rows'/><print mode='table' recordset='query-smn_auxiliar_areas_servicios_rf.sql' tag='smn_auxiliar_areas_servicios_rf_rows'/><print mode='table' recordset='query-smn_auxiliar_unidades_servicios_rf.sql' tag='smn_auxiliar_unidades_servicios_rf_rows'/><print mode='table' recordset='query-smn_ordenes_medicas_id.sql' tag='smn_ordenes_medicas_id_rows'/><print mode='table' recordset='query-smn_moneda_rf.sql' tag='smn_moneda_rf_rows'/>
+		<print mode="form" recordset="_request" /> 
+	</output>
+
+</config>

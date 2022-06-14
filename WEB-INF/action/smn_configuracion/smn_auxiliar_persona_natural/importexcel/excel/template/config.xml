@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnauxiliar.sql" source="session" scope="transaction" />
+		<recordset id='query-smnauxiliarcondfinanciera.sql' source='sql' scope='transaction' />
+	<recordset id='query-smncuentasbancarias.sql' source='sql' scope='transaction' />
+	<recordset id='query-smndireccion.sql' source='sql' scope='transaction' />
+	<recordset id='query-smnpaises.sql' source='sql' scope='transaction' />
+	<recordset id='query-smntipodocoficial.sql' source='sql' scope='transaction' />
+	<recordset id='query-smnunidadmedida.sql' source='sql' scope='transaction' />
+	<recordset id='query-smnunidadmedida.sql' source='sql' scope='transaction' />
+	<recordset id='query-smnunidadmedida.sql' source='sql' scope='transaction' />
+	<recordset id='query-smnunidadmedida.sql' source='sql' scope='transaction' />
+	<recordset id='query-smnunidadmedida.sql' source='sql' scope='transaction' />
+	<recordset id='query-smnunidadmedida.sql' source='sql' scope='transaction' />
+	
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_auxiliary_nature_person}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_auxiliary_nature_person}">
+				<col id='smn_clase_auxiliar_rf' label='${lbl:b_class_auxiliary}' />
+		<col id='aux_tipo_persona' label='${lbl:b_person_type}' />
+		<col id='aux_apellidos' label='${lbl:b_last_name}' />
+		<col id='aux_nombres' label='${lbl:b_first_name}' />
+		<col id='aux_tipo_doc_oficial_rf' label='${lbl:b_document_type_oficial}' />
+		<col id='aux_rif' label='${lbl:b_rif}' />
+		<col id='aux_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+		<sheet recordset='query-smnauxiliarcondfinanciera.sql' sheetname=''>
+		<col id='cfn_descripcion' label='${lbl:b_description}' />
+	</sheet>
+
+	<sheet recordset='query-smncuentasbancarias.sql' sheetname=''>
+		<col id='cba_nombre' label='${lbl:b_name}' />
+	</sheet>
+
+	<sheet recordset='query-smndireccion.sql' sheetname=''>
+		<col id='dir_descripcion' label='${lbl:b_description}' />
+	</sheet>
+
+	<sheet recordset='query-smnpaises.sql' sheetname=''>
+		<col id='pai_gentilicio' label='${lbl:}' />
+	</sheet>
+
+	<sheet recordset='query-smntipodocoficial.sql' sheetname=''>
+		<col id='tdo_descripcion' label='${lbl:b_description}' />
+	</sheet>
+
+	<sheet recordset='query-smnunidadmedida.sql' sheetname=''>
+		<col id='unm_descripcion' label='${lbl:b_description}' />
+	</sheet>
+
+	<sheet recordset='query-smnunidadmedida.sql' sheetname=''>
+		<col id='unm_descripcion as unm_descripcion2,' label='${lbl:b_description}' />
+	</sheet>
+
+	<sheet recordset='query-smnunidadmedida.sql' sheetname=''>
+		<col id='unm_descripcion as unm_descripcion2,' label='${lbl:b_description}' />
+	</sheet>
+
+	<sheet recordset='query-smnunidadmedida.sql' sheetname=''>
+		<col id='unm_descripcion as unm_descripcion2,' label='${lbl:b_description}' />
+	</sheet>
+
+	<sheet recordset='query-smnunidadmedida.sql' sheetname=''>
+		<col id='unm_descripcion as unm_descripcion2,' label='${lbl:b_description}' />
+	</sheet>
+
+	<sheet recordset='query-smnunidadmedida.sql' sheetname=''>
+		<col id='unm_descripcion as unm_descripcion2,' label='${lbl:b_description}' />
+	</sheet>
+
+
+	</excel>
+
+</config>

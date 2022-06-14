@@ -1,0 +1,1 @@
+select ${seq:nextval@smn_entrega.seq_smn_rol} as id 

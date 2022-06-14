@@ -1,0 +1,17 @@
+select
+		smn_comercial.smn_factura_bonificacion.smn_factura_bonificacion_id,
+	smn_comercial.smn_factura_detalle.smn_factura_detalle_id,
+	smn_comercial.smn_factura_detalle.fde_naturaleza as fde_naturaleza_pl0,
+	smn_comercial.smn_factura_bonificacion.smn_factura_detalle_id,
+	smn_comercial.smn_factura_bonificacion.smn_item_bonificar_rf,
+	smn_comercial.smn_factura_bonificacion.fbo_cantidad_origen,
+	smn_comercial.smn_factura_bonificacion.fbo_cantidad_bonificar,
+	smn_comercial.smn_factura_bonificacion.fbo_precio_original,
+	smn_comercial.smn_factura_bonificacion.fbo_monto,
+	smn_comercial.smn_factura_bonificacion.fbo_fecha_registro
+	
+from
+	smn_comercial.smn_factura_detalle,
+	smn_comercial.smn_factura_bonificacion
+where
+	smn_comercial.smn_factura_detalle.smn_factura_detalle_id=smn_comercial.smn_factura_bonificacion.smn_factura_detalle_id

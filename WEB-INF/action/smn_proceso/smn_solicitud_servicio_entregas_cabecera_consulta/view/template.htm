@@ -1,0 +1,74 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='2%'/>
+	<col width='2%'/>
+	<col width='2%'/>
+	<col width='2%'/>
+	<col width='2%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='12%'/>
+	<col width='8%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='5%'/>
+	<col width='9%'/>
+	<col width='6%'/>
+	<col width='14%'/>
+<!-- 	<col width='3%'/> -->
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="16" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th>AP</th>
+		<th>RE</th>
+		<th>PR</th>
+		<th>DE</th>
+		<th class='sortable' onclick='sortBy("documento", "numero_documento","query-smnsolicitudservicioentregascabecera.sql")'>Numero/${lbl:b_document}</th>
+		<th class='sortable' onclick='sortBy("comprador","query-smnsolicitudservicioentregascabecera.sql")'>Comprador</th>
+		<th class='sortable' onclick='sortBy("item","query-smnsolicitudservicioentregascabecera.sql")'>${lbl:b_item}</th>
+		<th class='sortable' onclick='sortBy("extras","query-smnsolicitudservicioentregascabecera.sql")'>Extras</th>
+		<th class='sortable' onclick='sortBy("requisitos","query-smnsolicitudservicioentregascabecera.sql")'>Requisitos</th>
+		<th class='sortable' onclick='sortBy("tiempo","query-smnsolicitudservicioentregascabecera.sql")'>Tiempo Preparacion</th>
+		<th class='sortable' onclick='sortBy("hora_inicio","query-smnsolicitudservicioentregascabecera.sql")'>Hora Inicio</th>
+		<th class='sortable' onclick='sortBy("cantidad","query-smnsolicitudservicioentregascabecera.sql")'>${lbl:b_quantity}</th>
+		<th class='sortable' onclick='sortBy("monto","query-smnsolicitudservicioentregascabecera.sql")'>${lbl:b_amount}</th>
+		<th class='sortable' onclick='sortBy("estatus_proceso","query-smnsolicitudservicioentregascabecera.sql")'>Estatus</th>
+		<th class='sortable' onclick='sortBy("sec_fecha_registro","query-smnsolicitudservicioentregascabecera.sql")'>${lbl:b_store_date}</th>
+	<!-- 	<th>PS</th> -->
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png" onclick="getDetail('${fld:smn_solicitud_servicio_entregas_cabecera_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/accept.png" onclick="aprobar('${fld:smn_solicitud_servicio_entregas_cabecera_id}')" title="Aprobar"></td>
+		<td><img src="${def:context}/images/reject.png" onclick="rechazar('${fld:smn_solicitud_servicio_entregas_cabecera_id}')" title="Rechazar"></td>
+		<td><img src="${def:context}/images/Preparacion.png" onclick="preparacion('${fld:smn_solicitud_servicio_entregas_cabecera_id}')" title="Procesar Preparacion"></td>
+		<td><img src="${def:context}/images/Despacho.png" onclick="despacho('${fld:smn_solicitud_servicio_entregas_cabecera_id}')" title="Procesar Despacho"></td>
+		<td align='left'>${fld:numero_documento} - ${fld:documento}</td>
+		<td>${fld:comprador}</td>
+		<td>${fld:item}</td>
+		<td>${fld:extras}</td>
+		<td>${fld:requisitos}</td>
+		<td>${fld:tiempo}</td>
+		<td>${fld:hora_inicio}</td>
+		<td>${fld:cantidad}</td>
+		<td>${fld:monto}</td>
+		<td align='left'>${fld:estatus_proceso}</td>
+		<td>${fld:fecha_registro@dd-MM-yyyy}</td>
+		<!-- <td><img src="${def:context}/images/view-list-details.png" onclick="pago('${fld:smn_solicitud_servicio_entregas_cabecera_id}','${fld:sec_origen}','${fld:sec_descripcion}','${fld:smn_documento_id1}','${fld:smn_forma_pago_rf1}')" title="${lbl:b_service_payment}"></td> -->
+	
+	</tr>
+	</rows>
+
+</table>

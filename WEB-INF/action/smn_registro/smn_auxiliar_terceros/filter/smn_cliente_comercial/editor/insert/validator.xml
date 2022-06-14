@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_clasificacion_cliente_id' type='integer' required='false' label='${lbl:b_clasificacion_cliente}' maxlen='10'/>
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='true' label='${lbl:b_auxiliary_classes}' maxlen='10'/>
+	<parameter id='smn_auxiliar_rf' type='integer' required='true' label='${lbl:b_auxiliary}' maxlen='10'/>
+	<parameter id='smn_clasificacion_abc_rf' type='integer' required='true' label='${lbl:b_abc_clasification}' maxlen='10'/>
+	<parameter id='smn_sector_economico_rf' type='integer' required='true' label='${lbl:b_economic_sectors}' maxlen='10'/>
+	<parameter id='cli_nacional_ext' type='varchar' required='true' label='${lbl:b_cliente_nacional_extranjero}' maxlen='1'/>
+	<parameter id='cli_vigencia' type='date' required='false' label='${lbl:b_validation_date}' maxlen='10'/>
+	<parameter id='cli_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+
+
+</validator>

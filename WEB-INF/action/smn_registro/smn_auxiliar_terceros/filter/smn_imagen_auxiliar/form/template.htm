@@ -1,0 +1,450 @@
+<!doctype html>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+
+<script type="text/javascript" src="${def:context}/action/script">
+</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="banner" id="encabezado_tabla">
+	${lbl:b_image_customer} <b><img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<form name="form1" onsubmit="return upload()" action="${def:context}${def:actionroot}/upload" 
+		method="POST" enctype="multipart/form-data" target="uploadFrame" style="width:500px;">
+
+<!-- titulo -->
+<h1 id="formTitle">Añadir registro</h1>
+
+<table>
+
+	<!--ancho de la columna de etiquetas-->
+	<col width="30%">
+
+	<!--campos-->
+		<tr>
+		<td>${lbl:b_auxiliary}*</td>
+		<td>
+			<select name="smn_auxiliar_rf" id="smn_auxiliar_rf" onchange="chgCombo(smn_auxiliar_rf.options[smn_auxiliar_rf.selectedIndex].text,'smn_auxiliar_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_auxiliar_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_auxiliar_rf_rows>
+			</select> 
+			<input id="smn_auxiliar_rf_name" name="smn_auxiliar_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_description}*</td>
+		<td>
+			<textarea id="cca_descripcion" name="cca_descripcion" cols="30" rows="3"></textarea>
+		</td>
+	</tr>
+
+	
+	<tr>
+		<td class="formlabel required">
+			Archivo:
+		</td>
+		<td>
+			<input id="file" type="file" name="file" size="30" onchange="setFileInfo('','','','')">
+		</td>
+	</tr>
+
+</table>
+
+	<!--botones-->
+	<input type="submit" value="Grabar" name="submit" id="grabar"/>
+	<input type="button" value="Cancelar" onclick="addNew()"/>
+
+	<!-- PK-->
+	<input type="hidden" name="id" value="" alt="numeric">
+	<!-- informacion del archivo temporal -->
+	<input type="hidden" name="_tempfile">
+	<input type="hidden" name="_filename">
+	<input type="hidden" name="_contenttype">
+	<input type="hidden" name="_filesize">
+	
+</form>
+
+<!-- filtro de busqueda -->
+<form style="width:500px;margin-top:10px;" onsubmit="return false;">
+	<table>
+		<col width="25%"/>
+		<tr>
+			<td style="vertical-align:middle;">Buscar por:</td>
+			<td>
+				<select name="campo" id="campo" size="1" style="font-size:9pt; width:150px;">
+				<option value="cca_descripcion">${lbl:b_description}</option>
+
+				</select>
+				<input id="valor" name="valor" type="text" size="20" maxlength="20" style="font-size:9pt; width:100px;">
+				<input type="submit" value="Buscar" style="font-size:9pt" onclick="search()">
+				<div id="validation_error" style="width:300px;display:none" class="errormsg"></div>
+			</td>
+		</tr>
+	</table>
+</form>
+
+
+<!--frame invisible para hacer el post del archivo-->
+<iframe name="uploadFrame" style="display:none">
+</iframe>
+
+<!--panel de respuesta AJAX para el grid paginado-->
+<div id="response" style="display: none; width: 100%" align="center"></div>
+
+<div id="picframe" class="dialogbox" style="border-radius:8px; left:-10000px; position:absolute" onmousedown="comienzoMovimiento(event, this.id);" onmouseover="this.style.cursor='move'">
+	<img src="${def:context}/images/close.png" onclick="closeImage()" title="Cerrar" style="cursor:pointer; float:right;margin-top:5px;margin-right:9px;">
+	<img id="blob" style="width:400px;margin-left:10px;margin-top:1px;margin-bottom:5px;" onload="openImage()">
+</div>
+	
+</body>
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	//inicializa cuando se carga la pagina
+	onload = function()
+	{
+		carga();
+		addNew(); //prepara formulario para ingresar nuevo registro 
+		search(); //mostrar registros en vista paginada
+		//alert("codigo: = "+'${fld:id2}');
+		document.getElementById("smn_auxiliar_rf").value='${fld:id2}';
+		document.getElementById("smn_auxiliar_rf").disabled="true";
+
+
+	} 
+	
+	
+	//ejecutar consulta y mostrar grid, si hay data viewPage() sera invocada automaticamente
+	function search()
+	{
+
+		var p1 = document.getElementById('campo').value;
+		var p2 = document.getElementById('valor').value;
+		
+		clearErrorMessages();
+		
+		var url = "${def:actionroot}/search";
+		
+		if (p1!= null && p2!= null)
+			url = "${def:actionroot}/search?" + p1 + "=" + p2 + "&id2=" + '${fld:id2}';
+		//determina si refresca y se para en la pagina actual o en la pagina 1
+		if (currentPage > 0) {
+			url = "${def:actionroot}/search?currentpage=" + currentPage;
+			
+			if (p1!= null && p2!= null)
+				url = "${def:actionroot}/search?currentpage=" + currentPage + "&" + p1 + "=" + p2 + "&id2=" + '${fld:id2}';
+		}
+
+		//llamada Ajax...
+		ajaxCall(httpMethod="GET", 
+						uri= url, 
+						divResponse="response", 
+						divProgress="status", 
+						formName=null, 
+						afterResponseFn=null, 
+						onErrorFn=null);
+	}
+
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+
+	//enviar POST del formulario
+	function upload()
+	{
+	
+		//determinar si es un insert
+		if (document.form1.id.value=="") {
+			if (document.form1.file.value=="") {
+				alertBox("Por favor seleccione un archivo.", "Continuar");
+				document.form1.file.focus();
+				return false;
+			}
+			if (document.form1._tempfile.value=="") {
+				document.form1.submit.disabled = true;
+				document.getElementById("status").style.display="";
+				return true;
+			} else {
+				save();
+				return false;
+			}		
+		} else {
+			//es un update, determinar si quieren actualizar tambien el blob
+			if (document.form1.file.value=="") {
+				save();
+				return false;
+			} else {
+				document.form1.submit.disabled = true;
+				document.getElementById("status").style.display="";				
+				return true;
+			}
+		}
+	
+	}
+	
+	//pone los valores del archivo cargado 
+	//en los controles del formulario, es llamada por el iframe escondido
+	function setFileInfo(tempFile, fileName, fileSize, contentType) {
+		document.form1._tempfile.value = tempFile;
+		document.form1._filename.value = fileName;
+		document.form1._filesize.value = fileSize;
+		document.form1._contenttype.value = contentType;
+	}
+
+	//traer la pagina N del grid
+	function viewPage()
+	{
+		var url = "${def:actionroot}/view";
+		gotoPage(url);
+	}	
+	
+	//grabar el formulario
+	function save()
+	{
+		var uri = "${def:actionroot}/insert"
+		if (document.form1.id.value!="") {
+			if (document.form1._tempfile.value=="")
+				uri = "${def:actionroot}/update"
+			else
+				uri = "${def:actionroot}/updateblob"
+		}
+				
+		ajaxCall(httpMethod="POST", 
+						uri, 
+						divResponse=null, 
+						divProgress="status", 
+						formName="form1", 
+						afterResponseFn=null, 
+						onErrorFn=retryAddnewOrEdit);	 
+	}
+
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.form1.submit.disabled=false;
+		setFocusOnForm("form1");		
+	}
+
+	function addNew() {
+		document.getElementById("formTitle").innerHTML = "Añadir registro";
+		clearErrorMessages();
+		document.form1.submit.disabled = false;
+		document.form1.reset();
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+
+	//funcion de callback del iframe cuando no carga correctamente el documento
+	function uploadError(msg)
+	{
+		document.getElementById("status").style.display="none";	
+		document.form1.submit.disabled = false;
+		alertBox(msg, "Continuar");
+	}
+
+	//editar registro en formulario
+	function edit(id)
+	{
+		clearErrorMessages();
+
+		//llamada Ajax...
+		ajaxCall(httpMethod="GET", 
+						uri="${def:actionroot}/edit?id=" + id , 
+						divResponse=null, 
+						divProgress="status", 
+						formName=null, 
+						afterResponseFn=null, 
+						onErrorFn=null);	
+	}
+	
+	function deleteRecord(id) {
+		alertBox("¿Desea borrar este registro de la base de datos?", "Eliminar", "Cancelar", "deleteRecordOK(" + id + ")")		
+	}
+	
+	//eliminar un registro
+	function deleteRecordOK(id) 
+	{
+		//llamada Ajax...
+		ajaxCall(httpMethod="GET", 
+						uri="${def:actionroot}/delete?id=" + id,
+						divResponse=null, 
+						divProgress="status", 
+						formName=null, 
+						afterResponseFn=null, 
+						onErrorFn=null);	
+						
+	}
+	
+	//invoca un popup para descargar los documentos
+	function downloadBlob(id)
+	{
+		var url = "${def:context}${def:actionroot}/download?id=" + id;
+		window.location = url;
+	}
+	
+	//invoca la generacion de un PDF en un popup
+	function openPDF()
+	{
+		var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+		var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+		var w = window.open(url, null, features);
+	}
+
+	//invoca la generacion de un Excel en un popup
+	function openExcel()
+	{
+		var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+		var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+		var w = window.open(url, null, features);
+	}
+	
+	//carga la imagen en un div oculto
+	function getImage(id, contentType) {
+		var url = "${def:context}${def:actionroot}/getblob?id=" + id;
+		if (contentType.indexOf("image") < 0) {
+			url = "${def:context}${def:actionroot}/download?id=" + id;
+			window.location = url;
+		} else {
+			var progress = document.getElementById("status");
+			if (progress!=null)
+				progress.style.display='';
+			document.getElementById("blob").src=url + '&random=' + Math.random();
+		}
+	}
+	
+	//abrir imagen en un div con drag and drop
+	function openImage() {
+		var height = document.getElementById("blob").height;
+		var width = document.getElementById("blob").width;
+		var boxdiv = document.getElementById("picframe");
+		
+		var progress = document.getElementById("status");
+		if (progress!=null)
+			progress.style.display='none';
+		
+		boxdiv.style.position = 'absolute';
+		boxdiv.style.width = (width + 20) + 'px';
+		boxdiv.style.height = (height + 30) + 'px';
+		boxdiv.style.backgroundColor = 'white';
+		boxdiv.style.display = '';
+		
+		if (boxdiv.style.left < '0px') {
+			boxdiv.style.top = (pageHeight() - height) / 2 + 'px';
+			boxdiv.style.left = (pageWidth() - width) / 2 + 'px';
+		}
+	}
+	
+	//cerrar div donde se encuentra la imagen
+	function closeImage()
+	{
+		var boxdiv = document.getElementById("picframe");
+		boxdiv.style.position = 'absolute';
+		boxdiv.style.left = -10000 + 'px';
+	}
+	
+	/*
+	* Inicio funciones para drag and drop de un DIV
+	*/
+	function carga()
+	{
+	    posicion=0;
+	   
+	    // IE
+	    if(navigator.userAgent.indexOf("MSIE")>=0) navegador=0;
+	    // Otros
+	    else navegador=1;
+	}
+	 
+	function evitaEventos(event)
+	{
+	    // Funcion que evita que se ejecuten eventos adicionales
+	    if(navegador==0)
+	    {
+	        window.event.cancelBubble=true;
+	        window.event.returnValue=false;
+	    }
+	    if(navegador==1) event.preventDefault();
+	}
+	 
+	function comienzoMovimiento(event, id)
+	{
+	    elMovimiento=document.getElementById(id);
+	   
+	     // Obtengo la posicion del cursor
+	    if(navegador==0)
+	     {
+	        cursorComienzoX=window.event.clientX+document.documentElement.scrollLeft+document.body.scrollLeft;
+	        cursorComienzoY=window.event.clientY+document.documentElement.scrollTop+document.body.scrollTop;
+	 
+	        document.attachEvent("onmousemove", enMovimiento);
+	        document.attachEvent("onmouseup", finMovimiento);
+	    }
+	    if(navegador==1)
+	    {   
+	        cursorComienzoX=event.clientX+window.scrollX;
+	        cursorComienzoY=event.clientY+window.scrollY;
+	       
+	        document.addEventListener("mousemove", enMovimiento, true);
+	        document.addEventListener("mouseup", finMovimiento, true);
+	    }
+	   
+	    elComienzoX=parseInt(elMovimiento.style.left);
+	    elComienzoY=parseInt(elMovimiento.style.top);
+	    // Actualizo el posicion del elemento
+	    elMovimiento.style.zIndex=++posicion;
+	   
+	    evitaEventos(event);
+	}
+	 
+	function enMovimiento(event)
+	{ 
+	    var xActual, yActual;
+	    if(navegador==0)
+	    {   
+	        xActual=window.event.clientX+document.documentElement.scrollLeft+document.body.scrollLeft;
+	        yActual=window.event.clientY+document.documentElement.scrollTop+document.body.scrollTop;
+	    } 
+	    if(navegador==1)
+	    {
+	        xActual=event.clientX+window.scrollX;
+	        yActual=event.clientY+window.scrollY;
+	    }
+	   
+	    elMovimiento.style.left=(elComienzoX+xActual-cursorComienzoX)+"px";
+	    elMovimiento.style.top=(elComienzoY+yActual-cursorComienzoY)+"px";
+	 
+	    evitaEventos(event);
+	}
+	 
+	function finMovimiento(event)
+	{
+	    if(navegador==0)
+	    {   
+	        document.detachEvent("onmousemove", enMovimiento);
+	        document.detachEvent("onmouseup", finMovimiento);
+	    }
+	    if(navegador==1)
+	    {
+	        document.removeEventListener("mousemove", enMovimiento, true);
+	        document.removeEventListener("mouseup", finMovimiento, true);
+	    }
+	}
+	/*
+	* Fin de funciones para drag and drop de un DIV
+	*/
+</script>
+
+</html>

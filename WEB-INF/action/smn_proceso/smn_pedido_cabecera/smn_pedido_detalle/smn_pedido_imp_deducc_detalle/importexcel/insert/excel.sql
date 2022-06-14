@@ -1,0 +1,34 @@
+INSERT INTO smn_comercial.smn_pedido_imp_deducc_detalle
+(
+	smn_pedido_imp_deducc_detalle_id,
+	smn_pedido_detalle_id,
+	smn_codigos_impuestos_rf,
+	pid_porcentaje_impuesto,
+	pid_monto_sustraendo,
+	pid_monto_impuesto,
+	smn_moneda_rf,
+	smn_tasa_rf,
+	pid_monto_imp_moneda_alterna,
+	smn_descuentos_retenciones_rf,
+	pid_porcentaje_descuento_retencion,
+	pid_monto_descuento_retencion,
+	pid_monto_desc_moneda_alterna,
+	pid_fecha_registro
+)
+VALUES
+(
+	${seq:nextval@smn_comercial.seq_smn_pedido_imp_deducc_detalle},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	{d '${def:date}'}
+)

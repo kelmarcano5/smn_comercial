@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_pedido_detalle_id' type='integer' required='true' label='${lbl:b_header_order_detail}' maxlen='10'/>
+	<parameter id='smn_codigos_impuestos_rf' type='integer' required='false' label='${lbl:b_code_tax}' maxlen='10'/>
+	<parameter id='pim_monto_base_ml' type='double' required='false' label='${lbl:b_amount_base}' maxlen='30'/>
+	<parameter id='pim_porcentaje_impuesto' type='double' required='false' label='${lbl:b_percentaje_tax}' maxlen='10'/>
+	<parameter id='pim_monto_sustraendo' type='double' required='false' label='${lbl:b_amount_sustrain}' maxlen='30'/>
+	<parameter id='pim_monto_impuesto' type='double' required='false' label='${lbl:b_amount_tax}' maxlen='30'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='pim_monto_impuesto_ma' type='double' required='false' label='${lbl:b_amount_tax_ma}' maxlen='30'/>
+	<parameter id='smn_tipo_impuesto_rf' type='integer' required='false' label='Tipo Impuesto' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='ID' maxlen='10'/>
+
+
+</validator>

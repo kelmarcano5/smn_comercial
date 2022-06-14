@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_documento_id_name' type='varchar' required='true' label='${lbl:b_document}'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='smn_grupo_titulo_impresion_rf' type='integer' required='true' label='${lbl:b_group_tittle_print}' maxlen='10'/>
+	<parameter id='rdi_secuencia_impresion' type='integer' required='true' label='${lbl:b_secuencia}' maxlen='10'/>
+
+
+</validator>

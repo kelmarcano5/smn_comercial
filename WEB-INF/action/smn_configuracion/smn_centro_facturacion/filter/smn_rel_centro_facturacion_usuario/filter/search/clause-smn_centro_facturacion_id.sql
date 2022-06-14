@@ -1,0 +1,2 @@
+ and
+ 	smn_comercial.smn_rel_centro_facturacion_usuario.smn_centro_facturacion_id=${fld:smn_centro_facturacion_id}

@@ -1,0 +1,46 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='25%'/>
+	<col width='25%'/>
+	<col width='25%'/>
+	<col width='25%'/>
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="8" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("ors_descripcion_pl0","query-smnordencabdetservicio.sql")'>${lbl:b_service_order}</th>
+		<th class='sortable' onclick='sortBy("ocd_observacion","query-smnordencabdetservicio.sql")'>${lbl:b_observations}</th>
+		<th class='sortable' onclick='sortBy("ocd_fecha_registro","query-smnordencabdetservicio.sql")'>${lbl:b_store_date}</th>
+		<th class='sortable' onclick='sortBy("ocd_estatus","query-smnordencabdetservicio.sql")'>${lbl:b_estatus}</th>
+		<th>DT</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_orden_cab_det_servicio_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_orden_cab_det_servicio_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_orden_cab_det_servicio_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:ors_descripcion_pl0}</td>
+		<td align='left'>${fld:ocd_observacion}</td>
+		<td>${fld:ocd_fecha_registro@dd-MM-yyyy}</td>
+		<td align='left'>${fld:ocd_estatus}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="detalle('${fld:smn_orden_cab_det_servicio_id}')" title="${lbl:b_service_order_det}"></td>
+	</tr>
+	</rows>
+
+</table>

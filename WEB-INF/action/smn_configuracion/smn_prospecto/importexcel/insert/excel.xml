@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='pro_codigo' type='varchar' required='true' maxlen='10'/>
+	<parameter id='pro_descripcion' type='varchar' required='true' maxlen='100'/>
+	<parameter id='pro_email' type='varchar' required='true' maxlen='100'/>
+	<parameter id='pro_movil' type='varchar' required='true' maxlen='100'/>
+	<parameter id='pro_fijo' type='varchar' required='true' maxlen='100'/>
+	<parameter id='pro_referido' type='varchar' required='true' maxlen='100'/>
+	<parameter id='pro_estatus' type='varchar' required='true' maxlen='2'/>
+	<parameter id='pro_vigencia' type='date' required='true' maxlen='10'/>
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='pro_codigo'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='pro_descripcion'/>
+
+
+</validator>

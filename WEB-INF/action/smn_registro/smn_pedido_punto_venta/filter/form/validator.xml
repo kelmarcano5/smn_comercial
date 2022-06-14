@@ -1,0 +1,4 @@
+ <validator onerror="/action/error/validation/alert" id="smn_detalle_id">
+ 	<parameter id="entidades" type="integer" required="true" label="ID" maxlen="10" />
+ 	<parameter id="centro_facturacion" type="integer" required="false" label="ID" maxlen="10" />
+ </validator>

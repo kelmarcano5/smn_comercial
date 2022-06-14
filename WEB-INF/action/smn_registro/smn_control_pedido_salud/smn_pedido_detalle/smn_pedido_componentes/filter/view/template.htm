@@ -1,0 +1,63 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="13" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("codigo_comp","query-smnpedidocomponentes.sql")'>Cod. Componente</th>
+		<th class='sortable' onclick='sortBy("descripcion_comp","query-smnpedidocomponentes.sql")'>Descrip. Componente</th>
+		<th class='sortable' onclick='sortBy("tipo_componentes","query-smnpedidocomponentes.sql")'>Tipo. Componente</th>
+		<th class='sortable' onclick='sortBy("cmp_forma_calculo","query-smnpedidocomponentes.sql")'>Forma Calculo</th>
+		<th class='sortable' onclick='sortBy("smn_prestador_servicio_rf","query-smnpedidocomponentes.sql")'>Prestador de Servicio</th>
+		<th class='sortable' onclick='sortBy("smn_precio_ml_rf","query-smnpedidocomponentes.sql")'>${lbl:b_price}</th>
+		<th class='sortable' onclick='sortBy("pco_monto_ml","query-smnpedidocomponentes.sql")'>${lbl:b_amount}</th>
+		<th class='sortable' onclick='sortBy("smn_precio_ma","query-smnpedidocomponentes.sql")'>${lbl:b_price} MA</th>
+		<th class='sortable' onclick='sortBy("smn_monto_ma","query-smnpedidocomponentes.sql")'>${lbl:b_amount} MA</th>
+		<th class='sortable' onclick='sortBy("pco_estatus_combo","query-smnpedidocomponentes.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("pco_fecha_registro","query-smnpedidocomponentes.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_pedido_componentes_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_pedido_componentes_id}')" title="${lbl:b_edit_button}"></td>
+		<td align='center'>${fld:codigo_comp}</td>
+		<td align='left'>${fld:descripcion_comp}</td>
+		<td align='center'>${fld:tipo_componentes}</td>
+		<td align='left'>${fld:cmp_forma_calculo}</td>
+		<td align='left'>${fld:smn_prestador_servicio_rf}</td>
+		<td align='right'>${fld:smn_precio_ml_rf@#,###,##0.00}</td>
+		<td align='right'>${fld:pco_monto_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:smn_precio_ma@#,###,##0.00}</td>
+		<td align='right'>${fld:smn_monto_ma@#,###,##0.00}</td>
+		<td align='left'>${fld:pco_estatus_combo}</td>
+		<td>${fld:pco_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

@@ -1,0 +1,33 @@
+Insert into smn_comercial.smn_factura_descuentos_retenciones
+(
+  smn_factura_descuentos_retenciones_id,
+  smn_factura_detalle_id,
+  smn_descuentos_retenciones_rf,
+  fdr_monto_base_ml,
+  fdr_porcentaje_descuento,
+  fdr_monto_descuento_ml,
+  smn_moneda_rf,
+  smn_tasa_rf,
+  fdr_monto_descuento_ma,
+  fdr_idioma,
+  fdr_usuario,
+  fdr_fecha_registro,
+  fdr_hora
+  )
+  Values
+  (
+   ${seq:nextval@smn_comercial.seq_smn_factura_descuentos_retenciones}
+   ${fld:smn_factura_detalle_id},
+   ${fld:smn_descuentos_retenciones_rf},
+   ${fld:pim_monto_base_ml}),
+   ${fld:pim_porcentaje_retencion},
+   ${fld:pim_monto_descuento_retencion},
+   ${fld:smn_moneda_rf},
+   ${fld:smn_tasa_rf},
+   ${fld:pim_monto_descuento_ma},
+  '${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+  )
+  

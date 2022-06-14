@@ -1,0 +1,1 @@
+select smn_seguridad.s_user.userlogin as id, smn_seguridad.s_user.lname ||' - '|| fname as item from smn_seguridad.s_user

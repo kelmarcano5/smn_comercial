@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+	<parameter id="id" type="varchar" required="true" label="ID ${lbl:b_area_service}" />
+	<parameter id="tipo" type="varchar" required="false" label="tipo de documento" />
+	<parameter id="gen_ord_desp" type="varchar" required="false" label="genera orden de despacho" />
+	<parameter id="gen_fac" type="varchar" required="false" label="genera factura" />
+	<parameter id="req_monalt" type="varchar" required="false" label="requiere moneda alterna" />
+	<parameter id="req_fven" type="varchar" required="false" label="requiere fecha de vencimiento" />
+	<parameter id="req_vend" type="varchar" required="false" label="requiere vendedor" />
+	<parameter id="req_tiem_entrega" type="varchar" required="false" label="tiempo de entrega" />
+	<parameter id="tipo_mov" type="varchar" required="false" label="tipo de movimiento" />
+	<parameter id="usa_anexo" type="varchar" required="false" label="usa anexo" />
+	<parameter id="usa_bonific" type="varchar" required="false" label="usa bonificacion" />
+	<parameter id="usa_descuento" type="varchar" required="false" label="usa descuento" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	<parameter id="entrega_por_orden" type="varchar" required="false" label="Entrega por orden" />
+>>>>>>> a5898d36b06ae8eb52b4f79d47345249ded34511
+=======
+	<parameter id="entrega_por_orden" type="varchar" required="false" label="Entrega por orden" />
+>>>>>>> a5898d36b06ae8eb52b4f79d47345249ded34511
+</validator>

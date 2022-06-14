@@ -1,0 +1,1257 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/select2.min.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script"></script>
+	<script type="text/javascript" src="${def:context}/action/jquery"></script>
+	<script type="text/javascript" src="${def:context}/action/select2"></script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	${lbl:b_auxiliary_nature_person_pacient}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+	<tr >
+		<td style="display:none">${lbl:b_nature_auxiliary}*</td>
+		<td>
+			<select style="display:none" name="smn_naturaleza_auxiliar_rf" id="smn_naturaleza_auxiliar_rf" onchange="chgCombo(smn_naturaleza_auxiliar_rf.options[smn_naturaleza_auxiliar_rf.selectedIndex].text,'smn_naturaleza_auxiliar_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_naturaleza_auxiliar_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_naturaleza_auxiliar_rf_rows>
+			</select> 
+			<input id="smn_naturaleza_auxiliar_rf_name" name="smn_naturaleza_auxiliar_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_class_auxiliary}*</td>
+		<td>
+			<select name="smn_clase_auxiliar_rf" id="smn_clase_auxiliar_rf" onchange="chgCombo(smn_clase_auxiliar_rf.options[smn_clase_auxiliar_rf.selectedIndex].text,'smn_clase_auxiliar_rf_name');">
+				<smn_clase_auxiliar_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_clase_auxiliar_rf_rows>
+			</select> 
+			<input id="smn_clase_auxiliar_rf_name" name="smn_clase_auxiliar_rf_name" type="hidden">
+		</td>
+		<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td style="display:none">
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="claseauxiliar()" title="${lbl:b_class_auxiliary}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>
+	</tr>
+		<tr style="display:none">
+			<td  style="display:none">${lbl:b_person_type}*</td>
+			<td  style="display:none">
+				<select name="aux_tipo_persona" id="aux_tipo_persona">
+				<option value="PJ">${lbl:b_legal_person_value}</option>
+				<option value="PN">${lbl:b_natural_person_value}</option>
+				<option value="GO">${lbl:b_government_person}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_document_type_oficial}</td>
+			<td>
+				<select name="aux_tipo_doc_oficial_rf" id="aux_tipo_doc_oficial_rf" onchange="chgCombo(aux_tipo_doc_oficial_rf.options[aux_tipo_doc_oficial_rf.selectedIndex].text,'aux_tipo_doc_oficial_rf_name');">
+					<option value="">[Cualquiera]</option>
+					<aux_tipo_doc_oficial_rf_rows>
+					<option value="${fld:id}">${fld:item}</option>
+
+					</aux_tipo_doc_oficial_rf_rows>
+				</select> 
+				<input id="aux_tipo_doc_oficial_rf_name" name="aux_tipo_doc_oficial_rf_name" type="hidden">
+			</td>
+			<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+			<td style="display:none">
+				<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="tipodoc()" title="${lbl:b_document_type_oficial}" >
+			</td>
+			<td>
+				&nbsp;&nbsp;
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_code}</td>
+			<td>
+				<input id="aux_codigo" name="aux_codigo" type="text" maxlength="16">
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_description}</td>
+			<td>
+				<input id="aux_descripcion" name="aux_descripcion" type="text" maxlength="64" >
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_last_name}</td>
+			<td>
+				<input id="aux_apellidos" name="aux_apellidos" type="text" maxlength="64" onchange="setearcedulaencodigo();" onkeypress="return soloLetras(event)">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_first_name}</td>
+			<td>
+				<input id="aux_nombres" name="aux_nombres" type="text" maxlength="64" onkeypress="return soloLetras(event)">
+			</td>
+		</tr>
+	
+		<tr>
+			<td>${lbl:b_document_number_oficial}</td>
+			<td>
+				<input id="aux_num_doc_oficial" name="aux_num_doc_oficial" type="text" maxlength="12" onchange="mostrarValor(this.value);" disabled="false">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_rif}</td>
+			<td>
+				<input id="aux_rif" name="aux_rif" type="text" maxlength="16" >
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_sex}</td>
+			<td>
+				<select name="aux_sexo" id="aux_sexo">
+				<option value="MA">${lbl:b_male}</option>
+				<option value="FE">${lbl:b_female}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_civil_status}</td>
+			<td>
+				<select name="aux_estado_civil" id="aux_estado_civil">
+				<option value="SO">${lbl:b_single}</option>
+				<option value="CA">${lbl:b_married}</option>
+				<option value="VI">${lbl:b_widow}</option>
+				<option value="DI">${lbl:b_divorced}</option>
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>Fecha de Nacimiento</td>
+			<td>
+				<input id="aux_fecha_nac" name="aux_fecha_nac" type="text" class="date" maxlength="10">
+				<img src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('aux_fecha_nac')">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_birth_place}</td>
+			<td>
+				<input id="aux_lugar_nac" name="aux_lugar_nac" type="text" maxlength="64" >
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_address}</td>
+		<td>
+			<select name="aux_direccion_rf" id="aux_direccion_rf" onchange="chgCombo(aux_direccion_rf.options[aux_direccion_rf.selectedIndex].text,'aux_direccion_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<aux_direccion_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</aux_direccion_rf_rows>
+			</select> 
+			<input id="aux_direccion_rf_name" name="aux_direccion_rf_name" type="hidden">
+		</td>
+			<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="direccion()" title="${lbl:b_address}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>
+	</tr>
+	<tr style="display:none">
+		<td>${lbl:b_citizenship}</td>
+		<td>
+			<select name="aux_nacionalidad_rf" id="aux_nacionalidad_rf" onchange="chgCombo(aux_nacionalidad_rf.options[aux_nacionalidad_rf.selectedIndex].text,'aux_nacionalidad_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<aux_nacionalidad_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</aux_nacionalidad_rf_rows>
+			</select> 
+			<input id="aux_nacionalidad_rf_name" name="aux_nacionalidad_rf_name" type="hidden">
+		</td>
+				<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="nacionalidad()" title="${lbl:b_citizenship}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_nationalized}</td>
+		<td>
+			<select name="aux_nacionalizado" id="aux_nacionalizado">
+				<option value="NO">${lbl:b_not}</option>
+				<option value="SI">${lbl:b_yes}</option>
+			</select> 
+		</td>
+	</tr>
+	<tr style="display:none">
+		<td>${lbl:b_number_history}</td>
+		<td>
+			<input id="aux_numero_historia" name="aux_numero_historia" type="text" maxlength="10" >
+		</td>
+	</tr>
+	<tr style="display:none">
+		<td>${lbl:b_nationalization_date_gazette}</td>
+		<td>
+			<input id="aux_fecha_gaceta_nac" name="aux_fecha_gaceta_nac" type="text" class="date" maxlength="10">
+			<img src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('aux_fecha_gaceta_nac')">
+		</td>
+	</tr>
+	<tr style="display:none">
+		<td>${lbl:b_nationalization_gazette}</td>
+		<td>
+			<input id="aux_num_gaceta" name="aux_num_gaceta" type="text" maxlength="10" class="numeric">
+		</td>
+	</tr>
+
+	<tr style="display:none">
+		<td>${lbl:b_conditional_financial}</td>
+		<td style="display:none">
+			<select name="aux_condicion_financiera_rf" id="aux_condicion_financiera_rf" onchange="chgCombo(aux_condicion_financiera_rf.options[aux_condicion_financiera_rf.selectedIndex].text,'aux_condicion_financiera_rf_name');">
+				<option value="0">[Cualquiera]</option>
+				<aux_condicion_financiera_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</aux_condicion_financiera_rf_rows>
+			</select> 
+			<input id="aux_condicion_financiera_rf_name" name="aux_condicion_financiera_rf_name" type="hidden">
+		</td>
+			<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="condicionfinanciera()" title="${lbl:b_conditional_financial}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>
+	</tr>
+	<tr style="display:none">
+		<td>${lbl:b_bank_account_number}</td>
+		<td style="display:none">
+			<select name="aux_cuenta_bancaria_rf" id="aux_cuenta_bancaria_rf" onchange="chgCombo(aux_cuenta_bancaria_rf.options[aux_cuenta_bancaria_rf.selectedIndex].text,'aux_cuenta_bancaria_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<aux_cuenta_bancaria_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</aux_cuenta_bancaria_rf_rows>
+			</select> 
+			<input id="aux_cuenta_bancaria_rf_name" name="aux_cuenta_bancaria_rf_name" type="hidden">
+		</td>
+			<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="cuentabancaria()" title="${lbl:b_bank_account_number}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>
+	</tr>
+	<tr style="display:none">
+		<td>${lbl:b_contact_person}</td>
+		<td style="display:none">
+			<input id="aux_persona_contacto" name="aux_persona_contacto" type="text" maxlength="48" >
+		</td>
+	</tr>
+	<tr id="peso">
+		<td>${lbl:b_weight}</td>
+			<td>
+				<input id="aux_peso" name="aux_peso" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr style="display:none">
+		<td>${lbl:b_measurement_unit_weight}</td>
+		<td>
+			<select name="aux_unidad_med_peso_rf" id="aux_unidad_med_peso_rf" onchange="chgCombo(aux_unidad_med_peso_rf.options[aux_unidad_med_peso_rf.selectedIndex].text,'aux_unidad_med_peso_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<aux_unidad_med_peso_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</aux_unidad_med_peso_rf_rows>
+			</select> 
+			<input id="aux_unidad_med_peso_rf_name" name="aux_unidad_med_peso_rf_name" type="hidden">
+		</td>
+		<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="unidadmedida()" title="${lbl:b_measurement_unit_weight}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>
+	</tr>
+		<!--se agregaron campos nuevo de manera manual hasta lateraly ajuste el 09112016-->
+	<tr style="display:none">
+		<td>${lbl:b_height}</td>
+			<td>
+				<input id="aux_estatura" name="aux_estatura" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr style="display:none">
+		<td>${lbl:b_measurement_unit_height}</td>
+		<td>
+			<select name="aux_unidad_med_estatura_rf" id="aux_unidad_med_estatura_rf" onchange="chgCombo(aux_unidad_med_estatura_rf.options[aux_unidad_med_estatura_rf.selectedIndex].text,'aux_unidad_med_estatura_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<aux_unidad_med_estatura_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</aux_unidad_med_estatura_rf_rows>
+			</select> 
+			<input id="aux_unidad_med_estatura_rf_name" name="aux_unidad_med_estatura_rf_name" type="hidden">
+		</td>
+		<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="unidadmedida()" title="${lbl:b_measurement_unit_height}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>
+	</tr>
+	<tr id="lateralidad">
+		<td>${lbl:b_lateraly}</td>
+		<td>
+			<select name="aux_lateralidad" id="aux_lateralidad">
+			<option value="D">${lbl:b_right}</option>
+			<option value="I">${lbl:b_left}</option>
+
+			</select> 
+	</td>
+		</tr>
+			<tr style="display:none">
+			<td>${lbl:b_shirt_size}</td>
+			<td>
+				<input id="aux_talla_camisa" name="aux_talla_camisa" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr style="display:none">
+		<td>${lbl:b_measurement_unit_shirt}</td>
+		<td>
+			<select name="aux_unidad_med_camisa_rf" id="aux_unidad_med_camisa_rf" onchange="chgCombo(aux_unidad_med_camisa_rf.options[aux_unidad_med_camisa_rf.selectedIndex].text,'aux_unidad_med_camisa_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<aux_unidad_med_camisa_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</aux_unidad_med_camisa_rf_rows>
+			</select> 
+			<input id="aux_unidad_med_camisa_rf_name" name="aux_unidad_med_camisa_rf_name" type="hidden">
+		</td>
+		<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="unidadmedida()" title="${lbl:b_measurement_unit_shirt}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>
+	</tr>
+		<tr style="display:none">
+			<td>${lbl:b_pants_size}</td>
+			<td>
+				<input id="aux_talla_pantalon" name="aux_talla_pantalon" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr style="display:none">
+		<td>${lbl:b_measurement_unit_pants}</td>
+		<td>
+			<select name="aux_unidad_med_pantalon_rf" id="aux_unidad_med_pantalon_rf" onchange="chgCombo(aux_unidad_med_pantalon_rf.options[aux_unidad_med_pantalon_rf.selectedIndex].text,'aux_unidad_med_pantalon_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<aux_unidad_med_pantalon_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</aux_unidad_med_pantalon_rf_rows>
+			</select> 
+			<input id="aux_unidad_med_pantalon_rf_name" name="aux_unidad_med_pantalon_rf_name" type="hidden">
+		</td>
+		<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="unidadmedida()" title="${lbl:b_measurement_unit_pants}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>
+	</tr>
+		<tr style="display:none">
+			<td>${lbl:b_shoes_size}</td>
+			<td>
+				<input id="aux_talla_zapato" name="aux_talla_zapato" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr style="display:none">
+		<td>${lbl:b_measurement_unit_shoes}</td>
+		<td>
+			<select name="aux_unidad_med_zapato_rf" id="aux_unidad_med_zapato_rf" onchange="chgCombo(aux_unidad_med_zapato_rf.options[aux_unidad_med_zapato_rf.selectedIndex].text,'aux_unidad_med_zapato_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<aux_unidad_med_zapato_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</aux_unidad_med_zapato_rf_rows>
+			</select> 
+			<input id="aux_unidad_med_zapato_rf_name" name="aux_unidad_med_zapato_rf_name" type="hidden">
+		</td>
+		<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="unidadmedida()" title="${lbl:b_measurement_unit_shoes}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>
+	</tr>
+		<tr style="display:none">
+			<td>${lbl:b_panty_size}</td>
+			<td>
+				<input id="aux_talla_braga" name="aux_talla_braga" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr style="display:none">
+		<td>${lbl:b_measurement_unit_panty}</td>
+		<td>
+			<select name="aux_unidad_med_braga_rf" id="aux_unidad_med_braga_rf" onchange="chgCombo(aux_unidad_med_braga_rf.options[aux_unidad_med_braga_rf.selectedIndex].text,'aux_unidad_med_braga_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<aux_unidad_med_braga_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</aux_unidad_med_braga_rf_rows>
+			</select> 
+			<input id="aux_unidad_med_braga_rf_name" name="aux_unidad_med_braga_rf_name" type="hidden">
+		</td>
+		<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="unidadmedida()" title="${lbl:b_measurement_unit_panty}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>
+	</tr>
+		<tr style="display:none">
+			<td>${lbl:b_helmet_size}</td>
+			<td>
+				<input id="aux_talla_casco" name="aux_talla_casco" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr style="display:none">
+		<td>${lbl:b_measurement_unit_helmet}</td>
+		<td>
+			<select name="aux_unidad_med_casco_rf" id="aux_unidad_med_casco_rf" onchange="chgCombo(aux_unidad_med_casco_rf.options[aux_unidad_med_casco_rf.selectedIndex].text,'aux_unidad_med_casco_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<aux_unidad_med_casco_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</aux_unidad_med_casco_rf_rows>
+			</select> 
+			<input id="aux_unidad_med_casco_rf_name" name="aux_unidad_med_casco_rf_name" type="hidden">
+		</td>
+		<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="unidadmedida()" title="${lbl:b_measurement_unit_helmet}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>
+	</tr>
+
+	<!-- CODIGO PARA AL AFILIADO TITULAR DEL MODULO DE SALUD -->
+	<tr>
+		<td>${lbl:b_affiliations}</td>
+		<td>
+			<select name="aux_afiliacion" id="aux_afiliacion" onchange="mostrarAfiliado()";>
+				<option value="">[Cualquiera]</option>
+				<option value="PA">Particular</option>
+				<option value="TI">Titular</option>
+				<option value="RE">Relacionado</option>
+			</select> 
+		</td>
+	</tr>
+
+	<tr id="titular">
+		<td>${lbl:b_titular}</td>
+		<td>
+			<select name="aux_titular_rf" id="aux_titular_rf" onchange="chgCombo(aux_titular_rf.options[aux_titular_rf.selectedIndex].text,'aux_titular_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<aux_titular_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</aux_titular_rf_rows>
+			</select> 
+			<input id="aux_titular_rf_name" name="aux_titular_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr id="numbercontrol">
+	<td>Numero de Poliza</td>
+		<td>
+			<input id="aux_observacion" name="aux_observacion" type="text" maxlength="10" class="numeric">
+		</td>
+	</tr>
+	<!-- SE UTITLIZO EL CAMPO AUX_AUXILIAR_UNIDAD_NEGOCIO_RF PARA TRABAJARLO COMO EL CONTRANTANTE  -->
+	<tr id="contratante">
+		<td>Contratante</td>
+		<td>
+			<select name="aux_auxiliar_unidad_negocio_rf" id="aux_auxiliar_unidad_negocio_rf" onchange="chgCombo(aux_auxiliar_unidad_negocio_rf.options[aux_auxiliar_unidad_negocio_rf.selectedIndex].text,'aux_direccion_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<aux_auxiliar_unidad_negocio_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</aux_auxiliar_unidad_negocio_rf_rows>
+			</select> 
+			<input id="aux_auxiliar_unidad_negocio_rf_name" name="aux_auxiliar_unidad_negocio_rf_name" type="hidden">
+		</td>
+	</tr>
+
+	<tr id="nombre_relacionado">
+		<td>${lbl:b_first_name}</td>
+		<td>
+			<input id="aux_nombres_relacionado" name="aux_nombres_relacionado" type="text" maxlength="64" >
+		</td>
+	</tr>
+	<tr id="apellido_relacionado">
+		<td>${lbl:b_last_name}</td>
+		<td>
+			<input id="aux_apellido_relacionado" name="aux_apellido_relacionado" type="text" maxlength="64">
+		</td>
+	</tr>
+	<tr id="num_oficial_relacionado">
+		<td>${lbl:b_document_number_oficial}</td>
+		<td>
+			<input id="aux_num_oficial_relacionado" name="aux_num_oficial_relacionado" type="text" maxlength="12">
+		</td>
+	</tr>
+
+	<!--DESARROLLO DE CONTACTOS-->
+	<tr>
+		<td>${lbl:b_type_contact}*</td>
+		<td>
+			<select name="smn_tipo_contactos_rf" id="smn_tipo_contactos_rf" onchange="chgCombo(smn_tipo_contactos_rf.options[smn_tipo_contactos_rf.selectedIndex].text,'smn_tipo_contactos_rf_name');habilitar();">
+				<option value="">[Cualquiera]</option>
+				<smn_tipo_contactos_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_tipo_contactos_rf_rows>
+			</select> 
+			<input id="smn_tipo_contactos_rf_name" name="smn_tipo_contactos_rf_name" type="hidden">
+		</td>
+		<!--<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="tipocontacto()" title="${lbl:b_type_contact}" >
+		</td>-->
+	</tr>
+	<tr>
+		<td>${lbl:b_description}*</td>
+		<td>
+			<input id="cnt_descripcion" name="cnt_descripcion" type="text" maxlength="50">
+		</td>
+	</tr>
+
+	<tr>
+		<td>${lbl:b_type_contact}*</td>
+		<td>
+			<select name="smn_tipo_contactos_rf1" id="smn_tipo_contactos_rf1" onchange="chgCombo(smn_tipo_contactos_rf1.options[smn_tipo_contactos_rf1.selectedIndex].text,'smn_tipo_contactos_rf1_name');habilitar1();">
+				<option value="">[Cualquiera]</option>
+				<smn_tipo_contactos_rf1_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_tipo_contactos_rf1_rows>
+			</select> 
+			<input id="smn_tipo_contactos_rf1_name" name="smn_tipo_contactos_rf1_name" type="hidden">
+		</td>
+		<!--<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="tipocontacto()" title="${lbl:b_type_contact}" >
+		</td>-->
+	</tr>
+	<tr>
+		<td>${lbl:b_description}*</td>
+		<td>
+			<input id="cnt_descripcion1" name="cnt_descripcion1" type="text" maxlength="50">
+		</td>
+	</tr>
+
+	<tr>
+		<!-- <tr> -->
+			<td><h1 id="formTitle">${lbl:b_data_contact} Emergencia</h1></td>
+		<!-- titulo -->
+		<!-- <tr> -->
+	</tr>
+
+		<tr>
+			<td>${lbl:s_profile_lname}*</td>
+			<td>
+				<input id="cnt_apellidos" name="cnt_apellidos" type="text" maxlength="64" >
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:s_profile_fname}*</td>
+			<td>
+				<input id="cnt_nombres" name="cnt_nombres" type="text" maxlength="64" >
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_phone}</td>
+			<td>
+				<input id="cnt_telefono_contacto" name="cnt_telefono_contacto" type="text" maxlength="64" onchange="validarPhone();" >
+			</td>
+		</tr>
+		<!-- <tr>
+			<td>${lbl:b_email}</td>
+			<td>
+				<input id="cnt_email" name="cnt_email" type="text" maxlength="100"  placeholder='${lbl:b_email_format}' >
+
+			</td>
+		</tr> -->
+		<!-- <tr>
+			<td>${lbl:b_address}</td>
+			<td>
+				<textarea id="apc_direccion" name="apc_direccion" cols="30" rows="3"></textarea>
+			</td>
+		</tr>
+ -->
+	<tr>
+		<td>
+			<input id="id2" name="id2" type="hidden">
+		</td>
+	</tr>
+
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	
+	<!-- PK-->
+<input type="hidden" name="id" value="">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();
+		$('#lateralidad').hide();
+		$('#peso').hide();
+		$('#contratante').hide();
+		$('#titular').hide();
+		$('#numbercontrol').hide();
+		$('#nombre_relacionado').hide();
+		$('#apellido_relacionado').hide();
+		$('#num_oficial_relacionado').hide();
+
+		document.getElementById("cnt_descripcion").disabled=true;
+		document.getElementById("cnt_descripcion1").disabled=true;
+
+		var cedula = '${fld:ced}';
+		//codigo para obtener el numero de documento de identidad del ingreso,
+    	inicio = 2;
+    	fin    = 15;
+        subCadena = cedula.substring(inicio, fin);
+        $('#aux_num_doc_oficial').val(subCadena);
+         
+        document.getElementById("aux_num_doc_oficial").disabled=true;
+        
+        //codigo para obtener el tipo de documento de identidad del ingreso,
+        inic = 2,
+    	f    = -15,
+        subCadena_tipo = cedula.substring(f, inic);
+		//console.log(subCadena_tipo);
+
+		//$('#aux_tipo_doc_oficial_rf').val(2);
+      
+		//alert(cedula);
+		console.log(subCadena);
+		
+		
+		if (id!="")
+			edit(id);
+	}
+
+	 function soloLetras(e) {
+	    var key = e.keyCode || e.which,
+	      tecla = String.fromCharCode(key).toLowerCase(),
+	      letras = " áéíóúabcdefghijklmnñopqrstuvwxyz",
+	      especiales = [8, 37, 39, 46],
+	      tecla_especial = false;
+
+	    for (var i in especiales) {
+	      if (key == especiales[i]) {
+	        tecla_especial = true;
+	        break;
+	      }
+	    }
+
+	    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+	      return false;
+	    }
+	 }
+
+	function mostrarAfiliado() {
+		var af = $('#aux_afiliacion').val();
+
+		if (af == 'TI') {
+			$('#contratante').show();
+			$('#numbercontrol').hide();
+			//$('#titular').show();
+		}
+
+
+		if (af == 'RE') {
+			$('#contratante').show();
+			$('#numbercontrol').hide();
+			$('#nombre_relacionado').show();
+			$('#apellido_relacionado').show();
+			$('#num_oficial_relacionado').show();
+			//$('#titular').show();
+		}
+
+		if (af == 'PA') {
+			$('#contratante').hide();
+			$('#numbercontrol').hide();
+			//$('#titular').show();
+			document.getElementById('aux_observacion').value = '';
+			document.getElementById('aux_auxiliar_unidad_negocio_rf').value='';
+			document.getElementById('aux_nombres_relacionado').value = '';
+			document.getElementById('aux_apellido_relacionado').value='';
+			document.getElementById('aux_num_oficial_relacionado').value = '';
+		}
+
+	}
+
+	function setearcedulaencodigo() {
+		var a = document.getElementById('aux_tipo_doc_oficial_rf');
+	 	var c = a.options[a.selectedIndex].text;
+	 	var d = c.substring(2,0);
+	    var b = document.getElementById('aux_num_doc_oficial').value;
+	    var us =  d+""+b;    
+	    console.log("concatenacion tipo cedula en campo aux codigo: "+us);
+	    document.getElementById('aux_codigo').value=us;   
+		// body...
+	}
+
+	function setearapellido() {
+	 	var ap = document.getElementById('aux_apellidos').value;
+	 	console.log("apellid:" + ap);
+	 	$('#cnt_apellidos').val(ap);
+	 	document.getElementById("cnt_apellidos").disabled=true;
+	 } 
+
+	 function setearnombre() {
+	 	var nom = document.getElementById('aux_nombres').value;
+	 	console.log("nombre:" + nom);
+	 	$('#cnt_nombres').val(nom);
+	 	document.getElementById("cnt_nombres").disabled=true;
+	 }
+
+	function habilitar() {
+		var tipo = document.getElementById('smn_tipo_contactos_rf').value;
+		if (tipo!='') {
+			document.getElementById("cnt_descripcion").disabled=false;
+		} else {
+			document.getElementById("cnt_descripcion").disabled=true;
+		}
+	}
+
+	function habilitar1() {
+		var tipo = document.getElementById('smn_tipo_contactos_rf1').value;
+		if (tipo!='') {
+			document.getElementById("cnt_descripcion1").disabled=false;
+		} else {
+			document.getElementById("cnt_descripcion1").disabled=true;
+		}
+	}
+
+	function validarPhone(){
+		var telf = document.getElementById('apc_telefono_contacto').value;
+
+		if(telf.length<11){
+			alertBox("Campo Inválido -> Campo Requerido de 4 Códigos 7 Digitos", 'Aceptar',null, null);
+			//telf.focus();
+
+		}
+		return false;
+	}
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+
+	//Function para contactenar el id de la clase auxiliar y el numero de documento oficial Creada por Prog. Kelvin Marcano//
+	function mostrarValor(a, b){
+	 	var a = document.getElementById('aux_tipo_doc_oficial_rf');
+	 	var c = a.options[a.selectedIndex].text;
+	 	var d = c.substring(2,0);
+	    var b = document.getElementById('aux_num_doc_oficial').value;
+	    var us =  d+""+b;    
+	    //alert(us);
+	    document.getElementById('aux_codigo').value=us;   
+	 }
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert?reference=${fld:reference}",   
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+	//mostrar la actualizacion de un registro
+	function insert2()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert2?reference=${fld:reference}",   
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+	//mostrar la actualizacion de un registro
+	function insert_af()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert_afiliado?reference=${fld:reference}",   
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+
+
+	}
+
+	//mostrar la actualizacion de un registro
+	function insert_re()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert_relacionado?reference=${fld:reference}",   
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+
+
+	}
+
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	//alert(id);
+	
+	//grabar el formulario
+	function save()
+	{
+		var tipo = document.getElementById('smn_tipo_contactos_rf').value;
+		var desc =  document.getElementById('cnt_descripcion').value;
+		var auxnom = document.getElementById('cnt_nombres').value;
+		var auxape = document.getElementById('cnt_apellidos').value;
+		var tipo_persona=$('#aux_afiliacion').val();
+			console.log("TIPO PERSONA: "+tipo_persona);
+		var num_control = $('#aux_observacion').val();
+				console.log("NUM CONTROL O CAMPO DE OBSERVACION: "+num_control);
+		//determina si es un insert o un update
+		var result;
+		if (document.form1.id.value=="")
+			if(tipo != "" && desc != "" && auxnom != "" && auxape != ""){
+				console.log("llego al insert uno");
+				if (tipo_persona=='PA') {
+					result = insert();
+
+					setTimeout(function(){
+						if ('${fld:reference}' == 'true')
+						{
+							var a = document.getElementById('aux_tipo_doc_oficial_rf');
+							var c = a.options[a.selectedIndex].text;
+						 	var d = c.substring(2,0);
+						 	
+							//alert('${fld:reference} - ${fld:source}')
+							var cod = document.getElementById("id2").value;
+							var ci = document.form1.aux_num_doc_oficial.value;
+							var nom1 = document.form1.aux_nombres.value;	
+							var ape = document.form1.aux_apellidos.value;	
+							nom = d +''+ ci +'-'+ nom1 +' '+ ape;	
+							
+							if ('${fld:source}' == 'address')
+							{
+								console.log("EDITOR PACIENTE: "+cod+" nombre: "+nom)
+								parent.setValueComboBoxAux(cod, nom, 'cts_auxiliar', false);
+							}
+							if ('${fld:source}' == 'controlvip')
+							{
+								parent.setValueComboBoxAux(cod, nom, 'smn_auxiliar_rf', false);
+							}
+						}
+						 	},2000);	
+				} 
+
+				if (tipo_persona=='TI') {
+					result = insert_af();
+
+					setTimeout(function(){
+							if ('${fld:reference}' == 'true')
+							{
+								var a = document.getElementById('aux_tipo_doc_oficial_rf');
+								var c = a.options[a.selectedIndex].text;
+							 	var d = c.substring(2,0);
+							 	
+								//alert('${fld:reference} - ${fld:source}')
+								var cod = document.getElementById("id2").value;
+								var ci = document.form1.aux_num_doc_oficial.value;
+								var nom1 = document.form1.aux_nombres.value;	
+								var ape = document.form1.aux_apellidos.value;	
+								nom = d +''+ ci +'-'+ nom1 +' '+ ape;	
+								
+								if ('${fld:source}' == 'address')
+								{
+									console.log("EDITOR PACIENTE: "+cod+" nombre: "+nom)
+									parent.setValueComboBoxAux(cod, nom, 'cts_auxiliar', false);
+								}
+								if ('${fld:source}' == 'controlvip')
+								{
+									parent.setValueComboBoxAux(cod, nom, 'smn_auxiliar_rf', false);
+								}
+							}
+						 },2000);	
+				} 
+
+				if (tipo_persona=='RE') {
+					result = insert_re();
+
+					setTimeout(function(){
+							if ('${fld:reference}' == 'true')
+							{
+								var a = document.getElementById('aux_tipo_doc_oficial_rf');
+								var c = a.options[a.selectedIndex].text;
+							 	var d = c.substring(2,0);
+							 	
+								//alert('${fld:reference} - ${fld:source}')
+								var cod = document.getElementById("id2").value;
+								var ci = document.form1.aux_num_doc_oficial.value;
+								var nom1 = document.form1.aux_nombres.value;	
+								var ape = document.form1.aux_apellidos.value;	
+								nom = d +''+ ci +'-'+ nom1 +' '+ ape;	
+								
+								if ('${fld:source}' == 'address')
+								{
+									console.log("EDITOR PACIENTE: "+cod+" nombre: "+nom)
+									parent.setValueComboBoxAux(cod, nom, 'cts_auxiliar', false);
+								}
+								if ('${fld:source}' == 'controlvip')
+								{
+									parent.setValueComboBoxAux(cod, nom, 'smn_auxiliar_rf', false);
+								}
+							}
+						 },2000);	
+				} 	
+			}else {
+					console.log("llego al insert dos");
+				result = insert2();
+			}
+		else
+			result = update();
+
+				  setTimeout(function(){
+						if ('${fld:reference}' == 'true')
+						{
+							var a = document.getElementById('aux_tipo_doc_oficial_rf');
+							var c = a.options[a.selectedIndex].text;
+						 	var d = c.substring(2,0);
+						 	
+							alert('${fld:reference} - ${fld:source}')
+							var cod = document.getElementById("id2").value;
+							var ci = document.form1.aux_num_doc_oficial.value;
+							var nom1 = document.form1.aux_nombres.value;	
+							var ape = document.form1.aux_apellidos.value;	
+							nom = d +''+ ci +'-'+ nom1 +' '+ ape;	
+							
+							if ('${fld:source}' == 'address')
+							{
+								
+								parent.setValueComboBoxAux(cod, nom, 'cts_auxiliar', false);
+							}
+							if ('${fld:source}' == 'controlvip')
+							{
+								parent.setValueComboBoxAux(cod, nom, 'smn_auxiliar_rf', false);
+							}
+						}
+					 },2000);	
+		return result;
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+	function claseauxiliar()
+	{
+
+		var uri = "/smn_base/action/smn_configuracion/smn_auxiliares/smn_clase_auxiliar/editor/form?reference=true&source=address";
+		openDialog("editor19", uri, 550, 380);
+	}
+
+
+	function direccion()
+	{
+
+		var uri = "/smn_base/action/smn_configuracion/smn_ubicacion_geografica/smn_direccion/editor/form?reference=true&source=auxiliar";	
+		console.log("DIRECCION AUXILIAR: "+uri);
+		openDialog("editor20", uri, 850, 580);
+	}
+
+	function nacionalidad(){
+
+		var uri = "/smn_base/action/smn_configuracion/smn_ubicacion_geografica/smn_paises/editor/form?reference=true&source=address";
+		openDialog("editor21", uri, 550, 480);
+	}
+
+	function tipodoc(){
+		
+			var uri = "/smn_base/action/smn_configuracion/smn_financiera/smn_tipo_doc_oficial/editor/form?reference=true&source=address";
+			openDialog("editor22", uri, 550, 280);
+	}
+
+//***********************************************************************************//
+		//Author     : SIMONE
+	//Description: Set first element as selected value
+	//Return     : None
+	function setElementFirstIndex(id)
+	{
+		var combo = document.getElementById(id);
+		combo.selectedIndex = 0;
+	}
+
+	//Author     : SIMONE
+	//Description: Add new value to combo box
+	//Return     : None
+	function addValueToCombo(code, description, field) 
+	{
+		
+	    var combo = document.getElementById(field);	    
+	    insertComboBox(code, combo, description);
+	}
+		
+	//Author     : SIMONE
+	//Description: Insert new value into combo box
+	//Return     : None
+ 	function insertComboBox(code, combo, description, field) {
+        var bdID = code;
+        var valueText = description;
+        if (description != null)
+        {
+            bdID = bdID;
+            valueText = valueText;
+        }
+
+          //combo.options[combo.options.length] = new Option(valueText);
+		var option = document.createElement("option");
+		option.text = valueText; 
+		option.value = bdID;
+		//document.getElementById('cts_auxiliar').value = bdID;
+		if (field == 'smn_auxiliar_rf')
+		{
+			//alert('Añadiendo a prospectos en llamadas')
+			document.form1.smn_auxiliar_rf.add(option, combo.options.length);
+			 $("#smn_auxiliar_rf option[value="+ bdID +"]").attr("selected",true);
+			//setElementFirstIndexVeh('cts_auxiliar');
+			document.form1.smn_auxiliar_rf.disabled=true;
+		}
+
+		if (field == 'aux_direccion_rf')
+		{
+			//alert('Añadiendo a prospectos en llamadas')
+			document.form1.aux_direccion_rf.add(option, combo.options.length);
+			 $("#aux_direccion_rf option[value="+ bdID +"]").attr("selected",true);
+			//setElementFirstIndexVeh('cts_auxiliar');
+			document.form1.aux_direccion_rf.disabled=true;
+		}
+        // //alert("Text: "+valueText+" - bdID: "+bdID);
+        //  var opt = document.createElement('option');
+        //  opt.value = bdID;
+        //  opt.text = valueText;
+        //  combo.options.add(opt);
+    }
+	
+	//Author     : SIMONE
+	//Description: Set selected index into combo box
+	//Return     : None
+	function setSelectedIndex(code, combo, description) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+			var bdID = code;
+			var valueText = description;
+			if (description != null)
+			{
+				bdID = bdID;
+				valueText = valueText;
+			}
+	        if (combo.options[i].text == valueText) 
+	        {
+				//combo.options[i].value = bdID;
+	        	combo.options[i].selected = true;
+	            return;
+	        }
+	    }
+	}
+		
+	//Author     : SIMONE
+	//Description: Get text valueof selected index
+	//Return     : Text associated to index
+	function getSelectedIndex(combo) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+	        if (combo.options[i].selected == true) 
+	        {
+	            return combo.options[i].text;
+	        }
+	    }
+	}
+
+	function getIDSelectedIndex(combo) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+	        if (combo.options[i].selected == true) 
+	        {
+	            return combo.options[i].value;
+	        }
+	    }
+	}
+	
+	var bdID;
+	function setID(id)
+	{
+		bdID = id;
+	}
+	
+	//Author     : SIMONE
+	//Description: Set value to combo box
+	//Parameters : code - it is code associated into each database table 
+	//             descripcion - it is description associated into each database table 
+	//             field - name combo field
+	//             id - identifier retrieved after transaction
+	//             linked - flag indicates 'true' when combos are linked and 'false' otherwise
+	//Return     : None
+	function setValueComboBox(code, description, field, linked)
+	{
+	
+		//add valur text to combo
+		addValueToCombo(code,description,field);
+		//get select object 
+		var combo = document.getElementById(field);
+		//set element selected to field referenced
+		setSelectedIndex(code,combo, description);
+		//set text value to combo field
+		var valueText = getSelectedIndex(combo);		
+		//get hidden field in order to set any value
+		var combo = document.getElementById(field+'_name');
+	
+		combo.text  = valueText;
+		combo.value = bdID;
+		
+			//alert("Text: "+valueText+" - bdID: "+bdID);	
+		setSelectedIndex(bdID,combo, valueText);
+	}
+
+		
+</script>	
+</body>
+</html>

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query.sql" source="session" scope="transaction" />
+
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_presupuesto}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_presupuesto}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='query.sql' title='${lbl:b_presupuesto}' width='60' spacingBefore='40'>
+			<col name='smn_documento_id_combo' title='${lbl:b_pre_documento}' align='left' format='######' />
+			<col name='pre_numero_control' title='${lbl:b_pre_num_control}' align='left' />
+			<col name='smn_entidades_rf_combo' title='${lbl:b_pre_entidades}' align='left' format='######' />
+			<col name='smn_sucursales_rf_combo' title='${lbl:b_pre_sucursal}' align='left' format='######' />
+			<col name='smn_clase_auxiliar_rf_combo' title='${lbl:b_paciente_clase}' align='left' format='######' />
+			<col name='smn_auxiliar_rf_combo' title='${lbl:b_paciente}' align='left' format='######' />
+			<col name='smn_clase_ord_rf_combo' title='${lbl:b_contratante_clase}' align='left' format='######' />
+			<col name='smn_auxiliar_ord_rf_combo' title='${lbl:b_contratante}' align='left' format='######' />
+			<col name='smn_baremo_rf_combo' title='${lbl:b_baremo}' align='left' format='######' />
+			<col name='smn_auxiliar_unidades_negocios_rf_combo' title='${lbl:b_pre_unidad_neg}' align='left' format='######' />
+			<col name='smn_auxiliar_sucursales_rf_combo' title='${lbl:b_pre_sucursales}' align='left' format='######' />
+			<col name='smn_auxiliar_areas_servicios_rf_combo' title='${lbl:b_area_serv}' align='left' format='######' />
+			<col name='smn_auxiliar_unidades_servicios_rf_combo' title='${lbl:b_aux_unidades_serv}' align='left' format='######' />
+			<col name='pre_vigencia_hasta' title='${lbl:b_budget_date}' align='left' format='dd-MM-yyyy' />
+			<col name='smn_ordenes_medicas_id_combo' title='${lbl:b_ord_med}' align='left' format='######' />
+			<col name='pre_fecha_entrega' title='${lbl:b_fech_entrega}' align='left' format='dd-MM-yyyy' />
+			<col name='pre_monto_ml' title='${lbl:b_pre_monto_loc}' align='left' format='#,###,##0.00' />
+			<col name='smn_moneda_rf_combo' title='${lbl:b_pre_moneda}' align='left' format='######' />
+			<col name='pre_monto_ma' title='${lbl:b_pre_monto_alt}' align='left' format='#,###,##0.00' />
+			<col name='smn_estado_presupuesto_id_combo' title='${lbl:b_budget_status}' align='left' format='######' />
+		</record>
+
+
+	</pdf-report>
+</config>

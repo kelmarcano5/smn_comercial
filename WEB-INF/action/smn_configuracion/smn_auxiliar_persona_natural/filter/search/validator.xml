@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='false' label='${lbl:b_class_auxiliary}' maxlen='10'/>
+	<parameter id='aux_apellidos' type='varchar' required='false' label='${lbl:b_last_name}' maxlen='64'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='aux_apellidos' rule='like' />
+	<parameter id='aux_nombres' type='varchar' required='false' label='${lbl:b_first_name}' maxlen='64'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='aux_nombres' rule='like' />
+	<parameter id='aux_rif' type='varchar' required='false' label='${lbl:b_rif}' maxlen='16'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='aux_rif' rule='like' />
+	<parameter id='aux_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date} mayor o igual que] no puede ser mayor que [${lbl:b_store_date} menor o igual que].' date1='aux_fecha_registro_ini' date2='aux_fecha_registro_fin' id='aux_fecha_registro_ini' />
+	<parameter id='aux_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

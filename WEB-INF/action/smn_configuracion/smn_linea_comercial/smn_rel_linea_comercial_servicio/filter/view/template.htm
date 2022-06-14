@@ -1,0 +1,49 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='18%'/>
+	<col width='18%'/>
+	<col width='18%'/>
+	<col width='18%'/>
+	<col width='18%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="8" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_linea_comercial_id_combo','query-smnrellineacomercialservicio.sql')" >${lbl:b_linea_comercial}</th>
+		<th class='sortable' onclick="sortBy('smn_servicio_rf_combo','query-smnrellineacomercialservicio.sql')" >${lbl:b_service}</th>
+		<th class='sortable' onclick="sortBy('rls_estatus_combo','query-smnrellineacomercialservicio.sql')" >${lbl:b_status}</th>
+		<th class='sortable' onclick="sortBy('rls_vigencia','query-smnrellineacomercialservicio.sql')" >${lbl:b_validation_date}</th>
+		<th class='sortable' onclick="sortBy('rls_fecha_registro','query-smnrellineacomercialservicio.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_rel_linea_comercial_servicio_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_rel_linea_comercial_servicio_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_rel_linea_comercial_servicio_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_linea_comercial_id_combo}</td>
+		<td align="center">${fld:smn_servicio_rf_combo}</td>
+		<td align="left">${fld:rls_estatus_combo}</td>
+		<td align="center">${fld:rls_vigencia@dd-MM-yyyy}</td>
+		<td align="center">${fld:rls_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

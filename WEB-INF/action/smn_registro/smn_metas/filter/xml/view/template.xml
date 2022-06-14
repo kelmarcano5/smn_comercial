@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_metas>
+	<detail>
+		<rows>		
+		<record met_fecha_registro="${fld:met_fecha_registro}"    met_estatus="${fld:met_estatus}"    met_cantidad_diaria="${fld:met_cantidad_diaria}"    met_fecha_estadistica="${fld:met_fecha_estadistica}"    met_dias_habiles="${fld:met_dias_habiles}"    met_fecha_hasta="${fld:met_fecha_hasta}"    met_fecha_desde="${fld:met_fecha_desde}"    smn_rol_id="${fld:smn_rol_id}"    smn_auxiliar_rf="${fld:smn_auxiliar_rf}"    smn_clase_auxiliar_rf="${fld:smn_clase_auxiliar_rf}"    smn_documento_id="${fld:smn_documento_id}"    smn_tipo_documento_id="${fld:smn_tipo_documento_id}"    />
+		</rows>
+	</detail>
+</smn_metas>

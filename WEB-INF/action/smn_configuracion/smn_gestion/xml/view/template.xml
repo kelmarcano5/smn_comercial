@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_gestion>
+	<detail>
+		<rows>		
+		<record ges_fecha_registro="${fld:ges_fecha_registro}"    ges_vigencia="${fld:ges_vigencia}"    ges_estatus="${fld:ges_estatus}"    smn_accion_id="${fld:smn_accion_id}"    ges_descripcion="${fld:ges_descripcion}"    ges_codigo="${fld:ges_codigo}"    />
+		</rows>
+	</detail>
+</smn_gestion>

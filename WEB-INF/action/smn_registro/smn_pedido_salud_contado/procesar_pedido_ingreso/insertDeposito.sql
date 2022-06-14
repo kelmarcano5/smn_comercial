@@ -1,0 +1,46 @@
+INSERT INTO smn_caja.smn_deposito
+(
+	smn_deposito_id,
+	smn_caja_id,
+	dep_documento_id,
+	dep_numero,
+	smn_cuenta_bancaria_id,
+	dep_numero_deposito,
+	dep_fecha,
+	dep_fecha_movimiento,
+	dep_forma_pago_rf,
+	dep_monto_total,
+	dep_monto_total_ma,
+	smn_moneda_rf,
+	smn_tasa_rf,
+	dep_estatus,
+	smn_idioma_rf,
+	smn_usuario_id,
+	dep_fecha_registro,
+	dep_hora,
+	smn_rel_pto_venta_mediop_rf,
+	smn_modulo_origen_rf
+)
+VALUES
+(
+	${seq:nextval@smn_caja.seq_smn_deposito},
+	${fld:smn_caja_id},
+	${fld:smn_documento_id},
+	${seq:nextval@smn_caja.seq_deposito_numero},
+	${fld:smn_cuenta_bancaria_rf},
+	${fld:dpd_numero_doc_forma_pago},
+	${fld:dpd_fecha_registro},
+	${fld:dpd_fecha_registro},
+	${fld:smn_forma_pago_rf},
+	${fld:dpd_monto_del_pago_ml},
+	${fld:dpd_monto_del_pago_ma},
+	${fld:smn_moneda_rf},
+	${fld:smn_tasa_rf},
+	'DE',
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}',
+	${fld:smn_rel_pto_venta_mediop_rf},
+	${fld:modulo}
+) RETURNING smn_deposito_id;

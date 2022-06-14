@@ -1,0 +1,32 @@
+<!--data grid-->
+<table class="datagrid rowhover oneCellRow" style="width:90%;">
+
+	<col width='100%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="4" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th onclick="sortBy('svc_codigo','query-smnservicios.sql')" class="sortable" >${lbl:b_code}</th>
+		<th onclick="sortBy('svc_descripcion','query-smnservicios.sql')" class="sortable" >${lbl:b_description}</th>
+		<th onclick="sortBy('svc_tipo_servicio','query-smnservicios.sql')" class="sortable" >${lbl:b_service_type}</th>
+		<th onclick="sortBy('svc_inactivo','query-smnservicios.sql')" class="sortable" >${lbl:b_inactive}</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr onclick="selectItem('${fld:smn_servicios_id}')" >
+		<td style="font-size: 9pt;" align="center"><span id="${fld:smn_servicios_id}">${fld:svc_descripcion}</span></td>
+		<td style="font-size: 9pt;" align="center">${fld:svc_descripcion}</td>
+		<td style="font-size: 9pt;" align="center">${fld:svc_tipo_servicio}</td>
+		<td style="font-size: 9pt;" align="center">${fld:svc_inactivo}</td>
+	</tr>
+	</rows>
+
+</table>

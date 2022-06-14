@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_cliente_id' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_prospecto_id' type='integer' required='false' label='${lbl:b_leaflet}' maxlen='10'/>
+	<parameter id='smn_solicitud_afiliacion_id' type='varchar' required='false' label='${lbl:b_affiliation_request}' maxlen='10'/>
+	<parameter id='smn_tipo_documento_id' type='integer' required='true' label='${lbl:b_tipo_documento_factura}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='true' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='lla_descripcion' type='varchar' required='true' label='${lbl:b_description}' maxlen='200'/>
+	<parameter id='smn_cita_id' type='integer' required='false' label='${lbl:b_appointment}' maxlen='10'/>
+	<parameter id='smn_orden_pedido_id' type='integer' required='false' label='${lbl:b_order_order}' maxlen='10'/>
+	<parameter id='smn_oferta_id' type='integer' required='false' label='${lbl:b_offer}' maxlen='10'/>
+	<parameter id='smn_solicitud_servicio_entrega_rf' type='integer' required='false' label='${lbl:b_delivery_services_request}' maxlen='10'/>
+	<parameter id='smn_gestion_id' type='integer' required='true' label='${lbl:b_management}' maxlen='10'/>
+	<parameter id='lla_observacion' type='varchar' required='false' label='${lbl:b_observation}' maxlen='200'/>
+	<parameter id='lla_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='lla_descripcion'/>
+
+
+</validator>

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnsolicitudservicioentregascabecera.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_header_services_delivery_request}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_header_services_delivery_request}">
+				<col id='sec_origen' label='${lbl:b_origen}' />
+		<col id='smn_documento_id' label='${lbl:b_document}' />
+		<col id='smn_cliente_rf' label='${lbl:b_customer}' />
+		<col id='smn_tipo_servicio_rf' label='${lbl:b_type_services}' />
+		<col id='sec_descripcion' label='${lbl:b_description}' />
+		<col id='sec_direccion_busqueda' label='${lbl:b_address_find}' />
+		<col id='sec_direccion_entrega' label='${lbl:b_address_delivery}' />
+		<col id='sec_fecha_solicitud' label='${lbl:b_store_date}' />
+		<col id='sec_hora_solicitud' label='${lbl:s_loginhist_col2}' />
+		<col id='sec_especificacion_servicio' label='${lbl:b_especifications}' />
+		<col id='sec_observacion_servicio' label='${lbl:b_observation}' />
+		<col id='sec_monto_ml' label='${lbl:b_amount}' />
+		<col id='smn_moneda_rf' label='${lbl:b_coins}' />
+		<col id='sec_monto_ma' label='${lbl:b_amount_ma}' />
+		<col id='smn_forma_pago_rf' label='${lbl:b_way_to_pay}' />
+		<col id='sec_monto_pago_efectivo' label='${lbl:b_amount_pay_cash}' />
+		<col id='sec_otras_instrucciones' label='${lbl:b_others_instructions}' />
+		<col id='sec_estatus_proceso' label='${lbl:b_estatus_proceso}' />
+		<col id='sec_estatus_financiera' label='${lbl:b_estatus_financiero}' />
+		<col id='sec_idioma' label='${lbl:s_profile_lang}' />
+		<col id='sec_usuario' label='${lbl:b_users}' />
+		<col id='sec_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

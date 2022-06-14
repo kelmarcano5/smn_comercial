@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		${lbl:b_header_order}
+	</summary>
+
+	<log>false</log>
+	
+	<set-request-attribute id="progress" value="file:/WEB-INF/action/progress/progress.htm"/>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id='query-smn_cliente_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_auxiliar_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_centro_facturacion_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_sub_centro_facturacion_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_servicios_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_item_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_activo_fijo_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_moneda_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_tasa_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_unidad_medida_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_pedido_cabecera_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_pagador_clase_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_rel_punto_venta_pago_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_forma_pago_rf.sql' source='sql' scope='transaction'/>
+
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<print mode='table' recordset='query-smn_cliente_id.sql' tag='smn_cliente_id_rows'/>
+		<print mode='table' recordset='query-smn_auxiliar_rf.sql' tag='smn_auxiliar_rf_rows'/>
+		<print mode='table' recordset='query-smn_centro_facturacion_id.sql' tag='smn_centro_facturacion_id_rows'/>
+		<print mode='table' recordset='query-smn_sub_centro_facturacion_id.sql' tag='smn_sub_centro_facturacion_id_rows'/>
+		<print mode='table' recordset='query-smn_servicios_rf.sql' tag='smn_servicios_rf_rows'/>
+		<print mode='table' recordset='query-smn_item_rf.sql' tag='smn_item_rf_rows'/>
+		<print mode='table' recordset='query-smn_activo_fijo_rf.sql' tag='smn_activo_fijo_rf_rows'/>
+		<print mode='table' recordset='query-smn_moneda_rf.sql' tag='smn_moneda_rf_rows'/>
+		<print mode='table' recordset='query-smn_tasa_rf.sql' tag='smn_tasa_rf_rows'/>
+		<print mode='table' recordset='query-smn_unidad_medida_rf.sql' tag='smn_unidad_medida_rf_rows'/>
+		<!-- <print mode='table' recordset='query-smn_pedido_cabecera_id.sql' tag='smn_pedido_cabecera_id_rows'/> -->
+		<print mode='table' recordset='query-smn_pagador_clase_rf.sql' tag='smn_pagador_clase_rf_rows'/>
+		<print mode='table' recordset='query-smn_rel_punto_venta_pago_rf.sql' tag='smn_rel_punto_venta_pago_rf_rows'/>
+		<print mode='table' recordset='query-smn_forma_pago_rf.sql' tag='smn_forma_pago_rf_rows'/>
+		<print mode="form" recordset="_request" /> 
+
+	</output>
+
+</config>
+	

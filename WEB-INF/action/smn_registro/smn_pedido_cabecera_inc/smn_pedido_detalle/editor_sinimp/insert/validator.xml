@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_pedido_cabecera_id' type='integer' required='true' label='${lbl:b_header_order}' maxlen='10'/>
+	<parameter id='pde_naturaleza' type='varchar' required='true' label='${lbl:b_nature}' maxlen='2'/>
+	<parameter id='smn_servicios_rf' type='varchar' required='false' label='${lbl:b_services}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='varchar' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='smn_activo_fijo_rf' type='varchar' required='false' label='${lbl:b_actfijo}' maxlen='10'/>
+	<parameter id='pde_cantidad_oferta' type='integer' required='false' label='${lbl:b_quantity_offer}' maxlen='10'/>
+	<parameter id='pde_cantidad_pedido' type='integer' required='true' label='${lbl:b_quantity_order}' maxlen='10'/>
+	<parameter id='pde_cantidad_aprobada' type='integer' required='true' label='${lbl:b_quantity_aprob}' maxlen='10'/>
+	<parameter id='pde_precio' type='double' required='true' label='${lbl:b_price}' maxlen='32'/>
+	<parameter id='pde_monto' type='double' required='true' label='${lbl:b_amount}' maxlen='32'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='pde_precio_moneda_alterna' type='double' required='false' label='${lbl:b_price_coins_alter}' maxlen='32'/>
+	<parameter id='pde_monto_moneda_alterna' type='double' required='false' label='${lbl:b_amount_coins_alter}' maxlen='32'/>
+	<parameter id='pde_especificaciones_pedido' type='varchar' required='false' label='${lbl:b_especifications}' maxlen='200'/>
+	<parameter id='pde_fecha_requerido' type='date' required='false' label='${lbl:b_required_date}' maxlen='10'/>
+	<parameter id='pde_observaciones' type='varchar' required='false' label='${lbl:b_observations}' maxlen='200'/>
+	<parameter id='pde_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+
+	<parameter id="baremos" type="integer" required="false" label="ID3" maxlen="50" />
+	<parameter id="iditems" type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='cantidadpedido' type='integer' required='false' label='${lbl:b_quantity_order}' maxlen='10'/>
+</validator>

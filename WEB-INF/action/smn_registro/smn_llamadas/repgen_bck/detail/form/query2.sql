@@ -1,0 +1,19 @@
+select
+		smn_comercial.smn_llamadas.smn_cliente_id,
+	smn_comercial.smn_llamadas.smn_prospecto_id,
+	smn_comercial.smn_llamadas.smn_solicitud_afiliacion_id,
+	smn_comercial.smn_llamadas.smn_tipo_documento_id,
+	smn_comercial.smn_llamadas.smn_documento_id,
+	smn_comercial.smn_llamadas.lla_descripcion,
+	smn_comercial.smn_llamadas.smn_cita_id,
+	smn_comercial.smn_llamadas.smn_orden_pedido_id,
+	smn_comercial.smn_llamadas.smn_oferta_id,
+	smn_comercial.smn_llamadas.smn_solicitud_servicio_entrega_rf,
+	smn_comercial.smn_llamadas.smn_gestion_id,
+	smn_comercial.smn_llamadas.lla_observacion,
+	smn_comercial.smn_llamadas.lla_estatus,
+	smn_comercial.smn_llamadas.lla_fecha_registro
+from
+	smn_comercial.smn_llamadas 
+where
+	smn_comercial.smn_llamadas.smn_llamadas_id = ${fld:id}

@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Insertar registro 
+	</summary>
+
+	<log>false</log>
+
+	<!--soporte de auditoria-->
+	<audit>
+		<!--de donde saca los datos, por defecto es "_request"-->
+		<recordset></recordset>
+		<!--que campos extrae para el registro descriptivo-->
+		<cols>
+			<colname>smn_entidades_rf</colname>
+			<colname>smn_sucursal_rf</colname>
+			<colname>smn_area_servicio_rf</colname>
+			<colname>smn_unidad_servicio_rf</colname>
+			<colname>smn_almacen_rf</colname>
+			<colname>smn_documento_id</colname>
+			<colname>smn_servicio_rf</colname>
+			<colname>smn_item_rf</colname>
+			<colname>plv_semestre_rf</colname>
+			<colname>plv_trimestre_rf</colname>
+			<colname>plv_mes_rf</colname>
+			<colname>plv_semana_rf</colname>
+			<colname>plv_fecha</colname>
+			<colname>plv_cantidad_rf</colname>
+			<colname>plv_precio_rf</colname>
+			<colname>plv_monto_rf</colname>
+			<colname>plv_precio_ma_rf</colname>
+			<colname>plv_monto_ma_rf</colname>
+			<colname>smn_moneda_rf</colname>
+			<colname>smn_tasa_rf</colname>
+		
+		</cols>
+		<table>smn_comercial.smn_plan_venta</table>
+		<oper>AÑADIR</oper>
+		<area>Carga de datos</area>
+		<!--
+			query para obtener el ID generado o nombre de 
+			la columna que contiene el pkey, si es query, 
+			el alias del campo debe ser "id"
+		-->
+		<pkey>select ${seq:currval@smn_comercial.seq_smn_plan_venta} as id</pkey>
+	</audit>
+
+	<transaction>
+		<classname>dinamica.audit.AuditableTransaction</classname>
+		<validator>true</validator>
+		<transaction>true</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="nextval.sql" source="sql" scope="transaction" />
+	</transaction>
+
+	<query>insert.sql</query>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>script.js</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/javascript</content-type>
+		<expiration>0</expiration>
+		<print mode="form" recordset="_request" />
+		<print mode="form" recordset="nextval.sql" />
+	</output>
+	
+	<!-- Envio de email declarativo -->
+	<mail enabled="false">
+		<subject>Subject</subject>
+		<mail-to>martin.cordova@gmail.com</mail-to>
+		<body>body.txt</body>
+	</mail>
+
+</config>

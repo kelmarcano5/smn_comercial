@@ -1,0 +1,30 @@
+INSERT INTO smn_comercial.smn_solicitud_servicio_entregas_detalle
+(
+	smn_solicitud_servicio_entregas_detalle_id,
+	smn_solicitud_servicio_entregas_cabecera_id,
+	smn_catalogo_item_comercio_id,
+	smn_unidad_medida_rf,
+	sed_cantidad,
+	sed_requirimientos,
+	sed_precio_ml,
+	smn_moneda_rf,
+	sed_precio_ma,
+	sed_monto_moneda_local,
+	sed_monto_moneda_alterna,
+	sed_fecha_registro
+)
+VALUES
+(
+	${seq:nextval@smn_comercial.seq_smn_solicitud_servicio_entregas_detalle},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	{d '${def:date}'}
+)

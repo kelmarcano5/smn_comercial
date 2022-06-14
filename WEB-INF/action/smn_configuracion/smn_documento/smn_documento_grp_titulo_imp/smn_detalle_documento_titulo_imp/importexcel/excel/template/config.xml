@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smndetalledocumentotituloimp.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_detalle_documento_grupo_titulo_impresion}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_detalle_documento_grupo_titulo_impresion}">
+				<col id='smn_documento_grp_titulo_imp_id' label='${lbl:b_relacion_documento_titulo_impresion}' />
+		<col id='smn_item_servicio_rf' label='${lbl:b_document}' />
+		<col id='smn_id_rf' label='${lbl:b_servicio_item}' />
+		<col id='smn_componentes_rf' label='${lbl:b_components}' />
+		<col id='dgi_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

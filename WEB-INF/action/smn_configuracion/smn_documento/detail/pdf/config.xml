@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query.sql" source="session" scope="transaction" />
+
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_document}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_document}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='query.sql' title='${lbl:b_document}' width='60' spacingBefore='40'>
+			<col name='smn_tipo_documentos_fact_id' title='${lbl:b_tipo_documento_factura}' align='left' format='######' />
+			<col name='smn_documentos_generales_rf' title='${lbl:b_general_documents}' align='left' format='######' />
+			<col name='dcf_codigo' title='${lbl:b_code}' align='left' />
+			<col name='dcf_descripcion' title='${lbl:b_description} ' align='left' />
+			<col name='dcf_tipo_movimiento' title='${lbl:b_accounting_movement_type}' align='left' />
+			<col name='dcf_req_vigencia' title='${lbl:b_requiere_vigencia}' align='left' />
+			<col name='dcf_req_fecha_vencimiento' title='${lbl:b_requiere_fecha_vencimiento}' align='left' />
+			<col name='dcf_gen_orden_despacho' title='${lbl:b_genera_orden_despacho}' align='left' />
+			<col name='smn_tipo_pedido_id' title='${lbl:b_order_type}' align='left' />
+			<col name='dcf_req_vendedor' title='${lbl:b_requiere_vendedor}' align='left' />
+			<col name='dcf_req_tiempo_entrega' title='${lbl:b_requiere_tiempo_entrega}' align='left' />
+			<col name='dcf_usa_bonificaciones' title='${lbl:b_usa_bonificaciones}' align='left' />
+			<col name='dcf_usa_descuentos' title='${lbl:b_usa_descuentos}' align='left' />
+			<col name='dcf_moneda_alterna' title='${lbl:b_alternative_currency}' align='left' />
+			<col name='dcf_selecciona_precio' title='${lbl:b_puede_seleccionar_precio}' align='left' />
+			<col name='dcf_usa_anexo' title='${lbl:b_usa_anexo}' align='left' />
+			<col name='dcf_genera_factura_pv' title='${lbl:b_genera_factura_pv}' align='left' />
+			<col name='dcf_vigencia' title='${lbl:b_validation_date}' align='left' format='dd-MM-yyyy' />
+			<col name='dcf_estatus' title='${lbl:b_status}' align='left' />
+			<col name='dcf_fecha_registro' title='${lbl:b_store_date}' align='left' format='dd-MM-yyyy' />
+		</record>
+
+
+	</pdf-report>
+</config>

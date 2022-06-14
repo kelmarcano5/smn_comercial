@@ -1,0 +1,3 @@
+SELECT smn_comercial.smn_documento.smn_documento_id as id, smn_comercial.smn_documento.dcf_codigo ||' - '|| smn_comercial.smn_documento.dcf_descripcion as item from smn_comercial.smn_documento 
+inner join smn_comercial.smn_centro_facturacion on smn_comercial.smn_centro_facturacion.smn_documento_id = smn_comercial.smn_documento.smn_documento_id
+where  smn_comercial.smn_centro_facturacion.smn_centro_facturacion_id=${fld:id}

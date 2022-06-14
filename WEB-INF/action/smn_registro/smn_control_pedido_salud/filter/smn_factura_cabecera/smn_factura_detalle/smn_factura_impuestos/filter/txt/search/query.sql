@@ -1,0 +1,20 @@
+select
+		smn_comercial.smn_factura_impuestos.smn_factura_impuestos_id,
+select
+		smn_comercial.smn_factura_impuestos.smn_factura_impuestos_id,
+select
+		smn_comercial.smn_factura_impuestos.smn_factura_impuestos_id,
+select
+		smn_comercial.smn_factura_impuestos.smn_factura_impuestos_id,
+	smn_comercial.smn_factura_impuestos.smn_factura_detalle_id,
+	smn_comercial.smn_factura_impuestos.smn_codigos_impuestos_rf,
+	smn_comercial.smn_factura_impuestos.fai_monto_base_ml,
+	smn_comercial.smn_factura_impuestos.fai_porcentaje_impuesto,
+	smn_comercial.smn_factura_impuestos.fai_monto_impuesto_ml,
+	smn_comercial.smn_factura_impuestos.smn_moneda_rf,
+	smn_comercial.smn_factura_impuestos.smn_tasa_rf,
+	smn_comercial.smn_factura_impuestos.fai_monto_impuesto_ma,
+	smn_comercial.smn_factura_impuestos.fai_fecha_registro
+	
+from
+	smn_comercial.smn_factura_impuestos

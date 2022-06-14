@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/select2.min.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script"></script>
+	<script type="text/javascript" src="${def:context}/action/jquery"></script>
+	<script type="text/javascript" src="${def:context}/action/select2"></script>
+
+	<script type="text/javascript">
+		//invoca la generacion de un PDF en un popup
+		function openPDF()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a excel
+		function openExcel() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a xml
+		function openXml(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/xml/search?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a texto
+		function openTxt(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/txt/search?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//envio de emails
+		function openEmails() {
+			var uri = "${def:context}${def:actionroot}/email/form";					
+			openDialog("editor0", uri, 980, 600);	
+		}
+	</script>
+
+</head>
+
+<body>
+
+	<!--banner-->
+	<div class="bannerDialog" id="encabezado_tabla">
+		${lbl:b_auxiliary_nature_person_pacient}
+		<!-- <img src="${def:context}/images/pdf.png" onclick="openPDF()" title="${lbl:b_export_pdf}" style="cursor:pointer; margin-left:3px;"/> -->
+		<!-- <img src="${def:context}/images/excel.png" onclick="openExcel()" title="${lbl:b_export_excel}" style="cursor:pointer; margin-left:3px;"/> -->
+		<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog()" title="${lbl:b_close_button}" style="float:right; cursor:pointer;"/>
+	</div>
+
+	<table class="record" style="width:500px;">
+		<tr>
+			<td width="40%">${lbl:b_class_auxiliary}</td>
+			<td style="background-color: white">${fld:smn_clase_auxiliar_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_first_name}</td>
+			<td style="background-color: white">${fld:aux_nombres}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_last_name}</td>
+			<td style="background-color: white">${fld:aux_apellidos}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_document_type_oficial}</td>
+			<td style="background-color: white">${fld:aux_tipo_doc_oficial_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_document_number_oficial}</td>
+			<td style="background-color: white">${fld:aux_num_doc_oficial}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_rif}</td>
+			<td style="background-color: white">${fld:aux_rif}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_sex}</td>
+			<td style="background-color: white">${fld:aux_sexo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_civil_status}</td>
+			<td style="background-color: white">${fld:aux_estado_civil}</td>
+		</tr>
+		<tr>
+			<td width="40%">Fecha de Nacimiento</td>
+			<td style="background-color: white">${fld:aux_fecha_nac}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_birth_place}</td>
+			<td style="background-color: white">${fld:aux_lugar_nac}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_address}</td>
+			<td style="background-color: white">${fld:aux_direccion_rf}</td>
+		</tr>
+
+		<tr>
+			<td width="40%">${lbl:b_nationalized}</td>
+			<td style="background-color: white">${fld:aux_nacionalizado}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_lateraly}</td>
+			<td style="background-color: white">${fld:aux_lateralidad}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_store_date}</td>
+			<td style="background-color: white">${fld:aux_fecha_registro@dd-MM-yyyy}</td>
+		</tr>
+
+	</table>
+
+	<table class="record" width="600px">
+
+		<tr>
+			<th colspan="2" style="font-weight:bold;font-size:10pt;">
+				DATOS DE EMERGENCIA
+			</th>
+		</tr>
+
+		<tr>
+			<td width="40%">${lbl:b_type_contact}</td>
+			<td  style="background-color: white">${fld:smn_tipo_contactos_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_description}</td>
+			<td  style="background-color: white">${fld:cnt_descripcion}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_type_contact}</td>
+			<td  style="background-color: white">${fld:smn_tipo_contactos_rf1}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_description}</td>
+			<td  style="background-color: white">${fld:cnt_descripcion1}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:s_profile_lname}</td>
+			<td style="background-color: white">${fld:cnt_apellidos}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:s_profile_fname}</td>
+			<td  style="background-color: white">${fld:cnt_nombres}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_phone}</td>
+			<td  style="background-color: white">${fld:cnt_telefono_contacto}</td>
+		</tr>
+		<!-- </rows-smncontacto> -->
+	</table>
+		
+	<br>
+	<div  align="center">
+		<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog()" class="button">
+	</div>
+
+</body>
+
+</html>

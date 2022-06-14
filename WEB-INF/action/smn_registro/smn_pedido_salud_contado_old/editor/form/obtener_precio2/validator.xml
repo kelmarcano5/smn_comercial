@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+		<parameter id="id" type="integer" required="true" label="ID" />
+		<parameter id="precio" type="integer" required="false" label="precio del baremos detalle" />
+		<parameter id="precioma" type="integer" required="false" label="precio MA del baremos detalle" />
+		<parameter id="smn_moneda_rf" type="integer" required="false" label="moneda MA del baremos detalle" />
+		<parameter id="fecha" type="date" required="false" label="fecha" />
+		<parameter id="centro" type="integer" required="false" label="ID ${lbl:b_entities}" />
+</validator>

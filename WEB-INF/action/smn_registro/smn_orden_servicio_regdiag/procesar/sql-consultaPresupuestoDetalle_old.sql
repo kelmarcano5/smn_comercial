@@ -1,0 +1,31 @@
+SELECT DISTINCT
+	smn_comercial.smn_rel_orden_servicio.smn_rel_orden_servicio_id,
+	smn_comercial.smn_rel_orden_servicio.smn_orden_servicio_id,
+	smn_comercial.smn_rel_orden_servicio.smn_servicios_rf,
+	smn_comercial.smn_centro_facturacion.smn_baremos_rf,
+	smn_base.smn_baremos_detalle.bad_precio_moneda_alterna,
+	smn_base.smn_baremos_detalle.smn_baremos_detalle_id,
+	smn_base.smn_baremos_detalle.smn_baremos_id,
+	smn_base.smn_baremos_detalle.bad_tipo_componente,
+	smn_base.smn_baremos_detalle.smn_clase_auxiliar_rf,
+	smn_base.smn_baremos_detalle.smn_item_rf,
+	smn_base.smn_baremos_detalle.smn_almacen_rf,
+	smn_base.smn_baremos_detalle.bad_cantidad,
+	smn_base.smn_baremos_detalle.bad_precio_moneda_local,
+	smn_base.smn_baremos_detalle.bad_precio_moneda_local*smn_base.smn_baremos_detalle.bad_cantidad as prd_monto_moneda_local,
+	smn_base.smn_baremos_detalle.bad_precio_moneda_alterna*smn_base.smn_baremos_detalle.bad_cantidad as prd_moneda_alterna,
+	smn_base.smn_baremos_detalle.smn_moneda_rf,
+	smn_comercial.smn_orden_servicio_detalle.smn_visible_rf as smn_visible_rf,
+	smn_comercial.smn_orden_servicio_detalle.osd_cantidad as prd_cantidad,
+	smn_comercial.smn_orden_servicio_detalle.smn_grupo_prestador_rf,
+	smn_comercial.smn_orden_servicio.smn_prestador_servicio_rf,
+	${fld:smn_presupuesto_id} as smn_presupuesto_id
+FROM
+	smn_comercial.smn_orden_servicio
+	INNER JOIN smn_comercial.smn_orden_cab_det_servicio ON smn_comercial.smn_orden_cab_det_servicio.smn_orden_servicio_id = smn_comercial.smn_orden_servicio.smn_orden_servicio_id
+	INNER JOIN smn_comercial.smn_rel_orden_servicio ON smn_comercial.smn_orden_cab_det_servicio.smn_orden_servicio_id = smn_comercial.smn_rel_orden_servicio.smn_orden_servicio_id
+	INNER JOIN smn_comercial.smn_orden_servicio_detalle ON smn_comercial.smn_orden_cab_det_servicio.smn_orden_cab_det_servicio_id = smn_comercial.smn_orden_servicio_detalle.smn_orden_cab_det_servicio_id
+	INNER JOIN smn_comercial.smn_centro_facturacion ON smn_comercial.smn_orden_servicio.smn_centro_facturacion_id = smn_comercial.smn_centro_facturacion.smn_centro_facturacion_id
+	INNER JOIN smn_base.smn_baremos_detalle ON smn_comercial.smn_centro_facturacion.smn_baremos_rf = smn_base.smn_baremos_detalle.smn_baremos_id AND smn_comercial.smn_rel_orden_servicio.smn_servicios_rf = smn_base.smn_baremos_detalle.smn_servicios_rf
+where 
+	smn_comercial.smn_orden_servicio.smn_orden_servicio_id = ${fld:id_orden_servicio} and smn_comercial.smn_orden_servicio_detalle.smn_visible_rf ='N'

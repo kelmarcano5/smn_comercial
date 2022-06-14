@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_entidades_rf' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='${lbl:b_store_code}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='plv_semestre_rf' type='integer' required='false' label='${lbl:b_semestre}' maxlen='1'/>
+	<!-- <custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='plv_semestre_rf' rule='like' /> -->
+	<parameter id='plv_trimestre_rf' type='integer' required='false' label='${lbl:b_trimestre}' maxlen='1'/>
+	<!-- <custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='plv_trimestre_rf' rule='like' /> -->
+	<parameter id='plv_mes_rf' type='integer' required='false' label='${lbl:b_mes}' maxlen='1'/>
+	<!-- <custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='plv_mes_rf' rule='like' /> -->
+	<parameter id='plv_semana_rf' type='integer' required='false' label='${lbl:b_semana}' maxlen='1'/>
+	<!-- <custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='plv_semana_rf' rule='like' /> -->
+	<parameter id='plv_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date} mayor o igual que] no puede ser mayor que [${lbl:b_store_date} menor o igual que].' date1='plv_fecha_registro_ini' date2='plv_fecha_registro_fin' id='plv_fecha_registro_ini' />
+	<parameter id='plv_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

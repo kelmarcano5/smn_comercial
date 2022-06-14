@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_auxiliar_id_name' type='varchar' required='false' label='${lbl:b_auxiliary}'/>
+	<parameter id='smn_auxiliar_id' type='integer' required='false' label='${lbl:b_auxiliary}' maxlen='10'/>
+	<parameter id='smn_auxiliar_sucursal_id' type='integer' required='false' label='${lbl:b_outsourced_subsidiary}' maxlen='10'/>
+	<parameter id="id3" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id="id2" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id="codigo_aux" type="varchar" required="false" label="CODIGO" maxlen="10" />
+	<parameter id="descripcion_aux" type="varchar" required="false" label="DESCRIPCION" maxlen="50" />
+	<parameter id="codigo_clase" type="varchar" required="false" label="NOMBRES" maxlen="50" />
+	<parameter id="descripcion_clase" type="varchar" required="false" label="APELLIDOS" maxlen="50" />
+</validator>

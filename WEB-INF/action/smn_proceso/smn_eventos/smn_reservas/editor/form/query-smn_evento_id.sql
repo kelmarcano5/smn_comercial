@@ -1,0 +1,1 @@
+select smn_comercial.smn_evento.smn_evento_id as id, smn_comercial.smn_evento.eve_codigo||' - '|| smn_comercial.smn_evento.eve_descripcion_corta as item from smn_comercial.smn_evento

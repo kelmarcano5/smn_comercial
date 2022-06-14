@@ -1,0 +1,1 @@
+select smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id as id, smn_comercial.smn_pedido_cabecera.pca_numero_pedido ||' - '|| smn_comercial.smn_pedido_cabecera.pca_descripcion as item from smn_comercial.smn_pedido_cabecera

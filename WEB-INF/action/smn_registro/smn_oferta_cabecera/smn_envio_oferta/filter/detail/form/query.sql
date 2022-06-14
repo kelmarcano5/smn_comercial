@@ -1,0 +1,20 @@
+select
+		smn_comercial.smn_envio_oferta.smn_envio_oferta_id,
+	smn_comercial.smn_oferta_cabecera.ofe_descripcion as smn_oferta_id,
+	smn_comercial.smn_envio_oferta.eof_fecha_envio,
+	smn_comercial.smn_envio_oferta.eof_fecha_cierre,
+	smn_comercial.smn_clasificacion_cliente.ccl_descripcion as smn_clasificacion_cliente_id,
+	smn_comercial.smn_area_interes.ari_descripcion as smn_clientes_area_interes_id,
+	smn_base.smn_tipo_contactos.tco_descripcion as smn_tipo_contactos_rf,
+	smn_comercial.smn_envio_oferta.eof_descripcion,
+	smn_comercial.smn_envio_oferta.eof_fecha_registro
+	
+from
+	smn_comercial.smn_envio_oferta
+	inner join smn_comercial.smn_oferta_cabecera on smn_comercial.smn_oferta_cabecera.smn_oferta_cabecera_id = smn_comercial.smn_envio_oferta.smn_oferta_id
+	inner join smn_comercial.smn_clasificacion_cliente on smn_comercial.smn_clasificacion_cliente.smn_clasificacion_cliente_id = smn_comercial.smn_envio_oferta.smn_clasificacion_cliente_id
+	inner join smn_comercial.smn_area_interes on smn_comercial.smn_area_interes.smn_area_interes_id = smn_comercial.smn_envio_oferta.smn_clientes_area_interes_id
+	inner join smn_base.smn_tipo_contactos on smn_base.smn_tipo_contactos.smn_tipo_contactos_id = smn_comercial.smn_envio_oferta.smn_tipo_contactos_rf
+
+where
+	smn_envio_oferta_id = ${fld:id}

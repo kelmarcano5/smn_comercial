@@ -1,0 +1,1 @@
+select smn_comercial.smn_pago_punto_venta.smn_pago_punto_venta_id as id_pago from smn_comercial.smn_pago_punto_venta ORDER BY smn_comercial.smn_pago_punto_venta.smn_pago_punto_venta_id  desc limit 1

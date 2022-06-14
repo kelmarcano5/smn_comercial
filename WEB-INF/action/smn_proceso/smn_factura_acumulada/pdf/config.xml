@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnsaldocliente.sql" source="session" scope="transaction" />
+		<recordset id="filter.params" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>Factura Acumulada</pdf-title>
+	<pdf-logo url='/images/logo-dinamica.png' scale='100' />
+
+	<pdf-report pageSize="letter" rotate="false">
+		<record recordset='filter.params' title='Filtro de Búsqueda' noFilterMsg='-- Sin filtro de búsqueda --' width='55' spacingBefore='15'>
+			<col name='smn_entidad_rf' title='${lbl:b_entities}'  format='######' align='center' />
+			<col name='smn_sucursal_rf' title='${lbl:b_subsidiaries}'  format='######' align='center' />
+			<col name='smn_cliente_rf' title='${lbl:b_customer}'  format='######' align='center' />
+			<col name='scl_fecha_registro_ini' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='center' />
+			<col name='scl_fecha_registro_fin' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='center' />
+		</record>
+		<table recordset='query-smnsaldocliente.sql' width='100' spacingBefore='10'>
+			<col name='smn_entidad_rf_combo' title='${lbl:b_entities}' width='5' align='center' format='######' />
+			<col name='smn_sucursal_rf_combo' title='${lbl:b_subsidiaries}' width='5' align='center' format='######' />
+			<col name='smn_cliente_rf_combo' title='${lbl:b_customer}' width='5' align='center' format='######' />
+			<col name='scl_fecha' title='${lbl:s_loginhist_col1}' width='5' align='center' format='dd-MM-yyyy' />
+			<col name='scl_saldo_inicial_ml' title='${lbl:b_initial_balance_ml}' width='5' align='right' format='#,###,##0.00' />
+			<col name='scl_debitos_ml' title='${lbl:b_debits}' width='5' align='right' format='#,###,##0.00' />
+			<col name='scl_creditos_ml' title='${lbl:b_credits}' width='5' align='right' format='#,###,##0.00' />
+			<col name='scl_saldo_final_ml' title='${lbl:b_final_balance}' width='5' align='right' format='#,###,##0.00' />
+			<col name='scl_saldo_inicial_ma' title='${lbl:b_initial_balance_ma}' width='5' align='right' format='#,###,##0.00' />
+			<col name='scl_debitos_ma' title='${lbl:b_debits_ma}' width='5' align='right' format='#,###,##0.00' />
+			<col name='scl_creditos_ma' title='${lbl:b_credits_ma}' width='5' align='right' format='#,###,##0.00' />
+			<col name='scl_saldo_final_ma' title='${lbl:b_final_balance_ma}' width='5' align='right' format='#,###,##0.00' />
+			<col name='scl_saldo_vencido_ml' title='${lbl:b_balance_due}' width='5' align='right' format='#,###,##0.00' />
+			<col name='scl_saldo_vencido_ma' title='${lbl:b_balance_due_ma}' width='5' align='right' format='#,###,##0.00' />
+			<col name='scl_estatus_combo' title='${lbl:b_estatus}' width='5' align='left' />
+			<col name='scl_porcentaje_deuda_vencida' title='${lbl:b_percentage_of_overdue_debt}' width='5' align='right' format='#,###,##0.00' />
+			<col name='scl_fecha_registro' title='${lbl:b_store_date}' width='5' align='center' format='dd-MM-yyyy' />
+		</table>
+
+	</pdf-report>
+</config>

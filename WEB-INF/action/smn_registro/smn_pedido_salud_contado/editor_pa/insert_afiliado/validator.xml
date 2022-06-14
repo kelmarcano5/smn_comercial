@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_naturaleza_auxiliar_rf' type='integer' required='false' label='${lbl:b_nature_auxiliary}' maxlen='10'/>
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='true' label='${lbl:b_class_auxiliary}' maxlen='10'/>
+	<parameter id='aux_tipo_persona' type='varchar' required='true' label='${lbl:b_person_type}' maxlen='2'/>
+	<parameter id='aux_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='16'/>
+	<parameter id='aux_descripcion' type='varchar' required='false' label='${lbl:b_description}' maxlen='64'/>
+	<parameter id='aux_apellidos' type='varchar' required='false' label='${lbl:b_last_name}' maxlen='64'/>
+	<parameter id='aux_nombres' type='varchar' required='false' label='${lbl:b_first_name}' maxlen='64'/>
+	<parameter id='aux_tipo_doc_oficial_rf' type='integer' required='true' label='${lbl:b_document_type_oficial}' maxlen='10'/>
+	<parameter id='aux_num_doc_oficial' type='varchar' required='true' label='${lbl:b_document_number_oficial}' maxlen='12'/>
+	<parameter id='aux_rif' type='varchar' required='false' label='${lbl:b_rif}' maxlen='16'/>
+	<parameter id='aux_sexo' type='varchar' required='false' label='${lbl:b_sex}' maxlen='2'/>
+	<parameter id='aux_estado_civil' type='varchar' required='false' label='${lbl:b_civil_status}' maxlen='2'/>
+	<parameter id='aux_fecha_nac' type='date' required='false' label='${lbl:b_date_place}' maxlen='10'/>
+	<parameter id='aux_lugar_nac' type='varchar' required='false' label='${lbl:b_birth_place}' maxlen='64'/>
+	<parameter id='aux_direccion_rf' type='integer' required='false' label='${lbl:b_address}' maxlen='10'/>
+	<parameter id='aux_nacionalidad_rf' type='integer' required='false' label='${lbl:b_citizenship}' maxlen='10'/>
+	<parameter id='aux_nacionalizado' type='varchar' required='false' label='${lbl:b_nationalized}' maxlen='2'/>
+	<parameter id='aux_fecha_gaceta_nac' type='date' required='false' label='${lbl:b_nationalization_date_gazette}' maxlen='10'/>
+	<parameter id='aux_num_gaceta' type='integer' required='false' label='${lbl:b_nationalization_gazette}' maxlen='10'/>
+	<parameter id='aux_afiliacion' type='varchar' required='true' label='${lbl:b_affiliations}' maxlen='2'/>
+	<parameter id='aux_condicion_financiera_rf' type='integer' required='false' label='${lbl:b_conditional_financial}' maxlen='10'/>
+	<parameter id='aux_cuenta_bancaria_rf' type='integer' required='false' label='${lbl:b_bank_account_number}' maxlen='10'/>
+	<parameter id='aux_persona_contacto' type='varchar' required='false' label='${lbl:b_contact_person}' maxlen='48'/>
+	<parameter id='aux_titular_rf' type='integer' required='false' label='${lbl:b_titular}' maxlen='10'/>
+	<parameter id='aux_peso' type='double' required='false' label='${lbl:b_weight}' maxlen='10'/>
+	<parameter id='aux_unidad_med_peso_rf' type='integer' required='false' label='${lbl:b_measurement_unit_weight}' maxlen='10'/>
+	<parameter id='aux_estatura' type='double' required='false' label='${lbl:b_height}' maxlen='10'/>
+	<parameter id='aux_unidad_med_estatura_rf' type='integer' required='false' label='${lbl:b_measurement_unit_height}' maxlen='10'/>
+	<parameter id='aux_lateralidad' type='varchar' required='false' label='${lbl:b_height}' maxlen='1'/>
+	<parameter id='aux_talla_camisa' type='double' required='false' label='${lbl:b_shirt_size}' maxlen='10'/>
+	<parameter id='aux_unidad_med_camisa_rf' type='integer' required='false' label='${lbl:b_measurement_unit_shirt}' maxlen='10'/>
+	<parameter id='aux_talla_pantalon' type='double' required='false' label='${lbl:b_pants_size}' maxlen='10'/>
+	<parameter id='aux_unidad_med_pantalon_rf' type='integer' required='false' label='${lbl:b_measurement_unit_pants}' maxlen='10'/>
+	<parameter id='aux_talla_zapato' type='double' required='false' label='${lbl:b_shoes_size}' maxlen='10'/>
+	<parameter id='aux_unidad_med_zapato_rf' type='integer' required='false' label='${lbl:b_measurement_unit_shoes}' maxlen='10'/>
+	<parameter id='aux_talla_braga' type='double' required='false' label='${lbl:b_panty_size}' maxlen='10'/>
+	<parameter id='aux_unidad_med_braga_rf' type='integer' required='false' label='${lbl:b_measurement_unit_panty}' maxlen='10'/>
+	<parameter id='aux_talla_casco' type='double' required='false' label='${lbl:b_helmet_size}' maxlen='10'/>
+	<parameter id='aux_unidad_med_casco_rf' type='integer' required='false' label='${lbl:b_measurement_unit_helmet}' maxlen='10'/>
+	<parameter id='aux_numero_historia' type='integer' required='false' label='${lbl:b_number_history}' maxlen='10'/>
+	<parameter id='reference' type='varchar' required='false' label='Reference' maxlen='5' />
+
+	<parameter id='aux_observacion' type='varchar' required='false' label='${lbl:b_observations}' maxlen='96'/>
+	<parameter id='aux_auxiliar_unidad_negocio_rf' type='integer' required='false' label='Contratante' maxlen='10'/>
+	<!--DATOS DE CONTACTO-->
+
+	<parameter id='smn_tipo_contactos_rf' type='integer' required='true' label='${lbl:b_type_contact}' maxlen='10'/>
+	<parameter id='cnt_descripcion' type='varchar' required='true' label='${lbl:b_description}' maxlen='50'/>
+	<parameter id='smn_tipo_contactos_rf1' type='integer' required='true' label='${lbl:b_type_contact}' maxlen='10'/>
+	<parameter id='cnt_descripcion1' type='varchar' required='true' label='${lbl:b_description}' maxlen='24'/>
+	
+	<parameter id='cnt_apellidos' type='varchar' required='true' label='${lbl:s_profile_lname}' maxlen='64'/>
+	<parameter id='cnt_nombres' type='varchar' required='true' label='${lbl:s_profile_fname}' maxlen='64'/>
+	<parameter id='cnt_telefono_contacto' type='varchar' required='false' label='${lbl:b_phone}' maxlen='64'/>
+	
+	
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='aux_codigo'/>
+
+	 <custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='aux_num_doc_oficial'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarNombre.sql'
+			id='aux_rif'/> 
+
+</validator>

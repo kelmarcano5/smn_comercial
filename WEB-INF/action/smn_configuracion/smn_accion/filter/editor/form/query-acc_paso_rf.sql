@@ -1,0 +1,1 @@
+select smn_base.smn_paso.smn_paso_id as id, smn_base.smn_paso.pas_codigo||' - '|| smn_base.smn_paso.pas_descripcion as item from smn_base.smn_paso

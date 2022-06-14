@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_centro_facturacion_id' type='integer' required='true' label='${lbl:b_centro_facturacion}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='true' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_rel_centro_fac_document}' maxlen='10'/>
+
+
+</validator>

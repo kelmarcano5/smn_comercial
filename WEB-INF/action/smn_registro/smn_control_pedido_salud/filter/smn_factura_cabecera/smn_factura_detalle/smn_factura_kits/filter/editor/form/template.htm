@@ -1,0 +1,469 @@
+<!doctype html>
+<html>
+
+<head>
+
+		<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+		<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	${lbl:b_kits_bill}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+				<tr>
+			<td>${lbl:b_detail_bill}*</td>
+			<td>
+				<!--almacena el ID del item seleccionado--> 
+				<input type="text" name="smn_factura_detalle_id" id="smn_factura_detalle_id" disabled="true" /> 
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_item_origin}*</td>
+		<td>
+			<select name="smn_item_origen_rf" id="smn_item_origen_rf" onchange="chgCombo(smn_item_origen_rf.options[smn_item_origen_rf.selectedIndex].text,'smn_item_origen_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_item_origen_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_item_origen_rf_rows>
+			</select> 
+			<input id="smn_item_origen_rf_name" name="smn_item_origen_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_item_destiny}*</td>
+		<td>
+			<select name="smn_item_destino_rf" id="smn_item_destino_rf" onchange="chgCombo(smn_item_destino_rf.options[smn_item_destino_rf.selectedIndex].text,'smn_item_destino_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_item_destino_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_item_destino_rf_rows>
+			</select> 
+			<input id="smn_item_destino_rf_name" name="smn_item_destino_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_quantity}*</td>
+			<td>
+				<input id="fki_cantidad" name="fki_cantidad" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_price}*</td>
+			<td>
+				<input id="fki_precio_ml" name="fki_precio_ml" type="text" maxlength="10" class="numeric" onchange="calcularmonto();">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_amount}*</td>
+			<td>
+				<input id="fki_monto_ml" name="fki_monto_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_coins}</td>
+		<td>
+			<select name="smn_moneda_rf" id="smn_moneda_rf" onchange="chgCombo(smn_moneda_rf.options[smn_moneda_rf.selectedIndex].text,'smn_moneda_rf_name');chgCombo30(smn_moneda_rf.options[smn_moneda_rf.selectedIndex].text,'smn_moneda_rf_name');cambiartasa();">
+				<option value="0">[Cualquiera]</option>
+				<smn_moneda_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_moneda_rf_rows>
+			</select> 
+			<input id="smn_moneda_rf_name" name="smn_moneda_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr style="display: none" id="tasa">
+		<td>${lbl:b_exchange_rate}</td>
+		<td>
+			<select name="smn_tasa_rf" id="smn_tasa_rf" onchange="chgCombo(smn_tasa_rf.options[smn_tasa_rf.selectedIndex].text,'smn_tasa_rf_name');seteartasa(smn_tasa_rf.options[smn_tasa_rf.selectedIndex].text,'smn_tasa_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_tasa_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_tasa_rf_rows>
+			</select> 
+			<input id="smn_tasa_rf_name" name="smn_tasa_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr style="display: none" id="precioma">
+			<td>${lbl:b_price_ma}</td>
+			<td>
+				<input id="smn_precio_ma_rf" name="smn_precio_ma_rf" type="text" maxlength="10" class="numeric" onchange="calcular_pago();"> 
+			</td>
+		</tr>
+		<tr style="display: none" id="montoma">
+			<td>${lbl:b_amount_ma}</td>
+			<td>
+				<input id="fki_monto_ma_rf" name="fki_monto_ma_rf" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none">
+			<td>${lbl:b_status}*</td>
+			<td>
+				<select name="fki_estatus" id="fki_estatus">
+				<option value="GE">${lbl:b_generated}</option>
+				<option value="PE">${lbl:b_pending}</option>
+				<option value="PA">${lbl:b_paying}</option>
+
+				</select> 
+			</td>
+		</tr>
+
+
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	
+	<!-- PK-->
+<input type="hidden" name="id" value="">
+<input type="hidden" name="divisa" id="divisa">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();
+
+		document.getElementById('smn_factura_detalle_id').value = '${fld:id2}';
+
+		if (id!="")
+			edit(id);
+	} 
+
+	function calcularmonto() {
+		var cant = document.getElementById('fki_cantidad').value;
+		var prec = document.getElementById('fki_precio_ml').value;
+		
+		var tot = cant * prec; 
+
+		document.getElementById('fki_monto_ml').value = tot;
+		document.getElementById('fki_monto_ml').disabled = true;
+
+	}
+
+	function cambiartasa() {
+		var mon = document.getElementById('smn_moneda_rf').value;
+
+		if(mon != '360'){
+			document.getElementById('tasa').style.display='';
+			document.getElementById('precioma').style.display='';
+			document.getElementById('montoma').style.display='';
+		}else{
+			document.getElementById('tasa').style.display='none';
+			document.getElementById('precioma').style.display='none';
+			document.getElementById('montoma').style.display='none';
+		}
+
+		if(mon == '0'){
+			document.getElementById('tasa').style.display='none';
+			document.getElementById('precioma').style.display='none';
+			document.getElementById('montoma').style.display='none';
+		}
+
+	}
+
+	function calcularmontoma() {
+		var cant = document.getElementById('fki_cantidad').value;
+		var precma = document.getElementById('smn_precio_ma_rf').value;
+		
+		var totma = cant * precma; 
+		document.getElementById('fki_monto_ma_rf').value = totma;
+		document.getElementById('fki_monto_ma_rf').disabled = true;
+	}
+
+	function calcular_pago() {
+		var divid = document.getElementById('divisa').value;
+		var monto_dolar = document.getElementById('fki_monto_ma_rf').value;
+		//var total = 0;
+		//var total2 = 0;
+		total = monto_dolar * divid;
+		document.getElementById('fki_monto_ml').value = total; 
+		document.getElementById('fki_monto_ml').disabled=true;
+
+		// var mp = document.getElementById('ppv_monto_pagar_ma').value;
+		// var mpp = document.getElementById('ppv_monto_pago_ma').value ;
+
+		// //alert(mp);
+		// //	alert(mpp);
+		// total2 =  mpp - mp;
+		// //alert(total2);
+
+		// document.getElementById('ppv_monto_devuelto_ma').value= total2.toFixed(2);
+
+		// var m1 = document.getElementById('ppv_monto_pagar_ml').value;
+		// var m2 = document.getElementById('ppv_monto_pago_ml').value;
+		// total3 = m1 -  m2;
+
+		// document.getElementById('ppv_monto_devuelto_ml').value= total3.toFixed(2);
+
+	}
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save()
+	{
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+	//Author     : SIMONE
+    //Description: Set first element as selected value
+    //Return     : None
+    function setElementFirstIndex(id){
+        var combo = document.getElementById(id);
+        combo.selectedIndex = 0;
+    }
+
+    //Author     : SIMONE
+    //Description: Insert new value into combo box
+    //Return     : None
+    function insertComboBox(code, combo, description){
+        var valueText = code;
+        if (description != null)
+        {
+            valueText = valueText + ' - ' + description;
+        }
+        //alert("Insert Combo: "+valueText);
+       combo.options[combo.options.length] = new Option(valueText);
+    }
+    
+    //Author     : SIMONE
+    //Description: Add new value to combo box
+    //Return     : None
+    function addValueToCombo(code, description, field){
+        var combo = document.getElementById(field);        
+        insertComboBox(code, combo, description);
+    }
+    
+    //Author     : SIMONE
+    //Description: Set selected index into combo box
+    //Return     : None
+    function setSelectedIndex(code, combo, description){
+        for (var i = 0; i < combo.options.length; i++)
+        {
+            var valueText = code;
+            if (description != null)
+            {
+                valueText = valueText + ' - ' + description;
+            }
+            if (combo.options[i].text == valueText)
+            {
+                combo.options[i].selected = true;
+                return;
+            }
+        }
+    }
+    
+    //Author     : SIMONE
+    //Description: Get text valueof selected index
+    //Return     : Text associated to index
+    function getSelectedIndex(combo){
+        for (var i = 0; i < combo.options.length; i++)
+        {
+            if (combo.options[i].selected == true)
+            {
+                return combo.options[i].text;
+            }
+        }
+    }
+
+    function getIDSelectedIndex(combo){
+        for (var i = 0; i < combo.options.length; i++)
+        {
+            if (combo.options[i].selected == true)
+            {
+                return combo.options[i].value;
+            }
+        }
+    }
+    
+    //Author     : SIMONE
+    //Description: Set value to combo box
+    //Parameters : code - it is code associated into each database table
+    //             descripcion - it is description associated into each database table
+    //             field - name combo field
+    //             id - identifier retrieved after transaction
+    //             linked - flag indicates 'true' when combos are linked and 'false' otherwise
+    //Return     : None
+    function setValueComboBox(code, description, field, linked){
+        //add value text to combo
+        addValueToCombo(code,description,field);
+        //get select object
+        var combo = document.getElementById(field);
+        //set element selected to field referenced
+        setSelectedIndex(code,combo, description);
+        //set text value to combo field
+        var valueText = getSelectedIndex(combo);        
+        //get hidden field in order to set any value
+        var combo = document.getElementById(field+'_name');
+        //alert("Text: "+valueText+" - bdID: "+bdID);
+        combo.text  = valueText;
+        combo.value = bdID;
+        //enable linked fields
+        if (linked)
+        {
+          
+        }
+    }
+
+	//Este codigo fue creado por SIMONE y ajustado en este crud por Kelvin Marcano
+	var geo_idt = null;
+	function chgCombo30(text,id)
+	{				
+		document.form1.smn_tasa_rf.disabled=false;
+		var combo = document.form1.smn_moneda_rf;
+		var valueCombo = getIDSelectedIndex(combo);
+		//geo_idt = valueCombo.split("-").pop().trim();
+		//alert(valueCombo);
+		if (id!=null && id!="") 
+		{	
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/gettasa?id=" + valueCombo, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=setElementFirstIndex('smn_tasa_rf'), //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null); 				
+		}
+	}
+
+	function seteartasa(text, id) {
+
+			//Este codigo fue creado por SIMONE y ajustado en este crud por Kelvin Marcano
+
+		//document.form1.smn_tasa_rf.disabled=false;
+		var combo = document.getElementById('smn_tasa_rf');
+		var valueCombo = getIDSelectedIndex(combo);
+		//geo_idt = valueCombo.split("-").pop().trim();
+		//alert(valueCombo);
+		if (id!=null && id!="") 
+		{	
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/gettasa_value?id=" + valueCombo, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null); 				
+		}
+	}
+
+
+	
+</script>	
+</body>
+</html>

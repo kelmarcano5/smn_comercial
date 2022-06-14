@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnpedidoimpdeduccdetalle.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_detail_order_deduction_tax}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_detail_order_deduction_tax}">
+				<col id='smn_pedido_detalle_id' label='${lbl:b_control_header_order_health_detail}' />
+		<col id='smn_codigos_impuestos_rf' label='${lbl:b_tax}' />
+		<col id='pid_porcentaje_impuesto' label='${lbl:b_tax_porcentaje}' />
+		<col id='pid_monto_sustraendo' label='${lbl:b_amount_less}' />
+		<col id='pid_monto_impuesto' label='${lbl:b_amount_tax}' />
+		<col id='smn_descuentos_retenciones_rf' label='${lbl:b_retencion_discount}' />
+		<col id='pid_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

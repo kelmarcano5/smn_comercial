@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id="id" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id="id2" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id="codigo" type="varchar" required="false" label="descripcion" maxlen="64" />
+	<parameter id="cliente" type="varchar" required="false" label="descripcion" maxlen="64" />
+	<parameter id="documento" type="integer" required="false" label="documento" maxlen="100" />
+		<parameter id="moneda_alterna" type="varchar" required="false" label="moneda alterna" maxlen="10" />
+		<parameter id="comprador" type="varchar" required="false" label="comprador" maxlen="64" />
+		<parameter id="monto" type="double" required="false" label="descripcion" maxlen="64" />
+</validator>

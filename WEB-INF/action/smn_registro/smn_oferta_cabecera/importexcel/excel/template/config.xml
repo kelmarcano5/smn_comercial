@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnofertacabecera.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_offer}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_offer}">
+				<col id='smn_documento_id' label='${lbl:b_document}' />
+		<col id='ofe_numero_documento' label='${lbl:b_document_number}' />
+		<col id='smn_entidad_rf' label='${lbl:b_entities}' />
+		<col id='smn_sucursal_rf' label='${lbl:b_subsidiaries}' />
+		<col id='ofe_fecha_desde' label='${lbl:b_init_date}' />
+		<col id='ofe_fecha_hasta' label='${lbl:b_end_date}' />
+		<col id='ofe_observaciones' label='${lbl:b_observations}' />
+		<col id='ofe_estatus' label='${lbl:b_status}' />
+		<col id='ofe_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

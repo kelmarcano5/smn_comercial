@@ -1,0 +1,1 @@
+delete from smn_seguridad.s_user WHERE user_id= ${fld:smn_user_rf}

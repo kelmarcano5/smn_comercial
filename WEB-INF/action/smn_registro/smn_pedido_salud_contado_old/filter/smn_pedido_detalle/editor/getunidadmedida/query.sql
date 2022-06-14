@@ -1,0 +1,8 @@
+select smn_base.smn_unidad_medida.smn_unidad_medida_id as id, smn_base.smn_unidad_medida.unm_descripcion as item
+from smn_comercial.smn_catalogo_item_comercio
+inner join smn_base.smn_unidad_medida on smn_base.smn_unidad_medida.smn_unidad_medida_id = smn_comercial.smn_catalogo_item_comercio.smn_unidad_medida_rf
+--inner join smn_base.smn_baremos on smn_base.smn_baremos.smn_baremos_id = smn_comercial.smn_catalogo_item_comercio.smn_baremos_rf
+--inner join smn_base.smn_baremos_detalle on smn_base.smn_baremos_detalle.smn_baremos_id = smn_comercial.smn_catalogo_item_comercio.smn_baremos_rf
+inner join smn_base.smn_item on smn_base.smn_item.smn_item_id= smn_comercial.smn_catalogo_item_comercio.smn_item_rf
+where smn_comercial.smn_catalogo_item_comercio.smn_catalogo_item_comercio_id=${fld:id}
+ --and  smn_comercial.smn_catalogo_item_comercio.smn_item_rf=smn_base.smn_baremos_detalle.smn_item_rf

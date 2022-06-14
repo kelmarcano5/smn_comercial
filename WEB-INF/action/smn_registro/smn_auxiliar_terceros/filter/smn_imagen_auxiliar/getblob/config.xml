@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Descargar un documento desde la base de datos
+	</summary>
+	
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GetBlob</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<output>
+		<classname>dinamica.BlobOutputPGSQL</classname>
+	</output>
+
+	<!--custom element for THIS Action only-->
+	<!--
+		set to true if you want to force a "Save as" dialog
+		when the browser downloads the BLOB - your query-info.sql
+		template MUST contain a "filename" column.
+	-->
+	<attach>false</attach>
+
+</config>

@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<model>
+	<summary>${lbl:b_relacion_cliente_forma_pago}</summary>
+	<filter>
+		<row field='smn_cliente_id' id='smn_cliente_id' label='${lbl:b_customer}@{select smn_comercial.smn_cliente.smn_cliente_id as id, smn_base.smn_auxiliar.aux_codigo|| &apos; - &apos; || smn_base.smn_auxiliar.aux_descripcion as item from smn_comercial.smn_cliente, smn_base.smn_auxiliar where smn_comercial.smn_cliente.smn_auxiliar_rf = smn_base.smn_auxiliar.smn_auxiliar_id order by smn_comercial.smn_cliente.smn_auxiliar_rf}' required='NO' fk='cli_nacional_ext' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_rel_cliente_forma_pago' len='10'/>
+		<row field='smn_forma_pago_rf' id='smn_forma_pago_rf' label='${lbl:b_way_to_pay}@{select smn_base.smn_formas_pago.smn_formas_pago_id as id, smn_base.smn_formas_pago.fop_codigo|| &apos; - &apos; || smn_base.smn_formas_pago.fop_descripcion as item from smn_base.smn_formas_pago order by fop_descripcion}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_rel_cliente_forma_pago' len='10'/>
+		<row field='rcf_fecha_registro' id='rcf_fecha_registro_ini' label='${lbl:b_store_date_greather_than}' required='NO' fk='' mSelection='' condiction='Mayor o igual que (&gt;=)' type='date' tableName='smn_rel_cliente_forma_pago' len='10'/>
+		<row field='rcf_fecha_registro' id='rcf_fecha_registro_fin' label='${lbl:b_store_date_less_than}' required='NO' fk='' mSelection='' condiction='Menor o igual que (&lt;=)' type='date' tableName='smn_rel_cliente_forma_pago' len='10'/>
+	</filter>
+	<detail>SI</detail>
+	<insert>SI</insert>
+	<edit>SI</edit>
+	<delete>SI</delete>
+	<audit>Consulta</audit>
+	<grid>
+		<row field='smn_cliente_id' label='${lbl:b_customer}@{select smn_comercial.smn_cliente.smn_cliente_id as id, smn_base.smn_auxiliar.aux_codigo|| &apos; - &apos; || smn_base.smn_auxiliar.aux_descripcion as item from smn_comercial.smn_cliente, smn_base.smn_auxiliar where smn_comercial.smn_cliente.smn_auxiliar_rf = smn_base.smn_auxiliar.smn_auxiliar_id order by smn_comercial.smn_cliente.smn_auxiliar_rf}' fk='cli_nacional_ext' tableName='smn_rel_cliente_forma_pago' len='10' type='integer' align='center'/>
+		<row field='smn_forma_pago_rf' label='${lbl:b_way_to_pay}@{select smn_base.smn_formas_pago.smn_formas_pago_id as id, smn_base.smn_formas_pago.fop_codigo|| &apos; - &apos; || smn_base.smn_formas_pago.fop_descripcion as item from smn_base.smn_formas_pago order by fop_descripcion}' fk='' tableName='smn_rel_cliente_forma_pago' len='10' type='integer' align='center'/>
+		<row field='rcf_estatus' label='${lbl:b_status}@{AC=${lbl:b_account_type_active}|IN=${lbl:b_inactive}}' fk='' tableName='smn_rel_cliente_forma_pago' len='2' type='varchar' align='left'/>
+		<row field='rcf_vigencia' label='${lbl:b_validation_date}' fk='' tableName='smn_rel_cliente_forma_pago' len='10' type='date' align='center'/>
+		<row field='rcf_idioma' label='${lbl:s_profile_lang}@{${def:locale}}' fk='' tableName='smn_rel_cliente_forma_pago' len='2' type='varchar' align='left'/>
+		<row field='rcf_usuario' label='${lbl:b_users}@{${def:user}}' fk='' tableName='smn_rel_cliente_forma_pago' len='10' type='varchar' align='left'/>
+		<row field='rcf_fecha_registro' label='${lbl:b_store_date}@{${def:date}}' fk='' tableName='smn_rel_cliente_forma_pago' len='10' type='date' align='center'/>
+		<row field='rcf_hora' label='${lbl:s_loginhist_col2}@{${def:time}}' fk='' tableName='smn_rel_cliente_forma_pago' len='8' type='varchar' align='left'/>
+	</grid>
+	<mobile>false</mobile>
+</model>

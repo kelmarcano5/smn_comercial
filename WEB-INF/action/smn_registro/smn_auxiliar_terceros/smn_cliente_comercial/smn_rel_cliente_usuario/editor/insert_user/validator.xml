@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='false' label='${lbl:b_class_auxiliary}' maxlen='10'/>
+	<parameter id='smn_tipo_registro_rf' type='integer' required='false' label='${lbl:b_registers_type}' maxlen='10'/>
+	<parameter id='lname' type='varchar' required='false' label='${lbl:b_last_name}' maxlen='64'/>
+	<parameter id='fname' type='varchar' required='false' label='${lbl:b_first_name}' maxlen='64'/>
+	<parameter id='userlogin' type='varchar' required='true' label='${lbl:b_official_document_number}' maxlen='12' />
+	<parameter id='passwd' type='varchar' required='true' label='${lbl:s_fld_password}' maxlen='15' regexp='\w{6,}?' regexp-error-label='Use solo letras y números, sin espacios (al menos 6 caracteres).' />
+	<parameter id='confirm' type='varchar' required='true' label='${lbl:s_fld_confirm}' maxlen='15' />
+	<parameter id='email' type='varchar' required='true' label='${lbl:s_profile_email}' maxlen='96' regexp='^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$' regexp-error-label='Formato incorrecto xxxx@xxxxxx.xxx' />
+	<parameter id='reference' type='varchar' required='false' label='Reference' maxlen='5' />
+	<parameter id="id3" type="integer" required="false" label="ID2" maxlen="50" />
+	
+<!-- 	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarNombre.sql'
+			id='fname'/> -->
+
+	 <custom-validator 	
+		classname='dinamica.validators.DuplicatedKeyValidator' 
+		on-error-label='Este identificador ya está registrado en la base de datos, use otro identificador.'
+		sql='nodup.sql' 
+		id='userlogin'/>			
+
+	<custom-validator 	
+		classname='dinamica.validators.MatchEqualValidator' 
+		on-error-label='La contraseña no es igual a su confirmación.'
+		value1='passwd' 
+		value2='confirm' 
+		id='passwd'/>
+	
+	<custom-validator 	
+		classname='dinamica.security.PasswordEncryptor' 
+		on-error-label='Error generando el hash MD5.'/>	
+
+	<!-- <custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+		on-error-label=''
+		id='auc_descripcion'/>	 -->
+
+	<!-- <custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+		on-error-label='${lbl:b_record_not_duplicated}.'
+		sql='getnumoficial.sql'
+		id='aux_num_doc_oficial'/> -->
+
+
+</validator>

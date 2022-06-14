@@ -1,0 +1,2 @@
+ and
+ 	smn_comercial.smn_control_fiscal_documento.cfd_ultimo_numero_fiscal_usado=${fld:cfd_ultimo_numero_fiscal_usado}

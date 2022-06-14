@@ -1,0 +1,19 @@
+select
+		smn_comercial.smn_pago_servicio.smn_pago_servicio_id,
+	smn_comercial.smn_solicitud_servicio_entregas_cabecera.sec_descripcion as smn_solicitud_servicio_entregas_cabecera_id,
+	smn_base.smn_formas_pago.fop_descripcion as smn_forma_pago_rf,
+	smn_comercial.smn_pago_servicio.smn_franquicia_rf,
+	smn_comercial.smn_pago_servicio.pas_numero_tarjeta,
+	smn_comercial.smn_pago_servicio.pas_codigo_seguridad,
+	smn_comercial.smn_pago_servicio.pas_documento_identidad,
+	smn_comercial.smn_pago_servicio.pas_nombre_pagador,
+	smn_comercial.smn_pago_servicio.pas_numero_autorizacion,
+	smn_comercial.smn_pago_servicio.pas_fecha_registro
+	
+from
+	smn_comercial.smn_pago_servicio
+	left outer join smn_base.smn_formas_pago on smn_base.smn_formas_pago.smn_formas_pago_id = smn_comercial.smn_pago_servicio.smn_forma_pago_rf
+	left outer join smn_comercial.smn_solicitud_servicio_entregas_cabecera on smn_comercial.smn_solicitud_servicio_entregas_cabecera.smn_solicitud_servicio_entregas_cabecera_id = smn_comercial.smn_pago_servicio.smn_solicitud_servicio_entregas_cabecera_id
+
+where
+	smn_pago_servicio_id = ${fld:id}

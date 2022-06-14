@@ -1,0 +1,20 @@
+select
+		smn_comercial.smn_pedido_cabecera.smn_documento_id,
+	smn_comercial.smn_pedido_cabecera.pca_numero_pedido,
+	smn_comercial.smn_pedido_cabecera.smn_mov_caja_cabecera_id,
+	smn_comercial.smn_pedido_cabecera.smn_oferta_id,
+	smn_comercial.smn_pedido_cabecera.smn_cliente_id,
+	smn_comercial.smn_pedido_cabecera.pca_descripcion,
+	smn_comercial.smn_pedido_cabecera.pca_fecha_requerida,
+	smn_comercial.smn_pedido_cabecera.smn_entidad_rf,
+	smn_comercial.smn_pedido_cabecera.smn_sucursal_rf,
+	smn_comercial.smn_pedido_cabecera.smn_area_servicio_rf,
+	smn_comercial.smn_pedido_cabecera.smn_unidad_servicio_rf,
+	smn_comercial.smn_pedido_cabecera.smn_almacen_rf,
+	smn_comercial.smn_pedido_cabecera.smn_centro_costo_rf,
+	smn_comercial.smn_pedido_cabecera.pca_estatus,
+	smn_comercial.smn_pedido_cabecera.pca_fecha_registro
+from
+	smn_comercial.smn_pedido_cabecera 
+where
+	smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id = ${fld:id}

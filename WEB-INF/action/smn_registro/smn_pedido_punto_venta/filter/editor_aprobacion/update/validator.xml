@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='documento' type='varchar' required='false' label='${lbl:b_document}' maxlen='100'/>
+	<parameter id='numero_documento' type='integer' required='false' label='${lbl:b_customer}' maxlen='100'/>
+	<parameter id='pca_hora_inicio_preparacion' type='varchar' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='id' type='integer' required='false' label='${lbl:b_header_services_delivery_request}' maxlen='10'/>
+
+
+</validator>

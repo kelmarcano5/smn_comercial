@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_pedido_cabecera_id' type='integer' required='false' label='${lbl:b_header_order}' maxlen='10'/>
+	<parameter id='pde_naturaleza' type='varchar' required='false' label='${lbl:b_nature}' maxlen='2'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='pde_naturaleza' rule='like' />
+	<parameter id='smn_servicios_rf' type='integer' required='false' label='${lbl:b_services}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='smn_activo_fijo_rf' type='integer' required='false' label='${lbl:b_actfijo}' maxlen='10'/>
+	<parameter id='pde_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date}@{${def:date}} mayor o igual que] no puede ser mayor que [${lbl:b_store_date}@{${def:date}} menor o igual que].' date1='pde_fecha_registro_ini' date2='pde_fecha_registro_fin' id='pde_fecha_registro_ini' />
+	<parameter id='pde_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

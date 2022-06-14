@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnpedidocomponentes.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_components_order}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_components_order}">
+				<col id='pde_naturaleza_pl0' label='${lbl:b_detail_bill}' />
+		<col id='smn_mov_caja_detalle_id' label='${lbl:b_movement_caj}' />
+		<col id='smn_ingresos_rf_combo' label='${lbl:b_income}' />
+		<col id='smn_grupo_componente_rf_combo' label='${lbl:b_component_group}' />
+		<col id='pco_tipo_componente_combo' label='${lbl:b_components_types}' />
+		<col id='smn_componente_rf_combo' label='${lbl:b_component}' />
+		<col id='pco_es_prestador_servicio_combo' label='${lbl:b_is_services_prestator}' />
+		<col id='smn_clase_auxiliar_rf_combo' label='${lbl:b_class_auxiliary}' />
+		<col id='smn_auxiliar_rf_combo' label='${lbl:b_auxiliar}' />
+		<col id='pco_naturaleza_combo' label='${lbl:b_nature}' />
+		<col id='smn_item_rf_combo' label='${lbl:b_item}' />
+		<col id='smn_servicio_rf_combo' label='${lbl:b_services}' />
+		<col id='pco_cantidad' label='${lbl:b_quantity}' />
+		<col id='smn_precio_ml_rf' label='${lbl:b_price}' />
+		<col id='pco_monto_ml' label='${lbl:b_amount}' />
+		<col id='smn_moneda_rf_combo' label='${lbl:b_coins}' />
+		<col id='smn_tasa_rf_combo' label='${lbl:b_exchange_rate}' />
+		<col id='smn_precio_ma' label='${lbl:b_price_ma}' />
+		<col id='smn_monto_ma' label='${lbl:b_amount_ma}' />
+		<col id='pco_imprime_combo' label='${lbl:b_print}' />
+		<col id='smn_grupo_titulo_impresion_rf_combo' label='${lbl:b_group_title_print}' />
+		<col id='smn_tipo_gasto_rf' label='${lbl:b_type}' />
+		<col id='smn_sub_tipo_gasto_rf' label='${lbl:b_sub_type}' />
+		<col id='pco_estatus_combo' label='${lbl:b_status}' />
+		<col id='pco_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

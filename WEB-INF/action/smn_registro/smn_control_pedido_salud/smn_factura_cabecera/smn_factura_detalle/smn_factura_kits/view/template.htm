@@ -1,0 +1,57 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='6%'/>
+	<col width='6%'/>
+	<col width='6%'/>
+	<col width='6%'/>
+	<col width='6%'/>
+	<col width='6%'/>
+	<col width='6%'/>
+
+
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="14" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_item_origen_rf","query-smnfacturakits.sql")'>${lbl:b_item_origin}</th>
+		<th class='sortable' onclick='sortBy("smn_item_destino_rf","query-smnfacturakits.sql")'>${lbl:b_item_destiny}</th>
+		<th class='sortable' onclick='sortBy("fki_cantidad","query-smnfacturakits.sql")'>${lbl:b_quantity}</th>
+		<th class='sortable' onclick='sortBy("fki_monto_ml","query-smnfacturakits.sql")'>${lbl:b_amount}</th>
+		<th class='sortable' onclick='sortBy("fki_monto_ma_rf","query-smnfacturakits.sql")'>${lbl:b_amount_ma}</th>
+		<th class='sortable' onclick='sortBy("fki_estatus","query-smnfacturakits.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("fki_fecha_registro","query-smnfacturakits.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_factura_kits_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_factura_kits_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_factura_kits_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_item_origen_rf}</td>
+		<td>${fld:smn_item_destino_rf}</td>
+		<td>${fld:fki_cantidad}</td>
+		<td align='right'>${fld:fki_monto_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:fki_monto_ma_rf@#,###,##0.00}</td>
+		<td align='left'>${fld:fki_estatus}</td>
+		<td>${fld:fki_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

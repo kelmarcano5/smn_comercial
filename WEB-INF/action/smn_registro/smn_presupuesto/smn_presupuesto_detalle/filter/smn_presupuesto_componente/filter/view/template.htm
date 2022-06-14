@@ -1,0 +1,73 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="16" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_presupuesto_detalle_id","query-smnpresupuestocomponente.sql")'>${lbl:b_presupuesto_detalle}</th>
+		<th class='sortable' onclick='sortBy("smn_presupuesto_id","query-smnpresupuestocomponente.sql")'>${lbl:b_presupuesto}</th>
+		<th class='sortable' onclick='sortBy("smn_servicios_rf","query-smnpresupuestocomponente.sql")'>${lbl:b_services}</th>
+		<th class='sortable' onclick='sortBy("smn_tipos_componentes_rf","query-smnpresupuestocomponente.sql")'>${lbl:b_type_component}</th>
+		<th class='sortable' onclick='sortBy("smn_componentes_rf","query-smnpresupuestocomponente.sql")'>${lbl:b_component}</th>
+		<th class='sortable' onclick='sortBy("smn_grupo_prestador_rf","query-smnpresupuestocomponente.sql")'>${lbl:b_group_of_provider}</th>
+		<th class='sortable' onclick='sortBy("smn_prestadores_servicios_rf","query-smnpresupuestocomponente.sql")'>${lbl:b_service_provider}</th>
+		<th class='sortable' onclick='sortBy("prc_forma_calculo_rf","query-smnpresupuestocomponente.sql")'>${lbl:b_forma_calculo}</th>
+		<th class='sortable' onclick='sortBy("prc_cantidad","query-smnpresupuestocomponente.sql")'>${lbl:b_quantity}</th>
+		<th class='sortable' onclick='sortBy("prc_monto_ml","query-smnpresupuestocomponente.sql")'>${lbl:b_amount}</th>
+		<th class='sortable' onclick='sortBy("prc_monto_ma","query-smnpresupuestocomponente.sql")'>${lbl:b_amount_ma}</th>
+		<th class='sortable' onclick='sortBy("prc_monto_neto_ml","query-smnpresupuestocomponente.sql")'>${lbl:b_amount_net}</th>
+		<th class='sortable' onclick='sortBy("prc_fecha_registro","query-smnpresupuestocomponente.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_presupuesto_componente_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_presupuesto_componente_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_presupuesto_componente_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_presupuesto_detalle_id}</td>
+		<td>${fld:smn_presupuesto_id}</td>
+		<td>${fld:smn_servicios_rf}</td>
+		<td align='left'>${fld:smn_tipos_componentes_rf}</td>
+		<td>${fld:smn_componentes_rf}</td>
+		<td>${fld:smn_grupo_prestador_rf}</td>
+		<td>${fld:smn_prestadores_servicios_rf}</td>
+		<td align='left'>${fld:prc_forma_calculo_rf}</td>
+		<td>${fld:prc_cantidad}</td>
+		<td align='right'>${fld:prc_monto_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:prc_monto_ma@#,###,##0.00}</td>
+		<td align='right'>${fld:prc_monto_neto_ml@#,###,##0.00}</td>
+		<td>${fld:prc_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

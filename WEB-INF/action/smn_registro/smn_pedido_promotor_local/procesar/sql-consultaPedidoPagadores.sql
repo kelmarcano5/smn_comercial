@@ -1,0 +1,11 @@
+SELECT 
+	smn_comercial.smn_pedido_pagadores.smn_pedido_pagadores_id,
+	smn_comercial.smn_pedido_pagadores.smn_pedido_cabecera_id,
+	smn_comercial.smn_pedido_pagadores.smn_cliente_id,
+	smn_comercial.smn_pedido_pagadores.ppa_monto as smn_monto_rf,
+	smn_comercial.smn_factura_cabecera.smn_factura_cabecera_id
+FROM smn_comercial.smn_pedido_pagadores
+LEFT OUTER JOIN smn_comercial.smn_factura_cabecera ON smn_comercial.smn_factura_cabecera.smn_pedido_cabecera_id = smn_comercial.smn_pedido_pagadores.smn_pedido_cabecera_id
+WHERE
+	smn_comercial.smn_pedido_pagadores.smn_pedido_cabecera_id = ${fld:smn_pedido_cabecera_id} AND 
+	smn_comercial.smn_pedido_pagadores.ppa_fecha_registro = '${def:date}'

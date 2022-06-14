@@ -1,0 +1,12 @@
+SELECT
+	smn_entidad_rf,
+	smn_sucursal_rf,
+	smn_cliente_rf,
+	rco_monto_bruto_cob_ml,
+	rco_monto_bruto_cob_ma,
+	smn_moneda_rf,
+	smn_rol_id
+FROM
+	smn_cobranzas.smn_relacion_cobranza
+WHERE
+	smn_relacion_cobranza_id=${fld:id}

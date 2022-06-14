@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='cfc_codigo' type='varchar' required='true' maxlen='16'/>
+	<parameter id='cfc_nombre' type='varchar' required='true' maxlen='48'/>
+	<parameter id='smn_entidades_rf' type='integer' required='true' maxlen='2'/>
+	<parameter id='smn_sucursales_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_areas_servicios_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_unidades_servicios_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='cfc_numero_identificacion' type='varchar' required='false' maxlen='16'/>
+	<parameter id='cfc_control_fiscal_1' type='integer' required='true' maxlen='10'/>
+	<parameter id='cfc_control_fiscal_2' type='integer' required='false' maxlen='10'/>
+	<parameter id='cfc_vigencia' type='date' required='true' maxlen='10'/>
+	<parameter id='cfc_estatus' type='varchar' required='true' maxlen='2'/>
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='cfc_codigo'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarNombre.sql'
+			id='cfc_nombre'/>
+
+
+</validator>

@@ -1,0 +1,3 @@
+<rows>
+gpv_fecha_registro="${fld:gpv_fecha_registro}"    gpv_vigencia="${fld:gpv_vigencia}"    gpv_estatus="${fld:gpv_estatus}"    gpv_descripcion="${fld:gpv_descripcion}"    gpv_codigo="${fld:gpv_codigo}"    
+</rows>

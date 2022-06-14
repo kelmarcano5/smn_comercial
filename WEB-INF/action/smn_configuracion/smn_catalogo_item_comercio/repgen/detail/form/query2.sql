@@ -1,0 +1,13 @@
+select
+		smn_comercial.smn_catalogo_item_comercio.cic_origen,
+	smn_comercial.smn_catalogo_item_comercio.smn_cliente_rf,
+	smn_comercial.smn_catalogo_item_comercio.smn_item_rf,
+	smn_comercial.smn_catalogo_item_comercio.smn_clasificacion_abc_rf_a,
+	smn_comercial.smn_catalogo_item_comercio.smn_clasificacion_abc_rf_b,
+	smn_comercial.smn_catalogo_item_comercio.smn_clasificacion_abc_rf_c,
+	smn_comercial.smn_catalogo_item_comercio.smn_baremos_rf,
+	smn_comercial.smn_catalogo_item_comercio.cic_fecha_registro
+from
+	smn_comercial.smn_catalogo_item_comercio 
+where
+	smn_comercial.smn_catalogo_item_comercio.smn_catalogo_item_comercio_id = ${fld:id}

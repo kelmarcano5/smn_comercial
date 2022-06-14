@@ -1,0 +1,1 @@
+select smn_comercial.smn_ordenes_medicas.smn_ordenes_medicas_id as id, smn_comercial.smn_ordenes_medicas.omd_numero_orden || ' - ' || smn_comercial.smn_ordenes_medicas.omd_descripcion as item from smn_comercial.smn_ordenes_medicas order by smn_comercial.smn_ordenes_medicas.omd_descripcion

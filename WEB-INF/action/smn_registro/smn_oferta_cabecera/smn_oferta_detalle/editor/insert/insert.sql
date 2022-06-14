@@ -1,0 +1,40 @@
+INSERT INTO smn_comercial.smn_oferta_detalle
+(
+	smn_oferta_detalle_id,
+	smn_oferta_id,
+	ofd_naturaleza,
+	smn_servicios_rf,
+	smn_item_rf,
+	smn_activo_fijo_rf,
+	ofd_cantidad,
+	ofd_precio,
+	ofd_monto_ml,
+	ofd_moneda_rf,
+	smn_tasa_rf,
+	ofd_precio_moneda_alterna,
+	ofd_monto_moneda_alterna,
+	ofd_idioma,
+	ofd_usuario,
+	ofd_fecha_registro,
+	ofd_hora
+)
+VALUES
+(
+	${seq:currval@smn_comercial.seq_smn_oferta_detalle},
+	${fld:smn_oferta_id},
+	${fld:ofd_naturaleza},
+	${fld:smn_servicios_rf},
+	${fld:smn_item_rf},
+	${fld:smn_activo_fijo_rf},
+	${fld:ofd_cantidad},
+	${fld:ofd_precio},
+	${fld:ofd_monto_ml},
+	${fld:ofd_moneda_rf},
+	${fld:smn_tasa_rf},
+	${fld:ofd_precio_moneda_alterna},
+	${fld:ofd_monto_moneda_alterna},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

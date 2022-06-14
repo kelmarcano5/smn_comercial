@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_documento_id_name' type='varchar' required='false' label='${lbl:b_document}'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='smn_grupo_titulo_impresion_rf' type='integer' required='false' label='${lbl:b_group_tittle_print}' maxlen='10'/>
+	<parameter id='rdi_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date_greather_than}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date_greather_than} mayor o igual que] no puede ser mayor que [${lbl:b_store_date_less_than} menor o igual que].' date1='rdi_fecha_registro_ini' date2='rdi_fecha_registro_fin' id='rdi_fecha_registro_ini' />
+	<parameter id='rdi_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date_less_than}' maxlen='10'/>
+</validator>

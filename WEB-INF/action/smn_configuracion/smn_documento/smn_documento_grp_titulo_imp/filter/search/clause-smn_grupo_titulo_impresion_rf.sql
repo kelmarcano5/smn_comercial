@@ -1,0 +1,2 @@
+ and
+ 	smn_comercial.smn_documento_grp_titulo_imp.smn_grupo_titulo_impresion_rf=${fld:smn_grupo_titulo_impresion_rf}

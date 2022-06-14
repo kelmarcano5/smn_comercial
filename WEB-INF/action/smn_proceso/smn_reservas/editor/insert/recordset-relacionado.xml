@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<recordset>
+		<parameter id='smn_rel_reserva_relacionado_id' type='integer'/>
+		<parameter id='smn_reservas_id' type='integer'/>
+        <parameter id='smn_relacionado_id' type='integer'/>
+</recordset>  

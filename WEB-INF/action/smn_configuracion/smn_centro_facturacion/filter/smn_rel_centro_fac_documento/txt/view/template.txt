@@ -1,0 +1,3 @@
+<rows>
+smn_documento_id="${fld:smn_documento_id}"    smn_centro_facturacion_id="${fld:smn_centro_facturacion_id}"    
+</rows>

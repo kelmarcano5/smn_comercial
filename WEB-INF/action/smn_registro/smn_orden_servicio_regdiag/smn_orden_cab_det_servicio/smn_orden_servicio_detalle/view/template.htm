@@ -1,0 +1,67 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<!-- <col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/> -->
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="8" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_orden_cab_det_servicio_id","query-smnordenserviciodetalle.sql")'>${lbl:b_service_order}</th>
+		<th class='sortable' onclick='sortBy("smn_componentes_rf","query-smnordenserviciodetalle.sql")'>${lbl:b_component}</th>
+		<th class='sortable' onclick='sortBy("smn_nivel_estructura_rf","query-smnordenserviciodetalle.sql")'>Nivel Estructura</th>
+		<th class='sortable' onclick='sortBy("smn_item_rf","query-smnordenserviciodetalle.sql")'>Item</th>
+		<th class='sortable' onclick='sortBy("osd_cantidad","query-smnordenserviciodetalle.sql")'>${lbl:b_quantity}</th>
+	<!-- 	<th class='sortable' onclick='sortBy("smn_tipo_componente","query-smnordenserviciodetalle.sql")'>${lbl:b_component_type}</th>
+		<th class='sortable' onclick='sortBy("smn_grupo_prestador_rf","query-smnordenserviciodetalle.sql")'>${lbl:b_group_of_provider}</th>
+		<th class='sortable' onclick='sortBy("smn_prestador_servicio_rf","query-smnordenserviciodetalle.sql")'>${lbl:b_service_provider}</th>
+		<th class='sortable' onclick='sortBy("smn_nivel_estructura_rf","query-smnordenserviciodetalle.sql")'>${lbl:b_structure_level}</th>
+		<th class='sortable' onclick='sortBy("osd_estatus","query-smnordenserviciodetalle.sql")'>${lbl:b_estatus}</th>
+		<th class='sortable' onclick='sortBy("osd_fecha_registro","query-smnordenserviciodetalle.sql")'>${lbl:b_store_date}</th> -->
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_orden_servicio_detalle_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_orden_servicio_detalle_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_orden_servicio_detalle_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_orden_cab_det_servicio_id}</td>
+		<td>${fld:smn_componentes_rf}</td>
+		<td>${fld:smn_nivel_estructura_rf}</td>
+		<td>${fld:smn_item_rf}</td>
+		<td align='right'>${fld:osd_cantidad@#,###,##0.00}</td>
+<!-- 		<td align='left'>${fld:smn_tipo_componente}</td>
+		<td>${fld:smn_grupo_prestador_rf}</td>
+		<td>${fld:smn_prestador_servicio_rf}</td>
+		<td>${fld:smn_nivel_estructura_rf}</td>
+		<td align='left'>${fld:osd_estatus}</td>
+		<td>${fld:osd_fecha_registro@dd-MM-yyyy}</td> -->
+
+	</tr>
+	</rows>
+
+</table>

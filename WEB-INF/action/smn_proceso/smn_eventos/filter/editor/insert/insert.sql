@@ -1,0 +1,69 @@
+INSERT INTO smn_comercial.smn_evento
+(
+	smn_evento_id,
+	eve_codigo,
+	eve_descripcion_corta,
+	eve_descripcion_larga,
+	smn_servicios_rf,
+	eve_fecha_inicial,
+	eve_fecha_final,
+	eve_hora_inicial,
+	eve_hora_final,
+	smn_prestador_servicio_rf,
+	smn_clasificacion_abc_rf,
+	eve_cupo,
+	eve_reservas_por_afiliado,
+	eve_estatus,
+	eve_idioma,
+	eve_usuario,
+	eve_fecha_registro,
+	eve_hora
+)
+VALUES
+(
+	${seq:currval@smn_comercial.seq_smn_evento},
+	${fld:eve_codigo},
+	${fld:eve_descripcion_corta},
+	${fld:eve_descripcion_larga},
+	${fld:smn_servicios_rf},
+	${fld:eve_fecha_inicial},
+	${fld:eve_fecha_final},
+	${fld:eve_hora_inicial},
+	${fld:eve_hora_final},
+	${fld:smn_prestador_servicio_rf},
+	${fld:smn_clasificacion_abc_rf},
+	${fld:eve_cupo},
+	${fld:eve_reservas_por_afiliado},
+	${fld:eve_estatus},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+);
+
+INSERT INTO smn_comercial.smn_control_cupo
+(
+	smn_control_cupo_id,
+	smn_evento_id,
+	ccu_cupo,
+	ccu_reservas,
+	ccu_saldo,
+	ccu_estatus,
+	ccu_idioma,
+	ccu_usuario,
+	ccu_fecha_registro,
+	ccu_hora
+)
+VALUES
+(
+	${seq:nextval@smn_comercial.seq_smn_control_cupo},
+	$${seq:currval@smn_comercial.seq_smn_evento},
+	${fld:eve_cupo},
+	0,
+	${fld:eve_cupo},
+	'RE',
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

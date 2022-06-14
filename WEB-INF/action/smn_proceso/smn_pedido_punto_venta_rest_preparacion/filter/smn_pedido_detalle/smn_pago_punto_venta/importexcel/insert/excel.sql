@@ -1,0 +1,48 @@
+INSERT INTO smn_comercial.smn_pago_punto_venta
+(
+	smn_pago_punto_venta_id,
+	smn_pedido_cabecera_id,
+	smn_mov_caja_cabecera_id,
+	smn_pagador_clase_rf,
+	smn_rel_punto_venta_pago_rf,
+	smn_forma_pago_rf,
+	ppv_numero_documento_forma_pago,
+	ppv_numero_autorizacion,
+	ppv_documento_identidad_pagador,
+	ppv_nombre_pagador,
+	ppv_monto_pagar_ml,
+	ppv_monto_pago_ml,
+	ppv_monto_devuelto_ml,
+	ppv_monto_pagar_ma,
+	ppv_monto_pago_ma,
+	ppv_monto_devuelto_ma,
+	smn_moneda_rf,
+	smn_tasa_rf,
+	ppv_observacion,
+	ppv_estatus,
+	ppv_fecha_registro
+)
+VALUES
+(
+	${seq:nextval@smn_comercial.seq_smn_pago_punto_venta},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	{d '${def:date}'}
+)

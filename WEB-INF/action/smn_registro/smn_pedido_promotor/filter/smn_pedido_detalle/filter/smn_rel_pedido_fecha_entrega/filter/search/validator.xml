@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_pedido_detalle_id' type='integer' required='false' label='${lbl:b_header_order_detail}' maxlen='10'/>
+	<parameter id='smn_rel_auxiliar_direccion' type='integer' required='false' label='${lbl:b_delivery_address}' maxlen='10'/>
+	<parameter id='pfe_fecha_entrega' type='date' required='false' label='${lbl:b_delivery_date}' maxlen='10'/>
+	<parameter id="id2" type="integer" required="true" label="ID" maxlen="10" />
+</validator>

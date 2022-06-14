@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_rel_aux_sucursal>
+	<detail>
+		<rows>		
+		<record smn_auxiliar_sucursal_id="${fld:smn_auxiliar_sucursal_id}"    smn_auxiliar_id="${fld:smn_auxiliar_id}"    />
+		</rows>
+	</detail>
+</smn_rel_aux_sucursal>

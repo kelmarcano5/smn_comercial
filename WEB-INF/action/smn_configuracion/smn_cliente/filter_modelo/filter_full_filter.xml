@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<model>
+	<summary>${lbl:b_customer}</summary>
+	<filter>
+		<row field='smn_clasificacion_cliente_id' id='smn_clasificacion_cliente_id' label='${lbl:b_clasificacion_cliente}@{select smn_comercial.smn_clasificacion_cliente.smn_clasificacion_cliente_id as id, smn_comercial.smn_clasificacion_cliente.ccl_codigo|| &apos; - &apos; || smn_comercial.smn_clasificacion_cliente.ccl_descripcion as item from smn_comercial.smn_clasificacion_cliente order by ccl_descripcion}' required='NO' fk='ccl_codigo' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_cliente' len='10'/>
+		<row field='smn_clase_auxiliar_rf' id='smn_clase_auxiliar_rf' label='${lbl:b_auxiliary_classes}@{select smn_base.smn_clase_auxiliar.smn_clase_auxiliar_id as id, smn_base.smn_clase_auxiliar.cla_codigo|| &apos; - &apos; || smn_base.smn_clase_auxiliar.cla_nombre as item from smn_base.smn_clase_auxiliar order by cla_nombre}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_cliente' len='10'/>
+		<row field='cli_fecha_registro' id='cli_fecha_registro_ini' label='${lbl:b_store_date_greather_than}' required='NO' fk='' mSelection='' condiction='Mayor o igual que (&gt;=)' type='date' tableName='smn_cliente' len='10'/>
+		<row field='cli_fecha_registro' id='cli_fecha_registro_fin' label='${lbl:b_store_date_less_than}' required='NO' fk='' mSelection='' condiction='Menor o igual que (&lt;=)' type='date' tableName='smn_cliente' len='10'/>
+	</filter>
+	<detail>SI</detail>
+	<insert>SI</insert>
+	<edit>SI</edit>
+	<delete>SI</delete>
+	<audit>Consulta</audit>
+	<grid>
+		<row field='smn_clasificacion_cliente_id' label='${lbl:b_clasificacion_cliente}@{select smn_comercial.smn_clasificacion_cliente.smn_clasificacion_cliente_id as id, smn_comercial.smn_clasificacion_cliente.ccl_codigo|| &apos; - &apos; || smn_comercial.smn_clasificacion_cliente.ccl_descripcion as item from smn_comercial.smn_clasificacion_cliente order by ccl_descripcion}' fk='ccl_codigo' tableName='smn_cliente' len='10' type='integer' align='center'/>
+		<row field='smn_clase_auxiliar_rf' label='${lbl:b_auxiliary_classes}@{select smn_base.smn_clase_auxiliar.smn_clase_auxiliar_id as id, smn_base.smn_clase_auxiliar.cla_codigo|| &apos; - &apos; || smn_base.smn_clase_auxiliar.cla_nombre as item from smn_base.smn_clase_auxiliar order by cla_nombre}' fk='' tableName='smn_cliente' len='10' type='integer' align='center'/>
+		<row field='smn_auxiliar_rf' label='${lbl:b_auxiliary}@{select smn_base.smn_auxiliar.smn_auxiliar_id as id, smn_base.smn_auxiliar.aux_codigo|| &apos; - &apos; || smn_base.smn_auxiliar.aux_descripcion as item from smn_base.smn_auxiliar order by aux_descripcion}' fk='' tableName='smn_cliente' len='10' type='integer' align='center'/>
+		<row field='smn_condicion_financiera_rf' label='${lbl:b_naturaleza}@{select smn_base.smn_auxiliar_cond_financiera.smn_auxiliar_cond_financiera_id as id, smn_base.smn_auxiliar_cond_financiera.cfn_codigo|| &apos; - &apos; || smn_base.smn_auxiliar_cond_financiera.cfn_descripcion as item from smn_base.smn_auxiliar_cond_financiera order by cfn_descripcion}' fk='' tableName='smn_cliente' len='10' type='integer' align='center'/>
+		<row field='smn_clasificacion_abc_rf' label='${lbl:b_abc_clasification}@{select smn_base.smn_clasificacion_abc.smn_clasificacion_abc_id as id, smn_base.smn_clasificacion_abc.clf_codigo|| &apos; - &apos; || smn_base.smn_clasificacion_abc.clf_descripcion as item from smn_base.smn_clasificacion_abc order by clf_descripcion}' fk='' tableName='smn_cliente' len='10' type='integer' align='center'/>
+		<row field='smn_sector_economico_rf' label='${lbl:b_economic_sectors}@{select smn_base.smn_sectores_economicos.smn_sectores_economicos_id as id, smn_base.smn_sectores_economicos.sec_codigo|| &apos; - &apos; || smn_base.smn_sectores_economicos.sec_descripcion as item from smn_base.smn_sectores_economicos order by sec_descripcion}' fk='' tableName='smn_cliente' len='10' type='integer' align='center'/>
+		<row field='cli_nacional_ext' label='${lbl:b_cliente_nacional_extranjero}@{N=${lbl:b_nacional}|E=${lbl:b_extranjero}}' fk='' tableName='smn_cliente' len='1' type='varchar' align='left'/>
+		<row field='cli_vigencia' label='${lbl:b_validation_date}' fk='' tableName='smn_cliente' len='10' type='date' align='center'/>
+		<row field='cli_estatus' label='${lbl:b_status}@{AC=${lbl:b_account_type_active}|IN=${lbl:b_inactive}}' fk='' tableName='smn_cliente' len='2' type='varchar' align='left'/>
+		<row field='cli_idioma' label='${lbl:s_profile_lang}@{${def:locale}}' fk='' tableName='smn_cliente' len='2' type='varchar' align='left'/>
+		<row field='cli_usuario' label='${lbl:b_users}@{${def:user}}' fk='' tableName='smn_cliente' len='10' type='varchar' align='left'/>
+		<row field='cli_fecha_registro' label='${lbl:b_store_date}@{${def:date}}' fk='' tableName='smn_cliente' len='10' type='date' align='center'/>
+		<row field='cli_hora' label='${lbl:s_loginhist_col2}@{${def:time}}' fk='' tableName='smn_cliente' len='8' type='varchar' align='left'/>
+	</grid>
+	<mobile>false</mobile>
+</model>

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnimagencliente.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+
+	<pdf-title>${lbl:b_customer_image}</pdf-title>
+	<pdf-logo url='/images/logo-dinamica.png' scale='100' />
+
+	<pdf-report pageSize="letter" rotate="false">
+		<table recordset='query-smnimagencliente.sql' width='100' spacingBefore='40'>
+			<col name='smn_cliente_id' title='${lbl:b_customer}' width='11' align='center' format='######' />
+			<col name='iic_descripcion' title='${lbl:b_description}' width='11' align='left' />
+			<col name='iic_imagen_size' title='${lbl:b_image_size}' width='11' align='center' format='######' />
+			<col name='filename' title='${lbl:b_name}' width='11' align='left' />
+			<col name='content_type' title='${lbl:b_type_content}' width='11' align='left' />
+			<col name='iic_idioma' title='${lbl:s_profile_lang}' width='11' align='left' />
+			<col name='iic_usuario' title='${lbl:b_users}' width='11' align='left' />
+			<col name='iic_fecha_registro' title='${lbl:b_store_date}' width='11' align='center' format='dd-MM-yyyy' />
+			<col name='iic_hora' title='${lbl:s_loginhist_col2}' width='11' align='left' />
+		</table>
+
+	</pdf-report>
+</config>

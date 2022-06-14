@@ -1,0 +1,1 @@
+select smn_comercial.smn_documento.dcf_moneda_alterna as alterna from smn_comercial.smn_documento where smn_comercial.smn_documento.dcf_codigo = 'PECO'

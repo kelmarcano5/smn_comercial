@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='smn_proveedor_rf' type='integer' required='false' label='${lbl:b_proveedor}' maxlen='5'/>
+	<parameter id='cfd_numero_documento_fiscal_inicial' type='integer' required='false' label='${lbl:b_doc_num_fis_ini}' maxlen='10'/>
+	<parameter id='cfd_numero_documento_fiscal_final' type='integer' required='false' label='${lbl:b_doc_num_fis_fin}' maxlen='10'/>
+	<parameter id='cfd_ultimo_numero_fiscal_usado' type='integer' required='false' label='${lbl:b_num_ult_fis_usa}' maxlen='10'/>
+	<parameter id='cfd_fecha_solicitud' type='date' required='false' label='${lbl:b_application_date}' maxlen='13'/>
+	<parameter id='cfd_fecha_recepcion' type='date' required='false' label='${lbl:b_reception_date}' maxlen='13'/>
+	<parameter id='cfd_serie' type='varchar' required='false' label='${lbl:b_serie}' maxlen='3'/>
+	<parameter id='cfd_estatus' type='varchar' required='false' label='${lbl:b_estatus}' maxlen='2'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='cfd_serie'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='cfd_estatus'
+		rule='contains' />
+
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_afiliados_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='rel_auxiliar_rf_desc_ref' type='varchar' required='true' maxlen='10'/>
+	<parameter id='rel_fecha_inicio' type='date' required='true' maxlen='10'/>
+	<parameter id='rel_fecha_final' type='date' required='true' maxlen='10'/>
+	<parameter id='rel_fecha_desafiliado' type='date' required='false' maxlen='10'/>
+	<parameter id='rel_estatus' type='varchar' required='true' maxlen='2'/>
+
+	<parameter id='rel_auxiliar_rf_ref' type='integer' required='false' maxlen='10'/>
+
+
+	<custom-validator 
+		classname='dinamica.validators.GetColValueValidator' 
+		on-error-label='${lbl:b_field_does_not_registered}: rel_auxiliar_rf' 
+		parameter='rel_auxiliar_rf_ref' 
+		sql='rel_auxiliar_rf.sql' 
+		id='rel_auxiliar_rf_ref'/>
+
+</validator>

@@ -1,0 +1,66 @@
+<!-- 	<tr id="tasa" style="display:none">
+		<td>${lbl:b_exchange_rate}</td>
+		<td>
+			<select name="smn_tasa_rf" id="smn_tasa_rf" onchange="chgCombo(smn_tasa_rf.options[smn_tasa_rf.selectedIndex].text,'smn_tasa_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_tasa_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_tasa_rf_rows>
+			</select> 
+			<input id="smn_tasa_rf_name" name="smn_tasa_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr style="display:none">
+			<td>${lbl:b_prd_precio_ma}</td>
+			<td>
+				<input id="prd_precio_ma" name="prd_precio_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_prd_mon_alt}</td>
+			<td>
+				<input id="prd_moneda_alterna" name="prd_moneda_alterna" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	</table>
+	<tr id="coddes" style="display:none">
+		<td>${lbl:b_exchange_rate}</td>
+		<td>
+			<select name="smn_codigo_descuento_rf" id="smn_codigo_descuento_rf" onchange="chgCombo(smn_codigo_descuento_rf.options[smn_codigo_descuento_rf.selectedIndex].text,'smn_codigo_descuento_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_codigo_descuento_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_codigo_descuento_rf_rows>
+			</select> 
+			<input id="smn_codigo_descuento_rf_name" name="smn_codigo_descuento_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_type_component}*</td>
+		<td>
+			<select name="smn_tipo_componente_rf" id="smn_tipo_componente_rf" >
+			<option value="">[Cualquiera]</option>
+			<option value="IT">${lbl:b_item}</option>
+			<option value="HO">${lbl:b_honorary}</option>
+			<option value="SE">${lbl:b_services}</option>
+
+			</select> 
+		</td>
+	</tr>
+	<tr id="componente" style="display:none">
+		<td>${lbl:b_components}</td>
+		<td>
+			<select name="smn_componentes_rf" id="smn_componentes_rf" onchange="chgCombo(smn_componentes_rf.options[smn_componentes_rf.selectedIndex].text,'smn_componentes_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_componentes_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_componentes_rf_rows>
+			</select> 
+			<input id="smn_componentes_rf_name" name="smn_componentes_rf_name" type="hidden">
+		</td>
+	</tr>
+
+ -->

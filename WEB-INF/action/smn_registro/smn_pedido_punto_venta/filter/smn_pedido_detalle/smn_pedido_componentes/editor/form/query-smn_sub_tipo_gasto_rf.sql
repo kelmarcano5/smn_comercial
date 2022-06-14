@@ -1,0 +1,1 @@
+SELECT smn_base.smn_sub_tipo_gasto.smn_sub_tipo_gasto_id as id, smn_base.smn_sub_tipo_gasto.stg_codigo || smn_base.smn_sub_tipo_gasto.stg_descripcion as item FROM smn_base.smn_sub_tipo_gasto

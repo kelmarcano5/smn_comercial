@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Ejecutar consulta y enrutar dependiendo de que un recordset
+		tenga o no registros
+	</summary>
+
+	<log>false</log>
+
+	<!--configura el control de paginacion-->
+	<set-request-attribute id="paging.recordset" value="query-smnpresupuesto.sql" />
+	<set-request-attribute id="paging.pagesize" value="6" />
+
+	<transaction>
+		<classname>dinamica.GenericSearch</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+	
+	<searchCols>smn_documento_id;pre_monto_ml;pre_numero_control;smn_presupuesto_id;smn_entidades_rf;smn_sucursales_rf;smn_auxiliar_rf;pre_fecha_registro;smn_estado_presupuesto_id;</searchCols>
+
+	<on-exit return-code="0" forward-to="/action/initview" />
+	<on-exit return-code="1" forward-to="${def:actionroot}/notfound" />
+
+</config>

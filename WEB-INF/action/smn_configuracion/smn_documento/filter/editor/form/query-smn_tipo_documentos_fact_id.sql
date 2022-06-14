@@ -1,0 +1,1 @@
+select smn_comercial.smn_tipo_documentos_fact.smn_tipo_documentos_fact_id as id, smn_comercial.smn_tipo_documentos_fact.tdf_codigo|| ' - ' || smn_comercial.smn_tipo_documentos_fact.tdf_nombre as item from smn_comercial.smn_tipo_documentos_fact order by tdf_nombre

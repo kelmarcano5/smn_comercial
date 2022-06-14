@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_documento_grp_titulo_imp_id' type='integer' required='false' label='${lbl:b_relacion_documento_titulo_impresion}' maxlen='10'/>
+	<parameter id='dgi_naturaleza' type='varchar' required='true' label='${lbl:b_nature}' maxlen='1'/>
+	<parameter id='smn_servicios_rf' type='varchar' required='false' label='${lbl:b_services}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='varchar' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='smn_componentes_rf' type='integer' required='true' label='${lbl:b_components}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_detalle_documento_grupo_titulo_impresion}' maxlen='10'/>
+</validator>

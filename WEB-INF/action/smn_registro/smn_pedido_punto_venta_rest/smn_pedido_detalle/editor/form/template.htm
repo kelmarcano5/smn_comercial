@@ -1,0 +1,894 @@
+<!doctype html>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/jquery"></script>
+	<script type="text/javascript" src="${def:context}/action/script"></script>
+
+
+</head>
+
+<body>
+
+<!--banner chgCombo3(smn_catalogo_item_comercio_id.options[smn_catalogo_item_comercio_id.selectedIndex].text,'smn_catalogo_item_comercio_id_name');-->
+<div class="bannerDialog" id="encabezado_tabla">
+	${lbl:b_header_order_detail}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+		<tr style="display:none">
+			<td>${lbl:b_header_order}*</td>
+			<td>
+				<input id="smn_pedido_cabecera_id" name="smn_pedido_cabecera_id" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+
+		<tr>
+		<td>${lbl:b_catalog_item_commerce}*</td>
+		<td>
+			<select name="smn_catalogo_item_comercio_id" id="smn_catalogo_item_comercio_id" onchange="chgCombo2(smn_catalogo_item_comercio_id.options[smn_catalogo_item_comercio_id.selectedIndex].text,'smn_catalogo_item_comercio_id_name');chgCombo3(smn_catalogo_item_comercio_id.options[smn_catalogo_item_comercio_id.selectedIndex].text,'smn_catalogo_item_comercio_id_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_catalogo_item_comercio_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_catalogo_item_comercio_id_rows>
+			</select> 
+			<input id="smn_catalogo_item_comercio_id_name" name="smn_catalogo_item_comercio_id_name" type="hidden">
+		</td>
+		</tr>
+
+		<tr>
+			<td>${lbl:b_ingredients}</td>
+			<td id="ing">
+				<!-- <smn_ingredientes_id_rows>
+				<input name="smn_ingredientes_id" id="smn_ingredientes_id" type="checkbox" value="${fld:smn_ingredientes_id}" style="width:10px"> ${fld:item}<br>
+				</smn_ingredientes_id_rows> -->
+				</td>
+		</tr>
+		<!-- <tr>
+			<td>${lbl:b_catalog_item_commerce}*</td>
+			<td>
+				<input id="smn_catalogo_item_comercio_id" name="smn_catalogo_item_comercio_id" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr> -->
+		<tr>
+			<td>${lbl:b_description}*</td>
+			<td>
+				<input id="smn_descripcion_ingrediente" name="smn_descripcion_ingrediente" type="text" maxlength="200" disabled="true">
+			</td>
+		</tr>
+
+		<tr style="display: none">
+			<td>${lbl:b_measurement_unit}*</td>
+			<td>
+				<select name="smn_unidad_medida_rf" id="smn_unidad_medida_rf" onchange="chgCombo(smn_unidad_medida_rf.options[smn_unidad_medida_rf.selectedIndex].text,'smn_unidad_medida_rf_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_unidad_medida_rf_rows>
+					<option value="${fld:id}">${fld:item}</option>
+
+					</smn_unidad_medida_rf_rows>
+				</select> 
+				<input id="smn_unidad_medida_rf_name" name="smn_unidad_medida_rf_name" type="hidden">
+			</td>
+		</tr>
+
+		<tr  style="display: none">
+			<td>${lbl:b_time_suggerest_prepared}*</td>
+			<td>
+				<input id="pde_tiempo_sug_preparacion" name="pde_tiempo_sug_preparacion" type="text" maxlength="8" placeholder="Escribir el tiempo expresado en minutos" >
+			</td>
+		</tr>
+		<tr style="display: none">
+			<td>${lbl:b_nature}*</td>
+			<td>
+				<select name="pde_naturaleza" id="pde_naturaleza" onchange="cambiartipo();">
+					<option value="">[Cualquiera]</option>
+					<option value="IT">${lbl:b_item}</option>
+					<option value="SE">${lbl:b_services}</option>
+					<option value="AF">${lbl:b_actfijo}</option>
+					<option value="OS">${lbl:b_others_services}</option>
+				</select> 
+			</td>
+		</tr>
+	<tr style="display:none">
+		<td>${lbl:b_services}</td>
+		<td>
+			<select name="smn_servicios_rf" id="smn_servicios_rf" onchange="chgCombo(smn_servicios_rf.options[smn_servicios_rf.selectedIndex].text,'smn_servicios_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_servicios_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_servicios_rf_rows>
+			</select> 
+			<input id="smn_servicios_rf_name" name="smn_servicios_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr style="display:none">
+		<td>${lbl:b_item}</td>
+		<td>
+			<select name="smn_item_rf" id="smn_item_rf" onchange="chgCombo3(smn_item_rf.options[smn_item_rf.selectedIndex].text,'smn_item_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_item_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_item_rf_rows>
+			</select> 
+			<input id="smn_item_rf_name" name="smn_item_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr style="display:none">
+		<td>${lbl:b_actfijo}</td>
+		<td>
+			<select name="smn_activo_fijo_rf" id="smn_activo_fijo_rf" onchange="chgCombo(smn_activo_fijo_rf.options[smn_activo_fijo_rf.selectedIndex].text,'smn_activo_fijo_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_activo_fijo_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_activo_fijo_rf_rows>
+			</select> 
+			<input id="smn_activo_fijo_rf_name" name="smn_activo_fijo_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_quantity_offer}</td>
+			<td>
+				<input id="pde_cantidad_oferta" name="pde_cantidad_oferta" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_quantity_order}*</td>
+			<td>
+				<input id="pde_cantidad_pedido" name="pde_cantidad_pedido" type="text" maxlength="10" class="numeric" onchange="pasar_cantidad();">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_quantity_aprob}*</td>
+			<td>
+				<input id="pde_cantidad_aprobada" name="pde_cantidad_aprobada" type="text" maxlength="10" class="numeric" disabled="true">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_price}*</td>
+			<td>
+				<input id="pde_precio" name="pde_precio" type="text" maxlength="10" class="numeric" onblur="calcular_monto();">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_amount}*</td>
+			<td>
+				<input id="pde_monto" name="pde_monto" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr id="moneda" style="display:none">
+		<td>${lbl:b_coins}</td>
+		<td>
+			<select name="smn_moneda_rf" id="smn_moneda_rf" onchange="chgCombo(smn_moneda_rf.options[smn_moneda_rf.selectedIndex].text,'smn_moneda_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_moneda_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_moneda_rf_rows>
+			</select> 
+			<input id="smn_moneda_rf_name" name="smn_moneda_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr id="tasa" style="display:none">
+		<td>${lbl:b_exchange_rate}</td>
+		<td>
+			<select name="smn_tasa_rf" id="smn_tasa_rf" onchange="chgCombo(smn_tasa_rf.options[smn_tasa_rf.selectedIndex].text,'smn_tasa_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_tasa_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_tasa_rf_rows>
+			</select> 
+			<input id="smn_tasa_rf_name" name="smn_tasa_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr id="prec_alt" style="display:none">
+			<td>${lbl:b_price_coins_alter}</td>
+			<td>
+				<input id="pde_precio_moneda_alterna" name="pde_precio_moneda_alterna" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr id="mont_alt" style="display:none">
+			<td>${lbl:b_amount_coins_alter}</td>
+			<td>
+				<input id="pde_monto_moneda_alterna" name="pde_monto_moneda_alterna" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_especifications}</td>
+			<td>
+				<textarea id="pde_especificaciones_pedido" name="pde_especificaciones_pedido" cols="30" rows="3"></textarea>
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_required_date}*</td>
+			<td>
+				<input id="pde_fecha_requerida" name="pde_fecha_requerida" type="text" class="date" maxlength="10">
+				<img src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('pde_fecha_requerida')">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_observations}</td>
+			<td>
+				<textarea id="pde_observaciones" name="pde_observaciones" cols="30" rows="3"></textarea>
+			</td>
+		</tr>
+		<tr style="display: none">
+			<td>${lbl:b_status}*</td>
+			<td>
+				<select name="pde_estatus" id="pde_estatus">
+				<option value="NP">${lbl:b_not_borrowed}</option>
+				<option value="PR">${lbl:b_borrowed}</option>
+
+				</select> 
+			</td>
+		</tr>
+
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	<!-- <input id="pagar" type="button" value="${lbl:b_pay}" onclick="pagar_pago_venta();" class="button">	 -->
+	
+	
+	<!-- PK-->
+<input type="hidden" name="id" value="">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+	var tpl = '${fld:tlc_naturaleza}';
+	var lin = '${fld:smn_linea_comercial_id}';
+	var idp =  '${fld:id2}';
+		var baremos  = '${fld:baremos}';
+
+	onload = function()
+	{ 
+		addNew();
+		//alert(idp);
+		document.getElementById("smn_pedido_cabecera_id").disabled=true;
+		document.getElementById("pde_cantidad_oferta").disabled=true;
+		document.getElementById("pde_monto").disabled=true;
+		document.getElementById("smn_pedido_cabecera_id").value = idp;
+
+
+		//document.getElementById('baremos').value='${fld:baremos}';
+
+		var ent = '${fld:entidad}';
+		//}
+		//	alert("entidad dentro del editor form: "+ent);
+		//moneda_alterna();
+		//habilita_precio();
+		catalogossss(ent);
+
+		if (id!="")
+			edit(id);
+	}
+
+	// function naturaleza(){
+		
+	// 	//alert("Naturaleza: "+ tpl + " Linea Comercial: "+ lin);
+
+	// 	if (tpl == 'IT') {
+	// 		//alert("Naturaleza item: "+ tpl);
+	// 		document.getElementById('pde_naturaleza').value = 'IT';
+	// 		cambiartipo(tpl);
+
+	// 		chgComboItem(lin);
+
+	// 	}
+
+	// 	if (tpl == 'SE') {
+	// 		//alert("Naturaleza servicio: "+ tpl);
+	// 		document.getElementById('pde_naturaleza').value = 'SE';
+	// 		cambiartipo(tpl);
+	// 		chgComboServicio(lin);
+	// 	}
+
+	// 	if (tpl == 'AF') {
+	// 		//alert("Naturaleza activo fijo: "+ tpl);
+	// 		document.getElementById('pde_naturaleza').value = 'AF';
+	// 		cambiartipo(tpl);
+	// 		chgComboActivoFijo(lin);
+	// 	}
+	// 	// } else {
+	// 	// 	alert("El centro de facturacion seleccionado no es un item por favor verificar su configuracion");
+	// 	// 	// document.getElementById('pde_naturaleza').value = 'SE';
+	// 	// 	// cambiartipo(tpl);
+	// 	// }
+
+	// }
+
+	function updateMontoPedido(id) {
+			//setTimeout(updateMontoPedido(id_cab), 5000);
+			uri="${def:actionroot}/montoapagar?id2="+idp;
+			//alert(uri);
+			ajaxCall(httpMethod="GET", 
+						uri, 
+						divResponse="response", 
+						divProgress="status", 
+						formName=null, 
+						afterResponseFn=null, 
+						onErrorFn=null);
+		}
+
+
+	function pagar_pago_venta() {
+
+		var uri ="/smn_comercial/action/smn_registro/smn_pedido_punto_venta_rest/smn_pago_punto_venta/form?id2=${fld:id2}";
+		//alert(uri);
+		openDialog("editor10", uri, 1050, 580);
+
+	 } 
+
+	var geo_id3 = null;
+	function chgCombo(text,id)
+	{		
+		
+		var combo = document.getElementById('smn_item_rf');
+		var valueCombo = getIDSelectedIndex(combo);
+		geo_id3 = valueCombo.split("-").pop().trim();
+		//alert(geo_id3);
+		//findLocation(geo_id0, '');
+		
+		if (id!=null && id!="") 
+		{
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/form/obtener_precio?id=" + geo_id3, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=obtener_precio('${fld:precio}'), //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null);				
+		}
+		
+	}
+
+	function obtener_precio(id) {
+		var precio = document.getElementById("smn_item_rf").value;
+	}
+
+	function pasar_cantidad() {
+		var cantpedido = document.getElementById("pde_cantidad_pedido").value;
+		var precio = document.getElementById('pde_precio').value
+		document.getElementById("pde_cantidad_aprobada").value = cantpedido;
+		var pr1 = cantpedido * precio;
+		//alert("monto: "+pr1)
+		document.getElementById("pde_monto").value = pr1;
+	}
+
+	function habilita_precio() {
+		var precio = '${fld:selprecio}';
+
+		if (precio == 'SI') {
+			document.getElementById("pde_precio").disabled = true;
+		}
+
+	}
+	
+	function moneda_alterna() {
+		var moneda_alterna = '${fld:alterna}';
+
+		if(moneda_alterna=='SI'){
+			document.getElementById("moneda").style="";
+			document.getElementById("tasa").style="";
+			//document.getElementById("psd_monto_propuesto_ma").disabled=true;
+			document.getElementById("prec_alt").style="";
+			document.getElementById("mont_alt").style="";
+			//document.getElementById("coin_rf").style="";
+			//document.getElementById("psd_monto_neto_propuesto_ma").disabled=true;
+		}
+	}
+
+	function calcular_monto() {
+		var cant = document.getElementById("pde_cantidad_aprobada").value;
+		var prec = document.getElementById("pde_precio").value;
+		var monto = "";
+		
+		monto = cant * prec; 
+		document.getElementById("pde_monto").value = monto;
+	
+	}
+
+
+	function cambiartipo() {
+		var tipo = document.getElementById("pde_naturaleza").value;
+
+
+		if(tipo=="IT"){
+			document.getElementById("ite").style.display="";
+			document.getElementById("act").style.display="none";
+			document.getElementById("serv").style.display="none";	
+		}else if(tipo=="SE"){
+			document.getElementById("serv").style.display="";
+			document.getElementById("ite").style.display="none";
+				document.getElementById("act").style.display="none";
+		}else if(tipo=="AF"){
+			document.getElementById("act").style.display="";
+			document.getElementById("serv").style.display="none";
+			document.getElementById("ite").style.display="none";
+		}else if(tipo == ""){
+				document.getElementById("act").style.display="none";
+			document.getElementById("serv").style.display="none";
+			document.getElementById("ite").style.display="none";
+		}
+	}
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		document.getElementById('smn_descripcion_ingrediente').value = "";
+		document.getElementById('smn_catalogo_item_comercio_id').value = "";
+		document.getElementById('smn_unidad_medida_rf').value = "";
+		//*document.getElementById('sed_tiempo_sug_preparacion').value = "";
+		document.getElementById('pde_cantidad_aprobada').value = "";
+		document.getElementById('pde_especificaciones_pedido').value = "";
+		document.getElementById('pde_precio').value = "";
+		// document.getElementById('smn_moneda_rf').value = "";
+		// document.getElementById('sed_precio_ma').value = "";
+		document.getElementById('pde_monto').value = "";
+		// document.getElementById('sed_monto_moneda_alterna').value = "";
+		//clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{		
+			//clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save()
+	{
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+			document.getElementById("grabar").disabled;
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+	//Author     : SIMONE
+	//Description: Set first element as selected value
+	//Return     : None
+	function setElementFirstIndex(id)
+	{
+		var combo = document.getElementById(id);
+		combo.selectedIndex = 0;
+	}
+
+	//Author     : SIMONE
+	//Description: Add new value to combo box
+	//Return     : None
+	function addValueToCombo(code, description, field) 
+	{
+		
+	    var combo = document.getElementById(field);	    
+	    insertComboBox(code, combo, description);
+	}
+		
+	//Author     : SIMONE
+	//Description: Insert new value into combo box
+	//Return     : None
+	function insertComboBox(code, combo, description, field) {
+		var bdID = code;
+		var valueText = description;
+		if (description != null)
+		{
+			bdID = bdID;
+			valueText = valueText;
+		}
+		//alert("Text: "+valueText+" - bdID: "+bdID);
+		 var opt = document.createElement('option');
+		 opt.value = bdID;
+		 opt.text = valueText;
+		 combo.options.add(opt);
+	}
+	
+	//Author     : SIMONE
+	//Description: Set selected index into combo box
+	//Return     : None
+	function setSelectedIndex(code, combo, description) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+			var bdID = code;
+			var valueText = description;
+			if (description != null)
+			{
+				bdID = bdID;
+				valueText = valueText;
+			}
+	        if (combo.options[i].text == valueText) 
+	        {
+				//combo.options[i].value = bdID;
+	        	combo.options[i].selected = true;
+	            return;
+	        }
+	    }
+	}
+		
+	//Author     : SIMONE
+	//Description: Get text valueof selected index
+	//Return     : Text associated to index
+	function getSelectedIndex(combo) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+	        if (combo.options[i].selected == true) 
+	        {
+	            return combo.options[i].text;
+	        }
+	    }
+	}
+
+	function getIDSelectedIndex(combo) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+	        if (combo.options[i].selected == true) 
+	        {
+	            return combo.options[i].value;
+	        }
+	    }
+	}
+	
+	var bdID;
+	function setID(id)
+	{
+		bdID = id;
+	}
+	
+	//Author     : SIMONE
+	//Description: Set value to combo box
+	//Parameters : code - it is code associated into each database table 
+	//             descripcion - it is description associated into each database table 
+	//             field - name combo field
+	//             id - identifier retrieved after transaction
+	//             linked - flag indicates 'true' when combos are linked and 'false' otherwise
+	//Return     : None
+	function setValueComboBox(code, description, field, linked){
+	
+		//add valur text to combo
+		addValueToCombo(code,description,field);
+		//get select object 
+		var combo = document.getElementById(field);
+		//set element selected to field referenced
+		setSelectedIndex(code,combo, description);
+		//set text value to combo field
+		var valueText = getSelectedIndex(combo);		
+		//get hidden field in order to set any value
+		var combo = document.getElementById(field+'_name');
+	
+		combo.text  = valueText;
+		combo.value = bdID;
+		
+			//alert("Text: "+valueText+" - bdID: "+bdID);	
+		setSelectedIndex(bdID,combo, valueText);
+	}
+
+	//var geo_id5 = null;
+	function chgComboItem(id){		
+		//alert("ID LINEA: "+id);
+		//document.form1.smn_centro_costo_rf.disabled=false;
+		
+		//var combo = document.getElementById('smn_almacen_rf');
+		//var valueCombo = getSelectedIndex(combo);
+		//geo_id5 = valueCombo.split("-").pop().trim();
+		
+		if (id!=null && id!="") 
+		{
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/getitem?id=" + id, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=setElementFirstIndex('smn_item_rf'), //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null);				
+	}}
+
+	//var geo_id5 = null;
+	function chgComboServicio(id){		
+		//alert("ID LINEA: "+id);
+		//document.form1.smn_centro_costo_rf.disabled=false;
+		
+		//var combo = document.getElementById('smn_almacen_rf');
+		//var valueCombo = getSelectedIndex(combo);
+		//geo_id5 = valueCombo.split("-").pop().trim();
+		
+		if (id!=null && id!="") 
+		{
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/getservicio?id=" + id, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=setElementFirstIndex('smn_servicios_rf'), //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null);				
+	}}
+
+	//var geo_id5 = null;
+	function chgComboActivoFijo(id){		
+		//alert("ID LINEA: "+id);
+		//document.form1.smn_centro_costo_rf.disabled=false;
+		
+		//var combo = document.getElementById('smn_almacen_rf');
+		//var valueCombo = getSelectedIndex(combo);
+		//geo_id5 = valueCombo.split("-").pop().trim();
+		
+		if (id!=null && id!="") 
+		{
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/getservicio?id=" + id, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=setElementFirstIndex('smn_servicios_rf'), //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null);				
+	}}
+
+
+	function concatenaritem(sender, sender2) {
+		if ($(sender).is(":checked") ) {
+
+			if($("#smn_descripcion_ingrediente").val()==""){
+				$("#smn_descripcion_ingrediente").val($(sender).attr('data-name')+' '+$(sender2).attr('data-precio'));
+			}else{
+				$("#smn_descripcion_ingrediente").val($("#smn_descripcion_ingrediente").val()+' '+$(sender).attr('data-name')+' '+$(sender2).attr('data-precio'));
+			}
+		}else{
+			var dat = $("#smn_descripcion_ingrediente").val();
+			if($.trim(dat)==""){
+				$("#smn_descripcion_ingrediente").val("");
+			}else{
+				//alert(" no vacioo");
+				$("#smn_descripcion_ingrediente").val($("#smn_descripcion_ingrediente").val().replace($.trim(dat),""));
+				
+			}
+			
+		}
+		
+	}
+
+
+	function calcularprecioingrediente(sender, sender2) {
+		var p_ing =  parseFloat($(sender2).attr('data-precio'));
+		var p_orig = parseFloat($("#pde_precio").val());
+		var p_total = 0;
+
+		if ($(sender).is(":checked") ) {
+				p_total = p_orig + p_ing;	
+				$("#pde_precio").val(p_total);
+		} else {
+				p_total = p_orig - p_ing;	
+				$("#pde_precio").val(p_total.toFixed(2));
+				
+		}
+	}
+
+
+	function calcularmontolocal() {
+		var cant = document.getElementById('pde_cantidad_aprobada').value;
+		var preml = document.getElementById('pde_precio').value;
+		var totalml = 0;
+
+		totalml = cant * preml;
+		document.getElementById('pde_monto').value = totalml;
+		document.getElementById('pde_monto').disabled = true;
+
+	}
+
+	/*function monedaalterna() {
+		var monedaalter = "SI";
+		var cant = document.getElementById('sed_cantidad').value;
+		var prema = document.getElementById('sed_precio_ma').value;
+		var totalma=0;
+		//alert('${fld:recurrente}');
+		if(monedaalter == '${fld:alterna}'){
+			//alert('${fld:alterna}');
+				document.getElementById('moneda').style="";
+				document.getElementById('precioma').style="";
+				document.getElementById('montoma').style="";
+
+				totalma = cant * prema;
+
+				document.getElementById('sed_monto_moneda_alterna').value = totalma;
+
+		}else{
+				document.getElementById('moneda').style="display:none";
+				document.getElementById('precioma').style="display:none";
+				document.getElementById('montoma').style="display:none";
+		}
+	}*/
+
+	var geo_id = null;
+	function chgCombo2(text,id)
+	{		
+		document.form1.smn_unidad_medida_rf.disabled=false;
+		
+		var combo = document.getElementById('smn_catalogo_item_comercio_id');
+		var valueCombo = getIDSelectedIndex(combo);
+		geo_id = valueCombo.split("-").pop().trim();
+		var baremos  = '${fld:baremos}';
+		//var ba = document.getElementById('baremos').value;
+		//alert(baremos);
+		//findLocation(geo_id0, '');
+		
+		if (id!=null && id!="") 
+		{
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/getunidadmedida?id=" + geo_id + "&baremos="+ baremos, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=setElementFirstIndex('smn_unidad_medida_rf'), //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null);				
+		}
+		
+	}
+
+	//Author     : SIMONE
+	//Description: Set first element as selected value
+	//Return     : None
+	function setCheckBox(id)
+	{
+		setCheckboxValue('smn_ingredientes_id','${fld:smn_ingredientes_id}','form1');
+		//alert('${fld:role_id}');
+	}
+
+		//Este codigo fue creado por SIMONE y ajustado en este crud por Kelvin Marcano
+	var geo_id2 = null;
+	function chgCombo3(text,id)
+	{		
+		//document.form1.rpñ_id.disabled=false;
+		
+		var combo = document.getElementById('smn_catalogo_item_comercio_id');
+		var valueCombo = getIDSelectedIndex(combo);
+
+		geo_id2 = valueCombo.split("-").pop().trim();
+		
+		//findLocation(geo_id0, '');
+		
+		if (id!=null && id!="") 
+		{
+			
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/getingredientes?id=" + geo_id2, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=setCheckBox('smn_ingredientes_id'), //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null); 				
+		}
+	}
+
+	function recalcular_monto() {
+
+
+		var id2 = document.getElementById('smn_pedido_cabecera_id').value;
+		var uri="${def:actionroot}/recalcular_saldos?id2=" + id2;
+	 //alert("URL: "+uri+" ID2: "+ id2);
+	
+		 ajaxCall(httpMethod="GET", 
+						uri,
+						divResponse=null, 
+						divProgress="status", 
+						formName=null, 
+						afterResponseFn=null, 
+						onErrorFn=null);	
+
+			
+	}
+
+	function catalogossss(ent) {
+		//alert("LLEGO AL CATALOGO EN EL ISNERT"+ent);
+		ajaxCall(httpMethod="GET", 
+					uri="${def:actionroot}/getcatalogoitem?id=" + ent, 
+					divResponse=null, 
+					divProgress="status", 
+					formName="form1", 
+					afterResponseFn=setElementFirstIndex('smn_catalogo_item_comercio_id'), 
+					onErrorFn=null);	
+	}
+
+
+	
+</script>	
+</body>
+</html>

@@ -1,0 +1,17 @@
+select
+		smn_comercial.smn_rel_cliente_agenda.smn_rel_cliente_agenda_id,
+select
+		smn_comercial.smn_rel_cliente_agenda.smn_rel_cliente_agenda_id,
+where
+select
+		smn_comercial.smn_rel_cliente_agenda.smn_rel_cliente_agenda_id,
+		smn_comercial.smn_rel_cliente_agenda.smn_rel_cliente_agenda_id,
+	smn_comercial.smn_rel_cliente_agenda.smn_cliente_id,
+	smn_comercial.smn_rel_cliente_agenda.smn_cliente_id,
+	smn_comercial.smn_rel_cliente_agenda.smn_agenda_rf
+	smn_comercial.smn_rel_cliente_agenda.smn_agenda_rf
+	
+	
+from
+	smn_comercial.smn_rel_cliente_agenda
+	smn_comercial.smn_rel_cliente_agenda

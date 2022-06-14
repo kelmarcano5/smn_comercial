@@ -1,0 +1,40 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='45%'/>
+	<col width='45%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="5" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_solicitud_servicio_entregas_detalle_id','query-smnreldetalleingrediente.sql')" >${lbl:b_detail_services_delivery_request}</th>
+		<th class='sortable' onclick="sortBy('smn_ingredientes_id','query-smnreldetalleingrediente.sql')" >${lbl:b_ingredients}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_rel_detalle_ingrediente_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_rel_detalle_ingrediente_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_rel_detalle_ingrediente_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_solicitud_servicio_entregas_detalle_id}</td>
+		<td align="center">${fld:smn_ingredientes_id}</td>
+
+	</tr>
+	</rows>
+
+</table>

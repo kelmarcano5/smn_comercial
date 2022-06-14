@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert" id='smn_presupuesto_id'>
+	<parameter id="id" type="integer" required="true" label="ID Presupuesto" maxlen="10" />
+	<parameter id="estatus" type="varchar" required="false" label="Estatus" maxlen="50" />
+</validator>

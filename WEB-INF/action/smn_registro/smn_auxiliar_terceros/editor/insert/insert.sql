@@ -1,0 +1,96 @@
+INSERT INTO smn_base.smn_auxiliar
+(
+	smn_auxiliar_id,
+	smn_naturaleza_auxiliar_rf,
+	smn_clase_auxiliar_rf,
+	aux_tipo_persona,
+	aux_codigo,
+	aux_descripcion,
+	aux_sectores_economicos_rf,
+	aux_denom_comercial,
+	aux_razon_social,
+	aux_representante_legal,
+	aux_tipo_doc_oficial_rf,
+	aux_num_doc_oficial,
+	aux_rif,
+	aux_direccion_rf,
+	aux_comunidad_rf,
+	aux_auxiliar_corporacion_rf,
+	aux_auxiliar_unidad_negocio_rf,
+	aux_benef_pago,
+	aux_cond_pago_rf,
+	aux_condicion_financiera_rf,
+	aux_cuenta_bancaria_rf,
+	aux_maneja_sucursal,
+	aux_persona_contacto,
+	aux_observacion,
+	aux_idioma,
+	aux_usuario,
+	aux_fecha_registro,
+	aux_hora
+)
+VALUES
+(
+	${seq:currval@smn_base.seq_smn_auxiliar},
+	'3',
+	${fld:smn_clase_auxiliar_rf},
+	${fld:aux_tipo_persona},
+	${fld:aux_codigo},
+	${fld:aux_descripcion},
+	${fld:aux_sectores_economicos_rf},
+	${fld:aux_denom_comercial},
+	${fld:aux_razon_social},
+	${fld:aux_representante_legal},
+	${fld:aux_tipo_doc_oficial_rf},
+	${fld:aux_num_doc_oficial},
+	${fld:aux_rif},
+	${fld:aux_direccion_rf},
+	${fld:aux_comunidad_rf},
+	${fld:aux_auxiliar_corporacion_rf},
+	${fld:aux_auxiliar_unidad_negocio_rf},
+	${fld:aux_benef_pago},
+	${fld:aux_cond_pago_rf},
+	(select smn_base.smn_condicion_financiera.smn_condicion_financiera_id from smn_base.smn_condicion_financiera where
+smn_base.smn_condicion_financiera.cfi_cant_dias = 0),
+	${fld:aux_cuenta_bancaria_rf},
+	${fld:aux_maneja_sucursal},
+	${fld:aux_persona_contacto},
+	${fld:aux_observacion},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+);
+
+INSERT INTO smn_comercial.smn_cliente
+(
+	smn_cliente_id,
+	smn_clasificacion_cliente_id,
+	smn_clase_auxiliar_rf,
+	smn_auxiliar_rf,
+	smn_clasificacion_abc_rf,
+	smn_sector_economico_rf,
+	cli_nacional_ext,
+	cli_vigencia,
+	cli_estatus,
+	cli_idioma,
+	cli_usuario,
+	cli_fecha_registro,
+	cli_hora
+)
+VALUES
+(
+	${seq:currval@smn_comercial.seq_smn_cliente},
+	1,
+	${fld:smn_clase_auxiliar_rf},
+	${seq:currval@smn_base.seq_smn_auxiliar},
+	2,
+	${fld:aux_sectores_economicos_rf},
+	'N',
+	{d '${def:date}'},
+	'AC',
+	'${def:locale}',
+	'${def:user}',
+	'${def:date}',
+	'${def:time}'
+)

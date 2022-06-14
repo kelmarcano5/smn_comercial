@@ -1,0 +1,25 @@
+select	
+	smn_base.smn_item.itm_nombre as smn_catalogo_item_comercio_id, 
+	(smn_comercial.smn_imagen_item_comercio.iic_imagen_size / 1024) as image_size,
+	smn_comercial.smn_imagen_item_comercio.smn_imagen_item_comercio_id,
+	smn_comercial.smn_imagen_item_comercio.iic_descripcion,
+	smn_comercial.smn_imagen_item_comercio.iic_imagen_size,
+	smn_comercial.smn_imagen_item_comercio.filename,
+	smn_comercial.smn_imagen_item_comercio.content_type,
+	smn_comercial.smn_imagen_item_comercio.iic_idioma,
+	smn_comercial.smn_imagen_item_comercio.iic_usuario,
+	smn_comercial.smn_imagen_item_comercio.iic_fecha_registro,
+	smn_comercial.smn_imagen_item_comercio.iic_hora
+
+from
+	smn_comercial.smn_imagen_item_comercio
+	left outer join smn_comercial.smn_catalogo_item_comercio on smn_comercial.smn_catalogo_item_comercio.smn_catalogo_item_comercio_id = smn_comercial.smn_imagen_item_comercio.smn_catalogo_item_comercio_id
+	inner join smn_base.smn_item on smn_base.smn_item.smn_item_id = smn_comercial.smn_catalogo_item_comercio.smn_item_rf
+
+where
+	smn_imagen_item_comercio_id is not null
+and 	smn_comercial.smn_catalogo_item_comercio.smn_catalogo_item_comercio_id=smn_comercial.smn_imagen_item_comercio.smn_catalogo_item_comercio_id  
+
+${filter} and smn_comercial.smn_catalogo_item_comercio.smn_catalogo_item_comercio_id=${fld:id2}
+order by 
+	smn_imagen_item_comercio_id

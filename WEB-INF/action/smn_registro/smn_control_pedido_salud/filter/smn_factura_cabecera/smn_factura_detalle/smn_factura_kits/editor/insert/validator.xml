@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_factura_detalle_id' type='integer' required='false' label='${lbl:b_detail_bill}' maxlen='10'/>
+	<parameter id='smn_item_origen_rf' type='integer' required='true' label='${lbl:b_item_origin}' maxlen='10'/>
+	<parameter id='smn_item_destino_rf' type='integer' required='true' label='${lbl:b_item_destiny}' maxlen='10'/>
+	<parameter id='fki_cantidad' type='integer' required='true' label='${lbl:b_quantity}' maxlen='10'/>
+	<parameter id='fki_precio_ml' type='double' required='true' label='${lbl:b_price}' maxlen='10'/>
+	<parameter id='fki_monto_ml' type='double' required='true' label='${lbl:b_amount}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='smn_precio_ma_rf' type='double' required='false' label='${lbl:b_price_ma}' maxlen='10'/>
+	<parameter id='fki_monto_ma_rf' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='fki_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+
+
+</validator>

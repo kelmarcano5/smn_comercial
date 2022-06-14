@@ -1,0 +1,11 @@
+select
+		smn_comercial.smn_rel_documento_entidad.smn_documento_id,
+	smn_comercial.smn_rel_documento_entidad.smn_entidad_rf,
+	smn_comercial.smn_rel_documento_entidad.smn_sucursal_rf,
+	smn_comercial.smn_rel_documento_entidad.smn_documento_id,
+	smn_comercial.smn_rel_documento_entidad.smn_entidad_rf,
+	smn_comercial.smn_rel_documento_entidad.smn_sucursal_rf
+from
+	smn_comercial.smn_rel_documento_entidad 
+where
+	smn_comercial.smn_rel_documento_entidad.smn_rel_documento_entidad_id = ${fld:id}

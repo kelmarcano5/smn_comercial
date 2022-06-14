@@ -1,0 +1,38 @@
+INSERT INTO smn_comercial.smn_solicitud_servicio_entregas_detalle
+(
+	smn_solicitud_servicio_entregas_detalle_id,
+	smn_solicitud_servicio_entregas_cabecera_id,
+	smn_catalogo_item_comercio_id,
+	smn_unidad_medida_rf,
+	sed_tiempo_sug_preparacion,
+	sed_cantidad,
+	sed_requirimientos,
+	sed_precio_ml,
+	smn_moneda_rf,
+	sed_precio_ma,
+	sed_monto_moneda_local,
+	sed_monto_moneda_alterna,
+	sed_idioma,
+	sed_usuario,
+	sed_fecha_registro,
+	sed_hora
+)
+VALUES
+(
+	${seq:currval@smn_comercial.seq_smn_solicitud_servicio_entregas_detalle},
+	${fld:smn_solicitud_servicio_entregas_cabecera_id},
+	${fld:smn_catalogo_item_comercio_id},
+	${fld:smn_unidad_medida_rf},
+	${fld:sed_tiempo_sug_preparacion},
+	${fld:sed_cantidad},
+	${fld:sed_requirimientos},
+	${fld:sed_precio_ml},
+	${fld:smn_moneda_rf},
+	${fld:sed_precio_ma},
+	${fld:sed_monto_moneda_local},
+	${fld:sed_monto_moneda_alterna},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

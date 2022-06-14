@@ -1,0 +1,124 @@
+INSERT INTO smn_comercial.smn_factura_cabecera
+(
+	smn_factura_cabecera_id,
+	smn_documento_id,
+	fca_numero_documento,
+	smn_entidad_rf,
+	smn_sucursal_rf,
+	smn_control_serie_fiscal_id,
+	fca_numero_control_fiscal,
+	fca_rif,
+	--fca_direccion_fiscal,
+	fca_monto_factura_ml,
+	fca_monto_impuesto_ml,
+	fca_monto_descuento_ml,
+	fca_monto_bonificacion_ml,
+	fca_monto_neto_ml,
+	smn_moneda_rf,
+	smn_tasa_rf,
+	fca_monto_factura_ma,
+	fca_monto_impuesto_ma,
+	fca_monto_descuento_ma,
+	fca_monto_bonificacion_ma,
+	fca_monto_neto_ma,
+	fca_estatus_financiero,
+	fca_estatus_proceso,
+	fca_idioma,
+	fca_usuario,
+	fca_fecha_registro,
+	fca_hora,
+	smn_cliente_id,
+	fim_descripcion_pagador2,
+	fim_forma_pago,
+	fim_abonos_ml,
+	fim_abonos_ma
+)
+VALUES
+(
+	${seq:nextval@smn_comercial.seq_smn_factura_cabecera},
+	(select cfd.smn_documento_id from smn_comercial.smn_pedido_cabecera 
+				inner join smn_comercial.smn_centro_facturacion on smn_comercial.smn_centro_facturacion.smn_centro_facturacion_id=smn_comercial.smn_pedido_cabecera.smn_centro_facturacion_id
+				inner join smn_comercial.smn_control_fiscal_documento cfd on cfd.smn_control_fiscal_documento_id=smn_comercial.smn_centro_facturacion.cfc_control_fiscal_1
+				where smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id=${fld:smn_pedido_cabecera_id}),
+	${seq:nextval@smn_comercial.numero_factura},
+	${fld:entidad},
+	${fld:sucursal},
+	(select cfd_numero_documento_fiscal_inicial from smn_comercial.smn_pedido_cabecera  
+		inner join smn_comercial.smn_centro_facturacion on smn_comercial.smn_centro_facturacion.smn_centro_facturacion_id=smn_comercial.smn_pedido_cabecera.smn_centro_facturacion_id
+		inner join smn_comercial.smn_control_fiscal_documento on smn_comercial.smn_control_fiscal_documento.smn_control_fiscal_documento_id=smn_comercial.smn_centro_facturacion.cfc_control_fiscal_1
+		where smn_pedido_cabecera_id=${fld:smn_pedido_cabecera_id}),
+
+	(select cfd_ultimo_numero_fiscal_usado+1 from smn_comercial.smn_pedido_cabecera 
+		inner join smn_comercial.smn_centro_facturacion on smn_comercial.smn_centro_facturacion.smn_centro_facturacion_id=smn_comercial.smn_pedido_cabecera.smn_centro_facturacion_id
+		inner join smn_comercial.smn_control_fiscal_documento on smn_comercial.smn_control_fiscal_documento.smn_control_fiscal_documento_id=smn_comercial.smn_centro_facturacion.cfc_control_fiscal_1
+		where smn_pedido_cabecera_id=${fld:smn_pedido_cabecera_id}),
+	(select smn_base.smn_auxiliar.aux_rif from smn_base.smn_auxiliar where smn_base.smn_auxiliar.smn_auxiliar_id=${fld:smn_auxiliar_rf}),
+	--(select smn_base.smn_direccion.dir_descripcion as item from smn_base.smn_auxiliar inner join smn_base.smn_direccion on smn_base.smn_direccion.smn_direccion_id = smn_base.smn_auxiliar.aux_direccion_rf where smn_base.smn_auxiliar.smn_auxiliar_id=${fld:auxiliar}),
+	${fld:pca_monto_pedido_ml},
+	${fld:pca_monto_impuesto_ml},
+	${fld:pca_monto_descuento_ml},
+	${fld:pca_monto_bonificacion_ml},
+	${fld:pca_monto_neto_ml},
+	${fld:smn_moneda_rf},
+	${fld:smn_tasa_rf},
+	${fld:pca_monto_pedido_ma},
+	${fld:pca_monto_impuesto_ma},
+	${fld:pca_monto_descuento_ma},
+	${fld:pca_monto_bonificacion_ma},
+	${fld:pca_monto_neto_ma},
+	'PE',
+	'RE',
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}',
+	${fld:cliente},
+	(SELECT
+	smn_base.smn_auxiliar.aux_descripcion
+FROM
+	smn_caja.smn_dist_pago_detalle
+	INNER JOIN smn_base.smn_formas_pago ON smn_base.smn_formas_pago.smn_formas_pago_id = smn_caja.smn_dist_pago_detalle.smn_forma_pago_rf
+	inner join smn_base.smn_medio_pago on smn_base.smn_medio_pago.smn_medio_pago_id = smn_base.smn_formas_pago.fop_medio_pago
+	inner join smn_base.smn_auxiliar on smn_base.smn_auxiliar.smn_auxiliar_id = smn_caja.smn_dist_pago_detalle.smn_auxiliar_rf
+WHERE
+	smn_caja.smn_dist_pago_detalle.smn_mov_caja_cabecera_id = (select smn_comercial.smn_pedido_cabecera.smn_mov_caja_cabecera_id from smn_comercial.smn_pedido_cabecera where smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id=${fld:smn_pedido_cabecera_id}) and smn_base.smn_medio_pago.mpa_tipo_medio_pago NOT IN('CR') limit 1),
+	(SELECT string_agg(smn_base.smn_formas_pago.fop_descripcion,'_') as forma_pago FROM smn_caja.smn_dist_pago_detalle INNER JOIN smn_base.smn_formas_pago ON smn_base.smn_formas_pago.smn_formas_pago_id = smn_caja.smn_dist_pago_detalle.smn_forma_pago_rf WHERE
+smn_caja.smn_dist_pago_detalle.smn_mov_caja_cabecera_id = (select smn_comercial.smn_pedido_cabecera.smn_mov_caja_cabecera_id from smn_comercial.smn_pedido_cabecera where smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id=${fld:smn_pedido_cabecera_id})),
+	(SELECT
+	case when SUM(smn_caja.smn_dist_pago_detalle.dpd_monto_del_pago_ml) is null then 0 else SUM(smn_caja.smn_dist_pago_detalle.dpd_monto_del_pago_ml) end
+FROM
+	smn_caja.smn_dist_pago_detalle
+	INNER JOIN smn_base.smn_formas_pago ON smn_base.smn_formas_pago.smn_formas_pago_id = smn_caja.smn_dist_pago_detalle.smn_forma_pago_rf
+	inner join smn_base.smn_medio_pago on smn_base.smn_medio_pago.smn_medio_pago_id = smn_base.smn_formas_pago.fop_medio_pago
+WHERE
+	smn_caja.smn_dist_pago_detalle.smn_mov_caja_cabecera_id = (select smn_comercial.smn_pedido_cabecera.smn_mov_caja_cabecera_id from smn_comercial.smn_pedido_cabecera where smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id=${fld:smn_pedido_cabecera_id}) and smn_base.smn_medio_pago.mpa_tipo_medio_pago NOT IN('CR') limit 1),
+	(SELECT
+	case when SUM(smn_caja.smn_dist_pago_detalle.dpd_monto_del_pago_ma) is null then 0 else SUM(smn_caja.smn_dist_pago_detalle.dpd_monto_del_pago_ma) end
+FROM
+	smn_caja.smn_dist_pago_detalle
+	INNER JOIN smn_base.smn_formas_pago ON smn_base.smn_formas_pago.smn_formas_pago_id = smn_caja.smn_dist_pago_detalle.smn_forma_pago_rf
+	inner join smn_base.smn_medio_pago on smn_base.smn_medio_pago.smn_medio_pago_id = smn_base.smn_formas_pago.fop_medio_pago
+WHERE
+	smn_caja.smn_dist_pago_detalle.smn_mov_caja_cabecera_id = (select smn_comercial.smn_pedido_cabecera.smn_mov_caja_cabecera_id from smn_comercial.smn_pedido_cabecera where smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id=${fld:smn_pedido_cabecera_id}) and smn_base.smn_medio_pago.mpa_tipo_medio_pago NOT IN('CR') limit 1)
+
+);
+
+INSERT INTO smn_comercial.smn_rel_pedido_factura
+(
+	smn_rel_pedido_factura_id,
+	smn_pedido_cabecera_id,
+	smn_factura_cabecera_id
+)
+VALUES
+(
+	${seq:nextval@smn_comercial.seq_smn_rel_pedido_factura},
+	${fld:smn_pedido_cabecera_id},
+	(select last_value from smn_comercial.seq_smn_factura_cabecera)
+);
+
+update smn_comercial.smn_control_fiscal_documento
+	set cfd_ultimo_numero_fiscal_usado=cfd_ultimo_numero_fiscal_usado+1
+	where smn_comercial.smn_control_fiscal_documento.smn_control_fiscal_documento_id=(select smn_control_fiscal_documento_id from smn_comercial.smn_pedido_cabecera 
+		inner join smn_comercial.smn_centro_facturacion on smn_comercial.smn_centro_facturacion.smn_centro_facturacion_id=smn_comercial.smn_pedido_cabecera.smn_centro_facturacion_id
+		inner join smn_comercial.smn_control_fiscal_documento on smn_comercial.smn_control_fiscal_documento.smn_control_fiscal_documento_id=smn_comercial.smn_centro_facturacion.cfc_control_fiscal_1
+		where smn_pedido_cabecera_id=${fld:smn_pedido_cabecera_id});

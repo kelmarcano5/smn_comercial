@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnrelofertacliente.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_rel_customer_offer}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_rel_customer_offer}">
+				<col id='smn_oferta_id' label='${lbl:b_offer}' />
+		<col id='smn_cliente_id' label='${lbl:b_customer}' />
+		<col id='roc_estatus_proceso' label='${lbl:b_process_status}' />
+		<col id='roc_fecha_aprobacion' label='${lbl:b_aprobation_date}' />
+		<col id='roc_fecha_vigencia_desde' label='${lbl:b_from_vigency_date}' />
+		<col id='roc_fecha_vigencia_hasta' label='${lbl:b_to_vigency_date}' />
+		<col id='roc_fecha_cierre' label='${lbl:b_close_date}' />
+		<col id='roc_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

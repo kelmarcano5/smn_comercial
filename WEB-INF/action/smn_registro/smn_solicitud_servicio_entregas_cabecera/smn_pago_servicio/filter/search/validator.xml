@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_solicitud_servicio_entregas_cabecera_id' type='integer' required='false' label='${lbl:b_header_services_delivery_request}' maxlen='10'/>
+	<parameter id='smn_forma_pago_rf' type='integer' required='false' label='${lbl:b_way_to_pay}' maxlen='10'/>
+	<parameter id='smn_franquicia_rf' type='integer' required='false' label='${lbl:b_franchises}' maxlen='10'/>
+	<parameter id='pas_numero_tarjeta' type='integer' required='false' label='${lbl:b_card_number}' maxlen='10'/>
+	<parameter id='pas_documento_identidad' type='integer' required='false' label='${lbl:b_identity_document}' maxlen='10'/>
+	<parameter id='pas_nombre_pagador' type='varchar' required='false' label='${lbl:b_payer_name}' maxlen='100'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='pas_nombre_pagador' rule='like' />
+	<parameter id='pas_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date} mayor o igual que] no puede ser mayor que [${lbl:b_store_date} menor o igual que].' date1='pas_fecha_registro_ini' date2='pas_fecha_registro_fin' id='pas_fecha_registro_ini' />
+	<parameter id='pas_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

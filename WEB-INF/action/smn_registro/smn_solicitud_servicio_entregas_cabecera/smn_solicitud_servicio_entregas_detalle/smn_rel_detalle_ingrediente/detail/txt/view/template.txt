@@ -1,0 +1,3 @@
+<rows>
+smn_ingredientes_id="${fld:smn_ingredientes_id}"    smn_solicitud_servicio_entregas_detalle_id="${fld:smn_solicitud_servicio_entregas_detalle_id}"    
+</rows>

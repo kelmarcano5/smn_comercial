@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_factura_detalle_id' type='integer' required='true' label='${lbl:b_detail_bill}' maxlen='10'/>
+	<parameter id='smn_descuentos_retenciones_rf' type='integer' required='false' label='${lbl:b_discount_retention}' maxlen='10'/>
+	<parameter id='fdr_monto_base_ml' type='double' required='false' label='${lbl:b_amount_base_ml}' maxlen='10'/>
+	<parameter id='fdr_porcentaje_descuento' type='double' required='false' label='${lbl:b_percentage_discount}' maxlen='10'/>
+	<parameter id='fdr_monto_descuento_ml' type='double' required='false' label='${lbl:b_amount_discount}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='fdr_monto_descuento_ma' type='double' required='false' label='${lbl:b_amount_discount_ma}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_discount_bill}' maxlen='10'/>
+
+
+</validator>

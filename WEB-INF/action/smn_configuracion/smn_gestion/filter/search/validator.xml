@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='ges_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='ges_codigo' rule='like' />
+	<parameter id='ges_descripcion' type='varchar' required='false' label='${lbl:b_description}' maxlen='100'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='ges_descripcion' rule='like' />
+	<parameter id='smn_accion_id_name' type='varchar' required='false' label='${lbl:b_action}'/>
+	<parameter id='smn_accion_id' type='integer' required='false' label='${lbl:b_action}' maxlen='10'/>
+	<parameter id='ges_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='ges_estatus' rule='like' />
+	<parameter id='ges_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date} mayor o igual que] no puede ser mayor que [${lbl:b_store_date} menor o igual que].' date1='ges_fecha_registro_ini' date2='ges_fecha_registro_fin' id='ges_fecha_registro_ini' />
+	<parameter id='ges_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

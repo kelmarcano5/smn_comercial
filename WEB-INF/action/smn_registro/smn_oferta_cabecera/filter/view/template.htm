@@ -1,0 +1,66 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="15" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th>EN</th>
+		<th class='sortable' onclick='sortBy("smn_documento_id","query-smnofertacabecera.sql")'>${lbl:b_document}</th>
+		<th class='sortable' onclick='sortBy("ofe_descripcion","query-smnofertacabecera.sql")'>${lbl:b_description}</th>
+		<th class='sortable' onclick='sortBy("ofe_numero_documento","query-smnofertacabecera.sql")'>${lbl:b_document_number}</th>
+		<th class='sortable' onclick='sortBy("smn_entidad_rf","query-smnofertacabecera.sql")'>${lbl:b_entities}</th>
+		<th class='sortable' onclick='sortBy("ofe_fecha_desde","query-smnofertacabecera.sql")'>${lbl:b_init_date}</th>
+		<th class='sortable' onclick='sortBy("ofe_fecha_hasta","query-smnofertacabecera.sql")'>${lbl:b_end_date}</th>
+		<th class='sortable' onclick='sortBy("ofe_estatus","query-smnofertacabecera.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("ofe_fecha_registro","query-smnofertacabecera.sql")'>${lbl:b_store_date}</th>
+		<th>DT</th>
+		<th>RCO</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+		<tr>
+			<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_oferta_cabecera_id}')" title="${lbl:b_view_detail}"></td>
+			<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_oferta_cabecera_id}')" title="${lbl:b_delete_button}"></td>
+			<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_oferta_cabecera_id}')" title="${lbl:b_edit_button}"></td>
+			<td><img src="${def:context}/images/email.png" onclick="envio('${fld:smn_oferta_cabecera_id}','${fld:ofe_descripcion}')" title="${lbl:b_offer_delivery}"></td>
+			<td>${fld:smn_documento_id}</td>
+			<td align='left'>${fld:ofe_descripcion}</td>
+			<td>${fld:ofe_numero_documento}</td>
+			<td>${fld:smn_entidad_rf}</td>
+			<td>${fld:ofe_fecha_desde@dd-MM-yyyy}</td>
+			<td>${fld:ofe_fecha_hasta@dd-MM-yyyy}</td>
+			<td align='left'>${fld:ofe_estatus}</td>
+			<td>${fld:ofe_fecha_registro@dd-MM-yyyy}</td>
+			<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="detalle('${fld:smn_oferta_cabecera_id}','${fld:ofe_descripcion}')" title="${lbl:b_header_order}"></td>
+			<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="relacion('${fld:smn_oferta_cabecera_id}','${fld:ofe_descripcion}')" title="${lbl:b_rel_customer_offer}"></td>
+
+		</tr>
+	</rows>
+
+</table>

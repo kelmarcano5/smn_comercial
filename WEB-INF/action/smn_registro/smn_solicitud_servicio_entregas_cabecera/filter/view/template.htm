@@ -1,0 +1,66 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='8%'/>
+	<col width='12%'/>
+	<col width='9%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='10%'/>
+	<col width='9%'/>
+	<col width='10%'/>
+	<col width='12%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="15" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("sec_origen","query-smnsolicitudservicioentregascabecera.sql")'>${lbl:b_origen}</th>
+		<th class='sortable' onclick='sortBy("documento","query-smnsolicitudservicioentregascabecera.sql")'>${lbl:b_document}</th>
+		<th class='sortable' onclick='sortBy("numero_documento","query-smnsolicitudservicioentregascabecera.sql")'>Numero Documento</th>
+		<th class='sortable' onclick='sortBy("comprador","query-smnsolicitudservicioentregascabecera.sql")'>Comprador</th>
+		<th class='sortable' onclick='sortBy("descripcion","query-smnsolicitudservicioentregascabecera.sql")'>${lbl:b_description}</th>
+		<th class='sortable' onclick='sortBy("monto","query-smnsolicitudservicioentregascabecera.sql")'>${lbl:b_amount}</th>
+		<th class='sortable' onclick='sortBy("tiempo","query-smnsolicitudservicioentregascabecera.sql")'>${lbl:b_time_suggerest_prepared}</th>
+		<th class='sortable' onclick='sortBy("sec_estatus_proceso","query-smnsolicitudservicioentregascabecera.sql")'>${lbl:b_estatus_proceso}</th>
+		<th class='sortable' onclick='sortBy("sec_fecha_registro","query-smnsolicitudservicioentregascabecera.sql")'>${lbl:b_store_date}</th>
+		<th>DT</th>
+		<th>PS</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_solicitud_servicio_entregas_cabecera_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_solicitud_servicio_entregas_cabecera_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_solicitud_servicio_entregas_cabecera_id}')" title="${lbl:b_edit_button}"></td>
+		<td align='left'>${fld:sec_origen}</td>
+		<td align='left'>${fld:documento}</td>
+		<td>${fld:numero_documento}</td>
+		<td>${fld:comprador}</td>
+		<td>${fld:descripcion}</td>
+		<td>${fld:monto@#######}</td>
+		<td>${fld:tiempo}</td>
+		<td align='left'>${fld:sec_estatus_proceso}</td>
+		<td>${fld:sec_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="detalle('${fld:smn_solicitud_servicio_entregas_cabecera_id}','${fld:sec_origen}','${fld:sec_descripcion}','${fld:smn_documento_id1}','${fld:smn_documento_id}')" title="${lbl:b_detail_services_delivery_request}"></td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="pago('${fld:smn_solicitud_servicio_entregas_cabecera_id}','${fld:sec_origen}','${fld:sec_descripcion}','${fld:smn_documento_id1}','${fld:smn_forma_pago_rf1}')" title="${lbl:b_service_payment}"></td>
+
+	</tr>
+	</rows>
+
+</table>

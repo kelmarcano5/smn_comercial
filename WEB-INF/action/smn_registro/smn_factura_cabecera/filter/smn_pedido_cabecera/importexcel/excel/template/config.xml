@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnpedidocabecera.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_control_header_order_health}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_control_header_order_health}">
+				<col id='smn_documento_id' label='${lbl:b_document}' />
+		<col id='pca_numero_pedido' label='${lbl:b_order_number}' />
+		<col id='smn_mov_caja_cabecera_id' label='${lbl:b_movement_caj}' />
+		<col id='smn_oferta_id' label='${lbl:b_offer}' />
+		<col id='smn_cliente_id' label='${lbl:b_customer}' />
+		<col id='smn_usuario_rf' label='${lbl:b_user}' />
+		<col id='pca_descripcion' label='${lbl:b_description}' />
+		<col id='pca_fecha_requerida' label='${lbl:b_required_date}' />
+		<col id='smn_entidad_rf' label='${lbl:b_entities}' />
+		<col id='smn_sucursal_rf' label='${lbl:b_subsidiaries}' />
+		<col id='smn_area_servicio_rf' label='${lbl:b_area_service}' />
+		<col id='smn_unidad_servicio_rf' label='${lbl:b_units_service}' />
+		<col id='smn_almacen_rf' label='${lbl:b_store_code}' />
+		<col id='smn_centro_costo_rf' label='${lbl:b_cost_centers}' />
+		<col id='pca_estatus' label='${lbl:b_status}' />
+		<col id='pca_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

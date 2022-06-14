@@ -1,0 +1,70 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='13%'/>
+	<!--<col width='13%'/>-->
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="14">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_clase_auxiliar_rf','query-smnauxiliar.sql')" >${lbl:b_class_auxiliary}</th>
+		<!--<th class='sortable' onclick="sortBy('aux_tipo_persona','query-smnauxiliar.sql')" >${lbl:b_person_type}</th>-->
+		<th class='sortable' onclick="sortBy('aux_apellidos','query-smnauxiliar.sql')" >${lbl:b_last_name}</th>
+		<th class='sortable' onclick="sortBy('aux_nombres','query-smnauxiliar.sql')" >${lbl:b_first_name}</th>
+		<th class='sortable' onclick="sortBy('tdo_descripcion','query-smnauxiliar.sql')" >${lbl:b_document_type_oficial}</th>
+		<th class='sortable' onclick="sortBy('aux_rif','query-smnauxiliar.sql')" >${lbl:b_rif}</th>
+		<th class='sortable' onclick="sortBy('aux_fecha_registro','query-smnauxiliar.sql')" >${lbl:b_store_date}</th>
+		<th>CT</th>
+		<th>CB</th>
+		<th>PC</th>
+		<th>CF</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_auxiliar_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_auxiliar_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_auxiliar_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_clase_auxiliar_rf}</td>
+		<!--<td align="center">${fld:aux_tipo_persona}</td>-->
+		<td align="left">${fld:aux_apellidos}</td>
+		<td align="left">${fld:aux_nombres}</td>
+		<td align="center">${fld:tdo_descripcion}</td>
+		<td align="right">${fld:aux_rif}</td>
+		<td align="center">${fld:aux_fecha_registro@dd-MM-yyyy}</td>
+		
+		<td><img src="${def:context}/images/view-list-details.png" onclick="contacto('${fld:smn_auxiliar_id}','${fld:aux_codigo}','${fld:aux_descripcion}','${fld:cla_codigo}','${fld:cla_nombre}')" title="${lbl:b_contact}"></td>
+
+		<td><img src="${def:context}/images/view-list-details.png"  onclick="cuentabancaria('${fld:smn_auxiliar_id}','${fld:aux_codigo}','${fld:aux_descripcion}','${fld:cla_codigo}','${fld:cla_nombre}')" title="${lbl:b_bank_account}"></td>
+
+		<td><img src="${def:context}/images/view-list-details.png"  onclick="personacontacto('${fld:smn_auxiliar_id}','${fld:aux_codigo}','${fld:aux_descripcion}','${fld:cla_codigo}','${fld:cla_nombre}')" title="${lbl:b_person_contact}"></td>
+		
+		<td><img src="${def:context}/images/view-list-details.png"  onclick="condicionfinanciera('${fld:smn_auxiliar_id}','${fld:aux_codigo}','${fld:aux_descripcion}','${fld:cla_codigo}','${fld:cla_nombre}')"  title="${lbl:b_financial_condition}"></td>
+		
+	</tr>
+	</rows>
+
+</table>

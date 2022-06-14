@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='smn_entidades_rf' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='smn_sucursales_rf' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+ 	<parameter id='smn_cliente_id' type='integer' required='true' label='${lbl:b_customer}' maxlen='10'/>
+ 	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='pca_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<parameter id='pca_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<parameter id='smn_centro_id' type='integer' required='true' label='${lbl:b_customer}' maxlen='10'/>
+
+	<parameter id='documento' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='entidad' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='sucursal' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+
+	<parameter id='smn_pedido_cabecera_id' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_factura_cabecera_id' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='tasa2' type='double' required='false' label='${lbl:b_document}' maxlen='10'/>
+</validator>

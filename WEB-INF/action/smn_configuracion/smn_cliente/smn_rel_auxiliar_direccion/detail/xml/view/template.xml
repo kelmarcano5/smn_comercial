@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_rel_auxiliar_direccion>
+	<detail>
+		<rows>		
+		<record smn_zona_rf="${fld:smn_zona_rf}"    rad_fecha_registro="${fld:rad_fecha_registro}"    rad_fecha_vigencia="${fld:rad_fecha_vigencia}"    rad_status="${fld:rad_status}"    rad_tipo_direccion="${fld:rad_tipo_direccion}"    smn_direccion_id="${fld:smn_direccion_id}"    smn_auxiliar_id="${fld:smn_auxiliar_id}"    smn_clase_auxiliar_id="${fld:smn_clase_auxiliar_id}"    />
+		</rows>
+	</detail>
+</smn_rel_auxiliar_direccion>

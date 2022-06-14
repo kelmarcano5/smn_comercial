@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='sec_origen' type='varchar' required='true' maxlen='1'/>
+	<parameter id='smn_documento_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_cliente_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_tipo_servicio_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='sec_descripcion' type='varchar' required='true' maxlen='200'/>
+	<parameter id='sec_direccion_busqueda' type='varchar' required='false' maxlen='200'/>
+	<parameter id='sec_direccion_entrega' type='varchar' required='true' maxlen='200'/>
+	<parameter id='sec_fecha_solicitud' type='date' required='true' maxlen='10'/>
+	<parameter id='sec_hora_solicitud' type='varchar' required='true' maxlen='8'/>
+	<parameter id='sec_especificacion_servicio' type='varchar' required='false' maxlen='200'/>
+	<parameter id='sec_observacion_servicio' type='varchar' required='false' maxlen='200'/>
+	<parameter id='sec_monto_ml' type='double' required='false' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='sec_monto_ma' type='double' required='false' maxlen='10'/>
+	<parameter id='smn_forma_pago_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='sec_monto_pago_efectivo' type='double' required='false' maxlen='10'/>
+	<parameter id='sec_otras_instrucciones' type='varchar' required='false' maxlen='200'/>
+	<parameter id='sec_estatus_proceso' type='varchar' required='true' maxlen='2'/>
+	<parameter id='sec_estatus_financiera' type='varchar' required='true' maxlen='2'/>
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='sec_descripcion'/>
+
+
+
+</validator>

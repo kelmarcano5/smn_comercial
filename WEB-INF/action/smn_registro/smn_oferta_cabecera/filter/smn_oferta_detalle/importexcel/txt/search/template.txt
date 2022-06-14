@@ -1,0 +1,3 @@
+<rows>
+ofd_fecha_registro="${fld:ofd_fecha_registro}"    ofd_monto_moneda_alterna="${fld:ofd_monto_moneda_alterna}"    ofd_precio_moneda_alterna="${fld:ofd_precio_moneda_alterna}"    smn_tasa_rf="${fld:smn_tasa_rf}"    ofd_moneda_rf="${fld:ofd_moneda_rf}"    ofd_monto_ml="${fld:ofd_monto_ml}"    ofd_precio="${fld:ofd_precio}"    ofd_cantidad="${fld:ofd_cantidad}"    smn_activo_fijo_rf="${fld:smn_activo_fijo_rf}"    smn_item_rf="${fld:smn_item_rf}"    smn_servicios_rf="${fld:smn_servicios_rf}"    ofd_naturaleza="${fld:ofd_naturaleza}"    smn_oferta_id="${fld:smn_oferta_id}"    
+</rows>

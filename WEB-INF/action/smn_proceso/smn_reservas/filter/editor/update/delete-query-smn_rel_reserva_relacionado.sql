@@ -1,0 +1,1 @@
+delete from smn_comercial.smn_rel_reserva_relacionado WHERE smn_reservas_id= ${fld:id}

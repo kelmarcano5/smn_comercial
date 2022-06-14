@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='acc_codigo' type='varchar' required='true' label='${lbl:b_code}' maxlen='10'/>
+	<parameter id='acc_descripcion' type='varchar' required='true' label='${lbl:b_description}' maxlen='100'/>
+	<parameter id='acc_require_seguimiento' type='varchar' required='true' label='${lbl:b_required_day}' maxlen='1'/>
+	<parameter id='acc_dias_seguimiento' type='integer' required='true' label='${lbl:b_followup_days}' maxlen='10'/>
+	<parameter id='acc_paso_rf' type='integer' required='true' label='${lbl:b_pass}' maxlen='10'/>
+	<parameter id='acc_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='acc_vigencia' type='date' required='true' label='${lbl:b_vigency}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_action}' maxlen='10'/>
+
+
+
+</validator>

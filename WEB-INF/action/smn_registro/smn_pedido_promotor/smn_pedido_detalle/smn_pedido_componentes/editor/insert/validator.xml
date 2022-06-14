@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_pedido_detalle_id' type='integer' required='false' label='${lbl:b_detail_bill}' maxlen='10'/>
+	<parameter id='smn_mov_caja_detalle_id' type='integer' required='false' label='${lbl:b_movement_caj}' maxlen='10'/>
+	<parameter id='smn_grupo_componente_rf' type='integer' required='true' label='${lbl:b_component_group}' maxlen='10'/>
+	<parameter id='pco_tipo_componente' type='varchar' required='true' label='${lbl:b_components_types}' maxlen='2'/>
+	<parameter id='smn_componente_rf' type='integer' required='true' label='${lbl:b_component}' maxlen='10'/>
+	<parameter id='pco_es_prestador_servicio' type='varchar' required='true' label='${lbl:b_is_services_prestator}' maxlen='10'/>
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='false' label='${lbl:b_class_auxiliary}' maxlen='10'/>
+	<parameter id='smn_auxiliar_rf' type='integer' required='false' label='${lbl:b_auxiliar}' maxlen='10'/>
+	<parameter id='pco_naturaleza' type='varchar' required='true' label='${lbl:b_nature}' maxlen='2'/>
+	<parameter id='smn_item_rf' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='smn_servicio_rf' type='integer' required='false' label='${lbl:b_services}' maxlen='10'/>
+	<parameter id='pco_cantidad' type='integer' required='true' label='${lbl:b_quantity}' maxlen='10'/>
+	<parameter id='smn_precio_ml_rf' type='double' required='true' label='${lbl:b_price}' maxlen='10'/>
+	<parameter id='pco_monto_ml' type='double' required='true' label='${lbl:b_amount}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='smn_precio_ma' type='double' required='false' label='${lbl:b_price_ma}' maxlen='10'/>
+	<parameter id='smn_monto_ma' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='pco_imprime' type='varchar' required='true' label='${lbl:b_print}' maxlen='2'/>
+	<parameter id='smn_grupo_titulo_impresion_rf' type='integer' required='true' label='${lbl:b_group_title_print}' maxlen='10'/>
+	<parameter id='smn_tipo_gasto_rf' type='integer' required='true' label='${lbl:b_type}' maxlen='10'/>
+	<parameter id='smn_sub_tipo_gasto_rf' type='integer' required='true' label='${lbl:b_sub_type}' maxlen='10'/>
+	<parameter id='pco_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='smn_pedido_cabecera_id' type='integer' required='false' label='${lbl:b_detail_bill}' maxlen='10'/>
+
+</validator>

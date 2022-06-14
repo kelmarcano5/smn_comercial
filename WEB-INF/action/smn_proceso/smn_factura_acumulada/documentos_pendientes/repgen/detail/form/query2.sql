@@ -1,0 +1,19 @@
+select
+		smn_cobranzas.smn_mov_documento_cob_cab.smn_modulo_origen_rf,
+	smn_cobranzas.smn_mov_documento_cob_cab.smn_documento_rf,
+	smn_cobranzas.smn_mov_documento_cob_cab.mdc_numero_doc_origen,
+	smn_cobranzas.smn_mov_documento_cob_cab.smn_cliente_rf,
+	smn_cobranzas.smn_mov_documento_cob_cab.mdc_fecha_documento,
+	smn_cobranzas.smn_mov_documento_cob_cab.mdc_fecha_vencimiento,
+	smn_cobranzas.smn_mov_documento_cob_cab.mdc_monto_ml,
+	smn_cobranzas.smn_mov_documento_cob_cab.smn_moneda_rf,
+	smn_cobranzas.smn_mov_documento_cob_cab.mdc_monto_ma,
+	smn_cobranzas.smn_mov_documento_cob_cab.mdc_saldo_doc_ml,
+	smn_cobranzas.smn_mov_documento_cob_cab.mdc_saldo_doc_ma,
+	smn_cobranzas.smn_mov_documento_cob_cab.mdc_estatus_proceso,
+	smn_cobranzas.smn_mov_documento_cob_cab.mdc_estatus_financiero,
+	smn_cobranzas.smn_mov_documento_cob_cab.mdc_fecha_registro
+from
+	smn_cobranzas.smn_mov_documento_cob_cab 
+where
+	smn_cobranzas.smn_mov_documento_cob_cab.smn_mov_documento_cob_cab_id = ${fld:id}

@@ -1,0 +1,19 @@
+select
+		smn_comercial.smn_rel_auxiliar_direccion.smn_rel_auxiliar_direccion_id,
+select
+		smn_comercial.smn_rel_auxiliar_direccion.smn_rel_auxiliar_direccion_id,
+select
+		smn_comercial.smn_rel_auxiliar_direccion.smn_rel_auxiliar_direccion_id,
+select
+		smn_comercial.smn_rel_auxiliar_direccion.smn_rel_auxiliar_direccion_id,
+	smn_base.smn_rel_auxiliar_direccion.smn_clase_auxiliar_id,
+	smn_base.smn_rel_auxiliar_direccion.smn_auxiliar_id,
+	smn_base.smn_rel_auxiliar_direccion.smn_direccion_id,
+	smn_base.smn_rel_auxiliar_direccion.smn_zona_rf,
+	smn_base.smn_rel_auxiliar_direccion.rad_tipo_direccion,
+	smn_base.smn_rel_auxiliar_direccion.rad_status,
+	smn_base.smn_rel_auxiliar_direccion.rad_fecha_vigencia,
+	smn_base.smn_rel_auxiliar_direccion.rad_fecha_registro
+	
+from
+	smn_base.smn_rel_auxiliar_direccion

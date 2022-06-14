@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnpedidoimpuestos.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="5" cellStep="0" name="${lbl:b_tax_order}"/>
+	
+	<excel 
+		recordset='query-smnpedidoimpuestos.sql' 
+		sheetname='${lbl:b_tax_order}' 
+		filename='${lbl:b_tax_order}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_pedido_detalle_id' label='${lbl:b_header_order_detail}' />
+		<col id='smn_codigos_impuestos_rf_combo' label='${lbl:b_code_tax}' />
+		<col id='pim_monto_base_ml' label='${lbl:b_amount_base}' />
+		<col id='pim_porcentaje_impuesto' label='${lbl:b_percentaje_tax}' />
+		<col id='pim_monto_sustraendo' label='${lbl:b_amount_sustrain}' />
+		<col id='pim_monto_impuesto' label='${lbl:b_amount_tax}' />
+		<col id='smn_moneda_rf_combo' label='${lbl:b_coins}' />
+		<col id='smn_tasa_rf_combo' label='${lbl:b_exchange_rate}' />
+		<col id='pim_monto_impuesto_ma' label='${lbl:b_amount_tax_ma}' />
+		<col id='pim_fecha_registro' label='${lbl:b_store_date}' />
+
+	</excel>
+
+</config>

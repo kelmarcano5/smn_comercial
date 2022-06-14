@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Pr�ximo paciente
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>proceso2.Preparacion</classname>
+		<validator>true</validator>
+		<transaction>true</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="sql-consulta.sql" source="sql" scope="session" />
+		<recordset id="smn_detalle_id" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>message.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<expiration>0</expiration>
+		<print mode="form" recordset="sql-consulta.sql" />
+		<print mode="form" recordset="smn_detalle_id"/>
+
+	</output>
+
+</config>

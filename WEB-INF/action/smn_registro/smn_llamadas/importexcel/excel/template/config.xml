@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnllamadas.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_calls}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_calls}">
+				<col id='smn_cliente_id_combo' label='${lbl:b_customer}' />
+		<col id='smn_prospecto_id_combo' label='${lbl:b_leaflet}' />
+		<col id='smn_solicitud_afiliacion_id' label='${lbl:b_affiliation_request}' />
+		<col id='smn_tipo_documento_id_combo' label='${lbl:b_tipo_documento_factura}' />
+		<col id='smn_documento_id_combo' label='${lbl:b_document}' />
+		<col id='lla_descripcion' label='${lbl:b_description}' />
+		<col id='smn_cita_id' label='${lbl:b_appointment}' />
+		<col id='smn_orden_pedido_id' label='${lbl:b_order_order}' />
+		<col id='smn_oferta_id_combo' label='${lbl:b_offer}' />
+		<col id='smn_solicitud_servicio_entrega_rf' label='${lbl:b_delivery_services_request}' />
+		<col id='smn_gestion_id_combo' label='${lbl:b_management}' />
+		<col id='lla_observacion' label='${lbl:b_observation}' />
+		<col id='lla_estatus_combo' label='${lbl:b_status}' />
+		<col id='lla_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

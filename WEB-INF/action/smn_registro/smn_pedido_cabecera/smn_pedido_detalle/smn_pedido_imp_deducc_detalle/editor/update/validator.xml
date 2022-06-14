@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_pedido_detalle_id_name' type='varchar' required='true' label='${lbl:b_control_header_order_detail}'/>
+	<parameter id='smn_pedido_detalle_id' type='integer' required='false' label='${lbl:b_control_header_order_detail}' maxlen='10'/>
+	<parameter id='smn_codigos_impuestos_rf' type='integer' required='false' label='${lbl:b_tax}' maxlen='10'/>
+	<parameter id='pid_porcentaje_impuesto' type='double' required='false' label='${lbl:b_tax_porcentaje}' maxlen='10'/>
+	<parameter id='pid_monto_sustraendo' type='double' required='false' label='${lbl:b_amount_less}' maxlen='10'/>
+	<parameter id='pid_monto_impuesto' type='double' required='false' label='${lbl:b_amount_tax}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='pid_monto_imp_moneda_alterna' type='double' required='false' label='${lbl:b_discount_coin_amount_altern}' maxlen='10'/>
+	<parameter id='smn_descuentos_retenciones_rf' type='integer' required='false' label='${lbl:b_retencion_discount}' maxlen='10'/>
+	<parameter id='pid_porcentaje_descuento_retencion' type='double' required='false' label='${lbl:b_discount_retention_percentage}' maxlen='10'/>
+	<parameter id='pid_monto_descuento_retencion' type='double' required='false' label='${lbl:b_discount_retention_percentage_amount}' maxlen='10'/>
+	<parameter id='pid_monto_desc_moneda_alterna' type='double' required='false' label='${lbl:b_discount_retencion_percentage_amount_altern}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_detail_order_deduction_tax}' maxlen='10'/>
+
+
+</validator>

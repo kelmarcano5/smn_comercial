@@ -1,0 +1,4 @@
+ <validator onerror="/action/error/validation/alert" id="ingreso_paciente">
+ 	<parameter id="entidades" type="integer" required="false" label="ID" maxlen="10" />
+ 	<parameter id="centro_facturacion" type="integer" required="false" label="ID" maxlen="10" />
+ </validator>

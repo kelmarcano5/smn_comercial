@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnpedidocomponentes.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_components_order}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_components_order}.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smnpedidocomponentes.sql' width='100' spacingBefore='40'>
+			<col name='pde_naturaleza_pl0' title='${lbl:b_detail_bill}' width='11' align='left' />
+			<col name='smn_mov_caja_detalle_id' title='${lbl:b_movement_caj}' width='11' align='left' format='######' />
+			<col name='smn_ingresos_rf' title='${lbl:b_income}' width='11' align='left' format='######' />
+			<col name='smn_grupo_componente_rf' title='${lbl:b_component_group}' width='11' align='left' format='######' />
+			<col name='pco_cantidad' title='${lbl:b_quantity}' width='11' align='left' format='######' />
+			<col name='smn_precio_ml_rf' title='${lbl:b_price}' width='11' align='left' format='#,###,##0.00' />
+			<col name='pco_monto_ml' title='${lbl:b_amount}' width='11' align='left' format='#,###,##0.00' />
+			<col name='pco_estatus' title='${lbl:b_status}' width='11' align='left' />
+			<col name='pco_fecha_registro' title='${lbl:b_store_date}' width='11' align='left' format='dd-MM-yyyy' />
+
+		</record>
+
+	</pdf-report>
+</config>

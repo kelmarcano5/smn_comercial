@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnpresupuestocomponente.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="7" cellStep="0" name="${lbl:b_presupuesto_detalle_componente}"/>
+	
+	<excel 
+		recordset='query-smnpresupuestocomponente.sql' 
+		sheetname='${lbl:b_presupuesto_detalle_componente}' 
+		filename='${lbl:b_presupuesto_detalle_componente}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_presupuesto_detalle_id' label='${lbl:b_presupuesto_detalle}' />
+		<col id='smn_presupuesto_id' label='${lbl:b_presupuesto}' />
+		<col id='smn_servicios_rf' label='${lbl:b_services}' />
+		<col id='smn_tipos_componentes_rf' label='${lbl:b_type_component}' />
+		<col id='smn_componentes_rf' label='${lbl:b_component}' />
+		<col id='smn_grupo_prestador_rf' label='${lbl:b_group_of_provider}' />
+		<col id='smn_prestadores_servicios_rf' label='${fld:b_service_provider}' />
+		<col id='prc_forma_calculo_rf' label='${lbl:b_forma_calculo}' />
+		<col id='prc_visible_rf' label='${lbl:b_visible}' />
+		<col id='prc_cantidad' label='${lbl:b_quantity}' />
+		<col id='prc_monto_ml' label='${lbl:b_amount}' />
+		<col id='prc_monto_ma' label='${lbl:b_amount_ma}' />
+		<col id='prc_monto_neto_ml' label='${lbl:b_amount_net}' />
+		<col id='prc_fecha_registro' label='${lbl:b_store_date}' />
+
+	</excel>
+
+</config>

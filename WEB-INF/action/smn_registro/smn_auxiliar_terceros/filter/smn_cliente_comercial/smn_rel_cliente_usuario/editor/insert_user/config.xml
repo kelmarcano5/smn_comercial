@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Insertar registro 
+	</summary>
+
+	<log>true</log>
+
+	<!--soporte de auditoria-->
+	<audit>
+		<!--de donde saca los datos, por defecto es "_request"-->
+		<recordset></recordset>
+		<!--que campos extrae para el registro descriptivo-->
+		<cols>
+			<colname>smn_clase_auxiliar_rf</colname>
+			<colname>lname</colname>
+			<colname>fname</colname>	
+		</cols>
+		<table>smn_seguridad.s_user</table>
+		<oper>AÑADIR</oper>
+		<area>Carga de datos</area>
+		<!--
+			query para obtener el ID generado o nombre de 
+			la columna que contiene el pkey, si es query, 
+			el alias del campo debe ser "id" <query>insert-email.sql</query>
+	<query>insert-phone.sql</query>
+		-->
+		<pkey>select ${seq:currval@smn_seguridad.seq_user} as id</pkey>
+	</audit>
+
+	<transaction>
+		<classname>dinamica.audit.AuditableTransaction</classname>
+		<validator>true</validator>
+		<transaction>true</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="getuserrole.sql" source="sql" scope="transaction"/>
+		<recordset id="getid.sql" source="sql" scope="request"/>
+		<recordset id="nextval.sql" source="sql" scope="transaction" />
+	</transaction>
+
+	<query>insert.sql</query>
+	<query>insert-passlog.sql</query>
+	<query>insert-usuarios.sql</query>
+	<query params="getuserrole.sql">insert-roles1.sql</query>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>script.js</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/javascript</content-type>
+		<expiration>0</expiration>
+		<print mode="form" recordset="_request" />
+		<print mode="form" recordset="nextval.sql" />
+	</output>
+	
+	<mail enabled="true">
+		<subject recordset="_request">${lbl:b_confirm_register} ${fld:fname} ${fld:lname}</subject>
+		<mail-to recordset="_request" colname="email"/>
+		<body recordset="getid.sql">message.txt</body>
+	</mail>
+
+</config>

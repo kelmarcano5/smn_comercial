@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_rel_detalle_ingrediente>
+	<detail>
+		<rows>		
+		<record smn_ingredientes_id="${fld:smn_ingredientes_id}"    smn_solicitud_servicio_entregas_detalle_id="${fld:smn_solicitud_servicio_entregas_detalle_id}"    />
+		</rows>
+	</detail>
+</smn_rel_detalle_ingrediente>

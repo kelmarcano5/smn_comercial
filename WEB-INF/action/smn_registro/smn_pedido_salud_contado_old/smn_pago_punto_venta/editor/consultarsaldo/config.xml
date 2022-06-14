@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Eliminar registro de una tabla
+	</summary>
+
+	<log>false</log>
+	<on-error>/action/error/general</on-error>
+
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>true</validator>
+		<transaction>true</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="saldo.sql" source="sql" scope="transaction" on-empty-return="1" />
+	</transaction>
+
+	<!-- <query>recalcular.sql</query> -->
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>script.js</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/javascript; charset=iso-8859-1</content-type>
+		<expiration>0</expiration>
+		<print mode="form" recordset="saldo.sql"/>
+	</output>
+	
+	<!-- <on-exit return-code="0" forward-to="${def:actionroot}/view" /> -->
+	<on-exit return-code="1" forward-to="${def:actionroot}/notfound" />
+</config>
+

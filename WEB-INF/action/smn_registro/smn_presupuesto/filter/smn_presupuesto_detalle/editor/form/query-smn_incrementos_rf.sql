@@ -1,0 +1,1 @@
+select smn_base.smn_incrementos.smn_incrementos_id as id, smn_base.smn_incrementos.inc_codigo ||' - '|| smn_base.smn_incrementos.inc_descripcion as item from smn_base.smn_incrementos order by smn_base.smn_incrementos.inc_descripcion asc

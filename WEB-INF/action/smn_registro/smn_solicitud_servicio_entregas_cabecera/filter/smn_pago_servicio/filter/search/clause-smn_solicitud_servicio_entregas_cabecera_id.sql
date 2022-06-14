@@ -1,0 +1,2 @@
+ and
+ 	smn_comercial.smn_pago_servicio.smn_solicitud_servicio_entregas_cabecera_id=${fld:smn_solicitud_servicio_entregas_cabecera_id}

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_cliente_id' type='integer' required='true' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_medio_pago_rf' type='integer' required='true' label='${lbl:b_medio_pago}' maxlen='10'/>
+
+
+</validator>

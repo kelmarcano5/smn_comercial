@@ -1,0 +1,67 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	 <col width='3%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='8%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='2%'/>
+	<col width='2%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="15" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th>DE</th>
+		<th class='sortable' onclick='sortBy("documento", "numero_documento","query-smnpedidocabecera.sql")'>Numero/${lbl:b_document}</th>
+		<th class='sortable' onclick='sortBy("comprador","query-smnpedidocabecera.sql")'>Comprador</th>
+		<th class='sortable' onclick='sortBy("item","query-smnpedidocabecera.sql")'>${lbl:b_item}</th>
+		<th class='sortable' onclick='sortBy("extras","query-smnpedidocabecera.sql")'>Extras</th>
+		<th class='sortable' onclick='sortBy("requisitos","query-smnpedidocabecera.sql")'>Requisitos</th>
+		<th class='sortable' onclick='sortBy("tiempo_preparacion","query-smnpedidocabecera.sql")'>Tiempo Preparacion</th>
+		<th class='sortable' onclick='sortBy("hora_inicio","query-smnpedidocabecera.sql")'>Hora Inicio</th>
+		<th class='sortable' onclick='sortBy("cantidad","query-smnpedidocabecera.sql")'>${lbl:b_quantity}</th>
+		<th class='sortable' onclick='sortBy("monto_pedido","query-smnpedidocabecera.sql")'>${lbl:b_amount}</th>
+		<th class='sortable' onclick='sortBy("estatus_proceso","query-smnpedidocabecera.sql")'>Estatus</th>
+		<th class='sortable' onclick='sortBy("fecha_registro","query-smnpedidocabecera.sql")'>${lbl:b_store_date}</th>
+		<th>DT</th>
+		<th>PV</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_pedido_cabecera_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/Despacho.png" onclick="despacho('${fld:smn_pedido_cabecera_id}')" title="Procesar Despacho" id="despacho"></td>
+		<td align='left'>${fld:numeropedido} - ${fld:documento}</td>
+		<td>${fld:comprador}</td>
+		<td>${fld:item}</td>
+		<td>${fld:extras}</td>
+		<td>${fld:requisitos}</td>
+		<td>${fld:tiempo_preparacion}</td>
+		<td>${fld:hora_inicio}</td>
+		<td>${fld:cantidad}</td>
+		<td>${fld:monto_pedido}</td>
+		<td align='left'>${fld:pca_estatus}</td>
+		<td>${fld:fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="detalle('${fld:smn_pedido_cabecera_id}','${fld:numeropedido}','${fld:pca_descripcion}','${fld:documento_id}','${fld:cliente}','${fld:pca_estatus_val}','${fld:comprador}','${fld:monto}')" title="${lbl:b_header_order}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="pagospunto('${fld:smn_pedido_cabecera_id}','${fld:numeropedido}','${fld:pca_descripcion}','${fld:documento_id}','${fld:smn_cliente_id}','${fld:pca_estatus_val}','${fld:comprador}')" title="${lbl:b_order_paying}"></td>
+	</tr>
+	</rows>
+
+</table>
