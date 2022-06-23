@@ -1,0 +1,12 @@
+SELECT DISTINCT
+	smn_caja.smn_dist_pago_detalle.dpd_numero_autorizacion
+FROM
+	smn_comercial.smn_pedido_detalle
+	INNER JOIN smn_base.smn_servicios ON smn_base.smn_servicios.smn_servicios_id = smn_comercial.smn_pedido_detalle.smn_servicios_rf
+	INNER JOIN smn_comercial.smn_pedido_cabecera ON smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id = smn_comercial.smn_pedido_detalle.smn_pedido_cabecera_id
+	INNER JOIN smn_caja.smn_mov_caja_cabecera ON smn_caja.smn_mov_caja_cabecera.smn_mov_caja_cabecera_id = smn_comercial.smn_pedido_cabecera.smn_mov_caja_cabecera_id
+	LEFT JOIN smn_caja.smn_dist_pago_detalle ON smn_caja.smn_dist_pago_detalle.smn_mov_caja_cabecera_id = smn_comercial.smn_pedido_cabecera.smn_mov_caja_cabecera_id
+	INNER JOIN smn_caja.smn_rel_dist_pag_caja_det ON smn_caja.smn_rel_dist_pag_caja_det.smn_dist_pago_detalle_id = smn_caja.smn_dist_pago_detalle.smn_dist_pago_detalle_id
+	INNER JOIN smn_caja.smn_mov_caja_detalle ON smn_caja.smn_rel_dist_pag_caja_det.smn_mov_caja_detalle_id = smn_caja.smn_mov_caja_detalle.smn_mov_caja_detalle_id AND smn_comercial.smn_pedido_detalle.smn_servicios_rf = smn_caja.smn_mov_caja_detalle.smn_id_rf
+WHERE 
+	smn_comercial.smn_pedido_detalle.smn_pedido_detalle_id = ${fld:id}

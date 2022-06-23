@@ -11,7 +11,7 @@ SELECT DISTINCT
     smn_comercial.smn_factura_cabecera.fca_fecha_registro AS fecha_documento,
     smn_comercial.smn_pedido_cabecera.pca_fecha_vencimiento AS fecha_vencimiento,
     smn_salud.smn_ingresos.igs_fecha_ingreso AS fecha_ingreso,
-    smn_caja.smn_dist_pago_detalle.dpd_numero_autorizacion AS nro_autorizacion,
+    smn_comercial.smn_pedido_pagadores.ppa_numero_autorizacion AS nro_autorizacion,
     smn_caja.smn_dist_pago_detalle.dpd_monto_del_pago_ml AS monto_autorizado,
     smn_comercial.smn_factura_cabecera.fca_numero_control_fiscal AS control_fiscal,
     case 
@@ -51,4 +51,4 @@ FROM smn_comercial.smn_pedido_cabecera
     INNER JOIN smn_comercial.smn_documento ON smn_comercial.smn_documento.smn_documento_id = smn_comercial.smn_factura_cabecera.smn_documento_id
     INNER JOIN smn_comercial.smn_tipo_documentos_fact ON smn_comercial.smn_tipo_documentos_fact.smn_tipo_documentos_fact_id = smn_comercial.smn_documento.smn_tipo_documentos_fact_id
 WHERE
-    smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id = ${fld:id}
+    smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id = ${fld:id} --and smn_comercial.smn_pedido_pagadores.smn_dist_pago_detalle_id = ${fld:det_id}

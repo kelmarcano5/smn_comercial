@@ -15,6 +15,8 @@
 	</transaction>
 
 	<query>update.sql</query>
+		<query>update_componentes.sql</query>
+			<query>update_pagadores.sql</query>
 
 	<output>
 		<classname>dinamica.GenericOutput</classname>

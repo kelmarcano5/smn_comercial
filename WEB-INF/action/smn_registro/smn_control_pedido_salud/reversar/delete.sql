@@ -19,11 +19,12 @@ delete from smn_caja.smn_rel_orden_factura_caja_det where smn_orden_factura_id =
 
 delete from smn_caja.smn_orden_factura where smn_mov_caja_cabecera_id = ${fld:caja_id}; 
 
+	
+UPDATE smn_caja.smn_dist_pago_detalle set dpd_estatus='RE' WHERE
+	smn_caja.smn_dist_pago_detalle.smn_mov_caja_cabecera_id=${fld:caja_id};
+
 UPDATE smn_caja.smn_mov_caja_cabecera SET
 	smn_estatus_cobro='PE',
 	mcc_estatus_registro='RE'
 WHERE
 	smn_caja.smn_mov_caja_cabecera.smn_mov_caja_cabecera_id=${fld:caja_id}; --AND smn_estatus_cobro='CR'
-
-UPDATE smn_caja.smn_dist_pago_detalle set dpd_estatus='RE' WHERE
-	smn_caja.smn_dist_pago_detalle.smn_mov_caja_cabecera_id=${fld:caja_id};

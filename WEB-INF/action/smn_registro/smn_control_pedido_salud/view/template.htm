@@ -58,7 +58,8 @@
 	<rows>
 	<tr>
 		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_pedido_cabecera_id}')" title="${lbl:b_view_detail}"></td>
-		<td><img src="${def:context}/images/search.png"  onclick="openPDF_factura_cab('${fld:smn_pedido_cabecera_id}')" title="Ver Factura Moneda Local"></td>
+		<td><img src="${def:context}/images/search.png"  onclick="openPDF_factura_cab('${fld:smn_pedido_cabecera_id}',
+		'${fld:det_id}')" title="Ver Factura Moneda Local"></td>
 		<td><img src="${def:context}/images/search.png"  onclick="openPDF_factura_cab_d('${fld:smn_pedido_cabecera_id}')" title="Ver Factura Moneda Alterna"></td>
 		<td><img src="${def:context}/images/search.png"  onclick="segmentar_factura('${fld:smn_pedido_cabecera_id}','${fld:pca_estatus}','${fld:pca_estatus_pago}','${fld:pca_segmentada}')" title="Segmentar Factura"></td>
 		

@@ -42,7 +42,8 @@
 	paciente.aux_num_doc_oficial as cedula,
 	smn_comercial.smn_pedido_cabecera.pca_cantidad as cantidad,
 	smn_base.smn_monedas.mon_simbolo,
-	smn_comercial.smn_centro_facturacion.smn_baremos_rf
+	smn_comercial.smn_centro_facturacion.smn_baremos_rf,
+	(select igs_num_ingreso from smn_salud.smn_ingresos where smn_salud.smn_ingresos.smn_ingresos_id=(case when smn_comercial.smn_pedido_cabecera.smn_ingresos_rf is null then 0 else smn_comercial.smn_pedido_cabecera.smn_ingresos_rf end)) as num_ingreso
 from
 	smn_comercial.smn_pedido_cabecera
 	left outer join smn_comercial.smn_cliente on smn_comercial.smn_cliente.smn_cliente_id = smn_comercial.smn_pedido_cabecera.smn_cliente_id

@@ -69,7 +69,6 @@ select DISTINCT
 	smn_cobranzas.smn_mov_documento_cob_cab.mdc_estatus_proceso as estatus_cobranza,
 	smn_base.smn_modulos.mod_codigo as modulo
 	
-	
 from
 	smn_comercial.smn_pedido_cabecera
 	left outer join smn_comercial.smn_cliente on smn_comercial.smn_cliente.smn_cliente_id = smn_comercial.smn_pedido_cabecera.smn_cliente_id

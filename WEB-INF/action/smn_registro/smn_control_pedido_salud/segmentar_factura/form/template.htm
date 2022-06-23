@@ -43,8 +43,9 @@
 			<td>Detalle de la factura: </td>
 			<td>
 				<smn_pedido_detalle_rows>
-				<input name="smn_pedido_detalle_id" id="smn_pedido_detalle_id" class="smn_pedido_detalle_id" type="checkbox" value="${fld:smn_pedido_detalle_id}" style="width:10px"> ${fld:descripcion} || N. Aut: ${fld:dpd_numero_autorizacion} - Bs: => ${fld:monto_ml@##,###,##0.00} || MA: => ${fld:monto_ma@##,###,##0.00}<br>
+				<input name="smn_pedido_detalle_id" id="smn_pedido_detalle_id" class="smn_pedido_detalle_id" type="checkbox" value="${fld:smn_pedido_detalle_id}" style="width:10px" onclick="seleccionar_aut();"> ${fld:descripcion} || N. Aut: ${fld:dpd_numero_autorizacion} - Bs: => ${fld:monto_ml@##,###,##0.00} || MA: => ${fld:monto_ma@##,###,##0.00}<br>
 				</smn_pedido_detalle_rows>
+			
 			</td>
 		</tr>
 	</table>
@@ -58,6 +59,7 @@
 	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
 
 <input type="hidden" name="id2" id="id2">
+<input type="hidden" name="numaut" id="numaut">
 </form>
 <!--codigo de soporte del template-->
 <script type="text/javascript">
@@ -78,6 +80,25 @@
 	}
 
 
+	function seleccionar_aut() {
+
+	
+	$('.smn_pedido_detalle_id:checked').each(function() {
+           var pedidodet_id = $(this).val();
+			var uri="${def:actionroot}/obtener_numaut?id="+pedidodet_id;
+			//llamada Ajax...
+			return ajaxCall(httpMethod="GET", 
+							uri, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+		});
+		
+		
+	}
+
 	//retorna al estado previo que corresponde
 	//al estado actual de la pagina, cada llamada Ajax
 	//se encarga de definir cual es la funcion de goBack() que aplica
@@ -95,7 +116,9 @@
 	function insert()
 	{		
 			var pedido_id = $('#id2').val();
-			var uri="${def:actionroot}/insert?id="+pedido_id;
+			var num_at2 = $('#numaut').val();
+			var uri="${def:actionroot}/insert?id="+pedido_id+"&numaut="+num_at2;
+			//alert(uri);
 			//clearErrorMessages();
 			document.getElementById("grabar").disabled=true;
 			

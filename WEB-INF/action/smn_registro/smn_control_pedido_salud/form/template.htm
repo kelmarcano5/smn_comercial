@@ -188,14 +188,14 @@
 		// 	var w = window.open(url, null, features);
 		}	
 
-		function openPDF_factura_cab(id) {
+		function openPDF_factura_cab(id, det_id) {
 			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
 			var url = "${def:context}${def:actionroot}/pdf_factura_cab?id="+id;
 			//alert(url);
 			var w = window.open(url, null, features);
 		}
 
-		function openPDF_factura_cab_d(id) {
+		function openPDF_factura_cab_d(id,  det_id) {
 			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
 			var url = "${def:context}${def:actionroot}/pdf_factura_cab_d?id="+id;
 			//alert(url);

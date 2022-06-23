@@ -24,6 +24,7 @@
 		<set-http-headers>true</set-http-headers>
 		<content-type>text/html</content-type>
 		<print mode='table' recordset='query-smn_pedido_detalle.sql' tag='smn_pedido_detalle_rows'/>
+		<print mode='form' recordset='query-smn_pedido_detalle.sql'/>
 		<print mode='form' recordset='query-obtener-cabecera.sql'/>
 		<print mode="form" recordset="_request" /> 
 	</output>

@@ -1,8 +1,8 @@
 //addNew();
 $('.smn_pedido_detalle_id:checked').each(function() {
 				documento_id=$(this).val();
-
-		var uri="${def:actionroot}/update_detalle?id="+documento_id+"&id_cab=${fld:id}";
+var numaut = $('#numaut').val();
+		var uri="${def:actionroot}/update_detalle?id="+documento_id+"&id_cab=${fld:id}&numaut="+numaut;
 		//alert("Entrar al Insert Det dentro del segmentar factura"+uri);
 
 			ajaxCall(httpMethod="GET", 
